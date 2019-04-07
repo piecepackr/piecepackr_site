@@ -27,9 +27,10 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (('piecepackr source', 'https://github.com/trevorld/piecepackr'),
-         ('piecepack wiki', 'http://ludism.org/ppwiki/'),)
-#        ('piecepack.org', 'http://piecepack.org/'),
-#        ('BoardGameGeek piecepack page', 'https://boardgamegeek.com/boardgame/2860/piecepack'),)
+         ("this website's source", "https://github.com/trevorld/piecepackr_site"),
+         ('piecepack wiki', 'http://ludism.org/ppwiki/'),
+#        ('piecepack BGG page', 'https://boardgamegeek.com/boardgame/2860/piecepack'),
+)
 
 # Social widget
 # SOCIAL = (('You can add links in your config file', '#'),
