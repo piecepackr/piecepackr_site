@@ -1,0 +1,3 @@
+[submodule "notmyidea-tld"]
+	path = notmyidea-tld
+	url = https://github.com/trevorld/notmyidea-tld

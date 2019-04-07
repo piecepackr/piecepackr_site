@@ -1,0 +1,121 @@
+Dual piecepacks demo
+====================
+
+:date: 2019-03-16
+:tags: api-demo, print-and-play
+
+.. {r setup, echo=FALSE}
+library("knitr")
+opts_chunk$set(out.width="60%", dev='svg', fig.path="content/images/knitr/dual-demo-",
+               fig.process=function(x) gsub("^content", "{static}", x), 
+               warning=FALSE)
+.. ..
+
+This is the demo of the six piecepacks that were included in the `"dual piecepacks" <http://www.ludism.org/ppwiki/DualPiecepacks>`_ proof-of-concept: one piecepack-suited piecepack, one `latin-suited <https://en.wikipedia.org/wiki/Suit_(cards)#Origin_and_development_of_the_Latin_suits>`_ piecepack (inverted color scheme), two french-suited piecepacks (one 'black' suits, one 'white' suits), and two `swiss-suited <https://en.wikipedia.org/wiki/Suit_(cards)#Invention_of_the_Germanic_suits>`_ piecepacks (one dark grayscale color scheme, one light grayscale color scheme).  One could use the piecepack-suited, latin-suited, and one of the french-suited piecepacks to build a "trial hoardpack".
+
+Dual piecepacks
+---------------
+
+"Dual piecepacks" are eight piecepack **suits** with the following properties:
+
+* The eight **suits** suits can be "easily" visually distinguished
+* The eight suits can be "easily" visually split into two separate **groups** of four suits
+* Each "suit" in a group can be "easily" visually **linked** with exactly one suit in the other group 
+
+This gives one the following nice properties:
+
+* One can play games requiring one piecepack deck plus an expansion piecepack deck by treating the eight **suits** as separate suits
+* One can play games requiring two piecepack decks by treating each pair of **linked** suits as the same suit
+* One can play games that are "SixPack" friendly by taking three suits from each visually distinct **group**. One can scale this down to games that are "Playing Cards Expansion" friendly or even scale up to four-grouped-suits versus four-grouped-suits friendly games (like Canadian checkers or Bughouse chess).
+* One can play entirely new games provided by the extra layer of relationships. Proof-of-concept new game is `Dual Piecepacks Poker <http://www.ludism.org/ppwiki/DualPiecepacksPoker>`_. 
+
+It is possible to construct three piecepacks where each pair of piecepack decks are "dual piecepacks" (e.g. piecepack-suited + inverted latin-suited + light french-suited). This could be called a "trial `HoardPack <http://www.ludism.org/ppwiki/HoardPack>`_" (apparently "trial" is the proper "three" analogue to "dual"). 
+
+Dual piecepacks #1 (Un-inverted Piecepack-suits and Inverted Latin-suits)
+-------------------------------------------------------------------------
+
+.. {r preview1, fig.cap='A preview of the piecepack-suited piecepack'}
+library("piecepackr")
+ranks_noto <- list(rank_symbols="n,a,2,3,4,5", rank_symbols_font="Noto Sans")
+dark_colorscheme <- list(suit_colors="darkred,black,darkgreen,darkblue,grey")
+piecepack_suits <- list(suit_symbols="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
+                        suit_symbols_font="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+                        suit_symbols_scale="0.6,0.7,0.75,0.9,0.9")
+dual1 <- c(piecepack_suits, dark_colorscheme, ranks_noto)
+dual1$title <- "Piecepack-suited (Un-inverted color scheme)"
+dual1 <- pp_cfg(dual1)
+make_pnp(dual1, "../images/pnp/dual1_letter.pdf", "letter")
+make_pnp(dual1, "../images/pnp/dual1_A4.pdf", "A4")
+draw_preview(dual1)
+.. ..
+
+.. {r preview2, fig.cap='A preview of the latin-suited piecepack'}
+latin_suits <- list(suit_symbols="\ue008,\ue007,\ue006,\ue009,\uaa5c",
+                        suit_symbols_font="Quivira,Quivira,Quivira,Quivira,Noto Sans Cham",
+                        suit_symbols_scale="0.9,1,1,1,0.9",
+                        invert_colors.suited=TRUE)
+dual2 <- c(latin_suits, dark_colorscheme, ranks_noto)
+dual2$title <- "Latin-suited (Inverted color scheme)"
+dual2 <- pp_cfg(dual2)
+make_pnp(dual2, "../images/pnp/dual2_letter.pdf", "letter")
+make_pnp(dual2, "../images/pnp/dual2_A4.pdf", "A4")
+draw_preview(dual2)
+.. ..
+
+Dual piecepacks #2 ("Black" and "White" French-suits)
+-----------------------------------------------------
+
+.. {r preview3, fig.cap='A preview of the "black" french-suited piecepack'}
+french_suits_black <- list(suit_symbols="\u2665,\u2660,\u2663,\u2666,\uaa5c", # ♥,♠,♣,♦,꩜
+                        suit_symbols_font="Noto Sans Symbols,Noto Sans Symbols,Noto Sans Symbols,Noto Sans Symbols,Noto Sans Cham",
+                        suit_symbols_scale="1,1,1,1,0.9")
+dual3 <- c(french_suits_black, dark_colorscheme, ranks_noto)
+dual3$title <- "French-suited (Black)"
+dual3 <- pp_cfg(dual3)
+make_pnp(dual3, "../images/pnp/dual3_letter.pdf", "letter")
+make_pnp(dual3, "../images/pnp/dual3_A4.pdf", "A4")
+draw_preview(dual3)
+.. ..
+
+.. {r preview4, fig.cap='A preview of the "white" french-suited piecepack'}
+french_suits_white <- french_suits_black
+french_suits_white$suit_symbols <- "\u2661,\u2664,\u2667,\u2662,\uaa5c" # ♡,♤,♧,♢,꩜
+dual4 <- c(french_suits_white, dark_colorscheme, ranks_noto)
+dual4$title <- "French-suited (White)"
+dual4 <- pp_cfg(dual4)
+make_pnp(dual4, "../images/pnp/dual4_letter.pdf", "letter", "French-suited (White)")
+make_pnp(dual4, "../images/pnp/dual4_A4.pdf", "A4", "French-suited (White)")
+draw_preview(dual4)
+.. ..
+
+Dual piecepacks #2 ("Black" and "White" Swiss-suits)
+-----------------------------------------------------
+
+.. {r preview5, fig.cap='A preview of the "black" swiss-suited piecepack'}
+dual5 <- pp_cfg(jsonlite::fromJSON(file("../../configurations/dual5.json")))
+orthodox_ranks <- list(rank_symbols=",a,2,3,4,5", 
+                       rank_symbols_font="Noto Sans", 
+                       use_suit_as_ace=TRUE)
+black_colorscheme <- list(suit_colors="black,black,black,black,grey40", 
+                          background_colors="grey70", 
+                          invert_colors.suited=TRUE)
+swiss_suits <- list(suit_symbols="\ue005,\ue004,\ue000,\ue003,\ue00a", 
+                    suit_symbols_font="Quivira")
+dual5 <- c(swiss_suits, black_colorscheme, orthodox_ranks)
+dual5$title <- "Swiss-suited (Black)"
+dual5 <- pp_cfg(dual5)
+make_pnp(dual5, "../images/pnp/dual5_letter.pdf", "letter")
+make_pnp(dual5, "../images/pnp/dual5_A4.pdf", "A4")
+draw_preview(dual5)
+.. ..
+
+.. {r preview6, fig.cap='A preview of the "white" swiss-suited piecepack'}
+white_colorscheme <- black_colorscheme
+white_colorscheme$suit_colors <- "white,white,white,white,grey40"
+dual6 <- c(swiss_suits, white_colorscheme, orthodox_ranks)
+dual6$title <- "Swiss-suited (White)"
+dual6 <- pp_cfg(dual6)
+make_pnp(dual6, "../images/pnp/dual6_letter.pdf", "letter")
+make_pnp(dual6, "../images/pnp/dual6_A4.pdf", "A4")
+draw_preview(dual6)
+.. ..

@@ -1,0 +1,28 @@
+Default demo
+============
+
+:date: 2019-03-16
+:tags: api-demo, print-and-play
+
+.. {r setup, echo=FALSE}
+library("knitr")
+opts_chunk$set(warning=FALSE, out.width="60%", dev='svg', 
+               fig.path="content/images/knitr/default-demo-",
+               fig.process=function(x) gsub("^content", "{static}", x))
+.. ..
+
+The default type of piecepack built by this software if the user does no configuration.  The default piecepack has the following properties.
+
+1. Uses symbols only found in R's default ``sans`` font so that it works on multiple OS platforms out of the box without the user needing to mess with their fonts.
+#. Builds a 4-suited piecepack using `multicolored french-suits <https://en.wikipedia.org/wiki/Four-color_deck>`_ for compatibility with french-suited playing cards and other potential game accessories (like Icehouse Pyramids).   
+#. Has a suit symbol on every suited component so the suits are accessible for the color-blind (as well as being decipharable for the non-color-blind if game diagrams are printed in grayscale).
+#. Uses a `colorblind barrier-free color palette <http://jfly.iam.u-tokyo.ac.jp/color/#see>`_.
+#. Uses a white background so not a lot of toner needs to be used in printing out diagrams.
+
+.. {r preview, fig.cap='A preview of the default piecepack made by piecepackr'}
+library("piecepackr")
+default <- pp_cfg()
+make_pnp(default, "../images/pnp/default_letter.pdf", "letter")
+make_pnp(default, "../images/pnp/default_A4.pdf", "A4")
+draw_preview(default)
+.. ..
