@@ -119,3 +119,7 @@ make_pnp(dual6, "../images/pnp/dual6_letter.pdf", "letter")
 make_pnp(dual6, "../images/pnp/dual6_A4.pdf", "A4")
 draw_preview(dual6)
 .. ..
+
+.. {r save}
+save(dual1, dual2, dual3, dual4, dual5, dual6, file="../tmp/dual.RData")
+.. ..

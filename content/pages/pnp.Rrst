@@ -1,0 +1,77 @@
+Print-and-Play PDFs
+===================
+
+:date: 2019-03-27
+:tags: print-and-play
+
+.. {r setup, echo=FALSE}
+library("knitr")
+opts_chunk$set(warning=FALSE, out.width="60%", dev='svg', 
+               fig.path="content/images/knitr/pnp-page-")
+               #fig.process=function(x) gsub("^content", "{static}", x))
+.. ..
+
+.. {r load, echo=FALSE}
+RData_files <- list.files("../tmp", pattern="RData", full.names=TRUE)
+ee <- new.env()
+for (ff in RData_files) { 
+    load(ff, envir=ee) 
+    load(ff)
+}
+save(list=names(ee), file="../share/demo_cfgs.RData")
+..
+
+.. {r animation, echo=FALSE, results='hide', message=FALSE}
+library("animation")
+library("grid")
+library("piecepackr")
+# download.file("https://trevorldavis.com/piecepackr/share/demo_cfgs.RData")
+ee <- new.env()
+load("../share/demo_cfgs.RData", envir=ee)
+saveGIF({
+    for (nn in names(ee)) {
+        grid.newpage()
+        grid.text(nn, y=0.9, gp=gpar(fontsize=30, fontface="bold"))
+        draw_preview(ee[[nn]])
+    }
+}, ani.height=600, ani.width=480, ani.dev="png", ani.type="png",
+    movie.name="pnp-page-animation.gif")
+file.rename('pnp-page-animation.gif', '../images/knitr/pnp-page-animation.gif')
+.. ..
+
+.. image:: {static}/images/knitr/pnp-page-animation.gif
+
+.. {r table, echo=FALSE, results='asis'}
+rst_link <- function(url, text=basename(url)) {
+    sprintf("`%s <%s>`__", text, url)
+}
+rst_list_table <- function(df, title=NULL, widths=NULL) {
+    nc <- ncol(df)  
+    cat(".. list-table::", title, "\n")
+    cat("\t:header-rows:", 1, "\n")
+    if(!is.null(widths))
+        cat("\t:widths:", widths, "\n")
+    cat("\n")
+    nn <- names(df)
+    cat("\t* -", nn[1], "\n")
+    for (ic in 2:nc) { cat("\t  -", nn[ic], "\n") }
+    for(ir in 1:nrow(df)) {
+        cat("\t* -", df[ir, 1], "\n")
+        for(ic in 2:nc) { cat("\t  -", df[ir, ic], "\n") }
+    }
+    cat("\n")
+}
+nn <- sort(names(ee))
+titles <- sapply(nn, function(x) {tt <- ee[[x]]$title; ifelse(is.null(tt), "", tt)})
+letter_urls <- sprintf("{static}/images/pnp/%s_letter.pdf", nn)
+A4_urls <- sprintf("{static}/images/pnp/%s_A4.pdf", nn)
+base <- gsub("[0-9]*", "", nn)
+demo_links <- sprintf("`%s demo <{filename}/Demos/%s.rst>`__", base, base)
+df <- data.frame(Title=titles, Letter=rst_link(letter_urls),
+                 A4=rst_link(A4_urls), Demo=demo_links, 
+                 stringsAsFactors=FALSE)
+# kable(df, "rst", row.names=FALSE, title="Downloadable Print-and-Play PDFs")
+rst_list_table(df, title="Downloadable Print-and-Play PDFs", widths="45, 15, 15, 25")
+..
+
+

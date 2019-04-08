@@ -2,11 +2,12 @@ require 'rake/clean'
 CLOBBER << 'output'
 
 CLEAN << 'content/images/knitr'
-CLEAN << 'content/images/pnp'
+CLEAN << 'content/share/pnp'
 
 rrst_files = Rake::FileList["**/*.Rrst"]
 rst_derivatives = rrst_files.ext(".rst").existing
 CLEAN << rst_derivatives
+CLEAN << Rake::FileList["**/*.RData"].existing
 
 rule ".rst" => ".Rrst" do |t|
     sh "Rscript -e 'knitr::knit(\"#{t.source}\", \"#{t.name}\", encoding=\"UTF-8\")'"

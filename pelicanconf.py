@@ -25,6 +25,8 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
+STATIC_PATHS = ['images', 'share']
+
 # Blogroll
 LINKS = (('piecepackr source', 'https://github.com/trevorld/piecepackr'),
          ("this website's source", "https://github.com/trevorld/piecepackr_site"),

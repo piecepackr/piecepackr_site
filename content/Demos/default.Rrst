@@ -22,7 +22,11 @@ The default type of piecepack built by this software if the user does no configu
 .. {r preview, fig.cap='A preview of the default piecepack made by piecepackr'}
 library("piecepackr")
 default <- pp_cfg()
-make_pnp(default, "../images/pnp/default_letter.pdf", "letter")
-make_pnp(default, "../images/pnp/default_A4.pdf", "A4")
+make_pnp(default, "../share/pnp/default_letter.pdf", "letter")
+make_pnp(default, "../share/pnp/default_A4.pdf", "A4")
 draw_preview(default)
+.. ..
+
+.. {r save}
+save(default, file="../tmp/default.RData")
 .. ..

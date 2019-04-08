@@ -21,7 +21,7 @@ Dependencies
 
 .. code:: r
 
-   install.packages(c("knitr", "remotes"))
+   install.packages(c("animation", "knitr", "remotes"))
    remotes::install_github("trevorld/piecepackr")
 
 .. code:: bash
