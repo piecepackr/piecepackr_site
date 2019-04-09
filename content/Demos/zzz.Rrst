@@ -1,0 +1,82 @@
+Animations
+==========
+
+:date: 2019-04-09
+:tags: api-demo
+
+.. {r setup, echo=FALSE}
+library("knitr")
+opts_chunk$set(warning=FALSE, out.width="60%", dev='svg', 
+               fig.path="content/images/knitr/zzz-")
+               #fig.process=function(x) gsub("^content", "{static}", x))
+.. ..
+
+.. {r save_rdata, echo=FALSE}
+RData_files <- list.files("../tmp", pattern="RData", full.names=TRUE)
+ee <- new.env()
+for (ff in RData_files) { 
+    load(ff, envir=ee) 
+}
+save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
+.. ..
+
+There are several R packages that can be used to make an animation including the `animation <https://cran.r-project.org/package=animation>`_, `gifski <https://cran.r-project.org/package=gifski>`__, and `tweenr <https://cran.r-project.org/package=tweenr>`__ packages.  Here is a simple example using the animation_ package to draw a preview of each of the piecepack configurations stored on this website.
+
+.. {r animation, results='hide', message=FALSE}
+library("animation")
+library("grid")
+library("piecepackr")
+# "https://trevorldavis.com/piecepackr/share/demo_cfgs.RData"
+cfgs <- new.env()
+load("../share/demo_cfgs.RData", envir=cfgs)
+draw_demos <- function(cfgs) {
+    for (nn in names(cfgs)) {
+        grid.newpage()
+        text <- sprintf("draw_preview(%s)", nn)
+        grid.text(text, y=0.9, gp=gpar(fontsize=30, fontface="bold"))
+        draw_preview(cfgs[[nn]])
+    }
+}
+saveGIF({draw_demos(cfgs)}, movie.name="pnp-previews.gif",
+    ani.height=600, ani.width=480, ani.dev="png", ani.type="png")
+
+.. {r move, echo=FALSE}
+invisible(file.rename('pnp-previews.gif', '../images/knitr/pnp-previews.gif'))
+.. ..
+
+.. image:: {static}/images/knitr/pnp-previews.gif
+    :alt: Animation of previews of various piecepacks
+
+And here is a simple animation of a tic-tac-toe game:
+
+.. {r tic-tac-toe, results='hide', message=FALSE}
+cfg <- cfgs$dual1
+draw_tictactoe_game_step <- function(n) {
+    grid.newpage()
+    pushViewport(viewport(width=inch(4), height=inch(4)))
+    if (n > 0) draw_component("tile_back", cfg)
+    if (n > 1) draw_component("coin_back", cfg, i_s=1, x=inch(2),y=inch(2))
+    if (n > 2) draw_component("coin_back", cfg, i_s=2, x=inch(1),y=inch(2), angle=180)
+    if (n > 3) draw_component("coin_back", cfg, i_s=1, x=inch(3),y=inch(1))
+    if (n > 4) draw_component("coin_back", cfg, i_s=2, x=inch(1),y=inch(3), angle=180)
+    if (n > 5) draw_component("coin_back", cfg, i_s=1, x=inch(1),y=inch(1))
+    if (n > 6) draw_component("coin_back", cfg, i_s=2, x=inch(3),y=inch(3), angle=180)
+    if (n > 7) draw_component("coin_back", cfg, i_s=1, x=inch(2),y=inch(1))
+    if (n > 8) grid.segments(x0=inch(0.5), y0=inch(1), x1=inch(3.5), y1=inch(1), 
+                             gp=gpar(col="blue", lwd=4))
+    popViewport()
+}
+draw_tictactoe_game <- function() {
+    for (ii in 0:9) { draw_tictactoe_game_step(ii) }
+}
+
+saveGIF({draw_tictactoe_game()}, movie.name="tictactoe.gif", 
+    ani.height=480, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
+.. ..
+.. {r move2, echo=FALSE}
+invisible(file.rename('tictactoe.gif', '../images/knitr/tictactoe.gif'))
+.. ..
+
+.. image:: {static}/images/knitr/tictactoe.gif
+    :alt: Animation of a tic-tac-toe game
+

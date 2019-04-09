@@ -27,6 +27,6 @@ make_pnp(default, "../share/pnp/default_A4.pdf", "A4")
 draw_preview(default)
 .. ..
 
-.. {r save}
+.. {r save, echo=FALSE}
 save(default, file="../tmp/default.RData")
 .. ..
