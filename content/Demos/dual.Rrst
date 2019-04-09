@@ -92,7 +92,6 @@ Dual piecepacks #2 ("Black" and "White" Swiss-suits)
 -----------------------------------------------------
 
 .. {r preview5, fig.cap='A preview of the "black" swiss-suited piecepack'}
-dual5 <- pp_cfg(jsonlite::fromJSON(file("../../configurations/dual5.json")))
 orthodox_ranks <- list(rank_symbols=",a,2,3,4,5", 
                        rank_symbols_font="Noto Sans", 
                        use_suit_as_ace=TRUE)
