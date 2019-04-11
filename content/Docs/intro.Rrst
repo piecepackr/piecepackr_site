@@ -70,3 +70,25 @@ Once you have a configuration you like one can use ``make_pnp`` to make a `Print
 
     make_pnp(cfg, "my_piecepack.pdf", size="letter")
     make_images(cfg)
+
+If you will be drawing a bunch of piecepack graphics you may want to use the ``pp_cfg`` function which will add a "component opt" cache to your configuration (will make ``draw_component`` work faster):
+
+.. code:: r
+
+    cfg <- pp_cfg(cfg)
+
+If you are comfortable manipulating R_ data frames ``draw_components`` is a wrapper around ``draw_component`` that can digest data frame input:
+
+.. {r draw_components, fig.cap='Tic-tac-toe example', fig.width=4, fig.height=4}
+df <- tibble::tribble(~component_side, ~i_s, ~x, ~y,
+                      "tile_back", NA, 2, 2,
+                      "coin_back", 1, 2, 2,
+                      "coin_back", 2, 1, 2,
+                      "coin_back", 1, 3, 1,
+                      "coin_back", 2, 1, 3,
+                      "coin_back", 1, 1, 1,
+                      "coin_back", 2, 3, 3,
+                      "coin_back", 1, 2, 1)
+df$angle <- ifelse(df$i_s == 2 & !is.na(df$i_s), 180, 0)
+draw_components(df, cfg=cfg, units="inches")
+.. ..
