@@ -1,0 +1,72 @@
+Intro to piecepackr's API
+=========================
+
+:date: 2019-04-11
+:tags: docs
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("docs-intro")
+knitr::opts_chunk$set(out.width=NULL)
+.. ..
+
+.. include:: ../../links.rst
+
+piecepackr_ is an R_ package to easily make piecepack_ graphics.  It can be used to make piecepack game diagrams and animations_ as well as "Print & Play" layouts so you can `make your own piecepack`_.
+
+The core function is ``draw_component`` which can be used to draw any piecepack component:
+
+.. {r dc1, fig.cap='3 of hearts tile face', fig.width=2.05, fig.height=2.05}
+library("piecepackr")
+draw_component("tile_face", i_s=1, i_r=4)
+.. ..
+
+.. {r dc2, fig.cap='ace coin face', fig.width=0.8, fig.height=0.8}
+draw_component("coin_face", i_r=2)
+.. ..
+
+.. {r dc3, fig.cap='clubs pawn (face)', fig.width=1.05, fig.height=1.05}
+draw_component("pawn_face", i_s=3)
+.. ..
+
+.. {r dc4, fig.cap='null of spades die (face)', fig.width=0.6, fig.height=0.6}
+draw_component("die_face", i_s=2, i_r=1)
+.. ..
+
+piecepackr features an advanced configuration system that allows users to customize the appearance of the piecepack being used in their graphics.  By default_ it uses an accessible french-suited configuration that should work out of the box on several OSes without the user needing to mess around with their system fonts but user's can customize their piecepack's appearance via use of a configuration ``list``:
+
+.. {r dc1t, fig.cap='3 of suns tile face', fig.width=2.05, fig.height=2.05}
+dark_colorscheme <- list(suit_colors="darkred,black,darkgreen,darkblue,black",
+                         invert_colors.suited=TRUE)
+piecepack_suits <- list(suit_symbols="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
+                        suit_symbols_font="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+                        suit_symbols_scale="0.6,0.7,0.75,0.9,0.9")
+traditional_ranks <- list(use_suit_as_ace=TRUE, rank_symbols=",a,2,3,4,5")
+cfg <- c(piecepack_suits, dark_colorscheme, traditional_ranks)
+draw_component("tile_face", i_s=1, i_r=4, cfg=cfg)
+.. ..
+
+.. {r dc2t, fig.cap='ace coin face', fig.width=0.8, fig.height=0.8}
+draw_component("coin_face", i_r=2, cfg=cfg)
+.. ..
+
+.. {r dc3t, fig.cap='crowns pawn (face)', fig.width=1.05, fig.height=1.05}
+draw_component("pawn_face", i_s=3, cfg=cfg)
+.. ..
+
+.. {r dc4t, fig.cap='null of moons die (face)', fig.width=0.6, fig.height=0.6}
+draw_component("die_face", i_s=2, i_r=1, cfg=cfg)
+.. ..
+
+The ``draw_preview`` function allows one to see a preview of a given configuration list:
+
+.. {r draw_preview, fig.cap='draw_preview allows one to see a preview of a configuration', out.width='60%'}
+draw_preview(cfg)
+.. ..
+
+Once you have a configuration you like one can use ``make_pnp`` to make a `Print & Play`_ pdf of your piecepack and ``make_images`` to make individual images of every piecepack component (in case you would prefer to make your own layout or rule diagram in software like Inkscape):
+
+.. code:: r
+
+    make_pnp(cfg, "my_piecepack.pdf", size="letter")
+    make_images(cfg)
