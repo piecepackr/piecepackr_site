@@ -1,3 +1,7 @@
 *.RData
 *.pyc
 *.swp
+output/
+content/Demos/*rst
+content/share/
+content/images/

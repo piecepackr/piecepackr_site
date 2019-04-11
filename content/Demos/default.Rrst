@@ -5,10 +5,8 @@ Default demo
 :tags: api-demo, print-and-play
 
 .. {r setup, echo=FALSE}
-library("knitr")
-opts_chunk$set(warning=FALSE, out.width="60%", dev='svg', 
-               fig.path="content/images/knitr/default-demo-",
-               fig.process=function(x) gsub("^content", "{static}", x))
+source("../../set_knitr_opts.R")
+set_opts_chunk("demos-default")
 .. ..
 
 The default type of piecepack built by this software if the user does no configuration.  The default piecepack has the following properties.
@@ -21,9 +19,7 @@ The default type of piecepack built by this software if the user does no configu
 
 .. {r preview, fig.cap='A preview of the default piecepack made by piecepackr'}
 library("piecepackr")
-default <- pp_cfg()
-make_pnp(default, "../share/pnp/default_letter.pdf", "letter")
-make_pnp(default, "../share/pnp/default_A4.pdf", "A4")
+default <- list()
 draw_preview(default)
 .. ..
 

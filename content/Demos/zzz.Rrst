@@ -5,10 +5,9 @@ Animations
 :tags: api-demo
 
 .. {r setup, echo=FALSE}
-library("knitr")
-opts_chunk$set(warning=FALSE, out.width="60%", dev='svg', 
-               fig.path="content/images/knitr/zzz-")
-               #fig.process=function(x) gsub("^content", "{static}", x))
+source("../../set_knitr_opts.R")
+set_opts_chunk("demos-zzz")
+library("piecepackr")
 .. ..
 
 .. {r save_rdata, echo=FALSE}
@@ -16,6 +15,9 @@ RData_files <- list.files("../tmp", pattern="RData", full.names=TRUE)
 ee <- new.env()
 for (ff in RData_files) { 
     load(ff, envir=ee) 
+}
+for (cfg in names(ee)) {
+    ee[[cfg]] <- pp_cfg(ee[[cfg]])
 }
 save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 .. ..
@@ -33,12 +35,13 @@ draw_demos <- function(cfgs) {
     for (nn in names(cfgs)) {
         grid.newpage()
         text <- sprintf("draw_preview(%s)", nn)
-        grid.text(text, y=0.9, gp=gpar(fontsize=30, fontface="bold"))
+        grid.text(text, y=0.94, gp=gpar(fontsize=30, fontface="bold"))
+        pushViewport(viewport(y=6/14, height=inch(6), width=inch(6)))
         draw_preview(cfgs[[nn]])
     }
 }
 saveGIF({draw_demos(cfgs)}, movie.name="pnp-previews.gif",
-    ani.height=600, ani.width=480, ani.dev="png", ani.type="png")
+    ani.height=540, ani.width=480, ani.res=80, ani.dev="png", ani.type="png")
 
 .. {r move, echo=FALSE}
 invisible(file.rename('pnp-previews.gif', '../images/knitr/pnp-previews.gif'))
@@ -46,12 +49,12 @@ invisible(file.rename('pnp-previews.gif', '../images/knitr/pnp-previews.gif'))
 
 .. image:: {static}/images/knitr/pnp-previews.gif
     :alt: Animation of previews of various piecepacks
+    :align: center
 
 And here is a simple animation of a tic-tac-toe game:
 
 .. {r tic-tac-toe, results='hide', message=FALSE}
-cfg <- cfgs$dual1
-draw_tictactoe_game_step <- function(n) {
+draw_tictactoe_game_step <- function(n, cfg=list()) {
     grid.newpage()
     pushViewport(viewport(width=inch(4), height=inch(4)))
     if (n > 0) draw_component("tile_back", cfg)
@@ -66,11 +69,10 @@ draw_tictactoe_game_step <- function(n) {
                              gp=gpar(col="blue", lwd=4))
     popViewport()
 }
-draw_tictactoe_game <- function() {
-    for (ii in 0:9) { draw_tictactoe_game_step(ii) }
+draw_tictactoe_game <- function(cfg=list()) {
+    for (ii in 0:9) { draw_tictactoe_game_step(ii, cfg) }
 }
-
-saveGIF({draw_tictactoe_game()}, movie.name="tictactoe.gif", 
+saveGIF({draw_tictactoe_game(cfgs$dual1)}, movie.name="tictactoe.gif", 
     ani.height=480, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
 .. ..
 .. {r move2, echo=FALSE}
@@ -79,4 +81,5 @@ invisible(file.rename('tictactoe.gif', '../images/knitr/tictactoe.gif'))
 
 .. image:: {static}/images/knitr/tictactoe.gif
     :alt: Animation of a tic-tac-toe game
+    :align: center
 

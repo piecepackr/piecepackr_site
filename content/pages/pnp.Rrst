@@ -5,14 +5,20 @@ Print-and-Play PDFs
 :tags: print-and-play
 
 .. {r setup, echo=FALSE}
-library("knitr")
-opts_chunk$set(warning=FALSE, out.width="60%", dev='svg', 
-               fig.path="content/images/knitr/pnp-page-")
-               #fig.process=function(x) gsub("^content", "{static}", x))
+source("../../set_knitr_opts.R")
+set_opts_chunk("pages-pnp")
 .. ..
 
-.. image:: {static}/images/knitr/pnp-previews.gif
-    :alt: Animation of previews of various piecepacks
+.. {r make_pnp, echo=FALSE}
+library("piecepackr")
+ee <- new.env()
+load("../share/demo_cfgs.RData", envir=ee)
+nn <- sort(names(ee))
+for (name in nn) {
+    make_pnp(ee[[name]], sprintf("../share/pnp/%s_letter.pdf", name), "letter")
+    make_pnp(ee[[name]], sprintf("../share/pnp/%s_A4.pdf", name), "A4")
+}
+.. ..
 
 .. {r table, echo=FALSE, results='asis'}
 rst_link <- function(url, text=basename(url)) {
@@ -34,19 +40,19 @@ rst_list_table <- function(df, title=NULL, widths=NULL) {
     }
     cat("\n")
 }
-ee <- new.env()
-load("../share/demo_cfgs.RData", envir=ee)
-nn <- sort(names(ee))
 titles <- sapply(nn, function(x) {tt <- ee[[x]]$title; ifelse(is.null(tt), "", tt)})
-letter_urls <- sprintf("{static}/images/pnp/%s_letter.pdf", nn)
-A4_urls <- sprintf("{static}/images/pnp/%s_A4.pdf", nn)
+letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", nn)
+A4_urls <- sprintf("{static}/share/pnp/%s_A4.pdf", nn)
 base <- gsub("[0-9]*", "", nn)
 demo_links <- sprintf("`%s demo <{filename}/Demos/%s.rst>`__", base, base)
 df <- data.frame(Title=titles, Letter=rst_link(letter_urls),
                  A4=rst_link(A4_urls), Demo=demo_links, 
                  stringsAsFactors=FALSE)
-# kable(df, "rst", row.names=FALSE, title="Downloadable Print-and-Play PDFs")
 rst_list_table(df, title="Downloadable Print-and-Play PDFs", widths="45, 15, 15, 25")
-..
+.. ..
 
+.. figure:: {static}/images/knitr/pnp-previews.gif
+    :alt: Animation of previews of various piecepacks
+    :align: center
 
+    Previews of the print-and-play piecepacks
