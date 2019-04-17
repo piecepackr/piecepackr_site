@@ -2,8 +2,8 @@
 *.pyc
 *.swp
 output/
-content/Demos/*rst
-content/Docs/*rst
-content/pages/*rst
+content/Demos/*.rst
+content/Docs/*.rst
+content/pages/*.rst
 content/share/
 content/images/

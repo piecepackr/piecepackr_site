@@ -28,7 +28,6 @@ There are several R packages that can be used to make an animation including the
 library("animation")
 library("grid")
 library("piecepackr")
-# "https://trevorldavis.com/piecepackr/share/demo_cfgs.RData"
 cfgs <- new.env()
 load("../share/demo_cfgs.RData", envir=cfgs)
 draw_demos <- function(cfgs) {
@@ -38,6 +37,7 @@ draw_demos <- function(cfgs) {
         grid.text(text, y=0.94, gp=gpar(fontsize=30, fontface="bold"))
         pushViewport(viewport(y=6/14, height=inch(6), width=inch(6)))
         draw_preview(cfgs[[nn]])
+        popViewport()
     }
 }
 saveGIF({draw_demos(cfgs)}, movie.name="pnp-previews.gif",
