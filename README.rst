@@ -1,13 +1,15 @@
 Piecepackr Companion Website
 ============================
 
-This is the source code for the companion website for the piecepackr_ R_ package which makes it easy to create customizable piecepack_ graphics for game diagrams, animations, and print-and-play layouts.
+This is the source code for the `companion website`_ for the piecepackr_ R_ package.  piecepackr_ makes it easy to create customizable piecepack_ graphics for game diagrams, animations, and print-and-play layouts.  This companion website contains documentation and several demos on how to use piecepackr_ (including downloadable print-and-play layouts and configurations).
 
 .. _piecepackr: https://github.com/trevorld/piecepackr
 
 .. _R: https://cran.r-project.org
 
 .. _piecepack: www.ludism.org/ppwiki
+
+.. _companion website: https://trevorldavis.com/piecepackr/
 
 Dependencies
 ------------
