@@ -9,6 +9,12 @@ rst_derivatives = rrst_files.ext(".rst").existing
 CLEAN << rst_derivatives
 CLEAN << Rake::FileList["**/*.RData"].existing
 
+if ENV.has_key?("debug") # rake debug=
+    debug_str = " --debug"
+else
+    debug_str = ""
+end
+
 rule ".rst" => ".Rrst" do |t|
     sh "Rscript -e 'knitr::knit(\"#{t.source}\", \"#{t.name}\", encoding=\"UTF-8\")'"
 end
@@ -16,7 +22,7 @@ end
 desc "Build website"
 task :default => rrst_files.ext(".rst")
 task :default do
-    sh "pelican -o output -s pelicanconf.py content"
+    sh "pelican -o output -s pelicanconf.py content" + debug_str
 end
 
 desc "Deploy website to trevor.l.davis.com/piecepackr"
@@ -33,7 +39,7 @@ end
 desc "Test website on localhost:8000"
 task :test => rrst_files.ext(".rst")
 task :test do
-    sh "pelican -o output -s pelicanconf.py --relative-urls content"
+    sh "pelican -o output -s pelicanconf.py --relative-urls content" + debug_str
     Dir.chdir("output") do
         sh "python3 -m http.server"
     end

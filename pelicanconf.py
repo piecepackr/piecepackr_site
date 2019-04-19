@@ -30,3 +30,11 @@ FEED_ALL_ATOM = 'feeds/all.atom.xml'
 # CATEGORY_FEED_ATOM = 'feeds/{slug}.atom.xml'
 
 DEFAULT_PAGINATION = False
+
+PLUGINS = ['pelican_comment_system']
+PELICAN_COMMENT_SYSTEM = True
+PELICAN_COMMENT_SYSTEM_IDENTICON_DATA = ('author',)
+PELICAN_COMMENT_SYSTEM_EMAIL_USER = 'piecepackr'
+PELICAN_COMMENT_SYSTEM_EMAIL_DOMAIN = 'trevorldavis.com'
+PELICAN_COMMENT_SYSTEM_FEED = None
+PELICAN_COMMENT_SYSTEM_FEED_ALL = 'feeds/comments.all.atom.xml'

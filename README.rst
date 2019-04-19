@@ -18,7 +18,7 @@ Dependencies
 
    $ sudo apt install python3-pip rake r-base rsync
    $ sudo apt install fonts-dejavu fonts-noto
-   $ pip3 install pelican
+   $ pip3 install pelican pelican_comment_system Pillow
    $ sudo R
 
 .. code:: r
