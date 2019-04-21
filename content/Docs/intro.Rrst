@@ -12,7 +12,7 @@ knitr::opts_chunk$set(out.width=NULL)
 
 .. include:: ../../links.rst
 
-piecepackr_ is an R_ package to easily make piecepack_ graphics.  It can be used to make piecepack game diagrams and animations_ as well as "Print & Play" layouts so you can `make your own piecepack`_.
+piecepackr_ is an R_ package to easily make piecepack_ graphics.  It can be used to make piecepack game diagrams and animations_ as well as `Print & Play`_ layouts so you can `make your own piecepack`_.
 
 The core function is ``draw_component`` which can be used to draw any piecepack component:
 
@@ -33,15 +33,15 @@ draw_component("pawn_face", i_s=3)
 draw_component("die_face", i_s=2, i_r=1)
 .. ..
 
-piecepackr features an advanced configuration system that allows users to customize the appearance of the piecepack being used in their graphics.  By default_ it uses an accessible french-suited configuration that should work out of the box on several OSes without the user needing to mess around with their system fonts but user's can customize their piecepack's appearance via use of a configuration ``list``:
+piecepackr_ features an advanced configuration system that allows users to customize the appearance of the piecepack being used in their graphics.  By default_ it uses an accessible french-suited configuration that should work out of the box on several OSes without the user needing to mess around with their system fonts but user's can customize their piecepack's appearance via use of a `configuration list`_:
 
 .. {r dc1t, fig.cap='3 of suns tile face', fig.width=2.05, fig.height=2.05}
-dark_colorscheme <- list(suit_colors="darkred,black,darkgreen,darkblue,black",
+dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,black",
                          invert_colors.suited=TRUE)
-piecepack_suits <- list(suit_symbols="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
-                        suit_symbols_font="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
-                        suit_symbols_scale="0.6,0.7,0.75,0.9,0.9")
-traditional_ranks <- list(use_suit_as_ace=TRUE, rank_symbols=",a,2,3,4,5")
+piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
+                        suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+                        suit_scale="0.6,0.7,0.75,0.9,0.9")
+traditional_ranks <- list(use_suit_as_ace=TRUE, rank_text=",a,2,3,4,5")
 cfg <- c(piecepack_suits, dark_colorscheme, traditional_ranks)
 draw_component("tile_face", i_s=1, i_r=4, cfg=cfg)
 .. ..
@@ -92,3 +92,5 @@ df <- tibble::tribble(~component_side, ~i_s, ~x, ~y,
 df$angle <- ifelse(df$i_s == 2 & !is.na(df$i_s), 180, 0)
 draw_components(df, cfg=cfg, units="inches")
 .. ..
+
+More documentation about piecepackr's API can be found in the package's `man pages`_ and the articles found in the Docs_ category on this website.

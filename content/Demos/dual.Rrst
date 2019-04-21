@@ -34,20 +34,20 @@ Dual piecepacks #1 (Un-inverted Piecepack-suits and Inverted Latin-suits)
 
 .. {r preview1, fig.cap='A preview of the piecepack-suited piecepack'}
 library("piecepackr")
-ranks_noto <- list(rank_symbols="n,a,2,3,4,5", rank_symbols_font="Noto Sans")
-dark_colorscheme <- list(suit_colors="darkred,black,darkgreen,darkblue,grey")
-piecepack_suits <- list(suit_symbols="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
-                        suit_symbols_font="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
-                        suit_symbols_scale="0.6,0.7,0.75,0.9,0.9")
+ranks_noto <- list(rank_symbols="n,a,2,3,4,5", rank_symbols_fontfamily="Noto Sans")
+dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,grey")
+piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
+                        suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+                        suit_scale="0.6,0.7,0.75,0.9,0.9")
 dual1 <- c(piecepack_suits, dark_colorscheme, ranks_noto)
 dual1$title <- "Piecepack-suited (Un-inverted color scheme)"
 draw_preview(dual1)
 .. ..
 
 .. {r preview2, fig.cap='A preview of the latin-suited piecepack'}
-latin_suits <- list(suit_symbols="\ue008,\ue007,\ue006,\ue009,\uaa5c",
-                        suit_symbols_font="Quivira,Quivira,Quivira,Quivira,Noto Sans Cham",
-                        suit_symbols_scale="0.9,1,1,1,0.9",
+latin_suits <- list(suit_text="\ue008,\ue007,\ue006,\ue009,\uaa5c",
+                        suit_fontfamily="Quivira,Quivira,Quivira,Quivira,Noto Sans Cham",
+                        suit_scale="0.9,1,1,1,0.9",
                         invert_colors.suited=TRUE)
 dual2 <- c(latin_suits, dark_colorscheme, ranks_noto)
 dual2$title <- "Latin-suited (Inverted color scheme)"
@@ -58,9 +58,9 @@ Dual piecepacks #2 ("Black" and "White" French-suits)
 -----------------------------------------------------
 
 .. {r preview3, fig.cap='A preview of the "black" french-suited piecepack'}
-french_suits_black <- list(suit_symbols="\u2665,\u2660,\u2663,\u2666,\uaa5c", # ♥,♠,♣,♦,꩜
-                        suit_symbols_font="Noto Sans Symbols,Noto Sans Symbols,Noto Sans Symbols,Noto Sans Symbols,Noto Sans Cham",
-                        suit_symbols_scale="1,1,1,1,0.9")
+french_suits_black <- list(suit_text="\u2665,\u2660,\u2663,\u2666,\uaa5c", # ♥,♠,♣,♦,꩜
+                        suit_fontfamily="Noto Sans Symbols,Noto Sans Symbols,Noto Sans Symbols,Noto Sans Symbols,Noto Sans Cham",
+                        suit_scale="1,1,1,1,0.9")
 dual3 <- c(french_suits_black, dark_colorscheme, ranks_noto)
 dual3$title <- "French-suited (Black)"
 draw_preview(dual3)
@@ -68,7 +68,7 @@ draw_preview(dual3)
 
 .. {r preview4, fig.cap='A preview of the "white" french-suited piecepack'}
 french_suits_white <- french_suits_black
-french_suits_white$suit_symbols <- "\u2661,\u2664,\u2667,\u2662,\uaa5c" # ♡,♤,♧,♢,꩜
+french_suits_white$suit_text <- "\u2661,\u2664,\u2667,\u2662,\uaa5c" # ♡,♤,♧,♢,꩜
 dual4 <- c(french_suits_white, dark_colorscheme, ranks_noto)
 dual4$title <- "French-suited (White)"
 draw_preview(dual4)
@@ -78,13 +78,13 @@ Dual piecepacks #2 ("Black" and "White" Swiss-suits)
 -----------------------------------------------------
 
 .. {r preview5, fig.cap='A preview of the "black" swiss-suited piecepack'}
-orthodox_ranks <- list(rank_symbols=",a,2,3,4,5", 
+orthodox_ranks <- list(rank_text=",a,2,3,4,5", 
                        use_suit_as_ace=TRUE)
-black_colorscheme <- list(suit_colors="black,black,black,black,grey40", 
+black_colorscheme <- list(suit_color="black,black,black,black,grey40", 
                           background_color="grey70", 
                           invert_colors.suited=TRUE)
-swiss_suits <- list(suit_symbols="\ue005,\ue004,\ue000,\ue003,\ue00a", 
-                    font="Quivira")
+swiss_suits <- list(suit_text="\ue005,\ue004,\ue000,\ue003,\ue00a", 
+                    fontfamily="Quivira")
 dual5 <- c(swiss_suits, black_colorscheme, orthodox_ranks)
 dual5$title <- "Swiss-suited (Black)"
 draw_preview(dual5)
@@ -92,7 +92,7 @@ draw_preview(dual5)
 
 .. {r preview6, fig.cap='A preview of the "white" swiss-suited piecepack'}
 white_colorscheme <- black_colorscheme
-white_colorscheme$suit_colors <- "white,white,white,white,grey40"
+white_colorscheme$suit_color <- "white,white,white,white,grey40"
 dual6 <- c(swiss_suits, white_colorscheme, orthodox_ranks)
 dual6$title <- "Swiss-suited (White)"
 draw_preview(dual6)

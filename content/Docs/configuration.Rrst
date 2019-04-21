@@ -2,6 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
+:modified: 2019-04-20
 :tags: docs
 
 .. contents::
@@ -16,33 +17,33 @@ set_opts_chunk("docs-configuration")
 
 .. include:: ../../links.rst
 
-piecepackr_ allows one to alter the appearance of one's piecepack graphics through the use of configuration lists.  Here is an example:
+piecepackr_ allows one to alter the appearance of one's piecepack_ graphics through the use of configuration lists.  Here is an example:
 
 .. {r example, fig.width=13, fig.height=7.05, out.width="90%", fig.cap="Configuration list example"}
 library("grid")
 library("piecepackr")
-dark_colorscheme <- list(suit_colors="darkred,black,darkgreen,darkblue,black",
+dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,black",
                          invert_colors.suited=TRUE)
-piecepack_suits <- list(suit_symbols="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
-                        suit_symbols_font="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
-                        suit_symbols_scale="0.6,0.7,0.75,0.9,0.9")
-traditional_ranks <- list(use_suit_as_ace=TRUE, rank_symbols=",a,2,3,4,5")
+piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
+                        suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+                        suit_scale="0.6,0.7,0.75,0.9,0.9")
+traditional_ranks <- list(use_suit_as_ace=TRUE, rank_text=",a,2,3,4,5")
 cfg <- c(piecepack_suits, dark_colorscheme, traditional_ranks)
 gp_text <- gpar(fontsize=25, fontface="bold")
 grid.text("draw_preview()", x=0.25, y=0.90, gp=gp_text)
-pushViewport(viewport(x=0.25, y=0.4, width=inch(6)))
+pushViewport(viewport(x=0.25, y=0.45, width=inch(6)))
 draw_preview()
 popViewport()
 grid.text("draw_preview(cfg)", x=0.75, y=0.90, gp=gp_text)
-pushViewport(viewport(x=0.75, y=0.4, width=inch(6)))
+pushViewport(viewport(x=0.75, y=0.45, width=inch(6)))
 draw_preview(cfg)
 popViewport()
 .. ..
 
 There are lot more examples of customizing piecepack appearances with configuration lists in the `Print & Play demos`_.
 
-Although one can further customize the appearance of one's piecepack graphics through the use of custom drawing functions the default ``piecpackr`` drawing function uses the configuration list to determine a piecepack component's shape, "primary" symbol,"directional mark" symbol, and gridlines (if any).  
-This program uses the abstraction that every piecepack component has a "component_side" name (like ``belt_face``), a suit, a rank, a primary symbol, a directional mark symbol, and embellishments like border lines, grid lines, and padding.  On top of the normal "suited" piecepack suits this program also recognizes an extra "unsuit" suit which is used to configure "neutral" components like tile backs and coin faces.  Although the primary and directional mark symbols can be configured directly (i.e. ``tile_face.ps_symbol_fontsize``) they are often configured indirectly by specifying various "suit" and "rank" symbol configurations (i.e. ``rank_symbols_scale``).
+Although one can further customize the appearance of one's piecepack graphics through the use of custom drawing functions the default piecepackr_ drawing function uses the configuration list to determine a piecepack component's shape, "primary" symbol,"directional mark" symbol, and gridlines (if any).  
+This program uses the abstraction that every piecepack component has a "component_side" name (like ``belt_face``), a suit, a rank, a primary symbol, a directional mark symbol, and embellishments like border lines, grid lines, and padding.  On top of the normal "suited" piecepack suits this program also recognizes an extra "unsuit" suit which is used to configure "neutral" components like tile backs and coin faces.  Although the primary and directional mark symbols can be configured directly (i.e. ``tile_face.ps_fontsize``) they are often configured indirectly by specifying various "suit" and "rank" symbol configurations (i.e. ``rank_scale``).
 
 Configurations are *often* allowed to be comma-separated to be able to specify different values for different suits or ranks e.g. ``background_color=white`` or ``background_color=pink,grey,grey,pink,white`` (note how the last [5th] element specifies that the "unsuit" background color should be "white").  
 
@@ -55,7 +56,7 @@ The configurations in this program "cascade" (sort of like in "Cascading Style S
 
 The configuration "cascade" priorities are as follows:
 
-#. Direct styles have priority over indirect styles e.g. ``dm_text`` has priority over ``suit_symbols.tile_face`` for which symbol is used in the corner of the tile face and in turn ``suit_symbols_font`` has priority over ``font`` for which fonts are used on the coin back.  This is because indirect styles are only used to a generate reasonable default if a direct style cannot be found.
+#. Direct styles have priority over indirect styles e.g. ``dm_text`` has priority over ``suit_text.tile_face`` for which symbol is used in the corner of the tile face and in turn ``suit_fontfamily`` has priority over ``fontfamily`` for which fonts are used on the coin back.  This is because indirect styles are only used to a generate reasonable default if a direct style cannot be found.
 #. Then if there is a tie ``.component_side`` has priority over ``.component`` which has priority over no component specification e.g. ``dm_text.saucer_back`` has priority over ``dm_text.saucer`` which has priority over just ``dm_text``.
 #. Then if there is still a tie ``.r#`` has priority over no rank specification e.g. ``invert_colors.r1`` has priority over ``invert_colors``.
 #. Then if there is still a tie ``.s#`` has priority over ``.suited`` / ``.unsuited`` which has priority over no suit specification e.g. ``invert_colors.s2`` has priority over ``invert_colors.suited`` has priority over just ``invert_colors``.
@@ -74,11 +75,15 @@ Table of configuration list styles
       - comma-separated
     * - ps_text
       - "primary symbol" text
-      - suit_symbols, rank_symbols, use_suit_as_ace
+      - suit_text, rank_text, use_suit_as_ace
       -
-    * - ps_font
+    * - ps_fontface
+      - fontface of "primary symbol" symbol
+      - suit_fontface, rank_fontface, fontface, use_suit_as_ace
+      -
+    * - ps_fontfamily
       - font of "primary symbol" symbol
-      - suit_symbols_font, rank_symbols_font, font, use_suit_as_ace
+      - suit_fontfamily, rank_fontfamily, fontfamily, use_suit_as_ace
       -
     * - ps_fontsize
       - fontsize of "primary symbol" symbol
@@ -86,7 +91,7 @@ Table of configuration list styles
       -
     * - ps_scale
       - Multiplier to apply to the "primary symbol" fontsize (cumulative with ``scale``)
-      - suit_symbols_scale, rank_symbols_scale, use_suit_as_ace
+      - suit_scale, rank_scale, use_suit_as_ace
       -
     * - ps_t
       - Angle (in degrees) of polar coordinates of "primary symbol" (from center)
@@ -98,15 +103,19 @@ Table of configuration list styles
       - suit
     * - ps_color
       - Color of "primary symbol"
-      - suit_colors, background_color, invert_colors
+      - suit_color, background_color, invert_colors
       -
     * - dm_text
       - "directional mark" text
-      - suit_symbols
+      - suit_text
       - suit
-    * - dm_font
+    * - dm_fontface
       - font of "directional mark"
-      - suit_symbols_font, font
+      - suit_fontface, fontface
+      - suit
+    * - dm_fontfamily
+      - font of "directional mark"
+      - suit_fontfamily, fontfamily
       - suit
     * - dm_fontsize
       - fontsize of "directional mark"
@@ -114,7 +123,7 @@ Table of configuration list styles
       -
     * - dm_scale
       - Multiplier to apply to the "directional mark" fontsize (cumulative with ``scale``)
-      - suit_symbols_scale, suit_symbols_scale
+      - suit_scale
       - suit
     * - dm_t
       - Angle (in degrees) of polar coordinates of "directional mark" symbol (from center)
@@ -126,7 +135,7 @@ Table of configuration list styles
       - suit
     * - dm_color
       - Color of "directional mark" symbol
-      - suit_colors, background_color, invert_colors
+      - suit_color, background_color, invert_colors
       - suit
     * - shape
       - Shape of component: either ``rect``, ``circle``, ``halma``, ``kite``, ``pyramid``, ``concave#`` or ``convex#`` where ``#`` is the number of outside polygon vertices
@@ -142,7 +151,7 @@ Table of configuration list styles
       -
     * - background_color
       - Background color of the component
-      - suit_colors, invert_colors
+      - suit_color, invert_colors
       - suit
     * - invert_colors
       - Should we switch the background color with the suit color?
@@ -154,43 +163,51 @@ Table of configuration list styles
       - suit
     * - gridline_color
       - Color of the gridlines
-      - suit_colors, background_color, invert_colors
+      - suit_color, background_color, invert_colors
       - suit
     * - mat_color
       - Color of the "matting"
-      - suit_colors, background_color, invert_colors
+      - suit_color, background_color, invert_colors
       - suit
     * - mat_width
       - Width of the "matting" (from 0.0 to 1.0)
       - 
       - padding
-    * - suit_symbols
+    * - suit_text
       - Suit symbols to use as "primary" symbol or "directional mark"
       -
       - suit
-    * - suit_symbols_font
+    * - suit_fontface
       - Font(s) of the suit symbols
-      - font
+      - fontface
       - suit
-    * - suit_symbols_scale
+    * - suit_fontfamily
+      - Font(s) of the suit symbols
+      - fontfamily
+      - suit
+    * - suit_scale
       - Multiplier to apply to the suit symbols fontsize
-      - scale
+      - 
       - suit
-    * - suit_colors
+    * - suit_color
       - Suit colors
       - 
       - suit
-    * - rank_symbols
+    * - rank_text
       - Rank symbols to use as "primary" symbol
-      - suit_symbols, use_suit_as_ace
+      - suit_text, use_suit_as_ace
       - rank
-    * - rank_symbols_font
+    * - rank_fontface
       - Font(s) of the rank symbols
-      - suit_symbols_font, use_suit_as_ace
+      - suit_fontface, use_suit_as_ace, fontface
       - rank
-    * - rank_symbols_scale
+    * - rank_fontfamily
+      - Font(s) of the rank symbols
+      - suit_fontfamily, use_suit_as_ace, fontfamily
+      - rank
+    * - rank_scale
       - Multiplier to apply to the rank symbols fontsize
-      - suit_symbols_scale, use_suit_as_ace
+      - suit_scale, use_suit_as_ace
       - rank
     * - use_suit_as_ace
       - Boolean for whether the suit symbol should be used for the 'ace' rank
@@ -200,17 +217,21 @@ Table of configuration list styles
       - Multiplier to apply to all the fontsizes
       -
       -
-    * - font
-      - Default font
+    * - fontfamily
+      - Default font 'family'
+      -
+      -
+    * - fontface
+      - Default font 'face'
       -
       -
     * - n_ranks
       - Number of ranks
-      - rank_symbols
+      - rank_text
       -
     * - n_suits
       - Number of suits
-      - suit_symbols
+      - suit_text
       -
     * - pp_die_arrangement
       - Either "counter" or "opposites_sum_to_5"
@@ -221,7 +242,7 @@ Table of configuration list styles
       -
       -
     * - title
-      - Title of the piecpack
+      - Title of the piecepack
       -
       -
 
@@ -262,4 +283,3 @@ names(cfgs)
 print(cfgs$dual5)
 draw_preview(cfgs$dual5)
 .. ..
-
