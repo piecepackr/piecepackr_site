@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2019-04-20
+:modified: 2019-04-22
 :tags: docs
 
 .. contents::
@@ -233,12 +233,20 @@ Table of configuration list styles
       - Number of suits
       - suit_text
       -
-    * - pp_die_arrangement
-      - Either "counter" or "opposites_sum_to_5"
+    * - die_arrangement
+      - Either "counter_up", "counter_down", or "opposites_sum_to_5"
       -
       -
-    * - draw_component_fn
-      - Which function to draw the component
+    * - width
+      - Width of component in inches
+      -
+      -
+    * - height
+      - Height of component in inches
+      - width
+      -
+    * - draw_fn
+      - Which function to use to draw the component
       -
       -
     * - title
