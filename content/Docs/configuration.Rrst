@@ -246,7 +246,7 @@ Table of configuration list styles
       - width
       -
     * - draw_fn
-      - Which function to use to draw the component
+      - Which `drawing function`_ to use to draw the component
       -
       -
     * - title

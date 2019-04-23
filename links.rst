@@ -5,6 +5,7 @@
 .. _R: https://cran.r-project.org/
 .. _make your own piecepack: http://www.ludism.org/ppwiki/MakingPiecepacks
 .. _man pages: https://rdrr.io/github/trevorld/piecepackr/man/
+.. _JCD piecepack: http://www.piecepack.org/JCD.html
 
 .. Articles
 
@@ -14,6 +15,9 @@
 .. _configuration:
 .. _configuration lists:
 .. _configuration list: {filename}/Docs/configuration.rst
+.. _custom:
+.. _drawing function:
+.. _custom drawing function: {filename}/Docs/custom_draw_fn.rst
 
 .. Pages
 
