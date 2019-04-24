@@ -2,6 +2,7 @@ Custom drawing functions
 ========================
 
 :date: 2019-04-23
+:modified: 2019-04-24
 :tags: docs
 
 .. {r setup, echo=FALSE}
@@ -33,7 +34,8 @@ library("grid")
 library("piecepackr")
 
 checkered_tile_fn <- function(component_side, i_s, i_r, cfg) {
-    opt <- get_component_opt(component_side, i_s, i_r, cfg)
+    cfg <- as_pp_cfg(cfg)
+    opt <- cfg$get_component_opt(component_side, i_s, i_r)
     shape_fn <- get_grid_shape(opt$shape, opt$shape_t, opt$shape_r)
     shape_fn(gp=gpar(col=NA, fill=opt$background_col)) # background
     add_checkers(opt$gridline_col, opt$shape, opt$shape_t) # checkers
@@ -58,7 +60,8 @@ The pawn belts in Jonathan Dietrich's `JCD piecepack`_ and Chris Sakkas' `Nine-S
 
 .. {r three_suited_belt, fig.cap="Pawn belts with three suit symbols", fig.width=3, fig.height=1, out.width=NULL}
 pawn_belt_fn <- function(component_side, i_s, i_r, cfg) {
-    opt <- get_component_opt(component_side, i_s, i_r, cfg)
+    cfg <- as_pp_cfg(cfg)
+    opt <- cfg$get_component_opt(component_side, i_s, i_r)
     shape_fn <- get_grid_shape(opt$shape, opt$shape_t, opt$shape_r)
     shape_fn(gp=gpar(col=NA, fill=opt$background_col)) # background
     grid.rect(width=0.3, gp=gpar(col=NA, fill=opt$ps_col))
@@ -93,3 +96,5 @@ For help in writing your own custom drawing functions it can also be instructive
 .. {r default_fn}
     print(basic_draw_fn)
 .. ..
+
+In order to draw custom drawing functions it may also be helpful to learn more about grid_'s API. Some may also find the grImport2_ package useful.

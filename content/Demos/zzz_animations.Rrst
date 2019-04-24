@@ -10,6 +10,8 @@ set_opts_chunk("demos-zzz")
 library("piecepackr")
 .. ..
 
+.. include:: ../../links.rst
+
 .. {r save_rdata, echo=FALSE}
 RData_files <- list.files("../tmp", pattern="RData", full.names=TRUE)
 ee <- new.env()
@@ -22,7 +24,9 @@ for (cfg in names(ee)) {
 save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 .. ..
 
-There are several R packages that can be used to make an animation including the `animation <https://cran.r-project.org/package=animation>`_, `gifski <https://cran.r-project.org/package=gifski>`__, and `tweenr <https://cran.r-project.org/package=tweenr>`__ packages.  Here is a simple example using the animation_ package to draw a preview of each of the piecepack configurations stored on this website.
+.. note:: Besides the ``animation`` package there are also several other R packages that can be used to help make an animation like the gifski_ and tweenr_ packages.  
+
+Here we'll give a simple example using the `animation package`_ to draw a preview of each of the piecepack configurations stored on this website.  
 
 .. {r animation, results='hide', message=FALSE}
 library("animation")

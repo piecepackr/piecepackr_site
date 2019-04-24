@@ -9,10 +9,14 @@ source("../../set_knitr_opts.R")
 set_opts_chunk("demos-dual")
 .. ..
 
-This is the demo of the six piecepacks that were included in the `"dual piecepacks" <http://www.ludism.org/ppwiki/DualPiecepacks>`_ proof-of-concept: one piecepack-suited piecepack, one `latin-suited <https://en.wikipedia.org/wiki/Suit_(cards)#Origin_and_development_of_the_Latin_suits>`_ piecepack (inverted color scheme), two french-suited piecepacks (one 'black' suits, one 'white' suits), and two `swiss-suited <https://en.wikipedia.org/wiki/Suit_(cards)#Invention_of_the_Germanic_suits>`_ piecepacks (one dark grayscale color scheme, one light grayscale color scheme).  One could use the piecepack-suited, latin-suited, and one of the french-suited piecepacks to build a "trial hoardpack".
+.. include:: ../../links.rst
 
-Dual piecepacks
----------------
+This is the demo of the six piecepacks_ that were included in the `"dual piecepacks" <http://www.ludism.org/ppwiki/DualPiecepacks>`_ proof-of-concept: one piecepack-suited piecepack, one `latin-suited <https://en.wikipedia.org/wiki/Suit_(cards)#Origin_and_development_of_the_Latin_suits>`_ piecepack (inverted color scheme), two french-suited piecepacks (one 'black' suits, one 'white' suits), and two `swiss-suited <https://en.wikipedia.org/wiki/Suit_(cards)#Invention_of_the_Germanic_suits>`_ piecepacks (one dark grayscale color scheme, one light grayscale color scheme).  One could use the piecepack-suited, latin-suited, and one of the french-suited piecepacks to build a "trial hoardpack".
+
+.. contents::
+
+Dual piecepacks intro
+---------------------
 
 "Dual piecepacks" are eight piecepack **suits** with the following properties:
 
@@ -41,6 +45,7 @@ piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5
                         suit_scale="0.6,0.7,0.75,0.9,0.9")
 dual1 <- c(piecepack_suits, dark_colorscheme, ranks_noto)
 dual1$title <- "Piecepack-suited (Un-inverted color scheme)"
+dual1 <- pp_cfg(dual1)
 draw_preview(dual1)
 .. ..
 
@@ -51,6 +56,7 @@ latin_suits <- list(suit_text="\ue008,\ue007,\ue006,\ue009,\uaa5c",
                         invert_colors.suited=TRUE)
 dual2 <- c(latin_suits, dark_colorscheme, ranks_noto)
 dual2$title <- "Latin-suited (Inverted color scheme)"
+dual2 <- pp_cfg(dual2)
 draw_preview(dual2)
 .. ..
 
@@ -63,6 +69,7 @@ french_suits_black <- list(suit_text="\u2665,\u2660,\u2663,\u2666,\uaa5c", # ♥
                         suit_scale="1,1,1,1,0.9")
 dual3 <- c(french_suits_black, dark_colorscheme, ranks_noto)
 dual3$title <- "French-suited (Black)"
+dual3 <- pp_cfg(dual3)
 draw_preview(dual3)
 .. ..
 
@@ -71,6 +78,7 @@ french_suits_white <- french_suits_black
 french_suits_white$suit_text <- "\u2661,\u2664,\u2667,\u2662,\uaa5c" # ♡,♤,♧,♢,꩜
 dual4 <- c(french_suits_white, dark_colorscheme, ranks_noto)
 dual4$title <- "French-suited (White)"
+dual4 <- pp_cfg(dual4)
 draw_preview(dual4)
 .. ..
 
@@ -87,6 +95,7 @@ swiss_suits <- list(suit_text="\ue005,\ue004,\ue000,\ue003,\ue00a",
                     fontfamily="Quivira")
 dual5 <- c(swiss_suits, black_colorscheme, orthodox_ranks)
 dual5$title <- "Swiss-suited (Black)"
+dual5 <- pp_cfg(dual5)
 draw_preview(dual5)
 .. ..
 
@@ -95,6 +104,7 @@ white_colorscheme <- black_colorscheme
 white_colorscheme$suit_color <- "white,white,white,white,grey40"
 dual6 <- c(swiss_suits, white_colorscheme, orthodox_ranks)
 dual6$title <- "Swiss-suited (White)"
+dual6 <- pp_cfg(dual6)
 draw_preview(dual6)
 .. ..
 

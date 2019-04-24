@@ -19,7 +19,7 @@ The default type of piecepack built by this software if the user does no configu
 
 .. {r preview, fig.cap='A preview of the default piecepack made by piecepackr'}
 library("piecepackr")
-default <- list()
+default <- pp_cfg(list())
 draw_preview(default)
 .. ..
 

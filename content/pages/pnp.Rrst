@@ -18,6 +18,7 @@ for (name in nn) {
     make_pnp(ee[[name]], sprintf("../share/pnp/%s_letter.pdf", name), "letter")
     make_pnp(ee[[name]], sprintf("../share/pnp/%s_A4.pdf", name), "A4")
 }
+save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 .. ..
 
 .. {r table, echo=FALSE, results='asis'}

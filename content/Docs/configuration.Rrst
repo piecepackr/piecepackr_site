@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2019-04-22
+:modified: 2019-04-24
 :tags: docs
 
 .. contents::
@@ -254,10 +254,10 @@ Table of configuration list styles
       -
       -
 
-Component opt caching
----------------------
+Configuration List R6 Object
+----------------------------
 
-If you will be drawing lots of piecepack images one can use the ``pp_cfg`` function to add a cache of component opts to the configuration list.  It takes a few seconds but really speeds up future image drawing.
+If you will be drawing lots of piecepack images you should use the ``pp_cfg`` function to create a configuration list R6 object.  It (on-the-fly) builds a cache so it really speeds up future component drawing.
 
 .. {r pp_cfg, eval=FALSE}
     cfg <- pp_cfg(cfg)
@@ -273,7 +273,7 @@ save(cfg, file="my_cfg.RData")
 load("my_cfg.RData")
 .. ..
 
-This website offers for download `demo_cfgs.RData`_ which contains every `Print & Play demos`_ configuration list (with a component opt cache added via ``pp_cfg``).
+This website offers for download `demo_cfgs.RData`_ which contains every `Print & Play demos`_ configuration list.
 
 .. {r load, echo=FALSE}
 cfgs <- new.env()
@@ -286,7 +286,7 @@ cfgs <- new.env()
 load("demo_cfgs.RData", envir=cfgs)
 .. ..
 
-.. {r demo_cfg}
+.. {r demo_cfg, fig.cap="Preview of 'dual5' configuration from 'demo_cfgs.RData'"}
 names(cfgs)
 print(cfgs$dual5)
 draw_preview(cfgs$dual5)
