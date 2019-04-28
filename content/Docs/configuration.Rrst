@@ -30,13 +30,13 @@ piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5
 traditional_ranks <- list(use_suit_as_ace=TRUE, rank_text=",a,2,3,4,5")
 cfg <- c(piecepack_suits, dark_colorscheme, traditional_ranks)
 gp_text <- gpar(fontsize=25, fontface="bold")
-grid.text("draw_preview()", x=0.25, y=0.90, gp=gp_text)
+grid.text("grid.piece('preview_layout')", x=0.25, y=0.90, gp=gp_text)
 pushViewport(viewport(x=0.25, y=0.43, width=inch(6)))
-draw_preview()
+grid.piece("preview_layout", cfg=)
 popViewport()
-grid.text("draw_preview(cfg)", x=0.75, y=0.90, gp=gp_text)
+grid.text("grid.piece('preview_layout', cfg=cfg)", x=0.75, y=0.90, gp=gp_text)
 pushViewport(viewport(x=0.75, y=0.43, width=inch(6)))
-draw_preview(cfg)
+grid.piece("preview_layout", cfg=cfg)
 popViewport()
 .. ..
 
@@ -297,7 +297,7 @@ load("demo_cfgs.RData", envir=cfgs)
 .. {r demo_cfg, fig.cap="Preview of 'dual5' configuration from 'demo_cfgs.RData'"}
 names(cfgs)
 print(cfgs$dual5)
-draw_preview(cfgs$dual5)
+grid.piece("preview_layout", cfg=cfgs$dual5)
 .. ..
 
 .. {r demo_cfgs2, fig.cap="Can use multiple configurations stored in an enivronment at the same time", fig.width=6.05, fig.height=4.05}

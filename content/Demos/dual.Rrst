@@ -50,7 +50,7 @@ dual1 <- c(piecepack_suits, dark_colorscheme, ranks_noto)
 dual1$credit <- noto_credit
 dual1$title <- "Piecepack-suited (Un-inverted color scheme)"
 dual1 <- pp_cfg(dual1)
-draw_preview(dual1)
+grid.piece("preview_layout", cfg=dual1)
 .. ..
 
 .. {r preview2, fig.cap='A preview of the latin-suited piecepack'}
@@ -65,7 +65,7 @@ dual2 <- c(latin_suits, dark_colorscheme, ranks_noto)
 dual2$credit <- c(quivira_credit, noto_credit)
 dual2$title <- "Latin-suited (Inverted color scheme)"
 dual2 <- pp_cfg(dual2)
-draw_preview(dual2)
+grid.piece("preview_layout", cfg=dual2)
 .. ..
 
 Dual piecepacks #2 ("Black" and "White" French-suits)
@@ -79,7 +79,7 @@ dual3 <- c(french_suits_black, dark_colorscheme, ranks_noto)
 dual3$title <- "French-suited (Black)"
 dual3$credit <- noto_credit
 dual3 <- pp_cfg(dual3)
-draw_preview(dual3)
+grid.piece("preview_layout", cfg=dual3)
 .. ..
 
 .. {r preview4, fig.cap='A preview of the "white" french-suited piecepack'}
@@ -89,7 +89,7 @@ dual4 <- c(french_suits_white, dark_colorscheme, ranks_noto)
 dual4$title <- "French-suited (White)"
 dual3$credit <- noto_credit
 dual4 <- pp_cfg(dual4)
-draw_preview(dual4)
+grid.piece("preview_layout", cfg=dual4)
 .. ..
 
 Dual piecepacks #2 ("Black" and "White" Swiss-suits)
@@ -107,7 +107,7 @@ dual5 <- c(swiss_suits, black_colorscheme, orthodox_ranks)
 dual5$title <- "Swiss-suited (Black)"
 dual5$credit <- quivira_credit
 dual5 <- pp_cfg(dual5)
-draw_preview(dual5)
+grid.piece("preview_layout", cfg=dual5)
 .. ..
 
 .. {r preview6, fig.cap='A preview of the "white" swiss-suited piecepack'}
@@ -117,7 +117,7 @@ dual6 <- c(swiss_suits, white_colorscheme, orthodox_ranks)
 dual6$title <- "Swiss-suited (White)"
 dual6$credit <- quivira_credit
 dual6 <- pp_cfg(dual6)
-draw_preview(dual6)
+grid.piece("preview_layout", cfg=dual6)
 .. ..
 
 .. {r save, echo=FALSE}

@@ -44,14 +44,14 @@ checkeredPieceGrob <- function(piece_side, suit, rank, cfg) {
     gTree(children=gl, name=piece_side)
 }
 cfg <- list(grob_fn.tile_back=checkeredPieceGrob)
-draw_preview(cfg)
+grid.piece("preview_layout", cfg=cfg)
 .. ..
 
 The above custom grob function was written fairly generally so it can also support ``convex#`` polygons (i.e. "Hexpack" tiles):
 
 .. {r hexpack_checker_back, fig.cap="'add_checkers' even works on hexagon shaped tiles"}
 cfg <- list(grob_fn.tile_back=checkeredPieceGrob, shape.tile="convex6", shape.coin="convex3", shape.saucer="convex3")
-draw_preview(cfg)
+grid.piece("preview_layout", cfg=cfg)
 .. .. 
 
 Pawn Belts with Three Suit Symbols
