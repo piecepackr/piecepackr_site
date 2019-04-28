@@ -23,11 +23,13 @@
 .. _animations:
 .. _animation: {filename}/Demos/zzz_animations.rst
 .. _configuration:
+.. _configurations:
 .. _configuration lists:
 .. _configuration list: {filename}/Docs/configuration.rst
 .. _custom:
-.. _drawing function:
-.. _custom drawing function: {filename}/Docs/custom_draw_fn.rst
+.. _grob function:
+.. _custom grob functions: 
+.. _custom grob function: {filename}/Docs/custom_draw_fn.rst
 
 .. Pages
 

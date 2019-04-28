@@ -2,6 +2,7 @@ Dual piecepacks demo
 ====================
 
 :date: 2019-04-07
+:modified: 2019-04-28
 :tags: api-demo, print-and-play
 
 .. {r setup, echo=FALSE}
@@ -43,7 +44,10 @@ dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,grey")
 piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
                         suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
                         suit_scale="0.6,0.7,0.75,0.9,0.9")
+noto_credit <- c("\u25cf This piecepack uses characters from Google Noto Fonts. OFL 1.1.",
+                 "\thttps://www.google.com/get/noto/")
 dual1 <- c(piecepack_suits, dark_colorscheme, ranks_noto)
+dual1$credit <- noto_credit
 dual1$title <- "Piecepack-suited (Un-inverted color scheme)"
 dual1 <- pp_cfg(dual1)
 draw_preview(dual1)
@@ -54,7 +58,11 @@ latin_suits <- list(suit_text="\ue008,\ue007,\ue006,\ue009,\uaa5c",
                         suit_fontfamily="Quivira,Quivira,Quivira,Quivira,Noto Sans Cham",
                         suit_scale="0.9,1,1,1,0.9",
                         invert_colors.suited=TRUE)
+quivira_credit <- c("\u25cf This piecepack uses characters from the font Quivira. Public Domain.",
+                    "\thttp://www.quivira-font.com/")
+
 dual2 <- c(latin_suits, dark_colorscheme, ranks_noto)
+dual2$credit <- c(quivira_credit, noto_credit)
 dual2$title <- "Latin-suited (Inverted color scheme)"
 dual2 <- pp_cfg(dual2)
 draw_preview(dual2)
@@ -69,6 +77,7 @@ french_suits_black <- list(suit_text="\u2665,\u2660,\u2663,\u2666,\uaa5c", # ♥
                         suit_scale="1,1,1,1,0.9")
 dual3 <- c(french_suits_black, dark_colorscheme, ranks_noto)
 dual3$title <- "French-suited (Black)"
+dual3$credit <- noto_credit
 dual3 <- pp_cfg(dual3)
 draw_preview(dual3)
 .. ..
@@ -78,6 +87,7 @@ french_suits_white <- french_suits_black
 french_suits_white$suit_text <- "\u2661,\u2664,\u2667,\u2662,\uaa5c" # ♡,♤,♧,♢,꩜
 dual4 <- c(french_suits_white, dark_colorscheme, ranks_noto)
 dual4$title <- "French-suited (White)"
+dual3$credit <- noto_credit
 dual4 <- pp_cfg(dual4)
 draw_preview(dual4)
 .. ..
@@ -95,6 +105,7 @@ swiss_suits <- list(suit_text="\ue005,\ue004,\ue000,\ue003,\ue00a",
                     fontfamily="Quivira")
 dual5 <- c(swiss_suits, black_colorscheme, orthodox_ranks)
 dual5$title <- "Swiss-suited (Black)"
+dual5$credit <- quivira_credit
 dual5 <- pp_cfg(dual5)
 draw_preview(dual5)
 .. ..
@@ -104,6 +115,7 @@ white_colorscheme <- black_colorscheme
 white_colorscheme$suit_color <- "white,white,white,white,grey40"
 dual6 <- c(swiss_suits, white_colorscheme, orthodox_ranks)
 dual6$title <- "Swiss-suited (White)"
+dual6$credit <- quivira_credit
 dual6 <- pp_cfg(dual6)
 draw_preview(dual6)
 .. ..

@@ -4,7 +4,7 @@ CLOBBER << 'output'
 CLEAN << 'content/images/knitr'
 CLEAN << 'content/share/pnp'
 
-rrst_files = Rake::FileList["**/*.Rrst"]
+rrst_files = Rake::FileList["content/**/*.Rrst"]
 rst_derivatives = rrst_files.ext(".rst").existing
 CLEAN << rst_derivatives
 CLEAN << Rake::FileList["**/*.RData"].existing

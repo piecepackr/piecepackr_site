@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2019-04-24
+:modified: 2019-04-28
 :tags: docs
 
 .. contents::
@@ -42,7 +42,7 @@ popViewport()
 
 There are lot more examples of customizing piecepack appearances with configuration lists in the `Print & Play demos`_.
 
-Although one can further customize the appearance of one's piecepack graphics through the use of custom drawing functions the default piecepackr_ drawing function uses the configuration list to determine a piecepack component's shape, "primary" symbol,"directional mark" symbol, and gridlines (if any).  
+Although one can further customize the appearance of one's piecepack graphics through the use of `custom grob functions`_ the default piecepackr_ grob function uses the configuration list to determine a piecepack component's shape, "primary" symbol,"directional mark" symbol, and gridlines (if any).  
 This program uses the abstraction that every piecepack component has a "component_side" name (like ``belt_face``), a suit, a rank, a primary symbol, a directional mark symbol, and embellishments like border lines, grid lines, and padding.  On top of the normal "suited" piecepack suits this program also recognizes an extra "unsuit" suit which is used to configure "neutral" components like tile backs and coin faces.  Although the primary and directional mark symbols can be configured directly (i.e. ``tile_face.ps_fontsize``) they are often configured indirectly by specifying various "suit" and "rank" symbol configurations (i.e. ``rank_scale``).
 
 Configurations are *often* allowed to be comma-separated to be able to specify different values for different suits or ranks e.g. ``background_color=white`` or ``background_color=pink,grey,grey,pink,white`` (note how the last [5th] element specifies that the "unsuit" background color should be "white").  
@@ -245,12 +245,20 @@ Table of configuration list styles
       - Height of component in inches
       - width
       -
-    * - draw_fn
-      - Which `drawing function`_ to use to draw the component
+    * - grob_fn
+      - Which `grob function`_ to use to make a ``grob`` of the game piece
       -
       -
     * - title
       - Title of the piecepack
+      -
+      -
+    * - credit
+      - Additional credits
+      -
+      -
+    * - copyright
+      - Additional copyrights
       -
       -
 
@@ -290,4 +298,12 @@ load("demo_cfgs.RData", envir=cfgs)
 names(cfgs)
 print(cfgs$dual5)
 draw_preview(cfgs$dual5)
+.. ..
+
+.. {r demo_cfgs2, fig.cap="Can use multiple configurations stored in an enivronment at the same time", fig.width=6.05, fig.height=4.05}
+    pushViewport(viewport(width=inch(6), height=inch(4)))
+    grid.piece("tile_face", rank=1:6, 
+               cfg=paste0("dual", 1:6), envir=cfgs,
+               x=inch(rep(c(1,3,5), 2)), y=inch(rep(c(1,3), each=3)))
+    popViewport()
 .. ..

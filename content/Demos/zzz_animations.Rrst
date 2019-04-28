@@ -2,6 +2,7 @@ Animations
 ==========
 
 :date: 2019-04-09
+:modified: 2019-04-28
 :tags: api-demo
 
 .. {r setup, echo=FALSE}
@@ -18,15 +19,12 @@ ee <- new.env()
 for (ff in RData_files) { 
     load(ff, envir=ee) 
 }
-for (cfg in names(ee)) {
-    ee[[cfg]] <- pp_cfg(ee[[cfg]])
-}
 save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 .. ..
 
 .. note:: Besides the ``animation`` package there are also several other R packages that can be used to help make an animation like the gifski_ and tweenr_ packages.  
 
-Here we'll give a simple example using the `animation package`_ to draw a preview of each of the piecepack configurations stored on this website.  
+Here we'll give a simple example using the `animation package`_ and piecepackr_'s API to build an animation showing a preview of each of the piecepack `configurations`_ stored on this website.  
 
 .. {r animation, results='hide', message=FALSE}
 library("animation")
@@ -61,14 +59,14 @@ And here is a simple animation of a tic-tac-toe game:
 draw_tictactoe_game_step <- function(n, cfg=list()) {
     grid.newpage()
     pushViewport(viewport(width=inch(4), height=inch(4)))
-    if (n > 0) draw_component("tile_back", cfg)
-    if (n > 1) draw_component("coin_back", cfg, i_s=1, x=inch(2),y=inch(2))
-    if (n > 2) draw_component("coin_back", cfg, i_s=2, x=inch(1),y=inch(2), angle=180)
-    if (n > 3) draw_component("coin_back", cfg, i_s=1, x=inch(3),y=inch(1))
-    if (n > 4) draw_component("coin_back", cfg, i_s=2, x=inch(1),y=inch(3), angle=180)
-    if (n > 5) draw_component("coin_back", cfg, i_s=1, x=inch(1),y=inch(1))
-    if (n > 6) draw_component("coin_back", cfg, i_s=2, x=inch(3),y=inch(3), angle=180)
-    if (n > 7) draw_component("coin_back", cfg, i_s=1, x=inch(2),y=inch(1))
+    if (n > 0) grid.piece("tile_back", cfg=cfg)
+    if (n > 1) grid.piece("coin_back", suit=1, cfg=cfg, x=inch(2),y=inch(2))
+    if (n > 2) grid.piece("coin_back", suit=2, cfg=cfg, x=inch(1),y=inch(2), angle=180)
+    if (n > 3) grid.piece("coin_back", suit=1, cfg=cfg, x=inch(3),y=inch(1))
+    if (n > 4) grid.piece("coin_back", suit=2, cfg=cfg, x=inch(1),y=inch(3), angle=180)
+    if (n > 5) grid.piece("coin_back", suit=1, cfg=cfg, x=inch(1),y=inch(1))
+    if (n > 6) grid.piece("coin_back", suit=2, cfg=cfg, x=inch(3),y=inch(3), angle=180)
+    if (n > 7) grid.piece("coin_back", suit=1, cfg=cfg, x=inch(2),y=inch(1))
     if (n > 8) grid.segments(x0=inch(0.5), y0=inch(1), x1=inch(3.5), y1=inch(1), 
                              gp=gpar(col="blue", lwd=4))
     popViewport()
