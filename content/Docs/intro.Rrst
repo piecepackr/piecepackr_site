@@ -36,7 +36,7 @@ grid.piece("die_face", s=2, r=1)
 
 piecepackr_ features an advanced configuration system that allows users to customize the appearance of the piecepack being used in their graphics.  By default_ it uses an accessible french-suited configuration that should work out of the box on several OSes without the user needing to mess around with their system fonts but user's can customize their piecepack's appearance via use of a `configuration list`_:
 
-.. {r dc1t, fig.cap='tile faces', fig.width=2.05, fig.height=2.05}
+.. {r dc1t, fig.cap='tile faces', fig.width=8.05, fig.height=2.05}
 dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,black",
                          invert_colors.suited=TRUE)
 piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
@@ -47,7 +47,7 @@ cfg <- c(piecepack_suits, dark_colorscheme, traditional_ranks)
 grid.piece("tile_face", s=1:4, r=1:4, x=inch(seq(1, 7, by=2)), cfg=cfg)
 .. ..
 
-.. {r dc2t, fig.cap='coin faces', fig.width=0.8, fig.height=0.8}
+.. {r dc2t, fig.cap='coin faces', fig.width=4, fig.height=0.8}
 grid.piece("coin_face", r=1:4, x=inch(seq(0.5, 3.5)), cfg=cfg)
 .. ..
 
