@@ -7,16 +7,18 @@ Print-and-Play PDFs
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("pages-pnp")
+if (!dir.exists("../share/pnp"))
+    dir.create("../share/pnp")
 .. ..
 
-.. {r make_pnp, echo=FALSE}
+.. {r save_print_and_play, echo=FALSE}
 library("piecepackr")
 ee <- new.env()
 load("../share/demo_cfgs.RData", envir=ee)
 nn <- sort(names(ee))
 for (name in nn) {
-    make_pnp(ee[[name]], sprintf("../share/pnp/%s_letter.pdf", name), "letter")
-    make_pnp(ee[[name]], sprintf("../share/pnp/%s_A4.pdf", name), "A4")
+    save_print_and_play(ee[[name]], sprintf("../share/pnp/%s_letter.pdf", name), "letter")
+    save_print_and_play(ee[[name]], sprintf("../share/pnp/%s_A4.pdf", name), "A4")
 }
 save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 .. ..

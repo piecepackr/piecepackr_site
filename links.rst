@@ -2,6 +2,7 @@
 
 .. _piecepacks:
 .. _piecepack: http://www.ludism.org/ppwiki/HomePage
+.. _piecepack game: www.ludism.org/ppwiki/Games
 .. _make your own piecepack: http://www.ludism.org/ppwiki/MakingPiecepacks
 .. _man pages: https://rdrr.io/github/trevorld/piecepackr/man/
 .. _JCD piecepack: http://www.piecepack.org/JCD.html
@@ -29,7 +30,7 @@
 .. _custom:
 .. _grob function:
 .. _custom grob functions: 
-.. _custom grob function: {filename}/Docs/custom_draw_fn.rst
+.. _custom grob function: {filename}/Docs/custom_grob_fn.rst
 
 .. Pages
 
@@ -37,9 +38,10 @@
 
 .. Categories
 
+.. _documentation:
 .. _Docs: {category}Docs
 .. _Demos: {category}Demos
-.. _Dips: {category}Tips
+.. _Tips: {category}Tips
 
 .. Tags
 

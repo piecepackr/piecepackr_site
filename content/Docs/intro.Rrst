@@ -65,12 +65,12 @@ The ``preview_layout`` grob allows one to see a preview of a given configuration
 grid.piece("preview_layout", cfg=cfg)
 .. ..
 
-Once you have a configuration you like one can use ``make_pnp`` to make a `Print & Play`_ pdf of your piecepack and ``make_images`` to make individual images of every piecepack component (in case you would prefer to make your own layout or rule diagram in software like Inkscape):
+Once you have a configuration you like one can use ``save_print_and_play`` to make a `Print & Play`_ pdf of your piecepack and ``save_piece_images`` to make individual images of every piecepack component (in case you would prefer to make your own layout or rule diagram in software like Inkscape):
 
 .. code:: r
 
-    make_pnp(cfg, "my_piecepack.pdf", size="letter")
-    make_images(cfg)
+    save_print_and_play(cfg, "my_piecepack.pdf", size="letter")
+    save_piece_images(cfg)
 
 If you will be drawing a bunch of piecepack graphics you may want to use the ``pp_cfg`` function which will add a "component opt" cache to your configuration (will make ``grid.piece`` work faster):
 
@@ -90,7 +90,7 @@ df <- tibble::tribble(~piece_side, ~suit, ~x, ~y,
                       "coin_back", 1, 1, 1,
                       "coin_back", 2, 3, 3,
                       "coin_back", 1, 2, 1)
-df$angle <- ifelse(df$i_s == 2, 180, 0)
+df$angle <- ifelse(df$suit == 2, 180, 0)
 pmap_piece(df, cfg=cfg, default.units="inches")
 .. ..
 

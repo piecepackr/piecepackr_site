@@ -90,7 +90,7 @@ piecepackr_ comes with several utility functions that can aid in the writing of 
 
 .. code:: r
 
-    help("draw_fn_utils")
+    help("grob_fn_helpers")
     help("pp_utils")
 
 For help in writing your own custom grob functions it can also be instructive to look at the code of the default grob function ``basicPieceGrob``:
