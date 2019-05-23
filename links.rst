@@ -45,6 +45,7 @@
 
 .. Tags
 
+.. _diagrams: {tag}ppgames
 .. _Print & Play demos: {tag}print-and-play
 
 .. Other Internal content

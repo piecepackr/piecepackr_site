@@ -12,13 +12,18 @@ if (!dir.exists("../share/pnp"))
 .. ..
 
 .. {r save_print_and_play, echo=FALSE}
+library("ppgames", warn.conflicts=FALSE)
 library("piecepackr")
 ee <- new.env()
 load("../share/demo_cfgs.RData", envir=ee)
 nn <- sort(names(ee))
 for (name in nn) {
-    save_print_and_play(ee[[name]], sprintf("../share/pnp/%s_letter.pdf", name), "letter")
-    save_print_and_play(ee[[name]], sprintf("../share/pnp/%s_A4.pdf", name), "A4")
+    cfg <- ee[[name]]
+    save_print_and_play(cfg, sprintf("../share/pnp/%s_letter.pdf", name), "letter")
+    save_print_and_play(cfg, sprintf("../share/pnp/%s_A4.pdf", name), "A4")
+    # save_rulebook(game_kit(list(cfg1=cfg)), tempdir())
+    # file.rename(file.path(tempdir(), "book.pdf"), 
+    #           sprintf("../share/pnp/%s_rulebook.pdf", name))
 }
 save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 .. ..

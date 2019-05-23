@@ -25,6 +25,7 @@ Dependencies
 
    install.packages(c("animation", "dplyr", "knitr", "remotes"))
    remotes::install_github("trevorld/piecepackr")
+   remotes::install_github("trevorld/ppgames")
 
 .. code:: bash
 
@@ -36,6 +37,13 @@ Dependencies
    $ mv NotoEmoji-Regular.ttf $fonts_dir
    $ rm NotoEmoji-unhinted.zip
    $ sudo mv /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf ~/
+
+.. code:: bash
+
+    sudo apt install inkscape texlive-xetex
+    sudo apt install cabal-install
+    cabal update # add $HOME/.cabal/bin to $PATH
+    cabal install pandoc
 
 Build and deploy website
 ------------------------

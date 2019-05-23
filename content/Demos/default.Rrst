@@ -2,7 +2,7 @@ Default demo
 ============
 
 :date: 2019-04-06
-:tags: api-demo, print-and-play
+:tags: print-and-play
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")

@@ -1,0 +1,30 @@
+Cribbage
+========
+
+:date: 2019-05-16
+:tags: ppgames
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("games-cribbage")
+.. ..
+
+`Cribbage <{static}/share/rules/cribbage.pdf>`_ is a popular two-person card game that usually requires a special cribbage board to keep score. Below is a diagram of using a piecepack to make an effective cribbage board. 
+
+.. {r starting-diagram, fig.cap='Using a piecepack as a Cribbage Board', fig.width=9, fig.height=33, out.width="30%"}
+library("grid")
+library("piecepackr")
+library("ppgames", warn.conflicts=FALSE)
+cfg <- pp_cfg(list(suit_color="darkred,black,darkgreen,darkblue,black", 
+                   border_color="black", border_lex=4))
+pmap_piece(df_cribbage_board(cfg), cfg=cfg, default.units="in")
+grid.draw(textGrob_cribbage_board(cfg))
+.. ..
+
+.. {r save, echo=FALSE}
+gk <- game_kit(list(cfg=cfg))
+save_ruleset("cribbage", gk, "../share/rules")
+svg2png("../images/knitr/games-cribbage-starting-diagram-1.svg",
+        "../share/rules/cribbage.png", 333, 1221)
+
+.. ..

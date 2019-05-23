@@ -3,7 +3,7 @@ Animations
 
 :date: 2019-04-09
 :modified: 2019-04-28
-:tags: api-demo
+:tags: animation
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")

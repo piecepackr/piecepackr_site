@@ -3,7 +3,6 @@ Intro to piecepackr's API
 
 :date: 2019-04-11
 :modified: 2019-04-28
-:tags: docs
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")

@@ -3,7 +3,7 @@ Dual piecepacks demo
 
 :date: 2019-04-07
 :modified: 2019-04-28
-:tags: api-demo, print-and-play
+:tags: print-and-play
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")

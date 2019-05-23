@@ -2,8 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2019-04-28
-:tags: docs
+:modified: 2019-05-11
 
 .. contents::
 
@@ -161,10 +160,18 @@ Table of configuration list styles
       - Color of the border of the component
       -
       - suit
+    * - border_lex
+      - Multiplier to apply to the default border line width
+      -
+      - 
     * - gridline_color
       - Color of the gridlines
       - suit_color, background_color, invert_colors
       - suit
+    * - gridline_lex
+      - Multiplier to apply to the default grid line width
+      -
+      - 
     * - mat_color
       - Color of the "matting"
       - suit_color, background_color, invert_colors
@@ -251,6 +258,10 @@ Table of configuration list styles
       -
     * - title
       - Title of the piecepack
+      -
+      -
+    * - description
+      - Description of the piecepack
       -
       -
     * - credit
