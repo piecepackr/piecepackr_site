@@ -92,7 +92,7 @@ dual4 <- pp_cfg(dual4)
 grid.piece("preview_layout", cfg=dual4)
 .. ..
 
-Dual piecepacks #2 ("Black" and "White" Swiss-suits)
+Dual piecepacks #3 ("Black" and "White" Swiss-suits)
 -----------------------------------------------------
 
 .. {r preview5, fig.cap='A preview of the "black" swiss-suited piecepack'}

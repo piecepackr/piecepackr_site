@@ -11,7 +11,7 @@
 .. _R: https://cran.r-project.org/
 .. _animation package: https://cran.r-project.org/package=animation
 .. _gifski: https://cran.r-project.org/package=gifski
-.. _grid: https://cran.r-project.org/package=grid
+.. _grid: https://www.rdocumentation.org/packages/grid
 .. _grImport2: https://cran.r-project.org/package=grImport2
 .. _piecepackr: https://github.com/trevorld/piecepackr
 .. _tweenr: https://cran.r-project.org/package=tweenr
