@@ -1,5 +1,5 @@
-Dual piecepacks demo
-====================
+Dual piecepacks PnP
+===================
 
 :date: 2019-04-07
 :modified: 2019-04-28
@@ -48,7 +48,7 @@ noto_credit <- c("\u25cf This piecepack uses characters from Google Noto Fonts. 
                  "\thttps://www.google.com/get/noto/")
 dual1 <- c(piecepack_suits, dark_colorscheme, ranks_noto)
 dual1$credit <- noto_credit
-dual1$title <- "Piecepack-suited (Un-inverted color scheme)"
+dual1$title <- "Piecepack-suited (Un-inverted colors)"
 dual1 <- pp_cfg(dual1)
 grid.piece("preview_layout", cfg=dual1)
 .. ..
@@ -63,7 +63,7 @@ quivira_credit <- c("\u25cf This piecepack uses characters from the font Quivira
 
 dual2 <- c(latin_suits, dark_colorscheme, ranks_noto)
 dual2$credit <- c(quivira_credit, noto_credit)
-dual2$title <- "Latin-suited (Inverted color scheme)"
+dual2$title <- "Latin-suited (Inverted colors)"
 dual2 <- pp_cfg(dual2)
 grid.piece("preview_layout", cfg=dual2)
 .. ..

@@ -12,8 +12,9 @@ if (!dir.exists("../share/pnp"))
 .. ..
 
 .. {r save_print_and_play, echo=FALSE}
-library("ppgames", warn.conflicts=FALSE)
+# library("ppgames", warn.conflicts=FALSE)
 library("piecepackr")
+library("grid")
 ee <- new.env()
 load("../share/demo_cfgs.RData", envir=ee)
 nn <- sort(names(ee))
@@ -52,7 +53,8 @@ titles <- sapply(nn, function(x) {tt <- ee[[x]]$title; ifelse(is.null(tt), "", t
 letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", nn)
 A4_urls <- sprintf("{static}/share/pnp/%s_A4.pdf", nn)
 base <- gsub("[0-9]*", "", nn)
-demo_links <- sprintf("`%s demo <{filename}/Demos/%s.rst>`__", base, base)
+cap <- function(s) { paste0(toupper(substring(s, 1, 1)), substring(s, 2)) }
+demo_links <- sprintf("`%s PnP <{filename}/Demos/%s.rst>`__", cap(base), base)
 df <- data.frame(Title=titles, Letter=rst_link(letter_urls),
                  A4=rst_link(A4_urls), Demo=demo_links, 
                  stringsAsFactors=FALSE)

@@ -2,11 +2,12 @@
 
 .. _piecepacks:
 .. _piecepack: http://www.ludism.org/ppwiki/HomePage
-.. _piecepack game: www.ludism.org/ppwiki/Games
+.. _piecepack game: http://www.ludism.org/ppwiki/Games
 .. _make your own piecepack: http://www.ludism.org/ppwiki/MakingPiecepacks
 .. _man pages: https://rdrr.io/github/trevorld/piecepackr/man/
 .. _JCD piecepack: http://www.piecepack.org/JCD.html
 .. _Packtet: http://ludism.org/ppwiki/Packtet
+.. _Anatomy of a Piecepack: http://www.piecepack.org/Anatomy.html
 
 .. _R: https://cran.r-project.org/
 .. _animation package: https://cran.r-project.org/package=animation
@@ -23,6 +24,7 @@
 .. _dual: {filename}/Demos/dual.rst
 .. _animations:
 .. _animation: {filename}/Demos/zzz_animations.rst
+.. _configure:
 .. _configuration:
 .. _configurations:
 .. _configuration lists:
