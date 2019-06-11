@@ -2,6 +2,7 @@
 
 .. _piecepacks:
 .. _piecepack: http://www.ludism.org/ppwiki/HomePage
+.. _piecepack games:
 .. _piecepack game: http://www.ludism.org/ppwiki/Games
 .. _make your own piecepack: http://www.ludism.org/ppwiki/MakingPiecepacks
 .. _man pages: https://rdrr.io/github/trevorld/piecepackr/man/
@@ -23,7 +24,7 @@
 .. _dual piecepacks:
 .. _dual: {filename}/Demos/dual.rst
 .. _animations:
-.. _animation: {filename}/Demos/zzz_animations.rst
+.. _animation: {filename}/Docs/animations.rst
 .. _configure:
 .. _configuration:
 .. _configurations:

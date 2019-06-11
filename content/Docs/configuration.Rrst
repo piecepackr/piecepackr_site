@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2019-05-11
+:modified: 2019-06-10
 
 .. contents::
 
@@ -172,6 +172,11 @@ Table of configuration list styles
       - Multiplier to apply to the default grid line width
       -
       - 
+    * - edge_color
+      - Which color to use for the edge of the piece when
+        drawn with an oblique projection.
+      -
+      - suit_color, background_color
     * - mat_color
       - Color of the "matting"
       - suit_color, background_color, invert_colors
@@ -252,8 +257,17 @@ Table of configuration list styles
       - Height of component in inches
       - width
       -
+    * - depth
+      - Depth of the component in inches
+      - width
+      -
     * - grob_fn
       - Which `grob function`_ to use to make a ``grob`` of the game piece
+      -
+      -
+    * - shadow_fn
+      - Which function to use to make a ``grob`` of the edges of the game piece
+        when the board is drawn with an oblique projection.
       -
       -
     * - title

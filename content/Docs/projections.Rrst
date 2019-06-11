@@ -1,0 +1,105 @@
+3D Projections
+==============
+
+:date: 2019-06-10
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("docs-3d-projections")
+.. ..
+
+piecepackr_ has limited support to project 3D board games (like the hundreds of `piecepack games`_) onto a 2D diagram.  It is hoped that in the future piecepackr will offer better `3D projection support with the help of OpenGL <https://github.com/trevorld/piecepackr/issues/137>`_.
+
+.. include:: ../../links.rst
+
+.. contents::
+
+Orthographic projections
+------------------------
+
+By default piecepackr_'s ``grid.piece`` function makes an approximate "top view" `orthographic projection <https://en.wikipedia.org/wiki/Orthographic_projection>`__ with pieces drawn later "placed on top" of (and potentially hiding) pieces drawn earlier:
+
+.. {r orthographic, fig.width=6, fig.height=6, fig.cap="'Top view' orthographic projection of a piecepack game"}
+library("piecepackr")
+g.p <- function(...) { grid.piece(..., default.units="in") }
+g.p("tile_back", x=0.5+c(3,1,3,1), y=0.5+c(3,3,1,1))
+g.p("tile_back", x=0.5+3, y=0.5+1)
+g.p("tile_back", x=0.5+3, y=0.5+1)
+g.p("die_face", x=1, y=1)
+g.p("pawn_face", x=1, y=4, angle=90)
+g.p("coin_back", x=3, y=4, angle=180)
+g.p("coin_back", x=3, y=4, angle=180)
+g.p("coin_back", x=3, y=1, angle=90)
+.. ..
+
+piecepackr_ makes an exact "top view" orthographic projection under the following conditions:
+
+1. All pieces are placed "flat" parallel to the game table.  Although most piecepack games do this there are exceptions like `San Andreas <http://www.ludism.org/ppwiki/SanAndreas>`_ where some tiles may shift from flat to "leaning" (and vice versa) during the course of a game.
+2. The game doesn't use pyramids_ (although the "top" view of pyramids is an okay if not exact orthographic projection).
+3. Any pawns used are (generalized) "meeple" pawns laid face down or face up.
+
+Oblique projections
+-------------------
+
+With a little more effort by the piecepackr_ programmer one can also make `oblique projections <https://en.wikipedia.org/wiki/Oblique_projection>`_ with ``grid.piece`` which makes it much easier to tell when pieces have been placed on top of other pieces:
+
+.. {r oblique, fig.width=6, fig.height=6, fig.cap="Oblique projection of a piecepack game"}
+    g.p <- function(...) { grid.piece(..., op_scale=0.5, op_angle=45, default.units="in") }
+
+    g.p("tile_back", x=0.5+c(3,1,3,1), y=0.5+c(3,3,1,1))
+    g.p("tile_back", x=0.5+3, y=0.5+1, z=1/4)
+    g.p("tile_back", x=0.5+3, y=0.5+1, z=2/4)
+    g.p("die_face", x=1, y=1, z=1/4)
+    g.p("pawn_face", x=1, y=4, z=1/4, angle=90)
+    g.p("coin_back", x=3, y=4, z=1/4, angle=180)
+    g.p("coin_back", x=3, y=4, z=3/8, angle=180)
+    g.p("coin_back", x=3, y=1, z=3/4, angle=90)
+.. ..
+
+``op_scale`` and ``op_angle`` are the arguments that control the appearance of the oblique projection.  ``op_scale`` determines how much to scale the length of the piece's edge along ``op_angle``.  An ``op_scale`` of ``0.5`` is commonly used in the `cabinet projection <https://en.wikipedia.org/wiki/Oblique_projection#Cabinet_projection>`_, an ``op_scale`` of ``1.0`` is used in the `cavalier projection <https://en.wikipedia.org/wiki/Oblique_projection#Cavalier_projection>`_, and an ``op_scale`` of ``0.0`` gives you the default "top view" orthographic projection.  ``op_angle`` controls what angle the edges the pieces "go up" - it defaults to 45 degrees.  Right now the programmer needs to figure out what height (the ``z`` argument) the various pieces are in relation to table and carefully arrange the ``grid.piece`` calls so the pieces on top and/or in front are drawn later but there are plans to `write a helper function <https://github.com/trevorld/piecepackr/issues/138>`_ to make educated guesses about piece height and which order one should make ``grid.piece`` calls in to make it easier to make diagrams in the oblique perspective. 
+
+Depending on your preferences you may want to change up your pawns look and/or the color of your piece edges:
+
+.. {r oblique-pawn, fig.width=6, fig.height=6, fig.cap="One can configure the appearance of the pawns and piece edges"}
+cfg <- pp_cfg(list(width.pawn=0.75, height.pawn=0.75, depth.pawn=2, 
+                   dm_text.pawn="", shape.pawn="convex6", invert_colors.pawn=TRUE,
+                   edge_color.coin="black", edge_color.tile="black",
+                   border_lex=2))
+g.p <- function(...) { grid.piece(..., op_scale=0.5, op_angle=45, 
+                                  cfg=cfg, default.units="in") }
+g.p("tile_back", x=0.5+c(3,1,3,1), y=0.5+c(3,3,1,1))
+g.p("tile_back", x=0.5+3, y=0.5+1, z=1/4)
+g.p("tile_back", x=0.5+3, y=0.5+1, z=2/4)
+g.p("die_face", x=1, y=1, z=1/4)
+g.p("pawn_face", x=1, y=4, z=1/4, angle=90)
+g.p("coin_back", x=3, y=4, z=1/4, angle=180)
+g.p("coin_back", x=3, y=4, z=3/8, angle=180)
+g.p("coin_back", x=3, y=1, z=3/4, angle=90)
+.. ..
+
+piecepackr_ can make an exact oblique projection under the same conditions it needs to do an exact orthographic projection (i.e. pieces all laid flat, no pyramids_, pawns must be (genalized) meeple pawns laid face up or down) although it won't attempt to properly draw any visible "side" die faces.
+
+Pyramids
+--------
+
+Currently piecepackr_ doesn't attempt to properly do an orthographic projection of laid down pyramids nor oblique projections of laid down and standing pyramids:
+
+.. {r pyramids, fig.width=4, fig.height=4, fig.cap="Pyramids aren't too confusing in the orthographic projection"}
+g.p <- function(...) { grid.piece(..., default.units="in") }
+g.p("tile_back", x=2, y=2)
+g.p("pyramid_top", x=2, y=2, suit=3, rank=3)
+g.p("pyramid_face", x=2, y=3, suit=3, rank=3)
+g.p("pyramid_left", x=1, y=2, suit=3, rank=3, angle=90)
+g.p("pyramid_back", x=2, y=1, suit=3, rank=3, angle=180)
+g.p("pyramid_right", x=3, y=2, suit=3, rank=3, angle=-90)
+.. ..
+
+.. {r pyramids-oblique, fig.width=4, fig.height=4, fig.cap="But pyramids don't look very good in the oblique projection"}
+g.p <- function(..., z=1/4) { grid.piece(..., z=z, op_scale=0.5, default.units="in") }
+g.p("tile_back", x=2, y=2, z=0)
+g.p("pyramid_top", x=2, y=2, suit=3, rank=3)
+g.p("pyramid_face", x=2, y=3, suit=3, rank=3)
+g.p("pyramid_left", x=1, y=2, suit=3, rank=3, angle=90)
+g.p("pyramid_back", x=2, y=1, suit=3, rank=3, angle=180)
+g.p("pyramid_right", x=3, y=2, suit=3, rank=3, angle=-90)
+.. ..
