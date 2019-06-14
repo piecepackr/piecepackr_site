@@ -39,7 +39,7 @@ Dual piecepacks #1 (Un-inverted Piecepack-suits and Inverted Latin-suits)
 
 .. {r preview1, fig.cap='A preview of the piecepack-suited piecepack'}
 library("piecepackr")
-ranks_noto <- list(rank_symbols="n,a,2,3,4,5", rank_symbols_fontfamily="Noto Sans")
+ranks_noto <- list(rank_text="n,a,2,3,4,5", rank_fontfamily="Noto Sans")
 dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,grey")
 piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
                         suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
