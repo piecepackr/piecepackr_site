@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2019-06-10
+:modified: 2019-06-14
 
 .. contents::
 
@@ -25,7 +25,7 @@ dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,black",
                          invert_colors.suited=TRUE)
 piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
                         suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
-                        suit_scale="0.6,0.7,0.75,0.9,0.9")
+                        suit_cex="0.6,0.7,0.75,0.9,0.9")
 traditional_ranks <- list(use_suit_as_ace=TRUE, rank_text=",a,2,3,4,5")
 cfg <- c(piecepack_suits, dark_colorscheme, traditional_ranks)
 gp_text <- gpar(fontsize=25, fontface="bold")
@@ -42,7 +42,7 @@ popViewport()
 There are lot more examples of customizing piecepack appearances with configuration lists in the `Print & Play demos`_.
 
 Although one can further customize the appearance of one's piecepack graphics through the use of `custom grob functions`_ the default piecepackr_ grob function uses the configuration list to determine a piecepack component's shape, "primary" symbol,"directional mark" symbol, and gridlines (if any).  
-This program uses the abstraction that every piecepack component has a "component_side" name (like ``belt_face``), a suit, a rank, a primary symbol, a directional mark symbol, and embellishments like border lines, grid lines, and padding.  On top of the normal "suited" piecepack suits this program also recognizes an extra "unsuit" suit which is used to configure "neutral" components like tile backs and coin faces.  Although the primary and directional mark symbols can be configured directly (i.e. ``tile_face.ps_fontsize``) they are often configured indirectly by specifying various "suit" and "rank" symbol configurations (i.e. ``rank_scale``).
+This program uses the abstraction that every piecepack component has a "component_side" name (like ``belt_face``), a suit, a rank, a primary symbol, a directional mark symbol, and embellishments like border lines, grid lines, and padding.  On top of the normal "suited" piecepack suits this program also recognizes an extra "unsuit" suit which is used to configure "neutral" components like tile backs and coin faces.  Although the primary and directional mark symbols can be configured directly (i.e. ``tile_face.ps_fontsize``) they are often configured indirectly by specifying various "suit" and "rank" symbol configurations (i.e. ``rank_cex``).
 
 Configurations are *often* allowed to be comma-separated to be able to specify different values for different suits or ranks e.g. ``background_color=white`` or ``background_color=pink,grey,grey,pink,white`` (note how the last [5th] element specifies that the "unsuit" background color should be "white").  
 
@@ -88,9 +88,9 @@ Table of configuration list styles
       - fontsize of "primary symbol" symbol
       - 
       -
-    * - ps_scale
-      - Multiplier to apply to the "primary symbol" fontsize (cumulative with ``scale``)
-      - suit_scale, rank_scale, use_suit_as_ace
+    * - ps_cex
+      - Multiplier to apply to the "primary symbol" fontsize (cumulative with ``cex``)
+      - suit_cex, rank_cex, use_suit_as_ace
       -
     * - ps_t
       - Angle (in degrees) of polar coordinates of "primary symbol" (from center)
@@ -120,9 +120,9 @@ Table of configuration list styles
       - fontsize of "directional mark"
       - 
       -
-    * - dm_scale
-      - Multiplier to apply to the "directional mark" fontsize (cumulative with ``scale``)
-      - suit_scale
+    * - dm_cex
+      - Multiplier to apply to the "directional mark" fontsize (cumulative with ``cex``)
+      - suit_cex
       - suit
     * - dm_t
       - Angle (in degrees) of polar coordinates of "directional mark" symbol (from center)
@@ -177,6 +177,10 @@ Table of configuration list styles
         drawn with an oblique projection.
       -
       - suit_color, background_color
+    * - annotation_color
+      - What color to suggest for annotating graphics
+      - 
+      -
     * - mat_color
       - Color of the "matting"
       - suit_color, background_color, invert_colors
@@ -197,7 +201,7 @@ Table of configuration list styles
       - Font(s) of the suit symbols
       - fontfamily
       - suit
-    * - suit_scale
+    * - suit_cex
       - Multiplier to apply to the suit symbols fontsize
       - 
       - suit
@@ -217,15 +221,15 @@ Table of configuration list styles
       - Font(s) of the rank symbols
       - suit_fontfamily, use_suit_as_ace, fontfamily
       - rank
-    * - rank_scale
+    * - rank_cex
       - Multiplier to apply to the rank symbols fontsize
-      - suit_scale, use_suit_as_ace
+      - suit_cex, use_suit_as_ace
       - rank
     * - use_suit_as_ace
       - Boolean for whether the suit symbol should be used for the 'ace' rank
       -
       -
-    * - scale
+    * - cex
       - Multiplier to apply to all the fontsizes
       -
       -
@@ -244,6 +248,10 @@ Table of configuration list styles
     * - n_suits
       - Number of suits
       - suit_text
+      -
+    * - coin_arrangement
+      - Number of degrees the direction of the bottom of the coin differs from top of coin
+      -
       -
     * - die_arrangement
       - Either "counter_up", "counter_down", or "opposites_sum_to_5"

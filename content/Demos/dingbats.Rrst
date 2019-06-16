@@ -43,15 +43,15 @@ ajoyDingbatsGrob <- function(piece_side, suit, rank, cfg=pp_cfg()) {
     shape_fn <- get_shape_grob_fn(opt$shape, opt$shape_t, opt$shape_r)
 
     # Background
-    background_grob <- shape_fn(gp=gpar(col=NA, fill=opt$background_col))
+    background_grob <- shape_fn(gp=gpar(col=NA, fill=opt$background_color))
 
     # Gridlines, Mat
-    gl_grob <- gridlinesGrob(opt$gridline_col, opt$shape, opt$shape_t, opt$gridline_lex)
-    mat_grob <- matGrob(opt$mat_col, opt$shape, opt$shape_t, opt$mat_width)
+    gl_grob <- gridlinesGrob(opt$gridline_color, opt$shape, opt$shape_t, opt$gridline_lex)
+    mat_grob <- matGrob(opt$mat_color, opt$shape, opt$shape_t, opt$mat_width)
 
     if (piece_side == "tile_face") {
-        outside_circle_grob <- circleGrob(r=0.25, gp=gpar(col=NA, fill=opt$ps_col))
-        col2 <- ifelse(opt$ps_col == "white", "black", "white")
+        outside_circle_grob <- circleGrob(r=0.25, gp=gpar(col=NA, fill=opt$ps_color))
+        col2 <- ifelse(opt$ps_color == "white", "black", "white")
         gp2 <- gpar(col=NA, fill=col2)
         if (rank < 3) {
             inner_circle_grob <- circleGrob(r=0.23, gp=gp2)
@@ -65,23 +65,23 @@ ajoyDingbatsGrob <- function(piece_side, suit, rank, cfg=pp_cfg()) {
     }
 
     # Primary symbol
-    gp_ps <- gpar(col=opt$ps_col, fontsize=opt$ps_fontsize, 
+    gp_ps <- gpar(col=opt$ps_color, fontsize=opt$ps_fontsize, 
                   fontfamily=opt$ps_fontfamily, fontface=opt$ps_fontface)
     ps_grob <- textGrob(opt$ps_text, x=opt$ps_x, y=opt$ps_y, gp=gp_ps)
     if (!is.null(opt$ps_text) && opt$ps_text %in% c("6", "1", "\u0285")) { # "\u03b9", "\u0196", "\u0666", "\u158d"
-        gp_c <- gpar(col=opt$ps_col, fontsize=0.95*opt$ps_fontsize, 
+        gp_c <- gpar(col=opt$ps_color, fontsize=0.95*opt$ps_fontsize, 
                       fontfamily=opt$ps_fontfamily, fontface=opt$ps_fontface)
         c_grob <- textGrob("\u25ef", x=opt$ps_x, y=opt$ps_y, gp=gp_c)
         ps_grob <- grobTree(c_grob, ps_grob)
     }
 
     # Directional mark
-    gp_dm <- gpar(col=opt$dm_col, fontsize=opt$dm_fontsize, 
+    gp_dm <- gpar(col=opt$dm_color, fontsize=opt$dm_fontsize, 
                   fontfamily=opt$dm_fontfamily, fontface=opt$ps_fontface)
     dm_grob <- textGrob(opt$dm_text, x=opt$dm_x, y=opt$dm_y, gp=gp_dm)
 
     # Border 
-    border_grob <- shape_fn(gp=gpar(col=opt$border_col, fill=NA, lex=opt$border_lex))
+    border_grob <- shape_fn(gp=gpar(col=opt$border_color, fill=NA, lex=opt$border_lex))
     gl <- gList(background_grob, gl_grob, mat_grob, circle_grob,
                 ps_grob, dm_grob, border_grob)
 
@@ -93,9 +93,9 @@ colors <- list(background_color="#00BFFF,#CD5C5C,#FFD700,#3CB371,white",
                gridline_color.tile_face="black",
                mat_width.tile=0.05, mat_color.tile="black")
 suits <- list(suit_text="\u2744,\u273d,\u2720,\u27b9,",
-              suit_scale="0.9,0.9,0.8,1.0,1")
-ranks <- list(rank_text="6,\u0285,2,3,4,5", rank_scale="0.6,0.6,0.8,0.8,0.8,0.8")
-misc <- list(dm_text.coin="\u25b2", ps_scale.coin=0.9, fontfamily="Dejavu Sans",
+              suit_cex="0.9,0.9,0.8,1.0,1")
+ranks <- list(rank_text="6,\u0285,2,3,4,5", rank_cex="0.6,0.6,0.8,0.8,0.8,0.8")
+misc <- list(dm_text.coin="\u25b2", ps_cex.coin=0.9, fontfamily="Dejavu Sans",
              grob_fn=ajoyDingbatsGrob)
 dingbats1 <- c(colors, suits, ranks, misc)
 dejavu_credit <- c("\u25cf This piecepack uses characters from the font Dejavu Sans.",
@@ -125,7 +125,7 @@ Ajoy's `PiecePack Design Variation`_ PnP file also included a deck using the Fre
 dingbats2 <- as.list(dingbats1)
 dingbats2$background_color="#FF5F50,white,#8B795E,#999999,white"
 dingbats2$suit_text="\u2666,\u2665,\u2663,\u2660,"
-dingbats2$suit_scale <- NULL
+dingbats2$suit_cex <- NULL
 dingbats2$suit_color="darkred,darkred,black,black,black"
 dingbats2$dm_color="black"
 dingbats2$dm_color.tile_face=dingbats2$suit_color

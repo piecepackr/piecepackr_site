@@ -17,12 +17,12 @@ For a number of reasons the default_ piecepack made by piecepackr_ does not comp
 library("piecepackr")
 piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
                         suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
-                        suit_scale="0.6,0.7,0.75,0.9,0.9")
+                        suit_cex="0.6,0.7,0.75,0.9,0.9")
 dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,black",
                          border_color="black")
 orthodox_ranks <- list(rank_text=",\uaa5c,2,3,4,5", use_suit_as_ace=TRUE, 
                        rank_fontfamily="Noto Sans", 
-                       rank_fontfamily.r2="Noto Sans Cham", rank_scale.r2.matchstick=0.7)
+                       rank_fontfamily.r2="Noto Sans Cham", rank_cex.r2.matchstick=0.7)
 saucer <- list(suit_text.saucer_face = "", suit_text.saucer_back = "",
               dm_text.saucer = "|", dm_fontfamily.saucer = "Noto Sans",
               dm_r.saucer = 0.42, dm_color.saucer = "black",
@@ -38,11 +38,11 @@ pawn <- list(suit_text.pawn = "",
           dm_text.pawn = "",
           invert_colors.pawn = TRUE)
 pyramids <- list(rank_text.pyramid="A,B,C,D,E,F", use_suit_as_ace.pyramid=FALSE, 
-                 dm_t.pyramid_face=270, dm_r.pyramid_face=0.28, dm_scale.pyramid_face=3.5,
+                 dm_t.pyramid_face=270, dm_r.pyramid_face=0.28, dm_cex.pyramid_face=3.5,
                  dm_text.pyramid_face = "|", dm_fontfamily.pyramid_face = "Noto Sans",
                  dm_color.pyramid_face="black", ps_color.pyramid_left = "black",
                  ps_color.pyramid_right = "black",
-                 ps_t.pyramid_face=90, ps_r.pyramid_face=0.07, ps_scale.pyramid_face=0.4)
+                 ps_t.pyramid_face=90, ps_r.pyramid_face=0.07, ps_cex.pyramid_face=0.4)
 matchsticks <- list(invert_colors.matchstick=TRUE, use_suit_as_ace.matchstick=FALSE,
                     dm_r.r1.matchstick=0)
 orthodox1 <- c(piecepack_suits, dark_colorscheme, orthodox_ranks, saucer, coin,
@@ -68,14 +68,14 @@ grid.piece("preview_layout", cfg=orthodox2)
 .. {r preview3, fig.cap="French-suited piecepack in an orthodox style"}
 orthodox3 <- as.list(orthodox1)
 orthodox3$suit_text <- "♥,♠,♣,♦,\uaa5c"
-orthodox3$suit_scale <- "1,1,1,1,0.9"
+orthodox3$suit_cex <- "1,1,1,1,0.9"
 orthodox3$suit_color <- "darkred,black,black,darkred,black"
 orthodox3$suit_fontfamily <- "Noto Sans Symbols"
 orthodox3$suit_fontfamily.s5 <- "Noto Sans Cham"
 orthodox3$suit_text.pawn = NULL
-orthodox3$suit_scale.pawn = 0.5
+orthodox3$suit_cex.pawn = 0.5
 orthodox3$suit_text.saucer_face = NULL
-orthodox3$suit_scale.saucer_face <- 0.5
+orthodox3$suit_cex.saucer_face <- 0.5
 orthodox3$title <- "French-suited piecepack (Orthodox)"
 orthodox3$description <- NULL
 orthodox3 <- pp_cfg(orthodox3)
