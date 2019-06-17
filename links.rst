@@ -8,6 +8,7 @@
 .. _man pages: https://rdrr.io/github/trevorld/piecepackr/man/
 .. _JCD piecepack: http://www.piecepack.org/JCD.html
 .. _Packtet: http://ludism.org/ppwiki/Packtet
+.. _Stackpack: http://ludism.org/ppwiki/Stackpack
 .. _Anatomy of a Piecepack: http://www.piecepack.org/Anatomy.html
 
 .. _R: https://cran.r-project.org/
@@ -26,6 +27,7 @@
 .. _animations:
 .. _animation: {filename}/Docs/animations.rst
 .. _configure:
+.. _configuring:
 .. _configuration:
 .. _configurations:
 .. _configuration lists:

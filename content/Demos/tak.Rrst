@@ -1,0 +1,92 @@
+Tak
+===
+
+:date: 2019-06-16
+:tags: other-game-systems
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("games-tak")
+.. ..
+
+.. include:: ../../links.rst
+
+Although the game of `Tak <https://en.wikipedia.org/wiki/Tak_(game)>`_ can be played with a Stackpack_ here we'll show an example of configuring_ piecepackr_ to draw standard Tak_ game pieces.
+
+Since one often plays Tak on differently sized boards one common Tak board design is to have boards made with colored cells arranged in rings from the center plus extra symbols in rings placed at the points so it is easy to see smaller sub-boards.  To start we'll write a function to draw the Tak board.
+
+.. {r board}
+library("grid")
+library("piecepackr")
+grobTakBoard <- function(...) {
+    g <- "darkgreen"; w <- "grey"
+    fill <- c(rep(g, 5),
+              rep(c(g, rep(w, 3), g),3),
+              rep(g, 5))
+    inner <- rectGrob(x = rep(1:5, 5), y = rep(5:1, each=5),
+                 width=1, height=1, default.units="in", 
+                 gp=gpar(col="gold", fill=fill, lwd=3))
+    outer <- rectGrob(gp=gpar(col=NA, fill="grey"))
+    circles <- circleGrob(x=0.5+rep(1:4, 4), y=0.5+rep(4:1, each=4), r=0.1, 
+                         gp=gpar(col=NA, fill="gold"), default.units="in")
+    rects <- rectGrob(x=0.5+c(0:5, rep(c(0,5), 4), 0:5), 
+                      y=0.5+c(rep(5,6), rep(c(4:1), each=2), rep(0, 6)),
+                      width=0.2, height=0.2,
+                      gp=gpar(col=NA, fill="orange"), default.units="in")
+    grobTree(outer, inner, circles, rects)
+}
+.. ..
+
+Then we'll configure_ a Tak set and write some helper functions to draw Tak_ pieces with it.
+
+.. {r configure}
+cfg <- pp_cfg(list(suit_text=",,,", suit_color="white,tan4,", invert_colors=TRUE,
+            ps_text="", dm_text="",
+            width.tile=6, height.tile=6, depth.tile=1/4,
+            grob_fn.tile=grobTakBoard,
+            width.coin=0.6, height.coin=0.6, depth.coin=1/4, shape.coin="rect",
+            width.saucer=0.6, height.saucer=1/4, depth.saucer=0.6, 
+            shape.saucer="rect", mat_width.saucer=0,
+            width.pawn=0.5, height.pawn=0.5, depth.pawn=0.8, shape.pawn="circle",
+            edge_color="white,tan4", border_lex=2,
+            edge_color.tile="tan", border_color.tile="black"))
+draw_tak_board <- function(x, y) { 
+    grid.piece("tile_back", x=x+0.5, y=y+0.5, 
+               op_scale=0.7, op_angle=45, cfg=cfg, default.units="in") 
+}
+draw_flat_stone <- function(x, y, suit=1) { 
+    z <- 1/4*seq(along=suit)+1/8
+    grid.piece("coin_back", x=x+0.5, y=y+0.5, z=z, suit=suit,
+               op_scale=0.7, op_angle=45, cfg=cfg, default.units="in")
+}
+draw_standing_stone <- function(x, y, suit=1, n_beneath=0, angle=0) {
+    z <- (n_beneath+1)*1/4+0.3
+    grid.piece("saucer_face", x=x+0.5, y=y+0.5, z=z, suit=suit, angle=angle, 
+               op_scale=0.7, op_angle=45, cfg=cfg, default.units="in")
+}
+draw_capstone <- function(x, y, suit=1, n_beneath=0) {
+    z <- (n_beneath+1)*1/4+0.4
+    grid.piece("pawn_back", x=x+0.5, y=y+0.5, z=z, suit=suit, 
+               op_scale=0.7, op_angle=45, cfg=cfg, default.units="in")
+}
+.. ..
+
+Then we'll draw an example Tak game diagram:
+
+.. {r diagram, fig.width=7.5, fig.height=7.5, fig.cap="Tak game diagram"}
+pushViewport(viewport(width=inch(6), height=inch(6)))
+draw_tak_board(3, 3)
+draw_flat_stone(1, 1, 1)
+draw_flat_stone(1, 2, 2)
+draw_flat_stone(2, 4, 1)
+draw_capstone(2, 4, 2, 1)
+draw_flat_stone(2, 5, 2)
+draw_flat_stone(3, 4, 1:2)
+draw_flat_stone(3, 3, c(2, 1, 1, 2))
+draw_flat_stone(3, 2, 1:2)
+draw_flat_stone(3, 1, 2)
+draw_standing_stone(4, 2, 2, angle=90)
+draw_flat_stone(5, 2, 1)
+draw_capstone(5, 3, 1)
+popViewport()
+.. ..
