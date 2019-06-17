@@ -19,14 +19,15 @@ Since one often plays Tak on differently sized boards one common Tak board desig
 library("grid")
 library("piecepackr")
 grobTakBoard <- function(...) {
-    g <- "darkgreen"; w <- "grey"
+    g <- "darkgreen"
+    w <- "grey"
     fill <- c(rep(g, 5),
               rep(c(g, rep(w, 3), g),3),
               rep(g, 5))
     inner <- rectGrob(x = rep(1:5, 5), y = rep(5:1, each=5),
                  width=1, height=1, default.units="in", 
                  gp=gpar(col="gold", fill=fill, lwd=3))
-    outer <- rectGrob(gp=gpar(col=NA, fill="grey"))
+    outer <- rectGrob(gp=gpar(col="black", fill="grey", gp=gpar(lex=2)))
     circles <- circleGrob(x=0.5+rep(1:4, 4), y=0.5+rep(4:1, each=4), r=0.1, 
                          gp=gpar(col=NA, fill="gold"), default.units="in")
     rects <- rectGrob(x=0.5+c(0:5, rep(c(0,5), 4), 0:5), 
