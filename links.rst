@@ -24,6 +24,7 @@
 .. _default: {filename}/Demos/default.rst
 .. _dual piecepacks:
 .. _dual: {filename}/Demos/dual.rst
+.. _orthodox: {filename}/Demos/orthodox.rst
 .. _animations:
 .. _animation: {filename}/Docs/animations.rst
 .. _configure:
@@ -51,6 +52,7 @@
 .. Tags
 
 .. _diagrams: {tag}ppgames
+.. _other game systems: {tag}other-game-systems
 .. _Print & Play demos: {tag}print-and-play
 
 .. Other Internal content
