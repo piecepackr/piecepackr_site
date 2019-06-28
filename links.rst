@@ -5,7 +5,6 @@
 .. _piecepack games:
 .. _piecepack game: http://www.ludism.org/ppwiki/Games
 .. _make your own piecepack: http://www.ludism.org/ppwiki/MakingPiecepacks
-.. _man pages: https://rdrr.io/github/trevorld/piecepackr/man/
 .. _JCD piecepack: http://www.piecepack.org/JCD.html
 .. _Packtet: http://ludism.org/ppwiki/Packtet
 .. _Stackpack: http://ludism.org/ppwiki/Stackpack
@@ -18,6 +17,10 @@
 .. _grImport2: https://cran.r-project.org/package=grImport2
 .. _piecepackr: https://github.com/trevorld/piecepackr
 .. _tweenr: https://cran.r-project.org/package=tweenr
+
+.. _man pages: https://rdrr.io/github/trevorld/piecepackr/man/
+
+.. _polar coordinates: https://en.wikipedia.org/wiki/Polar_coordinate_system
 
 .. Articles
 

@@ -1,0 +1,48 @@
+Hexpack
+=======
+
+:date: 2019-06-28
+:tags: other-game-systems
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("games-hexpack")
+.. ..
+
+.. include:: ../../links.rst
+
+The `Hexpack <https://boardgamegeek.com/boardgameexpansion/35424/hexpack>`_ is a piecepack_ expansion that essentially introduces hexagonal tiles and triagonal coins.  The suggested size of the hexagonal tiles is one that allows the hexagons to circumscribe a 2" circumference circle (this implies that it in turn is circumscribed by a ``4 / sqrt(3)`` circumference circle).  When making hex diagrams it is often helpful to think in `polar coordinates`_ so piecepackr_ provides the helper functions ``to_x``, ``to_y``, ``to_t``, and ``to_r`` to help developers convert back and forth between polar coordinates and Cartesian coordinates.  Here we'll configure a basic Hexpack_ to go with our default_ piecepack and make a simple diagram using it:
+
+.. {r diagram, fig.width=10, fig.height=9, fig.cap="Example hexpack diagram"}
+library("piecepackr")
+cfg <- pp_cfg(list(shape.tile="convex6", border_lex=3, 
+                   shape_t.tile="60",  dm_t.tile_face=-90,
+                   width.tile=4/sqrt(3), height.tile=4/sqrt(3),
+                   shape.coin="convex3", invert_colors.suited=TRUE)) 
+g.p <- function(...) { 
+    grid.piece(..., cfg=cfg, default.units="in")
+}
+x0 <- 5
+y0 <- 4.5
+g.p("tile_back", x=x0, y=y0)
+theta <- seq(90, by=-60, length.out=6)
+r <- 0.7
+g.p("coin_face", rank=1:6,
+           x=x0+to_x(theta,r), 
+           y=y0+to_y(theta,r),
+           angle=theta+90)
+r <- 2
+g.p("tile_face", suit=1:6%%4+1, rank=1:6,
+    x=x0+to_x(theta,r),
+    y=y0+to_y(theta,r),
+    angle=theta+-90)
+r <- 6/sqrt(3)
+g.p("tile_back", 
+    x=x0+to_x(theta+30, r),
+    y=y0+to_y(theta+30, r))
+.. ..
+
+.. {r save, echo=FALSE}
+svg2png("../images/knitr/games-hexpack-diagram-1.svg",
+        "../share/rules/hexpack.png", 500, 450)
+.. ..
