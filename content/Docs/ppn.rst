@@ -1,9 +1,10 @@
 Portable Piecepack Notation
 ===========================
 
-:Date: 2019-08-01
+:date: 2019-08-01
+:modified: 2019-08-01
 
-**Version: 0.2**
+**Version: 0.3**
 
 The Portable Piecepack Notation (ppn) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of piecepack games but the structure is designed to in the future allow support for parsing alternative notation systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
@@ -95,7 +96,7 @@ To implement in the future?
 * Support PGN_-style "Tag Pair" syntax as an alternate way to express a key/pair in the Metadata_ "Mapping".  
 * Make recommendations about which key/value pairs to use in the Metadata_ section and more standard ways to express them.
 
-  + "Event", "Site", "Date", "Result" are consistently found in PGN_-derived notations such as PBN_, PDN_, and PSN_ (although the interpretation for "Result" differs) whereas "White", "Black", and "Round" are not (for example PBN_ uses"West", "North", "East", "South").  "Setup" also seems a good candidate to make recommendations about (and PPN exporters should explicitly setup boards with random starts since "seeds" may not be portable across programming languages).  PGN_ distinguishes between "no value" with "-" (i.e. no title, no ELO rating, etc.) and "unknown value" with "?".  "Date" seems to be interpreted as the start date for games that take more than one day to play.
+  + "Event", "Site", "Date", "Result" are consistently found in PGN_-derived notations such as PBN_, PDN_, and PSN_ (although the interpretation for "Result" differs) whereas "White", "Black", and "Round" are not (for example PBN_ uses"West", "North", "East", "South").  "Setup" also seems a good candidate to make recommendations about (and PPN exporters should explicitly setup boards with random starts since "seeds" may not be portable across programming languages).  PGN_ distinguishes between "no value" with "-" (i.e. no title, no ELO rating, etc.) and "unknown value" with "?".  "Date" seems to be interpreted as the start date for games that take more than one day to play.  Maybe suggest an "Id" tag to automatically label parsed games so could be easy (if each game has unique ID) to find a particular game in file (without needing to query multiple fields).
 
 Default Movetext Parser
 -----------------------
@@ -250,6 +251,12 @@ The default movetext parser supports the following MoveTokens:
 To implement in the future?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+* Allow replacing pieces with ``=``.  Example::
+
+   b5=S> {replace top piece at b5 with Suns coin back oriented right}
+   
+  + Further allow at end of move i.e. ``b7-b8=4``.
+
 * Allow the dropping of pieces "beneath" other pieces.  Perhaps use ````` for this?  Example::
 
    A3`b4 {Place a three of Arms tile face under any pieces at b4}
@@ -267,22 +274,16 @@ To implement in the future?
       *b4[$] {Remove last piece at b4}
       *b4[*] {Remove all pieces at b4}
 
-    - Index starting with zero?  Use as shortcuts ``*`` for all and ``$`` for last+
+    - Index starting with zero?  Use as shortcuts ``*`` for all and ``$`` for last?
 
-* When moving pieces on top (or beneath) a location instead of putting all the way on top (or beneath) allow specifying the exact piece to place after (or before) in the internal piece ordering by enclosing in ``<>`` examples::
+* When moving pieces on top (or beneath) a location instead of putting all the way on top (or beneath) allow specifying the exact piece to place after (or before) in the internal piece ordering by enclosing it in ``<>`` examples::
 
     C@b3<b3[1]> {Place a Crowns coin back right above the second piece at b3 (and hence under the top piece)}
-    C@b3<b2[$]> {Place a Crowns coin back right "after" the bottom piece at b2 (i.e. a tile) in the internal ordering}
+    C@b3<b2[$]> {Place a Crowns coin back right "after" the bottom piece at b2 (perhaps a tile) in the internal ordering}
     b4[3]-b5<b5[2]> {Move the 4th piece at b4 to b5 right above the 3rd piece}
 
   - Index starting with zero?
   - Allow array specification as shortcut for where to place a piece e.g. ``b2@b5[2]`` as shortcut for ``b2@b5<b5[2]>``?
-
-* Allow replacing pieces with ``=``.  Example::
-
-   b5=S> {replace top piece at b5 with Suns coin back oriented right}
-   
-  + Further allow at end of move i.e. ``b7-b8=4``.
 
 * Implement Bash-style brace expansions.  Examples::
 
@@ -291,6 +292,11 @@ To implement in the future?
 
   + Don't allow nesting brace expansions
   + Unlike Bash-style brace expansions must have a "preamble" or "postscript" otherwise will be interpreted as a comment (but the preamble or postscript can be another brace expansion)
+  + Expand Simplified_ notation to allow ``0`` as alias for ``n`` and ``1`` as alias for ``a``.
+  + Unlike Bash-style brace expansions allow "doubles" in sequences i.e. ``{2.5..5.5}`` would be the sequence ``2.5, 3.5, 4.5, 5.5``.
+  + Two Bash-style brace expansions in an expression form a "cross product", would be nice to have a way to force a "pairwise product" instead, maybe by enclosing in double quotes or use an alternative form of bracketing to braces (although there are already proposed uses for ``[]`` and ``<>``)?::
+
+     "{0..5}@{a..f}{1..6}" {equivalent to 0@a1 1@b2 2@c3 3@d4 4@e5 5@f6}
 
 * Allow flipping pieces over with ``+``.  Example (assuming brace expansion support)::
 
@@ -307,7 +313,8 @@ To implement in the future?
 
 * Allow expressing macros in Metadata_ section for pieces and/or locations
 
-  + Parse first (converting to normal Piece/Location notation) and then parse normally
+  + Allow to be letters, numbers, and underscores.
+  + Parse macros into normal Piece/Location notation and then parse Piece/Location notation as normal.
   + Allow even more flexibility by allowing specification of functions to automatically adjust location/piece i.e. a function to automatically generate hexagonal coordinates?
 
 * Implement a more flexible "Complex" piece notation that can support adding pieces from other game systems and non-90 degree rotations
@@ -316,9 +323,9 @@ To implement in the future?
 
   + Perhaps start with ``piece_side`` and/or piece specification from Simplified_ notation followed by a ``;`` and then (optionally) specify:
    
-    - suit with ``s#;`` (``#`` a number starting from 0)
-    - rank with ``r#;`` (``#`` a number starting with 0)
-    - angle with ``a#;`` (``#`` degrees)
+    - suit with ``s#;`` ( ``#`` a number starting from 0)
+    - rank with ``r#;`` ( ``#`` a number starting with 0)
+    - angle with ``a#;`` ( ``#`` degrees)
     - reserve ``x#;`` and ``y#;`` for possible expressing 3d-tilt in far future
     - put game system at end (default assume piecepack)
       
@@ -338,5 +345,13 @@ To implement in the future?
     b4>> {Rotate piece at b4 180 degrees}
 
   + Allow at end of a move?
+  + Maybe allow degrees afterwards (in which case maybe force direction to end of Simplified_ piece notation and allow it there as well?)::
 
+      b4>45 {Rotate piece at b4 45 degrees to the right}
+      b4<25 {Rotate piece at b4 25 degrees to the left}
 
+* Allow passing in more information to game setup.  Probably use a Metadata_ tag like "SetupArgs" or "SetupParams" and allow it be a mapping. 
+
+  + Seed for random setup for games like Alien City
+  + Number of rows and columns for an general rectangular board setup
+  + Whether to assume dice are 1/2" or larger (for setup in Tablut), similar assumptions about coin size could be relevant for setting up games like Tab
