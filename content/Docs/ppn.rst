@@ -2,11 +2,11 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2019-08-01
+:modified: 2019-08-17
 
-**Version: 0.3**
+**Version: 0.4**
 
-The Portable Piecepack Notation (ppn) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of piecepack games but the structure is designed to in the future allow support for parsing alternative notation systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
+The Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of piecepack games but the structure is designed to in the future allow support for parsing alternative notation systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
 .. warning:: The "Portable Piecepack Notation" is in alpha development and the specification is not likely to remain stable.  I'd appreciate alpha testers to test things out but probably not a good idea to start storing large amount of games in the format just yet.
 
@@ -17,7 +17,6 @@ The Portable Piecepack Notation (ppn) is a human-readable plaintext file format 
 .. _YAML: https://yaml.org/
 
 .. contents::
-
 
 Examples
 --------
@@ -67,12 +66,12 @@ Metadata
 
   + It is recommended to use the subset of YAML_ understood by both the 1.1 and 1.2 YAML_ standards since not all popular parsers understand both (or just YAML_ 1.2).
 
-* It should begin with a line starting with ``---``.
+* It should begin with a line starting with ``---``
  
   + This is the same ``---`` we said begins each game.
   + The ``---`` is recommended but optional for the first game in a PPN file.
 
-* It should end with a line starting with ``...``.
+* It should end with a line starting with ``...``
 
   + This ``...`` is recommended but optional if the Metadata section does not have any empty lines and there is at least one empty line between the Metadata and Movetext_ sections.
   + If there are no lines starting with ``...`` and no empty lines the Metadata section should be assumed to be empty.
@@ -85,7 +84,7 @@ Metadata
 Movetext
 ~~~~~~~~
 
-* Regardless of the Movetext parser to be used the Movetext should not have any lines *starting* with ``---`` or ``...``.
+* Regardless of the Movetext parser to be used the Movetext should not have any lines *starting* with ``---`` or ``...``
 * Should be (initially) parsed as UTF-8 text without restrictions on line length.
 * Additional restrictions based on which Movetext parser is used to parse it.  The default Movetext parser and its additional restrictions will be described in a later section.
 
@@ -143,6 +142,12 @@ Moves
 ~~~~~
 
 * Moves are comprised of Piece_, Location_, and MoveToken_.
+* One can use Unix-shell-style brace expansions as a shortcut for expressing multiple moves e.g.::
+
+    t@{b,d}{2..8..2} {Shortcut for t@b2 t@b4 t@b6 t@b8 t@d2 t@d4 t@d6 t@d8}
+    *{b..f}2 {Shortcut for *b2 *c2 *d2 *e2 *f2}
+
+  + Unlike Bash-style brace expansions must have a "preamble" or "postscript" otherwise will be interpreted as a comment (but the preamble or postscript can be another brace expansion)
 
 Piece
 ~~~~~
@@ -152,26 +157,42 @@ Piece
 Simplified
 ++++++++++
 
-* Pieces: t, c, d, p
+* Pieces: ``t``, ``c``, ``d``, ``p``
 
+  + ``t`` for "tile"
+  + ``c`` for "coin"
+  + ``d`` for "die"
+  + ``p`` for "pawn"
   + If missing assumed to be a tile if has both suit and rank or neither suit and rank otherwise assumed to be a coin.
 
-* Side Up: f, b
+* Side Up: ``f``, ``b``
 
+  + ``f`` for "face"
+  + ``b`` for "back"
   + If missing tiles are assumed to be "back" up if missing suit and/or rank.
   + If missing coins are assumed to be "face" up if missing suit.
-  + If missing pawns and dice are assumed to be "face" up (and only pawns can be "back" up).
+  + If missing pawns and dice are assumed to be "face" up (and dice cannot be "back" up).
 
-* Suits: S, M, C, A
+* Suits: ``S``, ``M``, ``C``, ``A``
 
+  + ``S`` for "Suns"
+  + ``M``` for "Moons'
+  + ``C`` for "Crowns"
+  + ``A`` for "Arms"
   + If missing assumed to be "Suns" for tile faces, coin backs, pawns, and dice.
 
-* Ranks: n, a, 2, 3, 4, 5
+* Ranks: ``n``, ``a``, ``0``, ``1``, ``2``, ``3``, ``4``, ``5``, ``6``, ``7``, ``8``, ``9``
 
+  + ``0`` and ``1`` are aliases for the "null" ``n`` and the "ace" ``a`` especially useful with brace expansions e.g. ``{5..0}@b5 {Place six coins face up at b5 with a null on top and 5 on bottom}``
+  + ``6``, ``7``, ``8``, ``9`` don't exist in a standard piecepack but could exist in piecepack expansions or in components from other game systems.
   + If missing assumed to be "null" for tile faces, coin faces, and dice.
 
-* Direction: ^, <, >, v
+* Direction: ``^``, ``<``, ``>``, ``v``
 
+  + ``^`` is 0 degree rotation aka oriented "up"
+  + ``<`` is a 90 degree rotation aka oriented "left"
+  + ``v`` is a 180 degree rotation aka oriented "down"
+  + ``>`` is a 270 degree rotation aka oriented "right"
   + If missing direction should be assumed to be straight up
 
 * Ordering of elements should not matter but the following ordering may improve readability (omitting any unnecessary elements as necessary):
@@ -183,7 +204,6 @@ Simplified
   5. Direction
 
 * Simplified piecepack piece notation does not support angles that aren't a multiple of 90 degrees nor 3D tilts
-* Simplified piecepack piece notation does not support piecepack expansions / accessories or other game systems
 
 Examples:
 
@@ -248,16 +268,14 @@ The default movetext parser supports the following MoveTokens:
   + The piece moved from Location1 to Location2 will be placed after all the other pieces in the internal ordering.
   + ``Location1:Location2`` is equivalent to ``*Location2 Location1-Location2``.
 
+* ``=`` is used to replace pieces on the board with new piece.  It can also be used to flip/rotate a piece.  ``Location=Piece`` means replace the top piece at Location_ to Piece_ e.g. ``b5=S> {replace top piece at b5 with Suns coin back oriented right}``.
+
 To implement in the future?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Allow replacing pieces with ``=``.  Example::
+* Allow ``=`` moves at the end of a move i.e. ``b7-b8=4``.
 
-   b5=S> {replace top piece at b5 with Suns coin back oriented right}
-   
-  + Further allow at end of move i.e. ``b7-b8=4``.
-
-* Allow the dropping of pieces "beneath" other pieces.  Perhaps use ````` for this?  Example::
+* Allow the dropping of pieces "beneath" other pieces.  Perhaps use ````` or ``&`` for this?  Example::
 
    A3`b4 {Place a three of Arms tile face under any pieces at b4}
 
@@ -270,52 +288,44 @@ To implement in the future?
   + Tak-style number prefix e.g. ``2b4-b3*2a2 {Move top two pieces at b4 to b3 and remove top two pieces at a2}``
   + Array-slicing style suffixes.  Examples::
 
-      b4[0:1]-b3*a2[0:1] {move top two pieces at b4 to b3 and remove top two pieces at a2}
+      b4[1:2]-b3*a2[1:2] {move top two pieces at b4 to b3 and remove top two pieces at a2}
       *b4[$] {Remove last piece at b4}
       *b4[*] {Remove all pieces at b4}
 
-    - Index starting with zero?  Use as shortcuts ``*`` for all and ``$`` for last?
+    - Index starting with one or zero?  Use as shortcuts ``*`` for all and ``$`` for last or board?
 
 * When moving pieces on top (or beneath) a location instead of putting all the way on top (or beneath) allow specifying the exact piece to place after (or before) in the internal piece ordering by enclosing it in ``<>`` examples::
 
-    C@b3<b3[1]> {Place a Crowns coin back right above the second piece at b3 (and hence under the top piece)}
+    C@b3<b3[2]> {Place a Crowns coin back right above the second piece at b3 (and hence under the top piece)}
     C@b3<b2[$]> {Place a Crowns coin back right "after" the bottom piece at b2 (perhaps a tile) in the internal ordering}
-    b4[3]-b5<b5[2]> {Move the 4th piece at b4 to b5 right above the 3rd piece}
+    b4[3]-b5<b5[2]> {Move the 3rd piece at b4 to b5 right above the 2nd piece}
 
-  - Index starting with zero?
+  - Index starting with one or zero?
   - Allow array specification as shortcut for where to place a piece e.g. ``b2@b5[2]`` as shortcut for ``b2@b5<b5[2]>``?
 
-* Implement Bash-style brace expansions.  Examples::
+  + Two Bash-style brace expansions in an expression form a "cross product", would be nice to have a way to force a "pairwise product" instead, maybe by using ```'`` or use an alternative form of bracketing to braces (although there are already proposed uses for ``()``, ``[]``, ``<>``, and `````)?::
 
-    t@{b,d}{2..8..2} {Shortcut for t@b2 t@b4 t@b6 t@b8 t@d2 t@d4 t@d6 t@d8}
-    *{b..f}2 {Shortcut for *b2 *c2 *d2 *e2 *f2}
+     `0..5'@`a..f'`1..6' {equivalent to 0@a1 1@b2 2@c3 3@d4 4@e5 5@f6}
 
-  + Don't allow nesting brace expansions
-  + Unlike Bash-style brace expansions must have a "preamble" or "postscript" otherwise will be interpreted as a comment (but the preamble or postscript can be another brace expansion)
-  + Expand Simplified_ notation to allow ``0`` as alias for ``n`` and ``1`` as alias for ``a``.
-  + Unlike Bash-style brace expansions allow "doubles" in sequences i.e. ``{2.5..5.5}`` would be the sequence ``2.5, 3.5, 4.5, 5.5``.
-  + Two Bash-style brace expansions in an expression form a "cross product", would be nice to have a way to force a "pairwise product" instead, maybe by enclosing in double quotes or use an alternative form of bracketing to braces (although there are already proposed uses for ``[]`` and ``<>``)?::
+* Allow flipping pieces over with ``+``::  
 
-     "{0..5}@{a..f}{1..6}" {equivalent to 0@a1 1@b2 2@c3 3@d4 4@e5 5@f6}
-
-* Allow flipping pieces over with ``+``.  Example (assuming brace expansion support)::
-
-    S@a3 b{3..7}+ {Put Suns coin back at a3 then flip over top pieces from b3 to b7}
+    S@a3 +b{3..7} {Put Suns coin back at a3 then flip over top pieces from b3 to b7}
 
 * Allow specifying which pieces to move or remove by piece info instead of location.  
   
-  + Perhaps use a variant of Simplified_ piece notation but require all elements in the recommended ordering with ``.`` as a wildcard.  Examples::
+  + Perhaps use ``?`` and ``/`` with Simplified_ piece notation with ``/`` being a "greedy" search (wide interpretation possibly capturing multiple pieces) and ``?`` being a "lazy" search (narrow interpration to get exactly one piece [if only using one piecepack])::
 
-     *cb... {Remove all coin backs from board}
-     *..S.. {Remove all the Suns pieces from board}
-     cf2..-b3 {Move all 2-valued coin-faces to b3}
-     5@c.A2. {Put a 5-valued coin on top of the 2 of Arms coin}
+     */S {Remove all the Suns pieces from board}
+     *?S {Remove the null of Suns coin back from board}
+     /cf2-b3 {Move all 2-valued coin-faces to b3}
+     5@?cA2 {Put a 5-valued coin on top of the 2 of Arms coin}
 
 * Allow expressing macros in Metadata_ section for pieces and/or locations
 
   + Allow to be letters, numbers, and underscores.
   + Parse macros into normal Piece/Location notation and then parse Piece/Location notation as normal.
   + Allow even more flexibility by allowing specification of functions to automatically adjust location/piece i.e. a function to automatically generate hexagonal coordinates?
+  + Prepend with a character like ``$`` or ``&`` for easier parsing?
 
 * Implement a more flexible "Complex" piece notation that can support adding pieces from other game systems and non-90 degree rotations
 
@@ -327,7 +337,7 @@ To implement in the future?
     - rank with ``r#;`` ( ``#`` a number starting with 0)
     - angle with ``a#;`` ( ``#`` degrees)
     - reserve ``x#;`` and ``y#;`` for possible expressing 3d-tilt in far future
-    - put game system at end (default assume piecepack)
+    - put expansion or game system at end (default assume "piecepack")
       
       + can contain letters numbers and underscore but can't be a single character plus number
 
@@ -338,6 +348,17 @@ To implement in the future?
        tf;r5;s0;playing_card_expansion {5 of Hearts tile face}
        pyramid_top;s0;r2;icehouse_pyramids {two-pipped red icehouse pyramid}
        tf;s0;r3;a90;blue_dominoes {a blue null-3 blue domino rotated 90-degrees}
+
+* Additional enhancements to the "Simplified" piece notation
+
+  + Use ``m``, ``s``, and ``▲`` for Piecepack "matchstick", "saucer", and "pyramid" respectively
+
+    - Have pyramids default to "top".  Add ``l`` and ``r`` for "left" and "right".  Can't use ``p`` for "pyramid" or ``t`` for "top" since they are used by "pawn" and "tile".
+
+  + Use ``△`` for Icehouse pieces (Looney Pyramids unlike Piecepack Pyramids are translucent).  Support ranks 0, 1, 2, 3 (number of pips).
+  + ``♠``, ``♥``, ``♦``, ``♣`` for indicating the suits of pieces from a Playing Cards Expansion.
+  + `Domino Tile Unicode <https://en.wikipedia.org/wiki/Domino_Tiles>`__  for adding Dominoes.  Maybe if no suit info assume regular dominoes and if suit info assume special dominoes i.e. ``S🁦`` would be equivalent to ``tile_face;r0;s3;dominoes_suns`` which may be stylized as red dominoes.
+  + Use a ``μ`` to indicate a `Piecepack Stackpack <http://www.ludism.org/ppwiki/StackPack>`_ "Subpack" piece e.g. ``5@b2 μ5@b2 {Place a 5-valued supercoin at b2 and then place a 5-valued subcoin on top of it}``.
 
 * Allow rotating pieces (other than with ``=`` notation).  Perhaps use ``>`` and ``<``?::
 
@@ -352,6 +373,7 @@ To implement in the future?
 
 * Allow passing in more information to game setup.  Probably use a Metadata_ tag like "SetupArgs" or "SetupParams" and allow it be a mapping. 
 
+  + Or perhaps interpret ``GameType`` differently if it is a mapping instead of a string?
   + Seed for random setup for games like Alien City
   + Number of rows and columns for an general rectangular board setup
   + Whether to assume dice are 1/2" or larger (for setup in Tablut), similar assumptions about coin size could be relevant for setting up games like Tab
