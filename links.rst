@@ -28,7 +28,7 @@
 .. _dual piecepacks:
 .. _dual: {filename}/Demos/dual.rst
 .. _orthodox: {filename}/Demos/orthodox.rst
-.. _Chinese zodiac demo: {filename}/Demos/zodiac_cn.rst}
+.. _Chinese zodiac demo: {filename}/Demos/zodiac_cn.rst
 
 
 .. Docs
