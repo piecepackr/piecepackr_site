@@ -52,7 +52,7 @@ PPN File Structure
 
 PPN files are text files ending in ``.ppn`` containing one or more games in PPN notation.
 
-* Each game in the file should start with a line beginning with ``---``.  
+* Each game in the file should start with a line beginning with ``---``  
   
   + This line is recommended but optional for the first game in a PPN file. If the first game in each PPN file begins with a ``---`` then one can build larger PPN file archives by simply concatenating smaller PPN files together (i.e. with the \*nix ``cat`` command).
 

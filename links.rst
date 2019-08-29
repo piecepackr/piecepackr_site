@@ -9,6 +9,7 @@
 .. _Packtet: http://ludism.org/ppwiki/Packtet
 .. _Stackpack: http://ludism.org/ppwiki/Stackpack
 .. _Anatomy of a Piecepack: http://www.piecepack.org/Anatomy.html
+.. _Quivira: http://www.quivira-font.com/
 
 .. _R: https://cran.r-project.org/
 .. _animation package: https://cran.r-project.org/package=animation
@@ -22,12 +23,15 @@
 
 .. _polar coordinates: https://en.wikipedia.org/wiki/Polar_coordinate_system
 
-.. Articles
-
+.. Demos
 .. _default: {filename}/Demos/default.rst
 .. _dual piecepacks:
 .. _dual: {filename}/Demos/dual.rst
 .. _orthodox: {filename}/Demos/orthodox.rst
+.. _Chinese zodiac demo: {filename}/Demos/zodiac_cn.rst}
+
+
+.. Docs
 .. _animations:
 .. _animation: {filename}/Docs/animations.rst
 .. _configure:
