@@ -16,6 +16,7 @@
 .. _gifski: https://cran.r-project.org/package=gifski
 .. _grid: https://www.rdocumentation.org/packages/grid
 .. _grImport2: https://cran.r-project.org/package=grImport2
+.. _ppgames: https://github.com/trevorld/ppgames
 .. _piecepackr: https://github.com/trevorld/piecepackr
 .. _tweenr: https://cran.r-project.org/package=tweenr
 
@@ -30,7 +31,6 @@
 .. _orthodox: {filename}/Demos/orthodox.rst
 .. _Chinese zodiac demo: {filename}/Demos/zodiac_cn.rst
 
-
 .. Docs
 .. _animations:
 .. _animation: {filename}/Docs/animations.rst
@@ -44,6 +44,10 @@
 .. _grob function:
 .. _custom grob functions: 
 .. _custom grob function: {filename}/Docs/custom_grob_fn.rst
+.. _PPN:
+.. _Portable Piecepack Notation: {filename}/Docs/ppn.rst
+.. _Unicode symbols: {filename}/Docs/unicode_symbols.rst
+.. _Unicode diagrams: {filename}/Docs/unicode_diagrams.rst
 
 .. Pages
 
