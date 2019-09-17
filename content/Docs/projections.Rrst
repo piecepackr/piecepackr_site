@@ -2,7 +2,7 @@
 ==============
 
 :date: 2019-06-10
-:modified: 2019-06-16
+:modified: 2019-09-17
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
@@ -57,7 +57,7 @@ With a little more effort by the piecepackr_ programmer one can also make `obliq
     g.p("coin_back", suit=2, x=3, y=1, z=3/4+1/8, angle=90)
 .. ..
 
-``op_scale`` and ``op_angle`` are the arguments that control the appearance of the oblique projection.  ``op_scale`` determines how much to scale the length of the piece's edge along ``op_angle``.  An ``op_scale`` of ``0.5`` is commonly used in the `cabinet projection <https://en.wikipedia.org/wiki/Oblique_projection#Cabinet_projection>`_, an ``op_scale`` of ``1.0`` is used in the `cavalier projection <https://en.wikipedia.org/wiki/Oblique_projection#Cavalier_projection>`_, and an ``op_scale`` of ``0.0`` gives you the default "top view" orthographic projection.  ``op_angle`` controls what angle the edges the pieces "go up" - it defaults to 45 degrees.  Right now the programmer needs to figure out what height (the ``z`` argument) the various pieces are in relation to table and carefully arrange the ``grid.piece`` calls so the pieces on top and/or in front are drawn later but there are plans to `write a helper function <https://github.com/trevorld/piecepackr/issues/138>`_ to make educated guesses about piece height and which order one should make ``grid.piece`` calls in to make it easier to make diagrams in the oblique perspective. 
+``op_scale`` and ``op_angle`` are the arguments that control the appearance of the oblique projection.  ``op_scale`` determines how much to scale the length of the piece's edge along ``op_angle``.  An ``op_scale`` of ``0.5`` is commonly used in the `cabinet projection <https://en.wikipedia.org/wiki/Oblique_projection#Cabinet_projection>`_, an ``op_scale`` of ``1.0`` is used in the `cavalier projection <https://en.wikipedia.org/wiki/Oblique_projection#Cavalier_projection>`_, and an ``op_scale`` of ``0.0`` gives you the default "top view" orthographic projection.  ``op_angle`` controls what angle the edges the pieces "go up" - it defaults to 45 degrees.  
 
 Depending on your preferences you may want to change up your pawns look and/or the color of your piece edges:
 
@@ -76,6 +76,16 @@ g.p("pawn_face", x=1, y=4, z=1/4+1/2, angle=90)
 g.p("coin_back", x=3, y=4, z=1/4+1/16, angle=180)
 g.p("coin_back", suit=4, x=3, y=4, z=1/4+1/8+1/16, angle=180)
 g.p("coin_back", suit=2, x=3, y=1, z=3/4+1/8, angle=90)
+.. ..
+
+To directly make oblique projection graphics with ``grid.piece`` the programmer needs to figure out what height (the ``z`` argument) the various pieces are in relation to table and carefully arrange the ``grid.piece`` calls so the pieces on top and/or in front are drawn later.  An easier way to make oblique projection graphics is to use ``pmap_piece`` with the helper function ``op_transform`` as ``pmap_piece``'s ``trans`` argument.  ``op_transform`` uses heuristics to make educated guesses about the height the game pieces are at and what order they should be drawn in:
+
+.. {r op-transform, fig.width=7, fig.height=6, fig.cap="Using 'op_transform' with 'pmap_piece' to make educated oblique projection guesses"}
+df <- tibble::tibble(piece_side="tile_back",  
+                     x=c(2,2,2,4,6,6,4,2,5),  
+                     y=c(4,4,4,4,4,2,2,2,3))  
+pmap_piece(df, cfg=cfg, default.units="in", 
+           op_angle=135, op_scale=0.5, trans=op_transform)
 .. ..
 
 piecepackr_ can make an exact oblique projection under the same conditions it needs to do an exact orthographic projection (i.e. pieces all laid flat, no pyramids_, pawns must be (genalized) meeple pawns laid face up or down) although it won't attempt to properly draw any visible "side" die faces.
