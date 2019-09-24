@@ -2,11 +2,11 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2019-08-17
+:modified: 2019-09-23
 
-**Version: 0.4**
+**Version: 0.5**
 
-The Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of piecepack games but the structure is designed to in the future allow support for parsing alternative notation systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
+Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of piecepack games but the structure is designed to in the future allow support for parsing alternative notation systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
 .. warning:: The "Portable Piecepack Notation" is in alpha development and the specification is not likely to remain stable.  I'd appreciate alpha testers to test things out but probably not a good idea to start storing large amount of games in the format just yet.
 
@@ -91,7 +91,7 @@ Movetext
 To implement in the future?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Allow the PPN parser to use a Movetext parser different from the default one by setting the ``MovetextFn`` key (or perhaps better ``MovetextParser``?) with a string indicating the parser to use.
+* Allow the PPN parser to use a Movetext parser different from the default one by setting the ``MovetextParser`` key with a string indicating the parser to use.
 * Support PGN_-style "Tag Pair" syntax as an alternate way to express a key/pair in the Metadata_ "Mapping".  
 * Make recommendations about which key/value pairs to use in the Metadata_ section and more standard ways to express them.
 
@@ -119,9 +119,19 @@ Default Movetext Parser
 Setup
 ~~~~~
 
-* Currently the Movetext Parser uses the ``GameType`` field in the Metadata_ to provide game setup.  This value should be a string with the game's name.
+* Currently the Movetext Parser uses the ``GameType`` field in the Metadata_ to provide game setup.  This value should either be a string with the game's name or a mapping with the field ``Name`` with the game's name (all other values of this mapping will be passed to the setup).
 
   + Although in general tags will treated case sensitive in this case we first process the string by converting to lower case, removing apostrophes, "squishing" the whitespace, and converting spaces to underscores e.g. "Nine Men's Morris" will be treated as equivalent to "nine_mens_morris".  Occasionally we will provide aliases e.g. "Baroque chess" will be treated as an alias for "Ultima".
+
+``GameType`` example of just string of game's name for setup::
+
+    GameType: Four Field Kono
+
+``GameType`` example that allows passing more info to setup ::
+
+    GameType:
+      Name: Fujisan
+      Seed: 11
 
 Comments
 ~~~~~~~~
@@ -130,6 +140,7 @@ Comments
 
   + All whitespace will be parsed as single spaces, in particular comments can span multiple lines
   + Braces are not allowed within comment braces
+  + Must have white space before and after the braces (otherwise will be considered to be a brace expansion)
 
 MoveNumbers
 ~~~~~~~~~~~
@@ -157,21 +168,26 @@ Piece
 Simplified
 ++++++++++
 
-* Pieces: ``t``, ``c``, ``d``, ``p``
+* Pieces: ``t``, ``c``, ``d``, ``p``, ``m``, ``s``, ``▲``
 
   + ``t`` for "tile"
   + ``c`` for "coin"
   + ``d`` for "die"
   + ``p`` for "pawn"
+  + ``m`` for "matchstick"
+  + ``s`` for "saucer"
+  + ``▲`` for pyramid
   + If missing assumed to be a tile if has both suit and rank or neither suit and rank otherwise assumed to be a coin.
 
-* Side Up: ``f``, ``b``
+* Side Up: ``f``, ``b``, ``r``, ``l``
 
   + ``f`` for "face"
   + ``b`` for "back"
+  + ``r`` and ``l`` for "right" and "left" (only pyramids)
   + If missing tiles are assumed to be "back" up if missing suit and/or rank.
-  + If missing coins are assumed to be "face" up if missing suit.
-  + If missing pawns and dice are assumed to be "face" up (and dice cannot be "back" up).
+  + If missing coins and saucers are assumed to be "face" up if missing suit.
+  + If missing pawns, dice, and matchsticks are assumed to be "face" up (and dice cannot be "back" up).
+  + If missing pyramids are assumed to be "top" up.
 
 * Suits: ``S``, ``M``, ``C``, ``A``
 
@@ -351,10 +367,6 @@ To implement in the future?
 
 * Additional enhancements to the "Simplified" piece notation
 
-  + Use ``m``, ``s``, and ``▲`` for Piecepack "matchstick", "saucer", and "pyramid" respectively
-
-    - Have pyramids default to "top".  Add ``l`` and ``r`` for "left" and "right".  Can't use ``p`` for "pyramid" or ``t`` for "top" since they are used by "pawn" and "tile".
-
   + Use ``△`` for Icehouse pieces (Looney Pyramids unlike Piecepack Pyramids are translucent).  Support ranks 0, 1, 2, 3 (number of pips).
   + ``♠``, ``♥``, ``♦``, ``♣`` for indicating the suits of pieces from a Playing Cards Expansion.
   + `Domino Tile Unicode <https://en.wikipedia.org/wiki/Domino_Tiles>`__  for adding Dominoes.  Maybe if no suit info assume regular dominoes and if suit info assume special dominoes i.e. ``S🁦`` would be equivalent to ``tile_face;r0;s3;dominoes_suns`` which may be stylized as red dominoes.
@@ -371,9 +383,6 @@ To implement in the future?
       b4>45 {Rotate piece at b4 45 degrees to the right}
       b4<25 {Rotate piece at b4 25 degrees to the left}
 
-* Allow passing in more information to game setup.  Probably use a Metadata_ tag like "SetupArgs" or "SetupParams" and allow it be a mapping. 
+* Allow relative moves.  Perhaps use coordinates enclosed by ``[]`` instead of ``()``::
 
-  + Or perhaps interpret ``GameType`` differently if it is a mapping instead of a string?
-  + Seed for random setup for games like Alien City
-  + Number of rows and columns for an general rectangular board setup
-  + Whether to assume dice are 1/2" or larger (for setup in Tablut), similar assumptions about coin size could be relevant for setting up games like Tab
+    b4-[+3,-2] {Move piece on top of b4 right 3 and down 2}

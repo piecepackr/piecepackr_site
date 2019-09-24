@@ -2,7 +2,7 @@
 ==============
 
 :date: 2019-06-10
-:modified: 2019-09-17
+:modified: 2019-09-23
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
@@ -78,6 +78,11 @@ g.p("coin_back", suit=4, x=3, y=4, z=1/4+1/8+1/16, angle=180)
 g.p("coin_back", suit=2, x=3, y=1, z=3/4+1/8, angle=90)
 .. ..
 
+piecepackr_ can make an exact oblique projection under the same conditions it needs to do an exact orthographic projection (i.e. pieces all laid flat, no pyramids_, pawns must be (genalized) meeple pawns laid face up or down) although it won't attempt to properly draw any visible "side" die faces.
+
+'op_transform' helper function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 To directly make oblique projection graphics with ``grid.piece`` the programmer needs to figure out what height (the ``z`` argument) the various pieces are in relation to table and carefully arrange the ``grid.piece`` calls so the pieces on top and/or in front are drawn later.  An easier way to make oblique projection graphics is to use ``pmap_piece`` with the helper function ``op_transform`` as ``pmap_piece``'s ``trans`` argument.  ``op_transform`` uses heuristics to make educated guesses about the height the game pieces are at and what order they should be drawn in:
 
 .. {r op-transform, fig.width=7, fig.height=6, fig.cap="Using 'op_transform' with 'pmap_piece' to make educated oblique projection guesses"}
@@ -88,7 +93,22 @@ pmap_piece(df, cfg=cfg, default.units="in",
            op_angle=135, op_scale=0.5, trans=op_transform)
 .. ..
 
-piecepackr_ can make an exact oblique projection under the same conditions it needs to do an exact orthographic projection (i.e. pieces all laid flat, no pyramids_, pawns must be (genalized) meeple pawns laid face up or down) although it won't attempt to properly draw any visible "side" die faces.
+``op_transform`` currently uses the following heuristic to guess which game pieces overlap:
+
+1. Each game piece is drawn within a (possibly rotated) rectangular "viewport".  For each piece we find out the horizontal and vertical lines that bound their rectangular "viewport" and use them to construct a "bounding box" that contains the piece.  
+2. If two pieces' bounding boxes overlap then we guess that the pieces overlap [#overlap]_.
+3. Piece "A"'s "z" value is estimated to be qual to the "z" value of the highest "overlapping" piece beneath "A" (let's call it "B") plus half of "B"'s depth and half of "A"'s depth.  If there are no overlapping pieces beneath "A" its "z" value is just half of "A"'s depth.
+
+
+``op_transform`` currently uses the following heurist to sort the order of drawing game pieces:
+
+1. Generalize each "bounding box" from the previous section into a "bounding cube" whose top is equal to the top of the game piece.
+2. Piece's whose "bounding cube" top is higher (on "z" axis) are drawn later, for any tie those whose "bounding cube" top ("y" axis) is higher or lower (depending on the "op_angle") is drawn later, and finally for any remaining tie those whose "bounding cube" is more left or right (depending on the "op_angle") is drawn later [#sorting]_.
+
+
+.. [#overlap] If the two pieces do indeed overlap we will always correctly indicate that they overlap.  However there are circumstances where non-overlapping pieces will be falsely identified as overlapping.  However in the somewhat standard case of standard piecepack components with tiles only rotated by multiples of 90 degrees, and pieces only placed on either the cells or points of the tiles then it is very unlikely to have a false identification.
+
+.. [#sorting] In certain scenarios this may give the wrong ordering.  An example may be a really tall pawn next to a stack of tiles that altogether are shorter than the pawn.  For the common case of a single layer of tiles plus a single layer of pieces on top of the tiles this is very unlikely to have a false indentification.  If there is a false identification one can sometimes change the dimensions of the pieces or the "op_angle" value to get a "correct" ordering.  In an extreme case one can use tiles, coins, pawns, and dice all 1/2" tall which should always render the correct ordering (assuming their "z" values were correctly estimated).
 
 Mixed Projections
 -----------------
