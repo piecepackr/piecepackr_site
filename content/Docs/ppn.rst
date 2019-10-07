@@ -121,7 +121,7 @@ Setup
 
 * Currently the Movetext Parser uses the ``GameType`` field in the Metadata_ to provide game setup.  This value should either be a string with the game's name or a mapping with the field ``Name`` with the game's name (all other values of this mapping will be passed to the setup).
 
-  + Although in general tags will treated case sensitive in this case we first process the string by converting to lower case, removing apostrophes, "squishing" the whitespace, and converting spaces to underscores e.g. "Nine Men's Morris" will be treated as equivalent to "nine_mens_morris".  Occasionally we will provide aliases e.g. "Baroque chess" will be treated as an alias for "Ultima".
+  + Although in general tags will treated case sensitive in this case we first process the string by converting to lower case, removing apostrophes and hyphens, "squishing" the whitespace, and converting spaces to underscores e.g. "Nine Men's Morris" will be treated as equivalent to "nine_mens_morris".  Occasionally we will provide aliases e.g. "Baroque chess" will be treated as an alias for "Ultima".
 
 ``GameType`` example of just string of game's name for setup::
 
