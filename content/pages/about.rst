@@ -2,11 +2,59 @@ About
 =====
 
 :date: 2019-03-27
-:modified: 2019-05-17
+:modified: 2019-10-08
 
 .. include:: ../../links.rst
 
-This is the associated website for the piecepackr_ R_ package.  piecepackr_ is an R package designed to make configurable board game graphics. It can be used with the grid_ R package to make board game diagrams, board game animations, and custom Print & Play layouts.  By default it is configured to make `piecepack game`_ diagrams_, animations_, and `Print & Play`_ layouts but can be configured to make graphics for `other game systems`_.
+This is the associated website for the piecepackr_  and ppgames_ R_ packages.  piecepackr_ is an R package designed to make configurable board game graphics. It can be used with the grid_ R package to make board game diagrams_, board game animations_, and custom `Print & Play`_ layouts.  By default it is configured to make `piecepack game`_ diagrams_, animations_, and `Print & Play`_ layouts but can be configured to make graphics for `other game systems`_.  ppgames_ is an R_ package with functions for generating piecepack_ game graphics, rulesets, and books as well as functions to parse "`Portable Piecepack Notation`_" files and a Fuji-san solver.
 
-This website contains some documentation_ on how to use piecepackr_ as well as several demos_ using piecepackr_.  It also contains the download links for several `Print & Play`_ pdfs of the piecepacks configured in the `Print & Play demos`_.
+This website contains several articles of documentation_ on how to use piecepackr_ and ppgames_ as well as some relevant theory and resources.  There are several demos_ using the packages.  It also contains the download links for several `Print & Play`_ pdfs of the piecepacks configured in the `Print & Play demos`_ that can be used to build your own piecepack_.  Here is a "Site Map" of the articles on this site:
 
+.. contents:: Site Map
+
+Docs
+----
+
+These are in depth articles on specific subjects of interest to piecepackr_ users and/or piecepack_ designers including documentation_ of some of the key piecepackr_ and ppgames_ features:
+
+#. `Intro to piecepackr's API <{filename}/Docs/intro.rst>`_
+#. `Configuration lists`_
+#. `Custom grob functions`_
+#. `Animations`_
+#. `3D projections <{filename}/Docs/projections.rst>`_
+#. `Portable Piecepack Notation <{filename}/Docs/ppn.rst>`_
+#. `Unicode piecepack symbols <{filename}/Docs/unicode_symbols.rst>`_
+#. `Unicode piecepack diagrams <{filename}/Docs/unicode_diagrams.rst>`_
+
+Demos
+-----
+
+Print-and-Play Demos
+~~~~~~~~~~~~~~~~~~~~
+
+These are the `Print & Play demos`_ which demonstrate the code used to generate the `Print & Play`_ pdfs found on this site:
+
+#. `piecepackr's default piecepack <{filename}/Demos/default.rst>`_
+#. `Dual piecepacks`_
+#. `"Orthodox" (Anatomy of a Piecepack Standard) piecepack <{filename}/Demos/orthodox.rst>`_
+#. `Daniel Ajoy's Dingbats suited piecepack <{filename}/Demos/dingbats.rst>`_
+#. `Rainbow Deck suited piecepack <{filename}/Demos/default.rst>`_
+#. `Chinese Zodiac ranked piecepack <{filename}/Demos/default.rst>`_
+
+Diagrams for Specific Piecepack Games
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These are demonstrations of using piecepackr_ and ppgames_ to make diagrams_ for specific piecepack_ games:
+
+#. `Backgammon <{filename}/Demos/backgammon.rst>`_
+#. `Cribbage <{filename}/Demos/cribbage.rst>`_
+#. `Everest <{filename}/Demos/everest.rst>`_
+#. `Tablut <{filename}/Demos/tablut.rst>`_
+
+Other Game Systems
+~~~~~~~~~~~~~~~~~~
+
+These are demonstrations of using piecepackr_ to make diagrams for `other game systems`_ besides the piecepack_.
+
+#. `Hexpack <{filename}/Demos/hexpack.rst>`_
+#. `Tak <{filename}/Demos/tak.rst>`_

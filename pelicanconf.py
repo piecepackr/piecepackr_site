@@ -18,8 +18,9 @@ FOOTNOTE = 'Copyright \u00a9 2019 Trevor L Davis.  Some Rights Reserved.<p>Excep
 STATIC_PATHS = ['images', 'share']
 
 # Blogroll
-LINKS = (('piecepackr source', 'https://github.com/trevorld/piecepackr'),
-         ("this website's source", "https://github.com/trevorld/piecepackr_site"),
+LINKS = (("piecepackr's source", 'https://github.com/trevorld/piecepackr'),
+         ("ppgames' source", "https://github.com/trevorld/ppgames"),
+#        ("this website's source", "https://github.com/trevorld/piecepackr_site"),
          ('piecepack wiki', 'http://ludism.org/ppwiki/'),
 #        ('piecepack BGG page', 'https://boardgamegeek.com/boardgame/2860/piecepack'),
 )
