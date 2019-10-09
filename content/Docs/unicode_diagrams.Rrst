@@ -118,6 +118,6 @@ Piecepack font wishlist
 
 No font I tried did everything I would want a font to do for making nice looking piecepack Unicode text diagrams.  For any font designers out looking for a new project here is a wishlist of features for a piecapack diagram friendly font:
 
-#. Needs to be Monoscale, ideally the width and height of the characters could be the same.
-#. Needs to have the important pieceapck rank/suit `Unicode symbols`_ including support for all rotated versions of the glyphs.  These symbols must still look nice when combining with `Combining Diacritical Marks`_ used as directional marks plus an enclosing circle, square, diamond, and/or triangle.  Would also be nice to include the relevant "rotated" Unicode 12.0 `chess piece glyphs`_ (useful as piecapack Crowns and pawns).
+#. Needs to be Monoscale, ideally the width and height of the characters would be the same.
+#. Needs to have the important piecepack rank/suit `Unicode symbols`_ including support for all rotated versions of the glyphs.  These symbols must still look nice when combining with `Combining Diacritical Marks`_ used as directional marks plus an enclosing circle, square, diamond, and/or triangle.  Would also be nice to include the relevant "rotated" Unicode 12.0 `chess piece glyphs`_ (useful as piecapack Crowns and pawns).
 #. Needs support for all the thin/thick `box-drawing characters`_.  These should combine well with the piecepack coins, dice, and pawns (i.e. enclosing circles, squares, etc.) so it looks like those pieces are truly on top of the tiles (so no lines going through the "edge" of the coins, dice, pawns or awkward gaps between lines and piece "edges").
