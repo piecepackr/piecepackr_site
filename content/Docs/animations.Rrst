@@ -2,7 +2,7 @@ Animations
 ==========
 
 :date: 2019-04-09
-:modified: 2019-04-28
+:modified: 2019-10-08
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
@@ -20,6 +20,11 @@ for (ff in RData_files) {
 }
 save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 .. ..
+
+.. contents::
+
+Directly using the 'animations' package
+---------------------------------------
 
 .. note:: Besides the ``animation`` package there are also several other R packages that can be used to help make an animation like the gifski_ and tweenr_ packages.  
 
@@ -84,3 +89,36 @@ invisible(file.rename('tictactoe.gif', '../images/knitr/tictactoe.gif'))
     :alt: Animation of a tic-tac-toe game
     :align: center
 
+Using ppgames' 'animate_game' function
+--------------------------------------
+
+ppgames_ has a convenience function ``animate_game`` that can be used to animate games recorded in `Portable Piecepack Notation`_:
+
+.. {r fuji-san, results='hide', message=FALSE}
+library("ppgames", warn.conflicts=FALSE)
+dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,black",
+                      invert_colors.suited=TRUE, border_color="black", border_lex=2)
+piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
+                    suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+                    suit_cex="0.6,0.7,0.75,0.9,0.9")
+traditional_ranks <- list(use_suit_as_ace=TRUE, rank_text=",a,2,3,4,5")
+cfg3d <- list(width.pawn=0.75, height.pawn=0.75, depth.pawn=0.375, 
+                   dm_text.pawn="", shape.pawn="convex6", invert_colors.pawn=TRUE,
+                   edge_color.coin="tan", edge_color.tile="tan")
+cfg <- pp_cfg(c(piecepack_suits, dark_colorscheme, traditional_ranks, cfg3d))
+
+puzzle2 <- matrix(c(4,4,4,5,2,0,2,4,0,3,1,1,
+                    1,2,5,3,3,5,3,2,5,1,0,0), nrow=2, byrow=TRUE)
+s2 <- solve_fujisan(coins=puzzle2)
+game <- read_ppn(textConnection(s2$ppn))[[1]]
+animate_game(game, op_scale=1, op_angle=90, trans=op_transform, cfg=cfg, file="fujisan.gif")
+.. ..
+
+.. {r move3, echo=FALSE}
+invisible(file.rename('fujisan.gif', '../images/knitr/fujisan.gif'))
+
+.. ..
+
+.. image:: {static}/images/knitr/fujisan.gif
+    :alt: Animation of a Fuji-san game
+    :align: center
