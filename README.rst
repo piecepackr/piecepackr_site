@@ -14,36 +14,39 @@ This is the source code for the `companion website`_ for the piecepackr_ R_ pack
 Dependencies
 ------------
 
+Command-line installation instructions (for Ubuntu):
+
 .. code:: bash
 
-   $ sudo apt install python3-pip rake r-base rsync
-   $ sudo apt install fonts-dejavu fonts-noto
-   $ pip3 install pelican pelican_comment_system Pillow
-   $ sudo R
+   sudo apt install python3-pip rake r-base rsync
+   sudo apt install inkscape texlive-xetex
+   sudo apt install cabal-install
+   sudo apt install fonts-dejavu fonts-noto
+
+   pip3 install pelican pelican_comment_system Pillow
+   cabal update # add $HOME/.cabal/bin to $PATH
+   cabal install pandoc
+
+   fonts_dir=${XDG_DATA_HOME:-$HOME/.local/share}/fonts/
+   curl -O http://www.quivira-font.com/files/Quivira.otf
+   mv Quivira.otf $fonts_dir
+   curl -O https://www.chessvariants.com/d.font/chess1.ttf
+   mv chess1.ttf $fonts_dir
+   curl -O https://noto-website-2.storage.googleapis.com/pkgs/NotoEmoji-unhinted.zip
+   unzip NotoEmoji-unhinted.zip NotoEmoji-Regular.ttf
+   mv NotoEmoji-Regular.ttf $fonts_dir
+   rm NotoEmoji-unhinted.zip
+   sudo mv /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf ~/
+
+R package installation instructions (start R with ``R``):
 
 .. code:: r
 
-   install.packages(c("animation", "dplyr", "knitr", "remotes"))
+   install.packages("remotes")
    remotes::install_github("trevorld/piecepackr")
    remotes::install_github("trevorld/ppgames")
+   quit("no")
 
-.. code:: bash
-
-   $ fonts_dir=${XDG_DATA_HOME:-$HOME/.local/share}/fonts/
-   $ curl -O http://www.quivira-font.com/files/Quivira.otf
-   $ mv Quivira.otf $fonts_dir
-   $ curl -O https://noto-website-2.storage.googleapis.com/pkgs/NotoEmoji-unhinted.zip
-   $ unzip NotoEmoji-unhinted.zip NotoEmoji-Regular.ttf
-   $ mv NotoEmoji-Regular.ttf $fonts_dir
-   $ rm NotoEmoji-unhinted.zip
-   $ sudo mv /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf ~/
-
-.. code:: bash
-
-    sudo apt install inkscape texlive-xetex
-    sudo apt install cabal-install
-    cabal update # add $HOME/.cabal/bin to $PATH
-    cabal install pandoc
 
 Build and deploy website
 ------------------------

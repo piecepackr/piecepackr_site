@@ -20,7 +20,7 @@ The standard (and many non-standard) piecepack suit and rank symbols are availab
 Rotation
 ^^^^^^^^
 
-Although Unicode in general doesn't support character rotations for some rank/suit symbols Unicode also has glyphs that are (or look like they are) `rotated versions of those glyhps <https://en.wikipedia.org/wiki/Transformation_of_text>`_ (i.e. both ☾ and ☽ (crescent) moons and both † and ⸸ daggers) or are symbols that are symetric across certain (or all) axes of rotation such as the (alchemical) sun symbol ☉.  For some piecepack game diagrams you'll want to have rotated versions of your rank/suit symbols in order to indicate rotated coins, tiles, dice, and perhaps directional pawns.  Often Unicode will only have (if any) one or two rotations but will sometimes have more rotations - in particular Unicode 12.0 includes all 45 degree rotations of `chess piece glyphs <https://en.wikipedia.org/wiki/Chess_Symbols_(Unicode_block)>`_.
+Although Unicode in general doesn't support character rotations for some rank/suit symbols Unicode also has glyphs that are (or look like they are) `rotated versions of those glyhps <https://en.wikipedia.org/wiki/Transformation_of_text>`_ (i.e. both ☾ and ☽ (crescent) moons and both † and ⸸ daggers) or are symbols that are symmetric across certain (or all) axes of rotation such as the (alchemical) sun symbol ☉.  For some piecepack game diagrams you'll want to have rotated versions of your rank/suit symbols in order to indicate rotated coins, tiles, dice, and perhaps directional pawns.  Often Unicode will only have (if any) one or two rotations but will sometimes have more rotations - in particular Unicode 12.0 includes all 45 degree rotations of `chess piece glyphs <https://en.wikipedia.org/wiki/Chess_Symbols_(Unicode_block)>`_.
 
 Color
 ^^^^^
@@ -76,7 +76,7 @@ The ppgames_ R packages has a prototype function ``cat_piece`` which generates p
     cat_piece(df_fide_chess())
 
 .. image:: https://trevorldavis.com/share/piecepack/unicode_piecepack_alt_5.png
-    :alt: Unicode text diagram
+    :alt: Unicode text diagram for Chess
     :align: center
 
 .. code:: r
@@ -84,7 +84,7 @@ The ppgames_ R packages has a prototype function ``cat_piece`` which generates p
     cat_piece(df_xiangqi())
 
 .. image:: https://trevorldavis.com/share/piecepack/unicode_xiangqi.png
-    :alt: Unicode text diagram
+    :alt: Unicode text diagram for Xiangqi
     :align: center
 
 .. code:: r
@@ -92,7 +92,7 @@ The ppgames_ R packages has a prototype function ``cat_piece`` which generates p
     cat_piece(df_backgammon())
 
 .. image:: https://trevorldavis.com/share/piecepack/unicode_backgammon.png
-    :alt: Unicode text diagram
+    :alt: Unicode text diagram for Backgammon
     :align: center
 
 The prototype parser currently makes the following choices:

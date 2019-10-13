@@ -40,6 +40,7 @@ These are the `Print & Play demos`_ which demonstrate the code used to generate 
 #. `Daniel Ajoy's Dingbats suited piecepack <{filename}/Demos/dingbats.rst>`_
 #. `Rainbow Deck suited piecepack <{filename}/Demos/default.rst>`_
 #. `Chinese Zodiac ranked piecepack <{filename}/Demos/default.rst>`_
+#. `Chess-ranked piecepacks <{filename}/Demos/chess.rst>`_
 
 Diagrams for Specific Piecepack Games
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,6 +48,7 @@ Diagrams for Specific Piecepack Games
 These are demonstrations of using piecepackr_ and ppgames_ to make diagrams_ for specific piecepack_ games:
 
 #. `Backgammon <{filename}/Demos/backgammon.rst>`_
+#. Several `chess <{filename}/Demos/chess.rst>`_ variants
 #. `Cribbage <{filename}/Demos/cribbage.rst>`_
 #. `Everest <{filename}/Demos/everest.rst>`_
 #. `Tablut <{filename}/Demos/tablut.rst>`_
