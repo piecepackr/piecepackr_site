@@ -1,7 +1,7 @@
 Chess
 =====
 
-:date: 2019-10-10
+:date: 2019-10-12
 :tags: print-and-play, ppgames
 
 .. {r setup, echo=FALSE}
@@ -93,7 +93,7 @@ Mirrored-color-scheme chess piecepacks
 Having two piecepacks with a mirror-color-scheme makes it really easy to play games like Bughouse chess or Reversi/Othello.  Here we'll design one piecepack with six "black" suits and another with six "red" suits.
 
 Black-suited mirrored-color-scheme chess-ranked piecepack
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. {r preview3, fig.cap="Black-suited mirrored-color-scheme chess-ranked piecepack"}
 chess3 <- list(suit_text = "♠,♣,🌜,⚓,,,★",
@@ -117,7 +117,7 @@ grid.piece("preview_layout", cfg=chess3)
 .. ..
 
 Red-suited mirrored-color-scheme chess-ranked piecepack
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. {r preview4, fig.cap="Red-suited mirrored-color-scheme chess-ranked piecepack"}
 chess4 <- as.list(chess3)

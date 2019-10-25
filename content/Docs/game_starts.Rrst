@@ -1,0 +1,140 @@
+Game starting arrangement functions
+===================================
+
+:date: 2019-10-25
+
+The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("docs-game-starts")
+.. ..
+
+.. include:: ../../links.rst
+
+.. contents::
+
+Directly generating starting diagrams
+-------------------------------------
+
+The game start functions all return a data frame that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece``:
+
+.. code:: r
+
+    library("ppgames")
+    cat_piece(df_fide_chess())
+
+.. image:: https://trevorldavis.com/share/piecepack/unicode_piecepack_alt_5.png
+    :alt: Unicode text diagram for Chess
+    :align: center
+
+.. code:: r 
+
+    download.file("https://trevorldavis.com/piecepackr/share/demo_cfgs.RData")
+    cfgs <- new.env()
+    load("demo_cfgs.RData", envir=cfgs)
+    pmap_piece(df_fide_chess(), cfg=cfgs$chess5, op_scale=0.5, 
+               trans=op_transform, default.units="in")
+
+.. image:: {static}/share/rules/fide-chess.png
+    :alt: 3D diagram for Chess
+    :align: center
+
+Use with Portable Piecepack Notation
+------------------------------------
+
+The game start functions can also be used with `Portable Piecepack Notation`_ to initially set the game pieces via the metadata field ``GameType``::
+
+    GameType: Four Field Kono
+
+    1. b1:b3 1... d3:b3 2. c1:c3 2... a3:c3 3. c2-c1 3... b4:b2 4. a1-b1 4... b3:b1
+    5. d1:b1 5... c3-c2 6. a2-a3 6... b2:d2 7. a3-b3 7... c4-c3 8. c1-d1 8... d4-d3
+    9. b1-b2 9... d2:b2 10. b3-a3 10... b2-b1 {Player 1's loss is assured with the
+     separation of their two remaining pieces and they should resign in a real game}
+    11. a3-a2 11... b1-c1 12. d1-d2 12... c1-d1 13. a2-a3 13... a4-b4
+    14. a3-a4 14... b4-c4 15. a4-b4 15... c4-d4 16. b4-a4 16... d4:d2 {Player 2 wins}
+
+.. image:: https://www.trevorldavis.com/share/piecepack/four_field_kono_example.gif
+    :alt: Four Field Kono example
+
+It is also possible to pass in arguments to the game start function by passing a "mapping" to the ``GameType`` field::
+
+    ---
+    GameType:
+      Name: Fujisan
+      Coins: "44452n24n3aa/a25335325ann"
+    ...
+    1. a1-b1 2. n2-k2 3. b1-e1 4. e1-j1 5. j1-j2 6. j2-l2 7. k2-m2
+    8. m2-m1 9. l2-l1 10. n1-k1 11. m1-i1 12. i1-d1 13. d1-d2 14. l1-i1
+    15. i1-i2 16. k1-k2 17. k2-e2 18. i2-c2 19. a2-f2 20. e2-h2 21. h2-g2
+    22. c2-h2 23. h2-h1 24. d2-h2 25. f2-b2 26. b2-b1 27. b1-g1
+
+.. image:: {static}/images/knitr/fujisan.gif
+    :alt: Animation of a Fuji-san game
+    :align: center
+
+Supported Game Start Functions
+------------------------------
+
+.. list-table:: Game Start Functions
+    :header-rows: 1
+    :widths: 30, 20, 50
+
+    * - game
+      - names
+      - comment 
+    * - Alice Chess
+      - df_alice_chess
+      -
+    * - Backgammon
+      - df_backgammon
+      -
+    * - Cell Management
+      - df_cell_management
+      - Not very PPN friendly
+    * - Chaturaji
+      - df_chaturaji
+      -
+    * - (American) Checkers
+      - df_american_checkers
+      -
+    * - (FIDE) Chess
+      - df_fide_chess
+      -
+    * - Cribbage (Board)
+      - df_cribbage_board
+      - Just a (piecepack) cribbage board (no cards)
+    * - Everest
+      - df_everest
+      -
+    * - Four Field Kono
+      - df_four_field_kono
+      - 
+    * - Four Seasons Chess
+      - df_four_seasons_chess
+      -
+    * - Fujisan
+      - df_fujisan
+      -
+    * - Nine Men's Morris
+      - df_nine_mens_morris
+      - 
+    * - Rect Board Tiles
+      - df_rect_board_tiles
+      - Makes a rectangular board made from tiles
+    * - Shogi (Japanese Chess)
+      - df_shogi
+      -
+    * - Tablut
+      - df_tablut
+      -
+    * - Twelve Men's Morris
+      - df_twelve_mens_morris
+      - 
+    * - Ultima
+      - df_ultima, df_baroque_chess
+      -
+    * - Xiangqi (Chinese Chess)
+      - df_xiangqi
+      -
+

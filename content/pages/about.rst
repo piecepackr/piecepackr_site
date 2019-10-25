@@ -25,6 +25,7 @@ These are in depth articles on specific subjects of interest to piecepackr_ user
 #. `Portable Piecepack Notation <{filename}/Docs/ppn.rst>`_
 #. `Unicode piecepack symbols <{filename}/Docs/unicode_symbols.rst>`_
 #. `Unicode piecepack diagrams <{filename}/Docs/unicode_diagrams.rst>`_
+#. `Game starting arrangement functions <{filename}/Docs/game_starts.rst>`_
 
 Demos
 -----
