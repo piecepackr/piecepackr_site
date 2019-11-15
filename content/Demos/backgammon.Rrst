@@ -23,7 +23,7 @@ cfg <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
         suit_color="#D55E00,#000000,#F0E442,#0072B2,#009E73",
         background_color="#000000,#D55E00,#0072B2,#F0E442,white" 
 ))
-pmap_piece(df_backgammon(cfg), cfg=cfg, default.units="in")
+pmap_piece(df_backgammon(), cfg=cfg, default.units="in")
 .. ..
 
 .. {r save, echo=FALSE}
