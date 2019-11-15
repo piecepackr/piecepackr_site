@@ -2,6 +2,7 @@ Unicode Piecepack Symbols
 =========================
 
 :date: 2019-08-29
+:modified: 2019-11-13
 
 .. include:: ../../links.rst
 
@@ -31,13 +32,19 @@ Neutral/Wild Unsuit
      - Fish Cake with Swirl Design
    * - @ 
      - U+0040
-     - At sign
+     - At Sign
    * - ☯ 
      - U+262F
      - Yin Yang
    * - 🌀 
      - U+1F300
      - Cyclone
+   * - ∂
+     - U+2202
+     - Partial Differential
+   * - ໑
+     - U+0ED1
+     - Lao Digit One
 
 .. list-table:: Joker Stars
    :header-rows: 1
@@ -51,6 +58,12 @@ Neutral/Wild Unsuit
    * - ☆ 
      - U+2606
      - White Star
+   * - ✪
+     - U+272A
+     - Circled White Star
+   * - ✯
+     - U+272F
+     - Pinwheel Star
    * - 
      - U+0E00A
      - Black Joker Symbol (Quivira PUA)
@@ -165,6 +178,12 @@ Piecepack suits
    * - 🌝 
      - U+1f31d 
      - full moon with face
+   * - ◐ 
+     - U+25d0
+     - circle with left half black
+   * - ◑
+     - U+25d1
+     - circle with right half black
 
 .. list-table:: Crowns
    :header-rows: 1
@@ -187,6 +206,9 @@ Piecepack suits
    * - ♔ 
      - U+2654 
      - white chess queen     
+   * - ȸ
+     - U+0238
+     - small letter db digraph
 
 .. note:: According to the `Anatomy of a Piecepack`_ standard the "Fleur-de-lis" should be used for the Arms symbol but the popular `JCD piecepack`_ uses an "Anchor" [#anchor]_ and I've tinkered with using the "Dagger" [#dagger]_.
 
@@ -205,6 +227,9 @@ Piecepack suits
    * - †
      - U+2020
      - Dagger
+   * - Ϯ
+     - U+03ee
+     - Coptic capital letter dei
 
 French suits
 ~~~~~~~~~~~~
