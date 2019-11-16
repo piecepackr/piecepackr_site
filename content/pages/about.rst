@@ -53,6 +53,7 @@ These are demonstrations of using piecepackr_ and ppgames_ to make diagrams_ for
 #. `Cribbage <{filename}/Demos/cribbage.rst>`_
 #. `Everest <{filename}/Demos/everest.rst>`_
 #. `Tablut <{filename}/Demos/tablut.rst>`_
+#. `Triactor <{filename}/Demos/jcd.rst>`_ (featuring the JCD piecepack)
 
 Other Game Systems
 ~~~~~~~~~~~~~~~~~~

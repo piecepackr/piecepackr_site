@@ -29,7 +29,7 @@ For more info about the design please read `Daniel Ajoy`_'s description and desi
     :width: 80%
     :alt: "Homemade PiecePack" (https://boardgamegeek.com/image/1639074/piecepack) by Daniel Ajoy (https://boardgamegeek.com/user/DanielAjoy) / "CC BY-NC-SA 3.0" (http://creativecommons.org/licenses/by-nc-sa/3.0).
 
-    `Homemade PiecePack <https://boardgamegeek.com/image/1639074/piecepack>`_ by `Daniel Ajoy`_ / `CC BY-NC-SA 3.0 <http://creativecommons.org/licenses/by-nc-sa/3.0>`_ 
+    `Homemade PiecePack <https://boardgamegeek.com/image/1639074/piecepack>`_ by `Daniel Ajoy`_ / `CC BY-NC-SA 3.0`_ 
 
 It is possible to emulate Ajoy's Dingbats piecepack_ in piecepackr_ but in order to emulate his tile faces and null/ace rank symbols we'll need to write and use a custom `grob function`_ in order to add some extra circles/stars on the tile faces and add an extra circle to his null/ace rank symbols.
 

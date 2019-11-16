@@ -49,6 +49,11 @@
 .. _Unicode symbols: {filename}/Docs/unicode_symbols.rst
 .. _Unicode diagrams: {filename}/Docs/unicode_diagrams.rst
 
+.. Licenses
+
+.. _CC BY-NC-SA 2.0: http://creativecommons.org/licenses/by-nc-sa/2.0
+.. _CC BY-NC-SA 3.0: http://creativecommons.org/licenses/by-nc-sa/3.0
+
 .. Pages
 
 .. _Print & Play: {filename}/pages/pnp.rst

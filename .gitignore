@@ -3,6 +3,8 @@
 *.swp
 output/
 content/Demos/*.rst
+content/Demos/*.zip
+content/Demos/*.pdf
 content/Docs/*.rst
 content/pages/*.rst
 content/share/
