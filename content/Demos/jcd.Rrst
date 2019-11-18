@@ -119,3 +119,12 @@ invisible(dev.off())
     :alt: Starting diagram for Triactor.  Uses "JCD piecepack" (http://www.piecepack.org/JCD.html) graphics contained in VASSAL's piecepack module (http://www.vassalengine.org/wiki/Module:Piecepack) by Jonathan C. Dietrich (https://www.ludism.org/ppwiki/JonathanDietrich) and the Triactor (http://www.piecepack.org/rules/Triactor.pdf) playmat by Jonathan C. Dietrich, Julie Taylor, and Ken MacKeigan / "CC BY-NC-SA 2.0" (http://creativecommons.org/licenses/by-nc-sa/2.0).
 
     Starting diagram for `Triactor`_.  Uses `JCD piecepack`_ images contained in `VASSAL's piecepack module`_ by `Jonathan C. Dietrich`_ and the `Triactor`_ playmat by Jonathan C. Dietrich, Julie Taylor, and Ken MacKeigan / `CC BY-NC-SA 2.0`_
+
+.. {r save_small, echo=FALSE}
+
+p <- as.raster(png::readPNG("../share/rules/triactor.png"))
+png("../share/rules/triactor_small.png", width=21, height=13, units="in", res=36)
+grid.raster(p)
+invisible(dev.off())
+
+.. ..

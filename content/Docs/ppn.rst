@@ -2,9 +2,9 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2019-09-23
+:modified: 2019-11-18
 
-**Version: 0.5**
+**Version: 0.5.1**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of piecepack games but the structure is designed to in the future allow support for parsing alternative notation systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
@@ -33,6 +33,10 @@ A simple game of Tic-Tac-Toe with no automatic setup::
     3. S@a1 3... M@c3
     4. S@b1 {X wins}
 
+.. image:: {static}/images/knitr/tictactoe.gif
+    :alt: Animation of a tic-tac-toe game
+    :align: center
+
 A game of Four Field Kono with automatic setup::
 
     GameType: Four Field Kono
@@ -46,6 +50,22 @@ A game of Four Field Kono with automatic setup::
 
 .. image:: https://www.trevorldavis.com/share/piecepack/four_field_kono_example.gif
     :alt: Four Field Kono example
+
+A game of Fuji-san with a specific starting coin setup:: 
+
+    ---
+    GameType:
+      Name: Fujisan
+      Coins: "44452n24n3aa\na25335325ann"
+    ...
+    A. a1-b1 2. n2-k2 3. b1-e1 4. e1-j1 5. j1-j2 6. j2-l2 7. k2-m2
+    B. m2-m1 9. l2-l1 10. n1-k1 11. m1-i1 12. i1-d1 13. d1-d2 14. l1-i1
+    C. i1-i2 16. k1-k2 17. k2-e2 18. i2-c2 19. a2-f2 20. e2-h2 21. h2-g2
+    D. c2-h2 23. h2-h1 24. d2-h2 25. f2-b2 26. b2-b1 27. b1-g1
+
+.. image:: {static}/images/knitr/fujisan.gif
+    :alt: Animation of a Fuji-san game
+    :align: center
 
 PPN File Structure
 ------------------
@@ -168,7 +188,7 @@ Piece
 Simplified
 ++++++++++
 
-* Pieces: ``t``, ``c``, ``d``, ``p``, ``m``, ``s``, ``▲``
+* Pieces: ``t``, ``c``, ``d``, ``p``, ``m``, ``s``, ``▲``, ``△``
 
   + ``t`` for "tile"
   + ``c`` for "coin"
@@ -176,7 +196,9 @@ Simplified
   + ``p`` for "pawn"
   + ``m`` for "matchstick"
   + ``s`` for "saucer"
-  + ``▲`` for pyramid
+  + ``▲`` for (piecepack) "pyramid" (which are usually opaque)
+  + ``△`` for "icehouse piece" (aka "Looney pyramid") (icehouse pieces are usually transparent)
+  + If a ``μ`` is present will assume component comes from a (piecepack stackpack) "subpack" aka "mini piecepack" instead of a normal sized piecepack
   + If missing assumed to be a tile if has both suit and rank or neither suit and rank otherwise assumed to be a coin.
 
 * Side Up: ``f``, ``b``, ``r``, ``l``
@@ -184,24 +206,25 @@ Simplified
   + ``f`` for "face"
   + ``b`` for "back"
   + ``r`` and ``l`` for "right" and "left" (only pyramids)
+  + If missing pyramids are assumed to be "top" up.
   + If missing tiles are assumed to be "back" up if missing suit and/or rank.
   + If missing coins and saucers are assumed to be "face" up if missing suit.
   + If missing pawns, dice, and matchsticks are assumed to be "face" up (and dice cannot be "back" up).
-  + If missing pyramids are assumed to be "top" up.
 
-* Suits: ``S``, ``M``, ``C``, ``A``
+* Suits: ``S``, ``M``, ``C``, ``A``, ``♠``, ``♥``, ``♦``, ``♣``, ``♡``, ``♤``, ``♧``, ``♢``, ``R``, ``K``, ``G``, ``B``, ``Y``, ``W``
 
-  + ``S`` for "Suns"
-  + ``M``` for "Moons'
-  + ``C`` for "Crowns"
-  + ``A`` for "Arms"
-  + If missing assumed to be "Suns" for tile faces, coin backs, pawns, and dice.
+  + ``S``, ``M``, ``C``, ``A`` for "Suns", "Moons", "Crowns", and "Arms"
+  +  ``♥``, ``♠``, ``♣``, ``♦`` for "Hearts", "Spades", "Clubs", and "Diamonds" (playing cards expansion)
+  + ``♡``, ``♤``, ``♧``, ``♢`` for (inverted 4-colored) "Hearts", "Spades", "Clubs", and "Diamonds" (dual piecepacks expansion)  
+  + ``R``, ``K``, ``G``, ``B``, ``Y``, ``W`` for "Red", "Black", "Green", "Blue", "Yellow", or "White" (icehouse pieces)
+  + If missing assumed to be "Suns" for tile faces, coin backs, pawns, dice, matchsticks, and piecepack pyramids.  And "Red" for icehouse pieces
 
 * Ranks: ``n``, ``a``, ``0``, ``1``, ``2``, ``3``, ``4``, ``5``, ``6``, ``7``, ``8``, ``9``
 
   + ``0`` and ``1`` are aliases for the "null" ``n`` and the "ace" ``a`` especially useful with brace expansions e.g. ``{5..0}@b5 {Place six coins face up at b5 with a null on top and 5 on bottom}``
   + ``6``, ``7``, ``8``, ``9`` don't exist in a standard piecepack but could exist in piecepack expansions or in components from other game systems.
   + If missing assumed to be "null" for tile faces, coin faces, and dice.
+  + Icehouse pieces go from 0-pip to 3-pip pieces
 
 * Direction: ``^``, ``<``, ``>``, ``v``
 
@@ -225,13 +248,16 @@ Examples:
 
 * ``t`` tile back
 * ``Aa>`` ace of Arms tile (face) oriented "right"
+* ``μAa>`` "subpack" ace of Arms tile (face) oriented "right"
 * ``C`` Crowns coin back (oriented "up")
 * ``cC3b^`` (3 of) Crowns coin back (explicitly) oriented "up"
 * ``nv`` null coin face oriented "down"
 * ``<dM4`` 4 of Moons die oriented "left"
 * ``d`` (null of Suns) dice
 * ``pM`` Moons pawn
+* ``p♥`` Hearts pawn
 * ``p`` (Suns) pawn
+* ``△K3`` 3-pipped black icehouse pyramid top
 
 Location
 ~~~~~~~~
@@ -367,10 +393,8 @@ To implement in the future?
 
 * Additional enhancements to the "Simplified" piece notation
 
-  + Use ``△`` for Icehouse pieces (Looney Pyramids unlike Piecepack Pyramids are translucent).  Support ranks 0, 1, 2, 3 (number of pips).
-  + ``♠``, ``♥``, ``♦``, ``♣`` for indicating the suits of pieces from a Playing Cards Expansion.
-  + `Domino Tile Unicode <https://en.wikipedia.org/wiki/Domino_Tiles>`__  for adding Dominoes.  Maybe if no suit info assume regular dominoes and if suit info assume special dominoes i.e. ``S🁦`` would be equivalent to ``tile_face;r0;s3;dominoes_suns`` which may be stylized as red dominoes.
-  + Use a ``μ`` to indicate a `Piecepack Stackpack <http://www.ludism.org/ppwiki/StackPack>`_ "Subpack" piece e.g. ``5@b2 μ5@b2 {Place a 5-valued supercoin at b2 and then place a 5-valued subcoin on top of it}``.
+  + Use ⚀ ⚁ ⚂ ⚃ ⚄ ⚅ to represent standard d6 dice, use the color suits to indicate a special color
+  + `Domino Tile Unicode <https://en.wikipedia.org/wiki/Domino_Tiles>`__  for adding Dominoes.  Maybe if no suit info assume regular dominoes and if suit info assume special dominoes i.e. ``R🁦`` would be equivalent to ``tile_face;r0;s3;dominoes_red`` which may be stylized as red dominoes.
 
 * Allow rotating pieces (other than with ``=`` notation).  Perhaps use ``>`` and ``<``?::
 
@@ -383,6 +407,12 @@ To implement in the future?
       b4>45 {Rotate piece at b4 45 degrees to the right}
       b4<25 {Rotate piece at b4 25 degrees to the left}
 
-* Allow relative moves.  Perhaps use coordinates enclosed by ``[]`` instead of ``()``::
+* Allow relative moves.  
 
-    b4-[+3,-2] {Move piece on top of b4 right 3 and down 2}
+  + Perhaps use coordinates enclosed by ``[]`` instead of ``()``::
+
+      b4-[+3,-2] {Move piece on top of b4 right 3 and down 2}
+
+  + Perhaps also an option that supports relative polar coordinates to make it easier to support hex arrangements::
+
+      b4-<45,2.5>
