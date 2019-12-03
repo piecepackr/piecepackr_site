@@ -2,6 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
+:modified: 2019-12-02
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -86,6 +87,9 @@ Supported Game Start Functions
     * - Alice Chess
       - df_alice_chess
       -
+    * - Alien City
+      - df_alien_city
+      -
     * - Backgammon
       - df_backgammon
       -
@@ -141,3 +145,11 @@ Supported Game Start Functions
       - df_xiangqi
       -
 
+.. {r various-images, echo=FALSE}
+library("piecepackr")
+library("ppgames", warn.conflicts=FALSE)
+cfgs <- game_systems("dejavu")
+png("../share/rules/cell_management.png", width=11.5, height=12.5, units="in", res=36)
+pmap_piece(df_cell_management(seed=42), envir=cfgs, default.units="in", op_scale=0.5, op_angle=60, trans=op_transform)
+invisible(dev.off())
+.. ..
