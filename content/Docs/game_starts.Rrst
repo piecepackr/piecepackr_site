@@ -132,6 +132,9 @@ Supported Game Start Functions
     * - Tablut
       - df_tablut
       -
+    * - The "In" Crowd
+      - df_the_in_crowd
+      -
     * - Triactor
       - df_triactor
       -
@@ -151,5 +154,9 @@ library("ppgames", warn.conflicts=FALSE)
 cfgs <- game_systems("dejavu")
 png("../share/rules/cell_management.png", width=11.5, height=12.5, units="in", res=36)
 pmap_piece(df_cell_management(seed=42), envir=cfgs, default.units="in", op_scale=0.5, op_angle=60, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/the_in_crowd.png", width=7.5, height=7.5, units="in", res=42)
+pmap_piece(df_the_in_crowd(), envir=cfgs, default.units="in", op_scale=1.0, trans=op_transform)
 invisible(dev.off())
 .. ..
