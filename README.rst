@@ -18,15 +18,12 @@ Command-line installation instructions (for Ubuntu):
 
 .. code:: bash
 
-   sudo apt install python3-pip rake r-base rsync
-   sudo apt install inkscape texlive-xetex
-   sudo apt install cabal-install
-   sudo apt install fonts-dejavu fonts-noto
-
+   # pelican blogging system (plus rake)
+   sudo apt install python3-pip rake rsync
    pip3 install pelican pelican_comment_system Pillow
-   cabal update # add $HOME/.cabal/bin to $PATH
-   cabal install pandoc
 
+   # some nice fonts
+   sudo apt install fonts-dejavu fonts-noto
    fonts_dir=${XDG_DATA_HOME:-$HOME/.local/share}/fonts/
    curl -O http://www.quivira-font.com/files/Quivira.otf
    mv Quivira.otf $fonts_dir
@@ -38,11 +35,18 @@ Command-line installation instructions (for Ubuntu):
    rm NotoEmoji-unhinted.zip
    sudo mv /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf ~/
 
+   # R plus some R package dependencies
+   sudo apt install cabal-install
+   cabal update # add $HOME/.cabal/bin to $PATH
+   cabal install pandoc
+
+   sudo apt install r-base librsvg2-dev texlive-xetex
+
 R package installation instructions (start R with ``R``):
 
 .. code:: r
 
-   install.packages("remotes")
+   install.packages(c("remotes", "rsvg"))
    remotes::install_github("trevorld/piecepackr")
    remotes::install_github("trevorld/ppgames")
    quit("no")

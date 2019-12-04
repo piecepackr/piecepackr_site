@@ -2,11 +2,11 @@ if (dir.exists("../share") && !dir.exists("../share/rules"))
     dir.create("../share/rules")
 
 set_opts_chunk <- function(prefix="prefix") {
-    knitr::opts_chunk$set(out.width="60%", dev='svg', 
+    knitr::opts_chunk$set(out.width="60%", dev="svg",
                     fig.width=6.05, fig.height=6.05,
                     fig.path=paste0("content/images/knitr/", prefix, "-"),
-                    fig.process=function(x) gsub("^content", "{static}", x), 
-                    fig.align='center', warning=FALSE)
+                    fig.process=function(x) gsub("^content", "{static}", x),
+                    fig.align="center", warning=FALSE)
 }
 
 save_rulebook <- function(gk=game_kit(), output_dir=getwd()) {
@@ -38,5 +38,6 @@ save_ruleset <- function(game, gk=game_kit(), output_dir=getwd()) {
 }
 
 svg2png <- function(svg, png, w=768, h=768) {
-    system2("inkscape", c("-z", "-e", png, "-w", w, "-h", h, svg))
+    # system2("inkscape", c("-z", "-e", png, "-w", w, "-h", h, svg)) # nolint
+    rsvg::rsvg_png(svg, png, w, h)
 }
