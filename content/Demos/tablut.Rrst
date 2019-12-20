@@ -27,7 +27,7 @@ pmap_piece(df_tablut(), cfg=cfg, default.units="in", trans=op_transform, op_scal
 
 .. {r save, echo=FALSE}
 gk <- game_kit(list(cfg=cfg))
-save_ruleset("tablut", gk, "../share/rules")
+save_ruleset("tablut", gk, "../share/rules/tablut.pdf")
 svg2png("../images/knitr/games-tablut-starting-diagram-1.svg",
         "../share/rules/tablut.png", 768, 768)
 .. ..

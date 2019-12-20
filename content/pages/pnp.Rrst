@@ -12,7 +12,6 @@ if (!dir.exists("../share/pnp"))
 .. ..
 
 .. {r save_print_and_play, echo=FALSE}
-# library("ppgames", warn.conflicts=FALSE)
 library("piecepackr")
 library("grid")
 ee <- new.env()
@@ -22,14 +21,12 @@ for (name in nn) {
     cfg <- ee[[name]]
     save_print_and_play(cfg, sprintf("../share/pnp/%s_letter.pdf", name), "letter")
     save_print_and_play(cfg, sprintf("../share/pnp/%s_A4.pdf", name), "A4")
-    # save_rulebook(game_kit(list(cfg1=cfg)), tempdir())
-    # file.rename(file.path(tempdir(), "book.pdf"), 
-    #           sprintf("../share/pnp/%s_rulebook.pdf", name))
 }
 save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 .. ..
 
 .. {r table, echo=FALSE, results='asis'}
+cfg_names <- sort(names(ee))
 rst_link <- function(url, text=basename(url)) {
     sprintf("`%s <%s>`__", text, url)
 }
@@ -40,19 +37,19 @@ rst_list_table <- function(df, title=NULL, widths=NULL) {
     if(!is.null(widths))
         cat("\t:widths:", widths, "\n")
     cat("\n")
-    nn <- names(df)
-    cat("\t* -", nn[1], "\n")
-    for (ic in 2:nc) { cat("\t  -", nn[ic], "\n") }
+    col_names <- names(df)
+    cat("\t* -", col_names[1], "\n")
+    for (ic in 2:nc) { cat("\t  -", col_names[ic], "\n") }
     for(ir in 1:nrow(df)) {
         cat("\t* -", df[ir, 1], "\n")
         for(ic in 2:nc) { cat("\t  -", df[ir, ic], "\n") }
     }
     cat("\n")
 }
-titles <- sapply(nn, function(x) {tt <- ee[[x]]$title; ifelse(is.null(tt), "", tt)})
-letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", nn)
-A4_urls <- sprintf("{static}/share/pnp/%s_A4.pdf", nn)
-base <- gsub("[0-9]*", "", nn)
+titles <- sapply(cfg_names, function(x) {tt <- ee[[x]]$title; ifelse(is.null(tt), "", tt)})
+letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", cfg_names)
+A4_urls <- sprintf("{static}/share/pnp/%s_A4.pdf", cfg_names)
+base <- gsub("[0-9]*", "", cfg_names)
 cap <- function(s) { paste0(toupper(substring(s, 1, 1)), substring(s, 2)) }
 demo_links <- sprintf("`%s PnP <{filename}/Demos/%s.rst>`__", cap(base), base)
 df <- data.frame(Title=titles, Letter=rst_link(letter_urls),

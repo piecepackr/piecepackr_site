@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2019-12-02
+:modified: 2019-12-05
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -79,84 +79,164 @@ Supported Game Start Functions
 
 .. list-table:: Game Start Functions
     :header-rows: 1
-    :widths: 30, 20, 50
+    :widths: 30, 20, 10, 40
 
     * - game
-      - names
+      - df_names
+      - ruleset
       - comment 
     * - Alice Chess
       - df_alice_chess
+      - X
       -
     * - Alien City
       - df_alien_city
       -
+      -
     * - Backgammon
       - df_backgammon
+      - X
       -
     * - Cell Management
       - df_cell_management
+      -
       - Not very PPN friendly
     * - Chaturaji
       - df_chaturaji
       -
-    * - (American) Checkers
-      - df_american_checkers
       -
-    * - (FIDE) Chess
-      - df_fide_chess
+    * - (American) Checkers
+      - df_american_checkers, df_english_draughts, df_checkers
+      - X
+      -
+    * - (International) Chess
+      - df_international_chess, df_chess
+      - X
       -
     * - Cribbage (Board)
       - df_cribbage_board
+      - X
       - Just a (piecepack) cribbage board (no cards)
     * - Everest
       - df_everest
       -
+      -
     * - Four Field Kono
       - df_four_field_kono
+      - X
       - 
     * - Four Seasons Chess
       - df_four_seasons_chess
+      - X
       -
     * - Fujisan
       - df_fujisan
       -
+      -
     * - Nine Men's Morris
       - df_nine_mens_morris
+      - X
       - 
     * - Rect Board Tiles
       - df_rect_board_tiles
+      -
       - Makes a rectangular board made from tiles
+    * - San Andreas
+      - df_san_andreas
+      -
+      -
     * - Shogi (Japanese Chess)
       - df_shogi
       -
+      -
     * - Tablut
       - df_tablut
+      - X
       -
     * - The "In" Crowd
       - df_the_in_crowd
       -
+      -
     * - Triactor
       - df_triactor
       -
+      -
     * - Twelve Men's Morris
       - df_twelve_mens_morris
+      - X
       - 
     * - Ultima
       - df_ultima, df_baroque_chess
+      - X
       -
     * - Xiangqi (Chinese Chess)
       - df_xiangqi
+      - X
+      -
+    * - Wormholes
+      - df_wormholes
+      -
       -
 
 .. {r various-images, echo=FALSE}
 library("piecepackr")
 library("ppgames", warn.conflicts=FALSE)
 cfgs <- game_systems("dejavu")
+
+dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,black",
+                      invert_colors.suited=TRUE, border_color="black", border_lex=2)
+piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
+                    suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+                    suit_cex="0.6,0.7,0.75,0.9,0.9")
+traditional_ranks <- list(use_suit_as_ace=TRUE, rank_text=",a,2,3,4,5")
+cfg3d <- list(width.pawn=0.75, height.pawn=0.75, depth.pawn=0.375, 
+                   dm_text.pawn="", shape.pawn="convex6", invert_colors.pawn=TRUE,
+                   edge_color.coin="tan", edge_color.tile="tan")
+traditional <- pp_cfg(c(piecepack_suits, dark_colorscheme, traditional_ranks, cfg3d))
+
+two_player <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
+         suit_cex="0.6,0.7,0.75,0.9,0.9",
+        suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+        suit_color="#D55E00,#000000,#F0E442,#0072B2,#009E73",
+        background_color="#000000,#D55E00,#0072B2,#F0E442,white",
+        border_color.tile_back="#009E73", border_lex.tile_back=5
+))
+gk_2p <- game_kit(list(cfg=two_player))
+
+png("../share/rules/american_checkers.png", width=9, height=9, units="in", res=72)
+pmap_piece(df_american_checkers(), cfg=two_player, default.units="in")
+invisible(dev.off())
+save_ruleset("american-checkers", gk_2p, "../share/rules/american_checkers.pdf")
+save_ruleset("american-checkers", gk_2p, "../share/rules/american_checkers_A4.pdf", size="A4")
+save_pamphlet("american-checkers", gk_2p, "../share/rules/american_checkers_pamphlet.pdf")
+save_pamphlet("american-checkers", gk_2p, "../share/rules/american_checkers_pamphlet_A4.pdf", size="A4")
+
 png("../share/rules/cell_management.png", width=11.5, height=12.5, units="in", res=36)
-pmap_piece(df_cell_management(seed=42), envir=cfgs, default.units="in", op_scale=0.5, op_angle=60, trans=op_transform)
+pmap_piece(df_cell_management(seed=42), envir=cfgs, default.units="in", 
+           op_scale=0.5, op_angle=60, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/four_field_kono.png", width=5, height=5, units="in", res=72)
+pmap_piece(df_four_field_kono(), cfg=two_player, default.units="in")
+invisible(dev.off())
+
+png("../share/rules/fujisan.png", width=15, height=5, units="in", res=36)
+pmap_piece(df_fujisan(seed=42), cfg=traditional, default.units="in", 
+           op_scale=1.0, op_angle=90, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/san_andreas.png", width=11, height=17, units="in", res=36)
+pmap_piece(df_san_andreas(), envir=cfgs, default.units="in", 
+           op_scale=1.0, trans=op_transform)
 invisible(dev.off())
 
 png("../share/rules/the_in_crowd.png", width=7.5, height=7.5, units="in", res=42)
-pmap_piece(df_the_in_crowd(), envir=cfgs, default.units="in", op_scale=1.0, trans=op_transform)
+pmap_piece(df_the_in_crowd(), envir=cfgs, default.units="in", 
+           op_scale=1.0, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/wormholes.png", width=11, height=19, units="in", res=42)
+pmap_piece(df_wormholes(), envir=cfgs, default.units="in", 
+           op_scale=0.5, trans=op_transform)
 invisible(dev.off())
 .. ..

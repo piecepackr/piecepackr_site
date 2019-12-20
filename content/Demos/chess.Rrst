@@ -248,10 +248,10 @@ pmap_piece(df_chaturaji(), cfg=chess5, op_scale=0.5,
 (FIDE) Chess
 ~~~~~~~~~~~~
 
-`(FIDE aka Western) Chess <{static}/share/rules/fide-chess.pdf>`_ is a classic board game playable with a single piecepack.
+`(FIDE aka Western) Chess <{static}/share/rules/international-chess.pdf>`_ is a classic board game playable with a single piecepack.
 
-.. {r fide-chess, fig.cap="(FIDE) Chess starting diagram", fig.width=9, fig.height=9}
-pmap_piece(df_fide_chess(), cfg=chess5, op_scale=0.5, 
+.. {r international-chess, fig.cap="(FIDE) Chess starting diagram", fig.width=9, fig.height=9}
+pmap_piece(df_international_chess(), cfg=chess5, op_scale=0.5, 
            trans=op_transform, default.units="in")
 .. ..
 
@@ -287,18 +287,20 @@ pmap_piece(df_xiangqi(), cfg=chess5, op_scale=0.5,
 
 .. {r save_games, echo=FALSE}
 gk <- game_kit(list(cfg=chess5))
-save_ruleset("alice-chess", gk, "../share/rules")
-save_ruleset("chaturaji", gk, "../share/rules")
-save_ruleset("fide-chess", gk, "../share/rules")
-save_ruleset("four-seasons-chess", gk, "../share/rules")
-save_ruleset("ultima", gk, "../share/rules")
-save_ruleset("xiangqi", gk, "../share/rules")
+save_ruleset("alice-chess", gk, "../share/rules/alice-chess.pdf")
+save_ruleset("chaturaji", gk, "../share/rules/chaturaji.pdf")
+save_ruleset("international-chess", gk, "../share/rules/international-chess.pdf")
+save_ruleset("four-seasons-chess", gk, "../share/rules/four-seasons-chess.pdf")
+save_ruleset("ultima", gk, "../share/rules/ultima.pdf")
+save_ruleset("xiangqi", gk, "../share/rules/xiangqi.pdf")
 svg2png("../images/knitr/demos-chess-alice-chess-1.svg",
         "../share/rules/alice-chess.png", 950, 450)
 svg2png("../images/knitr/demos-chess-chaturaji-1.svg",
         "../share/rules/chaturaji.png", 600, 600)
-svg2png("../images/knitr/demos-chess-fide-chess-1.svg",
-        "../share/rules/fide-chess.png", 600, 600)
+svg2png("../images/knitr/demos-chess-international-chess-1.svg",
+        "../share/rules/fide-chess.png", 600, 600) ####
+svg2png("../images/knitr/demos-chess-international-chess-1.svg",
+        "../share/rules/international-chess.png", 600, 600)
 svg2png("../images/knitr/demos-chess-four-seasons-chess-1.svg",
         "../share/rules/four-seasons-chess.png", 600, 600)
 svg2png("../images/knitr/demos-chess-ultima-1.svg",

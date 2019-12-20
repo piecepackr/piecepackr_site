@@ -9,30 +9,41 @@ set_opts_chunk <- function(prefix="prefix") {
                     fig.align="center", warning=FALSE)
 }
 
-save_rulebook <- function(gk=game_kit(), output_dir=getwd()) {
+save_rulebook <- function(book, gk=game_kit(), output=NULL) {
     tr <- tempfile(fileext=".R")
     on.exit(unlink(tr))
     trdata <- tempfile(fileext=".RData")
     on.exit(unlink(trdata))
-    output_dir <- normalizePath(output_dir)
-    save(gk, output_dir, file=trdata)
+    save(book, gk, output, file=trdata)
     code <- c("library('ppgames')",
              sprintf("load('%s')", trdata),
-             "save_rulebook(gk, output_dir)")
+             "save_rulebook(book, gk=gk, output=output)")
     writeLines(code, tr)
     system2("Rscript", tr)
 }
 
-save_ruleset <- function(game, gk=game_kit(), output_dir=getwd()) {
+save_ruleset <- function(game, gk=game_kit(), output=NULL, size="letter") {
     tr <- tempfile(fileext=".R")
     on.exit(unlink(tr))
     trdata <- tempfile(fileext=".RData")
     on.exit(unlink(trdata))
-    output_dir <- normalizePath(output_dir)
-    save(game, gk, output_dir, file=trdata)
+    save(game, gk, output, size, file=trdata)
     code <- c("library('ppgames')",
              sprintf("load('%s')", trdata),
-             "save_ruleset(game, gk, output_dir)")
+             "save_ruleset(game, gk, output, size=size)")
+    writeLines(code, tr)
+    system2("Rscript", tr)
+}
+
+save_pamphlet <- function(game, gk=game_kit(), output=NULL, size="letter") {
+    tr <- tempfile(fileext=".R")
+    on.exit(unlink(tr))
+    trdata <- tempfile(fileext=".RData")
+    on.exit(unlink(trdata))
+    save(game, gk, output, size, file=trdata)
+    code <- c("library('ppgames')",
+             sprintf("load('%s')", trdata),
+             "save_pamphlet(game, gk, output, size=size)")
     writeLines(code, tr)
     system2("Rscript", tr)
 }
