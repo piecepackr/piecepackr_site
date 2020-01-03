@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2019-12-05
+:modified: 2019-01-03
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -133,6 +133,10 @@ Supported Game Start Functions
       - df_fujisan
       -
       -
+    * - Ice Floe
+      - df_ice_floe
+      -
+      -
     * - Nine Men's Morris
       - df_nine_mens_morris
       - X
@@ -141,6 +145,10 @@ Supported Game Start Functions
       - df_rect_board_tiles
       -
       - Makes a rectangular board made from tiles
+    * - Salta
+      - df_salta
+      -
+      -
     * - San Andreas
       - df_san_andreas
       -
@@ -223,6 +231,11 @@ invisible(dev.off())
 png("../share/rules/fujisan.png", width=15, height=5, units="in", res=36)
 pmap_piece(df_fujisan(seed=42), cfg=traditional, default.units="in", 
            op_scale=1.0, op_angle=90, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/ice_floe.png", width=11, height=11, units="in", res=36)
+pmap_piece(df_ice_floe(), envir=cfgs, default.units="in", 
+           op_scale=1.0, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
 png("../share/rules/san_andreas.png", width=11, height=17, units="in", res=36)
