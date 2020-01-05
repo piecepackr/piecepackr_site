@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2019-01-03
+:modified: 2020-01-03
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 

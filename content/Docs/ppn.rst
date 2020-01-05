@@ -15,6 +15,7 @@ Portable Piecepack Notation (PPN) is a human-readable plaintext file format for 
 .. _PGN: http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm
 .. _PSN: http://genedavis.com/articles/2014/05/09/psn/
 .. _YAML: https://yaml.org/
+.. include:: ../../links.rst
 
 .. contents::
 
@@ -198,7 +199,7 @@ Simplified
   + ``s`` for "saucer"
   + ``▲`` for (piecepack) "pyramid" (which are usually opaque)
   + ``△`` for "icehouse piece" (aka "Looney pyramid") (icehouse pieces are usually transparent)
-  + If a ``μ`` is present will assume component comes from a (piecepack stackpack) "subpack" aka "mini piecepack" instead of a normal sized piecepack
+  + If a ``μ`` is present will assume component comes from a (piecepack stackpack_) "subpack" aka "mini piecepack" instead of a normal sized piecepack
   + If missing assumed to be a tile if has both suit and rank or neither suit and rank otherwise assumed to be a coin.
 
 * Side Up: ``f``, ``b``, ``r``, ``l``

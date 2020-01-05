@@ -122,3 +122,36 @@ invisible(file.rename('fujisan.gif', '../images/knitr/fujisan.gif'))
 .. image:: {static}/images/knitr/fujisan.gif
     :alt: Animation of a Fuji-san game
     :align: center
+
+.. {r game_animation, echo=FALSE}
+examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram-1.svg",
+                 `Cell Management` = "../share/rules/cell_management.png",
+                 Checkers = "../share/rules/american_checkers.png",
+                 Chess = "../images/knitr/demos-chess-international-chess-1.svg",
+                 Cribbage = "../images/knitr/games-cribbage-starting-diagram-1.svg",
+                 Everest = "../images/knitr/games-everest-starting-diagram-1.svg",
+                 `Four Field Kono` = "../share/rules/four_field_kono.png",
+                 `Fuji-san` = "../share/rules/fujisan.png",
+                 `Ice Floe` = "../share/rules/ice_floe.png",
+                 `San Andreas` = "../share/rules/san_andreas.png",
+                 Tablut = "../images/knitr/games-tablut-starting-diagram-1.svg",
+                 `The "In" Crowd` = "../share/rules/the_in_crowd.png",
+                 Xiangqi = "../images/knitr/demos-chess-xiangqi-1.svg",
+                 Wormholes = "../share/rules/wormholes.png")
+
+draw_example_games <- function() {
+    for (i in seq_along(examples)) {
+        grid.newpage()
+        pushViewport(viewport(width=inch(4), height=inch(5)))
+        pushViewport(viewport(width=inch(4), height=inch(1), y=inch(4.5)))
+        grid.text(names(examples)[i])
+        popViewport()
+        pushViewport(viewport(width=inch(4), height=inch(4), y=inch(2)))
+        grid.draw(file2grob(examples[[i]], distort=FALSE))
+        popViewport()
+    }
+}
+animation::saveGIF({draw_example_games()}, movie.name="piecepack_games.gif",
+        ani.height=600, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
+invisible(file.rename('piecepack_games.gif', '../images/knitr/piecepack_games.gif'))
+.. ..

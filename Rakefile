@@ -20,6 +20,10 @@ rule ".rst" => ".Rrst" do |t|
     sh "Rscript -e 'knitr::knit(\"#{t.source}\", \"#{t.name}\", encoding=\"UTF-8\")'"
 end
 
+file 'content/pages/pnp.rst' => 'content/share/demo_cfgs.RData'
+file 'content/share/demo_cfgs.RData' => 'content/Docs/animations.rst'
+file 'content/Docs/animations.rst' => Rake::FileList["content/Demos/*.Rrst"]
+
 desc "Build website"
 task :default => rrst_files.ext(".rst")
 task :default do
