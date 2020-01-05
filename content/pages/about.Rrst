@@ -40,8 +40,9 @@ These are the `Print & Play demos`_ which demonstrate the code used to generate 
 #. `"Orthodox" (Anatomy of a Piecepack Standard) piecepack <{filename}/Demos/orthodox.rst>`_
 #. `Daniel Ajoy's Dingbats suited piecepack <{filename}/Demos/dingbats.rst>`_
 #. `Rainbow Deck suited piecepack <{filename}/Demos/default.rst>`_
-#. `Chinese Zodiac ranked piecepack <{filename}/Demos/default.rst>`_
+#. `Chinese Zodiac ranked piecepack <{filename}/Demos/zodiac_cn.rst>`_
 #. `Chess-ranked piecepacks <{filename}/Demos/chess.rst>`_
+#. `Reversi-friendly piecepack <{filename}/Demos/reversi.rst>`_
 
 Diagrams for Specific Piecepack Games
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
