@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2020-01-07
+:modified: 2020-01-11
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -74,8 +74,8 @@ It is also possible to pass in arguments to the game start function by passing a
     :alt: Animation of a Fuji-san game
     :align: center
 
-Supported Game Start Functions
-------------------------------
+Table of Supported Game Start Functions
+---------------------------------------
 
 .. list-table:: Game Start Functions
     :header-rows: 1
@@ -117,6 +117,10 @@ Supported Game Start Functions
       - df_cribbage_board
       - X
       - Just a (piecepack) cribbage board (no cards)
+    * - Desfases
+      - df_desfases
+      -
+      -
     * - Everest
       - df_everest
       -
@@ -194,6 +198,12 @@ Supported Game Start Functions
       -
       -
 
+.. figure:: {static}/images/knitr/piecepack_games.gif
+    :alt: Some games supported in ppgames
+    :align: center
+
+    Some games supported in ppgames
+
 .. {r various-images, echo=FALSE}
 library("piecepackr")
 library("ppgames", warn.conflicts=FALSE)
@@ -219,6 +229,10 @@ two_player <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
 ))
 gk_2p <- game_kit(list(cfg=two_player))
 
+small_tiles <- as.list(cfgs$piecepack)
+small_tiles$width.tile = 1.75
+small_tiles <- pp_cfg(small_tiles)
+
 png("../share/rules/american_checkers.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_american_checkers(), cfg=two_player, default.units="in")
 invisible(dev.off())
@@ -230,6 +244,11 @@ save_pamphlet("american-checkers", gk_2p, "../share/rules/american_checkers_pamp
 png("../share/rules/cell_management.png", width=11.5, height=12.5, units="in", res=36)
 pmap_piece(df_cell_management(seed=42), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=60, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/desfases.png", width=14, height=14, units="in", res=36)
+pmap_piece(df_desfases(seed=42), cfg=small_tiles, default.units="in", 
+           op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
 png("../share/rules/four_field_kono.png", width=5, height=5, units="in", res=72)
@@ -270,4 +289,43 @@ png("../share/rules/wormholes.png", width=11, height=19, units="in", res=42)
 pmap_piece(df_wormholes(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+.. ..
+
+.. {r game_animation, echo=FALSE, results='hide', message=FALSE}
+library("animation")
+library("grid")
+examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram-1.svg",
+                 `Cell Management` = "../share/rules/cell_management.png",
+                 Chaturaji = "../images/knitr/demos-chess-chaturaji-1.svg",
+                 Checkers = "../share/rules/american_checkers.png",
+                 Chess = "../images/knitr/demos-chess-international-chess-1.svg",
+                 Cribbage = "../images/knitr/games-cribbage-starting-diagram-1.svg",
+                 Desfases = "../share/rules/desfases.png",
+                 Everest = "../images/knitr/games-everest-starting-diagram-1.svg",
+                 `Four Field Kono` = "../share/rules/four_field_kono.png",
+                 `Fuji-san` = "../share/rules/fujisan.png",
+                 `Ice Floe` = "../share/rules/ice_floe.png",
+                 `Plans of Action` = "../share/rules/plans_of_action.png",
+                 `Relativity` = "../share/rules/relativity.png",
+                 `San Andreas` = "../share/rules/san_andreas.png",
+                 Tablut = "../images/knitr/games-tablut-starting-diagram-1.svg",
+                 `The "In" Crowd` = "../share/rules/the_in_crowd.png",
+                 Xiangqi = "../images/knitr/demos-chess-xiangqi-1.svg",
+                 Wormholes = "../share/rules/wormholes.png")
+
+draw_example_games <- function() {
+    for (i in seq_along(examples)) {
+        grid.newpage()
+        pushViewport(viewport(width=inch(4), height=inch(5)))
+        pushViewport(viewport(width=inch(4), height=inch(1), y=inch(4.5)))
+        grid.text(names(examples)[i])
+        popViewport()
+        pushViewport(viewport(width=inch(4), height=inch(4), y=inch(2)))
+        grid.draw(file2grob(examples[[i]], distort=FALSE))
+        popViewport()
+    }
+}
+saveGIF({draw_example_games()}, movie.name="piecepack_games.gif",
+        ani.height=600, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
+invisible(file.rename('piecepack_games.gif', '../images/knitr/piecepack_games.gif'))
 .. ..

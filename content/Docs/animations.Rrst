@@ -2,7 +2,7 @@ Animations
 ==========
 
 :date: 2019-04-09
-:modified: 2019-10-08
+:modified: 2020-01-11
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
@@ -12,54 +12,19 @@ library("piecepackr")
 
 .. include:: ../../links.rst
 
-.. {r save_rdata, echo=FALSE}
-RData_files <- list.files("../tmp", pattern="RData", full.names=TRUE)
-ee <- new.env()
-for (ff in RData_files) { 
-    load(ff, envir=ee) 
-}
-save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
-.. ..
-
 .. contents::
 
 Directly using the 'animations' package
 ---------------------------------------
 
-.. note:: Besides the ``animation`` package there are also several other R packages that can be used to help make an animation like the gifski_ and tweenr_ packages.  
+.. note:: Besides the `animation package`_ you may find gifski_ and tweenr_ helpful.  
 
-Here we'll give a simple example using the `animation package`_ and piecepackr_'s API to build an animation showing a preview of each of the piecepack `configurations`_ stored on this website.  
+Here is a simple example of using the ``saveGIF`` function from the `animation package`_ and ``piecepackr::grid.piece`` directly to make a GIF animation of a tic-tac-toe game of "Suns" versus "Moons" played on the "lines" of a single tile back:
 
-.. {r animation, results='hide', message=FALSE}
+.. {r tic-tac-toe, results='hide', message=FALSE}
 library("animation")
 library("grid")
 library("piecepackr")
-cfgs <- new.env()
-load("../share/demo_cfgs.RData", envir=cfgs)
-draw_demos <- function(cfgs) {
-    for (nn in sort(names(cfgs))) {
-        grid.newpage()
-        text <- sprintf("grid.piece('preview_layout', cfg=%s)", nn)
-        grid.text(text, y=0.94, gp=gpar(fontsize=16, fontface="bold"))
-        pushViewport(viewport(y=6/14, height=inch(6), width=inch(6)))
-        grid.piece("preview_layout", cfg=cfgs[[nn]])
-        popViewport()
-    }
-}
-saveGIF({draw_demos(cfgs)}, movie.name="pnp-previews.gif",
-    ani.height=540, ani.width=480, ani.res=80, ani.dev="png", ani.type="png")
-
-.. {r move, echo=FALSE}
-invisible(file.rename('pnp-previews.gif', '../images/knitr/pnp-previews.gif'))
-.. ..
-
-.. image:: {static}/images/knitr/pnp-previews.gif
-    :alt: Animation of previews of various piecepacks
-    :align: center
-
-And here is a simple animation of a tic-tac-toe game:
-
-.. {r tic-tac-toe, results='hide', message=FALSE}
 draw_tictactoe_game_step <- function(n, cfg=list()) {
     grid.newpage()
     pushViewport(viewport(width=inch(4), height=inch(4)))
@@ -78,16 +43,19 @@ draw_tictactoe_game_step <- function(n, cfg=list()) {
 draw_tictactoe_game <- function(cfg=list()) {
     for (ii in 0:9) { draw_tictactoe_game_step(ii, cfg) }
 }
-saveGIF({draw_tictactoe_game(cfgs$dual1)}, movie.name="tictactoe.gif", 
+cfg <- game_systems("dejavu")$piecepack
+saveGIF({draw_tictactoe_game(cfg)}, movie.name="tictactoe.gif", 
     ani.height=480, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
 .. ..
 .. {r move2, echo=FALSE}
 invisible(file.rename('tictactoe.gif', '../images/knitr/tictactoe.gif'))
 .. ..
 
-.. image:: {static}/images/knitr/tictactoe.gif
+.. figure:: {static}/images/knitr/tictactoe.gif
     :alt: Animation of a tic-tac-toe game
     :align: center
+
+    Animation of a tic-tac-toe game
 
 Using ppgames' 'animate_game' function
 --------------------------------------
@@ -119,41 +87,8 @@ invisible(file.rename('fujisan.gif', '../images/knitr/fujisan.gif'))
 
 .. ..
 
-.. image:: {static}/images/knitr/fujisan.gif
+.. figure:: {static}/images/knitr/fujisan.gif
     :alt: Animation of a Fuji-san game
     :align: center
 
-.. {r game_animation, echo=FALSE}
-examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram-1.svg",
-                 `Cell Management` = "../share/rules/cell_management.png",
-                 Checkers = "../share/rules/american_checkers.png",
-                 Chess = "../images/knitr/demos-chess-international-chess-1.svg",
-                 Cribbage = "../images/knitr/games-cribbage-starting-diagram-1.svg",
-                 Everest = "../images/knitr/games-everest-starting-diagram-1.svg",
-                 `Four Field Kono` = "../share/rules/four_field_kono.png",
-                 `Fuji-san` = "../share/rules/fujisan.png",
-                 `Ice Floe` = "../share/rules/ice_floe.png",
-                 `Plans of Action` = "../share/rules/plans_of_action.png",
-                 `Relativity` = "../share/rules/relativity.png",
-                 `San Andreas` = "../share/rules/san_andreas.png",
-                 Tablut = "../images/knitr/games-tablut-starting-diagram-1.svg",
-                 `The "In" Crowd` = "../share/rules/the_in_crowd.png",
-                 Xiangqi = "../images/knitr/demos-chess-xiangqi-1.svg",
-                 Wormholes = "../share/rules/wormholes.png")
-
-draw_example_games <- function() {
-    for (i in seq_along(examples)) {
-        grid.newpage()
-        pushViewport(viewport(width=inch(4), height=inch(5)))
-        pushViewport(viewport(width=inch(4), height=inch(1), y=inch(4.5)))
-        grid.text(names(examples)[i])
-        popViewport()
-        pushViewport(viewport(width=inch(4), height=inch(4), y=inch(2)))
-        grid.draw(file2grob(examples[[i]], distort=FALSE))
-        popViewport()
-    }
-}
-animation::saveGIF({draw_example_games()}, movie.name="piecepack_games.gif",
-        ani.height=600, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
-invisible(file.rename('piecepack_games.gif', '../images/knitr/piecepack_games.gif'))
-.. ..
+    Animation of a Fuji-san game

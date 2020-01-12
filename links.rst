@@ -25,11 +25,11 @@
 .. _polar coordinates: https://en.wikipedia.org/wiki/Polar_coordinate_system
 
 .. Demos
-.. _default: {filename}/Demos/default.rst
+.. _default: {filename}/Demos/default_pnp.rst
 .. _dual piecepacks:
-.. _dual: {filename}/Demos/dual.rst
-.. _orthodox: {filename}/Demos/orthodox.rst
-.. _Chinese zodiac demo: {filename}/Demos/zodiac_cn.rst
+.. _dual: {filename}/Demos/dual_pnp.rst
+.. _orthodox: {filename}/Demos/orthodox_pnp.rst
+.. _Chinese zodiac demo: {filename}/Demos/zodiac_cn_pnp.rst
 
 .. Docs
 .. _animations:

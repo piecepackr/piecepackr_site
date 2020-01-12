@@ -35,25 +35,25 @@ Print-and-Play Demos
 
 These are the `Print & Play demos`_ which demonstrate the code used to generate the `Print & Play`_ pdfs found on this site:
 
-#. `piecepackr's default piecepack <{filename}/Demos/default.rst>`_
+#. `piecepackr's default piecepack <{filename}/Demos/default_pnp.rst>`_
 #. `Dual piecepacks`_
-#. `"Orthodox" (Anatomy of a Piecepack Standard) piecepack <{filename}/Demos/orthodox.rst>`_
-#. `Daniel Ajoy's Dingbats suited piecepack <{filename}/Demos/dingbats.rst>`_
-#. `Rainbow Deck suited piecepack <{filename}/Demos/default.rst>`_
-#. `Chinese Zodiac ranked piecepack <{filename}/Demos/zodiac_cn.rst>`_
-#. `Chess-ranked piecepacks <{filename}/Demos/chess.rst>`_
-#. `Reversi-friendly piecepack <{filename}/Demos/reversi.rst>`_
+#. `"Orthodox" (Anatomy of a Piecepack Standard) piecepack <{filename}/Demos/orthodox_pnp.rst>`_
+#. `Daniel Ajoy's Dingbats suited piecepack <{filename}/Demos/dingbats_pnp.rst>`_
+#. `Rainbow Deck suited piecepack <{filename}/Demos/default_pnp.rst>`_
+#. `Chinese Zodiac ranked piecepack <{filename}/Demos/zodiac_cn_pnp.rst>`_
+#. `Chess-ranked piecepacks <{filename}/Demos/chess_pnp.rst>`_
+#. `Reversi-friendly piecepack <{filename}/Demos/reversi_pnp.rst>`_
 
 Diagrams for Specific Piecepack Games
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 These are demonstrations of using piecepackr_ and ppgames_ to make diagrams_ for specific piecepack_ games:
 
-#. `Backgammon <{filename}/Demos/backgammon.rst>`_
-#. Several `chess <{filename}/Demos/chess.rst>`_ variants
-#. `Cribbage <{filename}/Demos/cribbage.rst>`_
-#. `Everest <{filename}/Demos/everest.rst>`_
-#. `Tablut <{filename}/Demos/tablut.rst>`_
+#. `Backgammon <{filename}/Demos/backgammon_game.rst>`_
+#. Several `chess <{filename}/Demos/chess_pnp.rst>`_ variants
+#. `Cribbage <{filename}/Demos/cribbage_game.rst>`_
+#. `Everest <{filename}/Demos/everest_game.rst>`_
+#. `Tablut <{filename}/Demos/tablut_game.rst>`_
 #. `Triactor <{filename}/Demos/jcd.rst>`_ (featuring the JCD piecepack)
 
 Other Game Systems

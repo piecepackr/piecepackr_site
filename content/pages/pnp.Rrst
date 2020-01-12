@@ -14,8 +14,11 @@ if (!dir.exists("../share/pnp"))
 .. {r save_print_and_play, echo=FALSE}
 library("piecepackr")
 library("grid")
+RData_files <- list.files("../tmp", pattern="RData", full.names=TRUE)
 ee <- new.env()
-load("../share/demo_cfgs.RData", envir=ee)
+for (ff in RData_files) { 
+    load(ff, envir=ee) 
+}
 nn <- sort(names(ee))
 for (name in nn) {
     cfg <- ee[[name]]
@@ -51,11 +54,35 @@ letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", cfg_names)
 A4_urls <- sprintf("{static}/share/pnp/%s_A4.pdf", cfg_names)
 base <- gsub("[0-9]*", "", cfg_names)
 cap <- function(s) { paste0(toupper(substring(s, 1, 1)), substring(s, 2)) }
-demo_links <- sprintf("`%s PnP <{filename}/Demos/%s.rst>`__", cap(base), base)
+demo_links <- sprintf("`%s PnP <{filename}/Demos/%s_pnp.rst>`__", cap(base), base)
 df <- data.frame(Title=titles, Letter=rst_link(letter_urls),
                  A4=rst_link(A4_urls), Demo=demo_links, 
                  stringsAsFactors=FALSE)
 rst_list_table(df, title="Downloadable Print-and-Play PDFs", widths="45, 15, 15, 25")
+.. ..
+
+.. {r animation, results='hide', message=FALSE, echo=FALSE}
+library("animation")
+library("grid")
+library("piecepackr")
+cfgs <- new.env()
+load("../share/demo_cfgs.RData", envir=cfgs)
+draw_demos <- function(cfgs) {
+    for (nn in sort(names(cfgs))) {
+        grid.newpage()
+        text <- sprintf("grid.piece('preview_layout', cfg=%s)", nn)
+        grid.text(text, y=0.94, gp=gpar(fontsize=16, fontface="bold"))
+        pushViewport(viewport(y=6/14, height=inch(6), width=inch(6)))
+        grid.piece("preview_layout", cfg=cfgs[[nn]])
+        popViewport()
+    }
+}
+saveGIF({draw_demos(cfgs)}, movie.name="pnp-previews.gif",
+    ani.height=540, ani.width=480, ani.res=80, ani.dev="png", ani.type="png")
+.. ..
+
+.. {r move, echo=FALSE}
+invisible(file.rename('pnp-previews.gif', '../images/knitr/pnp-previews.gif'))
 .. ..
 
 .. figure:: {static}/images/knitr/pnp-previews.gif
