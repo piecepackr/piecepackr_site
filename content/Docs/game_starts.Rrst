@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2020-01-11
+:modified: 2020-01-13
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -85,67 +85,67 @@ Table of Supported Game Start Functions
       - df_names
       - ruleset
       - comment 
-    * - Alice Chess
+    * - `Alice Chess <https://en.wikipedia.org/wiki/Alice_chess>`_
       - df_alice_chess
       - X
       -
-    * - Alien City
+    * - `Alien City <http://www.ludism.org/ppwiki/AlienCity>`_
       - df_alien_city
       -
       -
-    * - Backgammon
+    * - `Backgammon <http://www.ludism.org/ppwiki/Backgammon>`_
       - df_backgammon
       - X
       -
-    * - Cell Management
+    * - `Cell Management <http://www.ludism.org/ppwiki/CellManagement>`_
       - df_cell_management
       -
       - Not very PPN friendly
-    * - Chaturaji
+    * - `Chaturaji <http://www.ludism.org/ppwiki/Chaturaji>`_
       - df_chaturaji
       -
       -
-    * - (American) Checkers
+    * - `(American) Checkers <http://www.ludism.org/ppwiki/Checkers>`_
       - df_american_checkers, df_english_draughts, df_checkers
       - X
       -
-    * - (International) Chess
+    * - `(International) Chess <http://www.ludism.org/ppwiki/Checkers>`_
       - df_international_chess, df_chess
       - X
       -
-    * - Cribbage (Board)
+    * - `Cribbage (Board) <http://www.ludism.org/ppwiki/Cribbage>`_
       - df_cribbage_board
       - X
       - Just a (piecepack) cribbage board (no cards)
-    * - Desfases
+    * - `Desfases <http://www.ludism.org/ppwiki/Desfases>`_
       - df_desfases
       -
       -
-    * - Everest
+    * - `Everest <http://www.ludism.org/ppwiki/Everest>`_
       - df_everest
       -
       -
-    * - Four Field Kono
+    * - `Four Field Kono <http://www.ludism.org/ppwiki/FourFieldKono>`_
       - df_four_field_kono
       - X
       - 
-    * - Four Seasons Chess
+    * - `Four Seasons Chess <https://www.chessvariants.com/historic.dir/4seiz.html>`_
       - df_four_seasons_chess
       - X
       -
-    * - Fujisan
+    * - `Fujisan <http://www.ludism.org/ppwiki/Fuji-san>`_
       - df_fujisan
       -
       -
-    * - Ice Floe
+    * - `Ice Floe <http://www.ludism.org/ppwiki/IceFloe>`_
       - df_ice_floe
       -
       -
-    * - Nine Men's Morris
+    * - `Nine Men's Morris <https://en.wikipedia.org/wiki/Nine_men%27s_morris>`_
       - df_nine_mens_morris
       - X
       - 
-    * - Plans of Action
+    * - `Plans of Action <http://www.ludism.org/ppwiki/PlansOfAction>`_
       - df_plans_of_action
       - 
       -
@@ -153,47 +153,47 @@ Table of Supported Game Start Functions
       - df_rect_board_tiles
       -
       - Makes a rectangular board made from tiles
-    * - Relativity
+    * - `Relativity <http://www.ludism.org/ppwiki/Relativity>`_
       - df_relativity
       -
       -
-    * - Salta
+    * - `Salta <https://en.wikipedia.org/wiki/Salta_(game)>`_
       - df_salta
       -
       -
-    * - San Andreas
+    * - `San Andreas <http://www.ludism.org/ppwiki/SanAndreas>`_
       - df_san_andreas
       -
       -
-    * - Shogi (Japanese Chess)
+    * - `Shogi (Japanese Chess) <http://www.ludism.org/ppwiki/Shogi>`_
       - df_shogi
       -
       -
-    * - Tablut
+    * - `Tablut <http://www.ludism.org/ppwiki/Tablut>`_
       - df_tablut
       - X
       -
-    * - The "In" Crowd
+    * - `The "In" Crowd <http://www.ludism.org/ppwiki/TheInCrowd>`_
       - df_the_in_crowd
       -
       -
-    * - Triactor
+    * - `Triactor <http://www.ludism.org/ppwiki/Triactor>`_
       - df_triactor
       -
       -
-    * - Twelve Men's Morris
+    * - `Twelve Men's Morris <https://en.wikipedia.org/wiki/Morabaraba>`_
       - df_twelve_mens_morris
       - X
       - 
-    * - Ultima
+    * - `Ultima <https://en.wikipedia.org/wiki/Baroque_chess>`_
       - df_ultima, df_baroque_chess
       - X
       -
-    * - Xiangqi (Chinese Chess)
+    * - `Xiangqi (Chinese Chess) <http://www.ludism.org/ppwiki/Xiangqi>`_
       - df_xiangqi
       - X
       -
-    * - Wormholes
+    * - `Wormholes <http://www.ludism.org/ppwiki/Wormholes>`_
       - df_wormholes
       -
       -
