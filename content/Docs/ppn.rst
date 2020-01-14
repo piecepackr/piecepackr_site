@@ -2,9 +2,9 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2019-11-18
+:modified: 2020-01-13
 
-**Version: 0.5.1**
+**Version: 0.5.2**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of piecepack games but the structure is designed to in the future allow support for parsing alternative notation systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
@@ -200,17 +200,17 @@ Simplified
   + ``▲`` for (piecepack) "pyramid" (which are usually opaque)
   + ``△`` for "icehouse piece" (aka "Looney pyramid") (icehouse pieces are usually transparent)
   + If a ``μ`` is present will assume component comes from a (piecepack stackpack_) "subpack" aka "mini piecepack" instead of a normal sized piecepack
-  + If missing assumed to be a tile if has both suit and rank or neither suit and rank otherwise assumed to be a coin.
+  + If missing and has either ``l``, ``r``, or ``x`` assumed to be a (piecepack) "pyramid" otherwise assumed to be a tile if has both suit and rank or neither suit and rank otherwise assumed to be a coin.
 
 * Side Up: ``f``, ``b``, ``r``, ``l``
 
   + ``f`` for "face"
-  + ``b`` for "back"
-  + ``r`` and ``l`` for "right" and "left" (only pyramids)
+  + ``b`` for "back" (dice cannot be "back" up)
+  + ``l``, ``r``, and ``x`` for "left", "right", and "top" (pyramids only)
   + If missing pyramids are assumed to be "top" up.
   + If missing tiles are assumed to be "back" up if missing suit and/or rank.
   + If missing coins and saucers are assumed to be "face" up if missing suit.
-  + If missing pawns, dice, and matchsticks are assumed to be "face" up (and dice cannot be "back" up).
+  + If missing pawns, dice, and matchsticks are assumed to be "face" up.
 
 * Suits: ``S``, ``M``, ``C``, ``A``, ``♠``, ``♥``, ``♦``, ``♣``, ``♡``, ``♤``, ``♧``, ``♢``, ``R``, ``K``, ``G``, ``B``, ``Y``, ``W``
 
