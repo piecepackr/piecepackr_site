@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2020-01-13
+:modified: 2020-01-26
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -141,6 +141,10 @@ Table of Supported Game Start Functions
       - df_ice_floe
       -
       -
+    * - `Ley Lines <http://www.ludism.org/ppwiki/LeyLines>`_
+      - df_ley_lines
+      -
+      -
     * - `Nine Men's Morris <https://en.wikipedia.org/wiki/Nine_men%27s_morris>`_
       - df_nine_mens_morris
       - X
@@ -265,6 +269,11 @@ pmap_piece(df_ice_floe(), envir=cfgs, default.units="in",
            op_scale=1.0, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
+png("../share/rules/ley_lines.png", width=14, height=16, units="in", res=36)
+pmap_piece(df_ley_lines(), envir=cfgs, default.units="in", 
+           op_scale=1.0, op_angle=90, trans=op_transform)
+invisible(dev.off())
+
 png("../share/rules/relativity.png", width=7, height=5, units="in", res=72)
 pmap_piece(df_relativity(seed=12), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
@@ -305,6 +314,7 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  `Four Field Kono` = "../share/rules/four_field_kono.png",
                  `Fuji-san` = "../share/rules/fujisan.png",
                  `Ice Floe` = "../share/rules/ice_floe.png",
+                 `Ley Lines` = "../share/rules/ley_lines.png",
                  `Plans of Action` = "../share/rules/plans_of_action.png",
                  `Relativity` = "../share/rules/relativity.png",
                  `San Andreas` = "../share/rules/san_andreas.png",
