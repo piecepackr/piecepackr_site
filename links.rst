@@ -16,11 +16,14 @@
 .. _gifski: https://cran.r-project.org/package=gifski
 .. _grid: https://www.rdocumentation.org/packages/grid
 .. _grImport2: https://cran.r-project.org/package=grImport2
-.. _ppgames: https://github.com/trevorld/ppgames
-.. _piecepackr: https://github.com/trevorld/piecepackr
 .. _tweenr: https://cran.r-project.org/package=tweenr
 
-.. _man pages: https://rdrr.io/github/trevorld/piecepackr/man/
+.. _ppgames: https://github.com/piecepackr/ppgames
+.. _piecepackr: https://github.com/piecepackr/piecepackr
+.. _piecepackr3d: https://github.com/piecepackr/piecepackr3d
+.. _piecenikr: https://github.com/piecepackr/piecepnikr
+
+.. _man pages: https://trevorldavis.com/R/piecepackr
 
 .. _polar coordinates: https://en.wikipedia.org/wiki/Polar_coordinate_system
 
