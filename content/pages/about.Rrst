@@ -27,6 +27,22 @@ These are in depth articles on specific subjects of interest to piecepackr_ user
 #. `Unicode piecepack diagrams <{filename}/Docs/unicode_diagrams.rst>`_
 #. `Game starting arrangement functions <{filename}/Docs/game_starts.rst>`_
 
+Also consider looking at each of the R packages built-in documentation:
+
+.. list-table:: Links to R packages' built-in documentation
+   :header-rows: 1
+
+   * - Package
+     - Type
+   * - piecepackr
+     - `development <https://trevorldavis.com/R/piecepackr/dev>`__
+   * - ppgames
+     - `development <https://trevorldavis.com/R/ppgames/dev>`__
+   * - piecepackr3d
+     - `development <https://trevorldavis.com/R/piecepackr3d/dev>`__
+   * - piecenikr
+     - `development <https://trevorldavis.com/R/piecenikr/dev>`__
+
 Demos
 -----
 
