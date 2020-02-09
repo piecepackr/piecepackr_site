@@ -79,3 +79,11 @@ These are demonstrations of using piecepackr_ to make diagrams for `other game s
 
 #. `Hexpack <{filename}/Demos/hexpack.rst>`_
 #. `Tak <{filename}/Demos/tak.rst>`_
+
+Integrating with other pieceapck art assets
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Miscellaneous demonstrations to interact with outside piecepack art assets
+
+#. `Generating alternative textures for James H. Vipond's piecepack components <{filename}/Demos/vipond_textures.rst>`_
+#. `Triactor <{filename}/Demos/jcd.rst>`_ shows how to make a configuration using the images contained in the piecepack VASSAL module

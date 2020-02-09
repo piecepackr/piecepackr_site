@@ -26,6 +26,7 @@
 .. _man pages: https://trevorldavis.com/R/piecepackr
 
 .. _polar coordinates: https://en.wikipedia.org/wiki/Polar_coordinate_system
+.. _Wavefront OBJ: https://en.wikipedia.org/wiki/Wavefront_.obj_file
 
 .. Demos
 .. _default: {filename}/Demos/default_pnp.rst
