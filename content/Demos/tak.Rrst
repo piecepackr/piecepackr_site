@@ -15,6 +15,8 @@ set_opts_chunk("games-tak")
 
 .. contents::
 
+Tak_ is a two-player abstract designed by James Ernest and Patrick Rothfuss that is best visualized in 3D.
+
 Standard Tak pieces
 -------------------
 

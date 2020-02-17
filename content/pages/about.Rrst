@@ -75,6 +75,7 @@ Other Game Systems
 
 These are demonstrations of using piecepackr_ to make diagrams for `other game systems`_ besides the piecepack_.
 
+#. `Dominoes and standard 6-sided dice <{filename}/Demos/dominoes.rst>`_
 #. `Hexpack <{filename}/Demos/hexpack.rst>`_
 #. `Tak <{filename}/Demos/tak.rst>`_
 
