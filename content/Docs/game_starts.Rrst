@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2020-01-26
+:modified: 2020-02-19
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -97,6 +97,10 @@ Table of Supported Game Start Functions
       - df_backgammon
       - X
       -
+    * - `Breakthrough <https://en.wikipedia.org/wiki/Breakthrough_(board_game)>`_
+      - df_breakthrough
+      -
+      -
     * - `Cell Management <http://www.ludism.org/ppwiki/CellManagement>`_
       - df_cell_management
       -
@@ -185,6 +189,10 @@ Table of Supported Game Start Functions
       - df_triactor
       -
       -
+    * - `Turkish Draughts <https://en.wikipedia.org/wiki/Turkish_draughts>`_
+      - df_turkish_draughts
+      -
+      -
     * - `Twelve Men's Morris <https://en.wikipedia.org/wiki/Morabaraba>`_
       - df_twelve_mens_morris
       - X
@@ -245,6 +253,10 @@ save_ruleset("american-checkers", gk_2p, "../share/rules/american_checkers_A4.pd
 save_pamphlet("american-checkers", gk_2p, "../share/rules/american_checkers_pamphlet.pdf")
 save_pamphlet("american-checkers", gk_2p, "../share/rules/american_checkers_pamphlet_A4.pdf", size="A4")
 
+png("../share/rules/breakthrough.png", width=9, height=9, units="in", res=72)
+pmap_piece(df_breakthrough(), cfg=two_player, default.units="in")
+invisible(dev.off())
+
 png("../share/rules/cell_management.png", width=11.5, height=12.5, units="in", res=36)
 pmap_piece(df_cell_management(seed=42), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=60, trans=op_transform)
@@ -294,6 +306,10 @@ pmap_piece(df_the_in_crowd(), envir=cfgs, default.units="in",
            op_scale=1.0, trans=op_transform)
 invisible(dev.off())
 
+png("../share/rules/turkish_draughts.png", width=9, height=9, units="in", res=72)
+pmap_piece(df_turkish_draughts(), cfg=two_player, default.units="in")
+invisible(dev.off())
+
 png("../share/rules/wormholes.png", width=11, height=19, units="in", res=42)
 pmap_piece(df_wormholes(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
@@ -304,6 +320,7 @@ invisible(dev.off())
 library("animation")
 library("grid")
 examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram-1.svg",
+                 Breakthrough = "../share/rules/breakthrough.png",
                  `Cell Management` = "../share/rules/cell_management.png",
                  Chaturaji = "../images/knitr/demos-chess-chaturaji-1.svg",
                  Checkers = "../share/rules/american_checkers.png",
@@ -316,9 +333,10 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  `Ice Floe` = "../share/rules/ice_floe.png",
                  `Ley Lines` = "../share/rules/ley_lines.png",
                  `Plans of Action` = "../share/rules/plans_of_action.png",
-                 `Relativity` = "../share/rules/relativity.png",
+                 Relativity = "../share/rules/relativity.png",
                  `San Andreas` = "../share/rules/san_andreas.png",
                  Tablut = "../images/knitr/games-tablut-starting-diagram-1.svg",
+                 `Turkish Draughts` = "../share/rules/turkish_draughts.png",
                  `The "In" Crowd` = "../share/rules/the_in_crowd.png",
                  Xiangqi = "../images/knitr/demos-chess-xiangqi-1.svg",
                  Wormholes = "../share/rules/wormholes.png")
