@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2020-02-19
+:modified: 2020-02-20
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -121,6 +121,10 @@ Table of Supported Game Start Functions
       - df_cribbage_board
       - X
       - Just a (piecepack) cribbage board (no cards)
+    * - `Crossings <https://en.wikipedia.org/wiki/Crossings_(game)>`_
+      - df_crossings
+      -
+      -
     * - `Desfases <http://www.ludism.org/ppwiki/Desfases>`_
       - df_desfases
       -
@@ -147,6 +151,10 @@ Table of Supported Game Start Functions
       -
     * - `Ley Lines <http://www.ludism.org/ppwiki/LeyLines>`_
       - df_ley_lines
+      -
+      -
+    * - `Lines of Action <https://en.wikipedia.org/wiki/Lines_of_Action>`_
+      - df_lines_of_action
       -
       -
     * - `Nine Men's Morris <https://en.wikipedia.org/wiki/Nine_men%27s_morris>`_
@@ -286,6 +294,10 @@ pmap_piece(df_ley_lines(), envir=cfgs, default.units="in",
            op_scale=1.0, op_angle=90, trans=op_transform)
 invisible(dev.off())
 
+png("../share/rules/lines_of_action.png", width=9, height=9, units="in", res=72)
+pmap_piece(df_lines_of_action(), cfg=two_player, default.units="in")
+invisible(dev.off())
+
 png("../share/rules/relativity.png", width=7, height=5, units="in", res=72)
 pmap_piece(df_relativity(seed=12), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
@@ -320,7 +332,7 @@ invisible(dev.off())
 library("animation")
 library("grid")
 examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram-1.svg",
-                 Breakthrough = "../share/rules/breakthrough.png",
+                 `Breakthrough; Crossings` = "../share/rules/breakthrough.png",
                  `Cell Management` = "../share/rules/cell_management.png",
                  Chaturaji = "../images/knitr/demos-chess-chaturaji-1.svg",
                  Checkers = "../share/rules/american_checkers.png",
@@ -332,6 +344,7 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  `Fuji-san` = "../share/rules/fujisan.png",
                  `Ice Floe` = "../share/rules/ice_floe.png",
                  `Ley Lines` = "../share/rules/ley_lines.png",
+                 `Lines of Action` = "../share/rules/lines_of_action.png",
                  `Plans of Action` = "../share/rules/plans_of_action.png",
                  Relativity = "../share/rules/relativity.png",
                  `San Andreas` = "../share/rules/san_andreas.png",
