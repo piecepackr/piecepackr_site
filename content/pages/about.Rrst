@@ -40,6 +40,8 @@ Also consider looking at each of the R packages built-in documentation:
      - `development <https://trevorldavis.com/R/ppgames/dev>`__
    * - piecenikr_
      - `development <https://trevorldavis.com/R/piecenikr/dev>`__
+   * - ccgames_
+     - `development <https://trevorldavis.com/R/ccgames/dev>`__
 
 Demos
 -----
@@ -75,6 +77,7 @@ Other Game Systems
 
 These are demonstrations of using piecepackr_ to make diagrams for `other game systems`_ besides the piecepack_.
 
+#. `Checkers <{filename}/Demos/checkers.rst>`_
 #. `Dominoes and standard 6-sided dice <{filename}/Demos/dominoes.rst>`_
 #. `Hexpack <{filename}/Demos/hexpack.rst>`_
 #. `Tak <{filename}/Demos/tak.rst>`_

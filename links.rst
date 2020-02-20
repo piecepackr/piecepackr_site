@@ -18,6 +18,7 @@
 .. _grImport2: https://cran.r-project.org/package=grImport2
 .. _tweenr: https://cran.r-project.org/package=tweenr
 
+.. _ccgames: https://github.com/piecepackr/ccgames
 .. _ppgames: https://github.com/piecepackr/ppgames
 .. _piecepackr: https://github.com/piecepackr/piecepackr
 .. _piecepackr3d: https://github.com/piecepackr/piecepackr3d
