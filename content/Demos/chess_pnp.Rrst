@@ -2,6 +2,7 @@ Chess
 =====
 
 :date: 2019-10-12
+:modified: 2020-02-28
 :tags: print-and-play, ppgames
 
 .. {r setup, echo=FALSE}
@@ -245,10 +246,10 @@ pmap_piece(df_chaturaji(), cfg=chess5, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
-(FIDE) Chess
-~~~~~~~~~~~~
+(International) Chess
+~~~~~~~~~~~~~~~~~~~~~
 
-`(FIDE aka Western) Chess <{static}/share/rules/international-chess.pdf>`_ is a classic board game playable with a single piecepack.
+`(International) Chess <{static}/share/rules/international-chess.pdf>`_ is a classic board game playable with a single piecepack.
 
 .. {r international-chess, fig.cap="(FIDE) Chess starting diagram", fig.width=9, fig.height=9}
 pmap_piece(df_international_chess(), cfg=chess5, op_scale=0.5, 
@@ -285,6 +286,57 @@ pmap_piece(df_xiangqi(), cfg=chess5, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
+Some chess variants playable with a piecepack stackpack
+-------------------------------------------------------
+
+A piecepack stackpack_ is also handy for playing several chess variants since every player's pieces can then be suited.
+
+.. {r two-player-scheme}
+two_player_scheme <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
+         suit_cex="0.6,0.7,0.75,0.9,0.9",
+        suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+        suit_color="#D55E00,#000000,#F0E442,#0072B2,#009E73",
+        background_color="#000000,#D55E00,#0072B2,#F0E442,white",
+        border_color="black", border_lex=5, depth.coin = 0.25,
+        border_color.tile_back="#009E73", border_lex.tile_back=5
+))
+two_player_stackpack <- list(piecepack = two_player_scheme,
+                             subpack = to_subpack(two_player_scheme))
+.. ..
+
+Chaturaji Chess
+~~~~~~~~~~~~~~~
+
+.. {r chaturaji-stackpack, fig.cap = "Chaturaji diagram", fig.width=9, fig.height=9}
+pmap_piece(df_chaturaji(has_subpack = TRUE), envir = two_player_stackpack,
+           op_scale = 0.5, trans=op_transform, default.units = "in")
+.. ..
+
+(International) Chess
+~~~~~~~~~~~~~~~~~~~~~
+
+.. {r international-chess-stackpack, fig.cap="Chess starting diagram", fig.width=9, fig.height=9}
+pmap_piece(df_international_chess(has_subpack = TRUE), envir = two_player_stackpack, op_scale=0.5, 
+           trans=op_transform, default.units="in")
+.. ..
+
+Shogi (Japanese Chess)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. {r shogi-stackpack, fig.cap="Shogi starting diagram", fig.width=10, fig.height=10}
+pmap_piece(df_shogi(has_subpack = TRUE), envir = two_player_stackpack, op_scale=0.5, 
+           trans=op_transform, default.units="in")
+.. ..
+
+Xiangqi (Chinese Chess)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+
+.. {r xiangqi-stackpack, fig.cap="Xiangqi starting diagram", fig.width=10, fig.height=12}
+pmap_piece(df_xiangqi(has_subpack = TRUE), envir = two_player_stackpack, op_scale=0.5, 
+           trans=op_transform, default.units="in")
+.. ..
+
 .. {r save_games, echo=FALSE}
 gk <- game_kit(list(cfg=chess5))
 save_ruleset("alice-chess", gk, "../share/rules/alice-chess.pdf")
@@ -297,14 +349,22 @@ svg2png("../images/knitr/demos-chess-alice-chess-1.svg",
         "../share/rules/alice-chess.png", 950, 450)
 svg2png("../images/knitr/demos-chess-chaturaji-1.svg",
         "../share/rules/chaturaji.png", 600, 600)
+svg2png("../images/knitr/demos-chess-chaturaji-stackpack-1.svg",
+        "../share/rules/chaturaji-stackpack.png", 600, 600)
 svg2png("../images/knitr/demos-chess-international-chess-1.svg",
         "../share/rules/fide-chess.png", 600, 600) ####
 svg2png("../images/knitr/demos-chess-international-chess-1.svg",
         "../share/rules/international-chess.png", 600, 600)
+svg2png("../images/knitr/demos-chess-international-chess-stackpack-1.svg",
+        "../share/rules/international-chess-stackpack.png", 600, 600) ####
 svg2png("../images/knitr/demos-chess-four-seasons-chess-1.svg",
         "../share/rules/four-seasons-chess.png", 600, 600)
+svg2png("../images/knitr/demos-chess-shogi-stackpack-1.svg",
+        "../share/rules/shogi-stackpack.png", 500, 600)
 svg2png("../images/knitr/demos-chess-ultima-1.svg",
         "../share/rules/ultima.png", 600, 600)
 svg2png("../images/knitr/demos-chess-xiangqi-1.svg",
         "../share/rules/xiangqi.png", 500, 600)
+svg2png("../images/knitr/demos-chess-xiangqi-stackpack-1.svg",
+        "../share/rules/xiangqi-stackpack.png", 500, 600)
 .. ..

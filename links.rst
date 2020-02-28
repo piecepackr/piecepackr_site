@@ -7,7 +7,7 @@
 .. _make your own piecepack: http://www.ludism.org/ppwiki/MakingPiecepacks
 .. _JCD piecepack: http://www.piecepack.org/JCD.html
 .. _Packtet: http://ludism.org/ppwiki/Packtet
-.. _Stackpack: http://ludism.org/ppwiki/Stackpack
+.. _Stackpack: http://ludism.org/ppwiki/StackPack
 .. _Anatomy of a Piecepack: http://www.piecepack.org/Anatomy.html
 .. _Quivira: http://www.quivira-font.com/
 
