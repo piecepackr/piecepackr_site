@@ -51,6 +51,7 @@
 .. _custom grob function: {filename}/Docs/custom_grob_fn.rst
 .. _PPN:
 .. _Portable Piecepack Notation: {filename}/Docs/ppn.rst
+.. _oblique projection: {filename}/Docs/projections.rst
 .. _Unicode symbols: {filename}/Docs/unicode_symbols.rst
 .. _Unicode diagrams: {filename}/Docs/unicode_diagrams.rst
 

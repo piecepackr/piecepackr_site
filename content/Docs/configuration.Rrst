@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2019-06-14
+:modified: 2020-03-03
 
 .. contents::
 
@@ -270,12 +270,12 @@ Table of configuration list styles
       - width
       -
     * - grob_fn
-      - Which `grob function`_ to use to make a ``grob`` of the game piece
+      - Which `grob function`_ to use to make a 2D ``grob`` of the game piece.
       -
       -
-    * - shadow_fn
-      - Which function to use to make a ``grob`` of the edges of the game piece
-        when the board is drawn with an oblique projection.
+    * - op_grob_fn
+      - Which function to use to make a 3D ``grob`` of the game piece
+        when the piece is drawn with an `oblique projection`_. Introduced in v1.3.
       -
       -
     * - title
@@ -292,6 +292,12 @@ Table of configuration list styles
       -
     * - copyright
       - Additional copyrights
+      -
+      -
+    * - shadow_fn
+      - Which function to use to make a ``grob`` of the edges of the game piece
+        when the piece is drawn with a 3D oblique projection.
+        Deprecated in v1.3 (use ``op_grob_fn`` instead).
       -
       -
 
