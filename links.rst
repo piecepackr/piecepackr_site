@@ -12,10 +12,12 @@
 .. _Quivira: http://www.quivira-font.com/
 
 .. _R: https://cran.r-project.org/
+.. _grid: https://www.rdocumentation.org/packages/grid
 .. _animation package: https://cran.r-project.org/package=animation
 .. _gifski: https://cran.r-project.org/package=gifski
-.. _grid: https://www.rdocumentation.org/packages/grid
 .. _grImport2: https://cran.r-project.org/package=grImport2
+.. _rayrender: https://cran.r-project.org/package=rayrender
+.. _rgl: https://cran.r-project.org/package=rgl
 .. _tweenr: https://cran.r-project.org/package=tweenr
 
 .. _ccgames: https://github.com/piecepackr/ccgames

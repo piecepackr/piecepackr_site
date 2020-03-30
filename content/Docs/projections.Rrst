@@ -2,21 +2,21 @@
 ==============
 
 :date: 2019-06-10
-:modified: 2019-11-02
+:modified: 2020-03-30
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("docs-3d-projections")
 .. ..
 
-piecepackr_ has limited support to project 3D board games (like the hundreds of `piecepack games`_) onto a 2D diagram.  It is hoped that in the future piecepackr will offer better `3D projection support with the help of OpenGL <https://github.com/trevorld/piecepackr/issues/137>`_.
+piecepackr_ has some basic support to project 3D board games (like the hundreds of `piecepack games`_) onto a 2D diagram.  It can make diagrams with an orthographic or oblique projection using R's grid_ graphics library.  Beginning with piecepackr_ 1.3 it can also make diagrams using the rgl_ or rayrender_ 3D graphics packages.
 
 .. include:: ../../links.rst
 
 .. contents::
 
-Orthographic projections
-------------------------
+Orthographic projections (grid)
+-------------------------------
 
 By default piecepackr_'s ``grid.piece`` function makes an approximate "top view" `orthographic projection <https://en.wikipedia.org/wiki/Orthographic_projection>`__ with pieces drawn later "placed on top" of (and potentially hiding) pieces drawn earlier:
 
@@ -39,8 +39,8 @@ piecepackr_ makes an exact "top view" orthographic projection under the followin
 2. The game doesn't use pyramids_ (although the "top" view of pyramids is an okay if not exact orthographic projection).
 3. Any pawns used are (generalized) "meeple" pawns laid face down or face up.
 
-Oblique projections
--------------------
+Oblique projections (grid)
+--------------------------
 
 With a little more effort by the piecepackr_ programmer one can also make `oblique projections <https://en.wikipedia.org/wiki/Oblique_projection>`_ with ``grid.piece`` which makes it much easier to tell when pieces have been placed on top of other pieces:
 
@@ -110,11 +110,11 @@ pmap_piece(df, cfg=cfg, default.units="in",
 .. [#sorting] In certain scenarios this may give the wrong ordering.  An example may be a really tall pawn next to a stack of tiles that altogether are shorter than the pawn.  For the common case of a single layer of tiles plus a single layer of pieces on top of the tiles this is very unlikely to have a false indentification.  If there is a false identification one can sometimes change the dimensions of the pieces or the "op_angle" value to get a "correct" ordering.  In an extreme case one can use tiles, coins, pawns, and dice all 1/2" tall which should always render the correct ordering (assuming their "z" values were correctly estimated).
 
 Mixed Projections
------------------
+~~~~~~~~~~~~~~~~~
 
 Technically since each ``grid.piece`` function can have its own ``op_scale`` and ``op_angle`` arguments one can mix and match projections in a single diagram:
 
-.. {r mixed-projections, fig.width=9.5, fig.height=9.5, fig.cap="One can technically mix projections within one diagram"}
+.. {r mixed-projections, fig.width=9.5, fig.height=9.5, fig.cap="One can technically mix oblique projections within one diagram"}
 cfg <- pp_cfg(list(edge_color.tile="black", border_lex=3))
 draw_3tiles <- function(x, y, op_angle) {
     grid.piece("tile_back", x=x, y=y, z=(1:3)/4-1/8, 
@@ -130,27 +130,78 @@ draw_3tiles(2, 2, 225)
 draw_3tiles(8, 2, -45)
 .. ..
 
+3D graphics packages: rgl and rayrender
+---------------------------------------
+
+piecepackr_ 1.3 introduced basic support for the rgl_ and rayrender_ 3D graphics libraries.
+
+rgl (piece3d)
+~~~~~~~~~~~~~
+
+``piece3d`` draws pieces using the rgl_ graphic system.
+
+.. {r rgl}
+library("ppgames", warn.conflicts = FALSE)
+library("rgl")
+
+df <- ppgames::df_four_field_kono()
+envir <- piecepackr::game_systems("dejavu3d")
+
+rgl.open()
+view3d(phi=-30, zoom = 0.8)
+pmap_piece(df, piece3d, trans=op_transform, envir = envir, scale = 0.98, res = 150)
+.. ..
+.. {r move, echo=FALSE}
+rgl.snapshot("rgl_snapshot.png", top = FALSE)
+rgl.close()
+invisible(file.rename('rgl_snapshot.png', '../images/knitr/rgl_snapshot.png'))
+.. ..
+
+.. figure:: {static}/images/knitr/rgl_snapshot.png
+    :alt: 3D render with the rgl package
+    :align: center
+
+    3D render with the rgl package
+
+rayrender (piece)
+~~~~~~~~~~~~~~~~~
+
+``piece`` creates rayrender_ objects.
+
+.. {r rayrender, fig.width=5, fig.height=5, fig.cap="3D render with the rayrender package"}
+library("rayrender")
+
+df <- ppgames::df_four_field_kono()
+envir <- piecepackr::game_systems("dejavu3d")
+l <- pmap_piece(df, piece, trans=op_transform, envir = envir, scale = 0.98, res = 150)
+scene <- do.call(dplyr::bind_rows, l)
+render_scene(scene, lookat = c(2.5, 2.5, 0), lookfrom = c(0, -2, 13))
+.. ..
+
 Pyramids
 --------
 
-Currently piecepackr_ doesn't attempt to properly do an orthographic projection of laid down pyramids nor oblique projections of laid down and standing pyramids:
+Currently piecepackr_ doesn't attempt to do a completely correct orthographic projection for laid down pyramids nor oblique projections of laid down and standing pyramids:
 
 .. {r pyramids, fig.width=4, fig.height=4, fig.cap="Pyramids aren't too confusing in the orthographic projection"}
-g.p <- function(...) { grid.piece(..., default.units="in") }
-g.p("tile_back", x=2, y=2)
-g.p("pyramid_top", x=2, y=2, suit=3, rank=3)
-g.p("pyramid_face", x=2, y=3, suit=3, rank=3)
-g.p("pyramid_left", x=1, y=2, suit=3, rank=3, angle=90)
-g.p("pyramid_back", x=2, y=1, suit=3, rank=3, angle=180)
-g.p("pyramid_right", x=3, y=2, suit=3, rank=3, angle=-90)
+library("tibble")
+df <- tibble(piece_side = c("tile_back", "pyramid_top", "pyramid_face", "pyramid_left", "pyramid_back", "pyramid_right"),
+             x = c(2, 2, 2, 1, 2, 3),
+             y = c(2, 2, 3, 2, 1, 2),
+             suit = 3, rank = 3, angle = c(0, 0, 0, 90, 180, -90))
+pmap_piece(df, grid.piece, default.units="in")
 .. ..
 
-.. {r pyramids-oblique, fig.width=4, fig.height=4, fig.cap="But pyramids don't look very good in the oblique projection"}
-g.p <- function(..., z=1/4) { grid.piece(..., z=z, op_scale=0.5, default.units="in") }
-g.p("tile_back", x=2, y=2, z=1/8)
-g.p("pyramid_top", x=2, y=2, suit=3, rank=3)
-g.p("pyramid_face", x=2, y=3, suit=3, rank=3)
-g.p("pyramid_left", x=1, y=2, suit=3, rank=3, angle=90)
-g.p("pyramid_back", x=2, y=1, suit=3, rank=3, angle=180)
-g.p("pyramid_right", x=3, y=2, suit=3, rank=3, angle=-90)
+.. {r pyramids-oblique, fig.width=4, fig.height=4, fig.cap="But pyramids sometimes don't look very good in the oblique projection"}
+pmap_piece(df, grid.piece, default.units="in", op_scale = 0.5, trans = op_transform)
+.. ..
+
+For best results one should render with a 3D graphics system like rgl_ or rayrender_:
+
+.. {r rayrender2, fig.width=5, fig.height=5, fig.cap="Pyramids are best rendered with a 3D graphics system like rayrender"}
+library("rayrender")
+envir <- piecepackr::game_systems("dejavu3d")
+l <- pmap_piece(df, piece, trans=op_transform, envir = envir, scale = 0.98, res = 150)
+scene <- do.call(dplyr::bind_rows, l)
+render_scene(scene, lookat = c(2.5, 2.5, 0), lookfrom = c(0, -2, 10))
 .. ..
