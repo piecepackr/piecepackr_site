@@ -24,7 +24,7 @@
 .. _ppgames: https://github.com/piecepackr/ppgames
 .. _piecepackr: https://github.com/piecepackr/piecepackr
 .. _piecepackr3d: https://github.com/piecepackr/piecepackr3d
-.. _piecenikr: https://github.com/piecepackr/piecepnikr
+.. _piecenikr: https://github.com/piecepackr/piecenikr
 
 .. _man pages: https://trevorldavis.com/R/piecepackr
 
