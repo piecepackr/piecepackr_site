@@ -72,10 +72,13 @@ pmap_piece(df, envir=envir, default.units="in", trans=op_transform,
 .. {r martian_chess_3d}
 library("rgl")
 rgl.open()
+bg3d("white")
+if (Sys.which("wmctrl") != "") system("wmctrl -r RGL -e 0,-1,-1,1080,1080")
 view3d(phi=-30, zoom = 0.8)
 pmap_piece(df, piece3d, envir=envir, default.units="in", trans=op_transform)
 .. ..
 .. {r move, echo=FALSE}
+Sys.sleep(2)
 rgl.snapshot("martian_chess_rgl.png", top = FALSE)
 rgl.close()
 invisible(file.rename('martian_chess_rgl.png', '../images/knitr/martian_chess_rgl.png'))
@@ -84,5 +87,6 @@ invisible(file.rename('martian_chess_rgl.png', '../images/knitr/martian_chess_rg
 .. figure:: {static}/images/knitr/martian_chess_rgl.png
     :alt: Setup for Andy Looney's Martian Chess (3D rgl)
     :align: center
+    :width: 80%
 
     Setup for Andy Looney's Martian Chess (3D rgl)
