@@ -200,8 +200,7 @@ For best results one should render with a 3D graphics system like rgl_ or rayren
 
 .. {r rayrender2, fig.width=5, fig.height=5, fig.cap="Pyramids are best rendered with a 3D graphics system like rayrender"}
 library("rayrender")
-envir <- piecepackr::game_systems("dejavu3d")
-l <- pmap_piece(df, piece, trans=op_transform, envir = envir, scale = 0.98, res = 150)
+l <- pmap_piece(df, piece, trans=op_transform, scale = 0.98, res = 150)
 scene <- do.call(dplyr::bind_rows, l)
 render_scene(scene, lookat = c(2.5, 2.5, 0), lookfrom = c(0, -2, 10))
 .. ..
