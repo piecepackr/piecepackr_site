@@ -2,7 +2,7 @@ Tak
 ===
 
 :date: 2019-06-16
-:modified: 2020-01-05
+:modified: 2020-03-30
 :tags: other-game-systems
 
 .. {r setup, echo=FALSE}
@@ -52,27 +52,26 @@ Then we'll configure_ a Tak set and write some helper functions to draw Tak_ pie
 .. {r configure}
 cfg <- pp_cfg(list(suit_text=",,,", suit_color="white,tan4,", invert_colors=TRUE,
             ps_text="", dm_text="",
-            width.tile=6, height.tile=6, depth.tile=1/4,
-            grob_fn.tile=grobTakBoard,
-            width.coin=0.6, height.coin=0.6, depth.coin=1/4, shape.coin="rect",
-            width.saucer=0.6, height.saucer=1/4, depth.saucer=0.6, 
-            shape.saucer="rect", mat_width.saucer=0,
+            width.board=6, height.board=6, depth.board=1/4,
+            grob_fn.board=grobTakBoard,
+            width.r1.bit=0.6, height.r1.bit=0.6, depth.r1.bit=1/4, shape.r1.bit="rect",
+            width.r2.bit=0.6, height.r2.bit=1/4, depth.r2.bit=0.6, shape.r2.bit="rect", 
             width.pawn=0.5, height.pawn=0.5, depth.pawn=0.8, shape.pawn="circle",
             edge_color="white,tan4", border_lex=2,
-            edge_color.tile="tan", border_color.tile="black"))
-g.p <- function(...) {
+            edge_color.board="tan", border_color.board="black"))
+g.p <- function(...) { 
     grid.piece(..., op_scale=0.7, op_angle=45, cfg=cfg, default.units="in")
 }
 draw_tak_board <- function(x, y) { 
-    g.p("tile_back", x=x+0.5, y=y+0.5) 
+    g.p("board_back", x=x+0.5, y=y+0.5) 
 }
 draw_flat_stone <- function(x, y, suit=1) { 
     z <- 1/4*seq(along=suit)+1/8
-    g.p("coin_back", x=x+0.5, y=y+0.5, z=z, suit=suit)
+    g.p("bit_back", x=x+0.5, y=y+0.5, z=z, suit=suit, rank=1)
 }
 draw_standing_stone <- function(x, y, suit=1, n_beneath=0, angle=0) {
     z <- (n_beneath+1)*1/4+0.3
-    g.p("saucer_face", x=x+0.5, y=y+0.5, z=z, suit=suit, angle=angle)
+    g.p("bit_back", x=x+0.5, y=y+0.5, z=z, suit=suit, rank=2, angle=angle)
 }
 draw_capstone <- function(x, y, suit=1, n_beneath=0) {
     z <- (n_beneath+1)*1/4+0.4
