@@ -2,9 +2,9 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2020-01-13
+:modified: 2020-04-19
 
-**Version: 0.5.2**
+**Version: 0.6.0**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of piecepack games but the structure is designed to in the future allow support for parsing alternative notation systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
@@ -17,10 +17,86 @@ Portable Piecepack Notation (PPN) is a human-readable plaintext file format for 
 .. _YAML: https://yaml.org/
 .. include:: ../../links.rst
 
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("docs-ppn")
+library("piecepackr")
+library("ppgames", warn.conflicts=FALSE)
+two_player <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
+        depth.coin=0.25,
+        suit_cex="0.6,0.7,0.75,0.9,0.9",
+        suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+        suit_color="#D55E00,#000000,#F0E442,#0072B2,#009E73",
+        background_color="#000000,#D55E00,#0072B2,#F0E442,white",
+        border_color="grey", border_lex=4, edge_color="black",
+        mat_color.tile_back="white", mat_width.tile_back=0.05
+))
+.. ..
+
 .. contents::
 
 Examples
 --------
+
+Checkers
+~~~~~~~~
+
+.. {r checkers_animation, echo=FALSE, results='hide'}
+ppn_file <- system.file("ppn/checkers.ppn", package = "ppgames")
+checkers <- read_ppn(ppn_file)[[1]]
+animate_game(checkers, file = "checkers.gif", 
+            annotation = FALSE, cfg = two_player,
+            trans = op_transform, op_scale = 0.5)
+invisible(file.rename('checkers.gif', '../images/knitr/checkers.gif'))
+.. ..
+
+.. {r checkers, echo=FALSE, results='asis'}
+
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: {static}/images/knitr/checkers.gif
+    :alt: Animation of a checkers game
+    :align: center
+
+Four Field Kono
+~~~~~~~~~~~~~~~
+
+A game of Four Field Kono with automatic setup::
+
+    GameType: Four Field Kono
+
+    1. b1:b3 1... d3:b3 2. c1:c3 2... a3:c3 3. c2-c1 3... b4:b2 4. a1-b1 4... b3:b1
+    5. d1:b1 5... c3-c2 6. a2-a3 6... b2:d2 7. a3-b3 7... c4-c3 8. c1-d1 8... d4-d3
+    9. b1-b2 9... d2:b2 10. b3-a3 10... b2-b1 {Player 1's loss is assured with the
+     separation of their two remaining pieces and they should resign in a real game}
+    11. a3-a2 11... b1-c1 12. d1-d2 12... c1-d1 13. a2-a3 13... a4-b4
+    14. a3-a4 14... b4-c4 15. a4-b4 15... c4-d4 16. b4-a4 16... d4:d2 {Player 2 wins}
+
+.. image:: https://www.trevorldavis.com/share/piecepack/four_field_kono_example.gif
+    :alt: Four Field Kono example
+
+Fuji-san
+~~~~~~~~
+
+A game of Fuji-san with a specific starting coin setup:: 
+
+    ---
+    GameType:
+      Name: Fujisan
+      Coins: "44452n24n3aa\na25335325ann"
+    ...
+    1. a1-b1 2. n2-k2 3. b1-e1 4. e1-j1 5. j1-j2 6. j2-l2 7. k2-m2
+    8. m2-m1 9. l2-l1 10. n1-k1 11. m1-i1 12. i1-d1 13. d1-d2 14. l1-i1
+    11. i1-i2 16. k1-k2 17. k2-e2 18. i2-c2 19. a2-f2 20. e2-h2 21. h2-g2
+    22. c2-h2 23. h2-h1 24. d2-h2 25. f2-b2 26. b2-b1 27. b1-g1
+
+.. image:: {static}/images/knitr/fujisan.gif
+    :alt: Animation of a Fuji-san game
+    :align: center
+
+Tic-Tac-Toe
+~~~~~~~~~~~
 
 A simple game of Tic-Tac-Toe with no automatic setup::
 
@@ -38,35 +114,6 @@ A simple game of Tic-Tac-Toe with no automatic setup::
     :alt: Animation of a tic-tac-toe game
     :align: center
 
-A game of Four Field Kono with automatic setup::
-
-    GameType: Four Field Kono
-
-    1. b1:b3 1... d3:b3 2. c1:c3 2... a3:c3 3. c2-c1 3... b4:b2 4. a1-b1 4... b3:b1
-    5. d1:b1 5... c3-c2 6. a2-a3 6... b2:d2 7. a3-b3 7... c4-c3 8. c1-d1 8... d4-d3
-    9. b1-b2 9... d2:b2 10. b3-a3 10... b2-b1 {Player 1's loss is assured with the
-     separation of their two remaining pieces and they should resign in a real game}
-    11. a3-a2 11... b1-c1 12. d1-d2 12... c1-d1 13. a2-a3 13... a4-b4
-    14. a3-a4 14... b4-c4 15. a4-b4 15... c4-d4 16. b4-a4 16... d4:d2 {Player 2 wins}
-
-.. image:: https://www.trevorldavis.com/share/piecepack/four_field_kono_example.gif
-    :alt: Four Field Kono example
-
-A game of Fuji-san with a specific starting coin setup:: 
-
-    ---
-    GameType:
-      Name: Fujisan
-      Coins: "44452n24n3aa\na25335325ann"
-    ...
-    1. a1-b1 2. n2-k2 3. b1-e1 4. e1-j1 5. j1-j2 6. j2-l2 7. k2-m2
-    8. m2-m1 9. l2-l1 10. n1-k1 11. m1-i1 12. i1-d1 13. d1-d2 14. l1-i1
-    11. i1-i2 16. k1-k2 17. k2-e2 18. i2-c2 19. a2-f2 20. e2-h2 21. h2-g2
-    22. c2-h2 23. h2-h1 24. d2-h2 25. f2-b2 26. b2-b1 27. b1-g1
-
-.. image:: {static}/images/knitr/fujisan.gif
-    :alt: Animation of a Fuji-san game
-    :align: center
 
 PPN File Structure
 ------------------
@@ -173,7 +220,7 @@ MoveNumbers
 Moves
 ~~~~~
 
-* Moves are comprised of Piece_, Location_, and MoveToken_.
+* Moves are comprised of PieceSpec_, Location_, PieceId_, and MoveToken_.
 * One can use Unix-shell-style brace expansions as a shortcut for expressing multiple moves e.g.::
 
     t@{b,d}{2..8..2} {Shortcut for t@b2 t@b4 t@b6 t@b8 t@d2 t@d4 t@d6 t@d8}
@@ -181,8 +228,8 @@ Moves
 
   + Unlike Bash-style brace expansions must have a "preamble" or "postscript" otherwise will be interpreted as a comment (but the preamble or postscript can be another brace expansion)
 
-Piece
-~~~~~
+PieceSpec
+~~~~~~~~~
 
 * The default Movetext parser supports Simplified_ piecepack piece notation
 
@@ -289,29 +336,39 @@ Chess-algebraic-style coordinates
 
 * The digits are considered to the y-coordinate encoded as a (base-10) integer.
 
+PieceId
+~~~~~~~
+
+A PieceId_ is used to identify specific pieces on the board.  Currently PPN_ supports the following types of PieceId_:
+
+* A Location_ is used to identify the top piece at that Location_
+* ``N Location`` is used to identify the top ``N`` pieces at that Location_
+
+  + An example would be ``2b4-b3*2a2 {Move top two pieces at b4 to b3 and remove top two pieces at a2}``
+
 MoveToken
 ~~~~~~~~~
 
 The default movetext parser supports the following MoveTokens:
 
-* ``@`` is used to add pieces to the board.  ``Piece@Location`` means drop Piece_ on top of Location_.
+* ``@`` is used to add pieces to the board.  ``PieceSpec@Location`` means drop PieceSpec_ on top of Location_.
 
   + It will be placed after all other pieces in the internal ordering.
 
-* ``*`` is used to remove pieces from the board.  ``*Location`` means remove the top piece at Location_.
+* ``*`` is used to remove pieces from the board.  ``*PieceId`` means remove the piece identified by PieceId_.
 
   + Unlike other MoveTokens it can be added at the end of other Moves e.g. ``b5-c5*b4*b3 {Move top piece at b5 to c5 and remove top pieces at b4 and b3}``.
 
-* ``-`` is used to move pieces elsewhere on the board.  ``Location1-Location2`` means removing the top piece at Location1 and dropping it on top of Location2.
+* ``-`` is used to move pieces elsewhere on the board.  ``PieceId-Location`` means removing the piece identified by PieceId_ and moving it on top of Location_.
 
   + It will be placed after all the other pieces in the internal ordering.
 
-* ``:`` is used to represent a "displacement capture".  ``Location1:Location2`` means removing the top piece from Location2, then removing the top from Location1 and putting it on top of Location2.
+* ``:`` is used to represent a "displacement capture".  ``PieceId1:PieceId2``.  We find the Location_ of the piece(s) identified by ``PieceId2``, remove the ``PieceId2`` piece(s), and move the ``PieceId1`` piece(s) to that Location_.
 
-  + The piece moved from Location1 to Location2 will be placed after all the other pieces in the internal ordering.
-  + ``Location1:Location2`` is equivalent to ``*Location2 Location1-Location2``.
+  + The ``PieceId1`` piece(s) that are moved will be placed after all the other pieces in the internal ordering.
+  + Let ``Location`` be the location of the piece(s) represented by ``PieceId2``, then ``PieceId1:PieceId2`` is equivalent to ``*PieceId2 PieceId1-Location``.
 
-* ``=`` is used to replace pieces on the board with new piece.  It can also be used to flip/rotate a piece.  ``Location=Piece`` means replace the top piece at Location_ to Piece_ e.g. ``b5=S> {replace top piece at b5 with Suns coin back oriented right}``.
+* ``=`` is used to replace pieces on the board with new pieces.  It can also be used to flip/rotate a piece.  ``PieceId=PieceSpec`` means replace the piece identified PieceId_ to PieceSpec_ e.g. ``b5=S> {replace top piece at b5 with Suns coin back oriented right}``.
 
 To implement in the future?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -328,7 +385,6 @@ To implement in the future?
 
 * Allow specifying specific pieces within a location to move or remove:
 
-  + Tak-style number prefix e.g. ``2b4-b3*2a2 {Move top two pieces at b4 to b3 and remove top two pieces at a2}``
   + Array-slicing style suffixes.  Examples::
 
       b4[1:2]-b3*a2[1:2] {move top two pieces at b4 to b3 and remove top two pieces at a2}
