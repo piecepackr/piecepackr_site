@@ -20,7 +20,7 @@
 .. _rgl: https://cran.r-project.org/package=rgl
 .. _tweenr: https://cran.r-project.org/package=tweenr
 
-.. _ccgames: https://github.com/piecepackr/ccgames
+.. _tradgames: https://github.com/piecepackr/tradgames
 .. _ppgames: https://github.com/piecepackr/ppgames
 .. _piecepackr: https://github.com/piecepackr/piecepackr
 .. _piecepackr3d: https://github.com/piecepackr/piecepackr3d
