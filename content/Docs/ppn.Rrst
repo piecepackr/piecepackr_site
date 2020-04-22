@@ -2,7 +2,7 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2020-04-19
+:modified: 2020-04-21
 
 **Version: 0.6.0**
 
@@ -147,6 +147,7 @@ Metadata
 * All Metadata keys are optional.
   
   + If the Metadata section is empty PPN parsers should use the default Movetext parser described in a later section to interpret the Movetext_ (without doing any initial game piece setup).
+  + One can specify the Movetext parser to use (possibly a diferent one for each game) via the ``MovetextParser`` key with a string indicating the parser to use.  Movetext parsers are passed both the Metadata section and the Movetext section.
 
 
 Movetext
@@ -159,7 +160,6 @@ Movetext
 To implement in the future?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Allow the PPN parser to use a Movetext parser different from the default one by setting the ``MovetextParser`` key with a string indicating the parser to use.
 * Support PGN_-style "Tag Pair" syntax as an alternate way to express a key/pair in the Metadata_ "Mapping".  
 * Make recommendations about which key/value pairs to use in the Metadata_ section and more standard ways to express them.
 
@@ -187,9 +187,10 @@ Default Movetext Parser
 Setup
 ~~~~~
 
-* Currently the Movetext Parser uses the ``GameType`` field in the Metadata_ to provide game setup.  This value should either be a string with the game's name or a mapping with the field ``Name`` with the game's name (all other values of this mapping will be passed to the setup).
+* Currently the Movetext Parser uses the ``SetUp`` field in the Metadata_ to provide game setup, if that field is missing it will use the ``GameType`` field to provide game setup.  This value should either be a string with the game's name or a mapping with the field ``Name`` with the game's name and optionally ``System`` of the game system to use (for games that can be played with multiple game systems); all other values of this mapping will be passed to the setup.
 
   + Although in general tags will treated case sensitive in this case we first process the string by converting to lower case, removing apostrophes and hyphens, "squishing" the whitespace, and converting spaces to underscores e.g. "Nine Men's Morris" will be treated as equivalent to "nine_mens_morris".  Occasionally we will provide aliases e.g. "Baroque chess" will be treated as an alias for "Ultima".
+  + A ``SetUp`` of ``None`` will explicitly do a initial board setup with no pieces at all.
 
 ``GameType`` example of just string of game's name for setup::
 
