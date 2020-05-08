@@ -1,0 +1,45 @@
+Relativity
+==========
+
+:date: 2020-05-08
+:tags: ppgames
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("games-relativity")
+.. ..
+
+.. include:: ../../links.rst
+
+`Relativity <http://www.ludism.org/ppwiki/Relativity>`__ is a piecepack game by Ron and Marty Hale-Evans.  It is a two-player abstract game with interesting movement mechanics.  Being able to distinguish ranks is important while being able to distinguish suits is not important so a piecepack design optimized for playing this game may consider coloring *ranks* instead of *suits*.
+
+.. {r relativity, results='hide', message=FALSE}
+library("piecepackr")
+library("ppgames", warn.conflicts=FALSE)
+cfg <- as.list(game_systems("dejavu")$piecepack)
+cfg$suit_color <- "black"
+cfg$background_color.r1 <- "#E69F00"
+cfg$background_color.r2 <- "#56B4E9"
+cfg$background_color.r3 <- "#009E73"
+cfg$background_color.r4 <- "#F0E442"
+cfg$background_color.r5 <- "#D55E00"
+cfg$background_color.r6 <- "#F079A7"
+cfg <- pp_cfg(cfg)
+
+ppn_file <- system.file("ppn/relativity.ppn", package = "ppgames")
+game <- read_ppn(ppn_file)[[1]]
+animate_game(game, file = "relativity.gif", cfg = cfg,
+             trans = op_transform, op_scale = 0.5, 
+             n_transitions = 15, n_pauses = 10, fps = 12.5)
+.. ..
+
+.. {r move, echo=FALSE}
+invisible(file.rename('relativity.gif', '../images/knitr/relativity.gif'))
+
+.. ..
+
+.. figure:: {static}/images/knitr/relativity.gif
+    :alt: Animation of a Relativity game
+    :align: center
+
+    Animation of a round of a game of Relativity

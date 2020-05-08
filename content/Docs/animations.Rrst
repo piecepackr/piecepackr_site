@@ -79,7 +79,8 @@ puzzle2 <- matrix(c(4,4,4,5,2,0,2,4,0,3,1,1,
                     1,2,5,3,3,5,3,2,5,1,0,0), nrow=2, byrow=TRUE)
 s2 <- solve_fujisan(coins=puzzle2)
 game <- read_ppn(textConnection(s2$ppn))[[1]]
-animate_game(game, op_scale=1, op_angle=90, trans=op_transform, cfg=cfg, file="fujisan.gif")
+animate_game(game, file="fujisan.gif", cfg=cfg,
+             op_scale=1, op_angle=90, trans=op_transform)
 .. ..
 
 .. {r move3, echo=FALSE}

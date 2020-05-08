@@ -40,7 +40,7 @@ Command-line installation instructions (for Ubuntu):
    cabal update # add $HOME/.cabal/bin to $PATH
    cabal install pandoc
 
-   sudo apt install r-base librsvg2-dev texlive-xetex
+   sudo apt install r-base librsvg2-dev texlive-xetex cargo
 
 R package installation instructions (start R with ``R``):
 
