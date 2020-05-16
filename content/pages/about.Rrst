@@ -29,19 +29,19 @@ These are in depth articles on specific subjects of interest to piecepackr_ user
 
 Also consider looking at each of the R packages built-in documentation:
 
-.. list-table:: Links to R packages' built-in documentation
+.. list-table:: Links to pretty html rendering of R packages' built-in documentation
    :header-rows: 1
 
    * - Package
      - Type
    * - piecepackr_
-     - `development <https://trevorldavis.com/R/piecepackr/dev>`__
+     - `development <https://trevorldavis.com/R/piecepackr/dev>`__, `release <https://trevorldavis.com/R/piecepackr>`__
    * - ppgames_
-     - `development <https://trevorldavis.com/R/ppgames/dev>`__
+     - `development <https://trevorldavis.com/R/ppgames/dev>`__, `preview <https://trevorldavis.com/R/ppgames>`__
    * - piecenikr_
-     - `development <https://trevorldavis.com/R/piecenikr/dev>`__
+     - `development <https://trevorldavis.com/R/piecenikr/dev>`__, `preview <https://trevorldavis.com/R/piecenikr>`__
    * - tradgames_
-     - `development <https://trevorldavis.com/R/tradgames/dev>`__
+     - `development <https://trevorldavis.com/R/tradgames/dev>`__, `preview <https://trevorldavis.com/R/tradgames>`__
 
 Demos
 -----
@@ -60,15 +60,16 @@ These are the `Print & Play demos`_ which demonstrate the code used to generate 
 #. `Chess-ranked piecepacks <{filename}/Demos/chess_pnp.rst>`_
 #. `Reversi-friendly piecepack <{filename}/Demos/reversi_pnp.rst>`_
 
-Diagrams for Specific Piecepack Games
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Visualizations for Specific Piecepack Games
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-These are demonstrations of using piecepackr_ and ppgames_ to make diagrams_ for specific piecepack_ games:
+These are demonstrations of using piecepackr_ and ppgames_ to make visualizations for specific `piecepack games <{tag}ppgames>`__:
 
 #. `Backgammon <{filename}/Demos/backgammon_game.rst>`_
 #. Several `chess <{filename}/Demos/chess_pnp.rst>`_ variants
 #. `Cribbage <{filename}/Demos/cribbage_game.rst>`_
 #. `Everest <{filename}/Demos/everest_game.rst>`_
+#. `Relativity <{filename}/Demos/relativity_game.rst>`_ (featuring a rank-colored piecepack)
 #. `Tablut <{filename}/Demos/tablut_game.rst>`_
 #. `Triactor <{filename}/Demos/jcd.rst>`_ (featuring the JCD piecepack)
 
