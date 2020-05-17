@@ -16,7 +16,7 @@ set_opts_chunk("docs-configuration")
 
 .. include:: ../../links.rst
 
-piecepackr_ allows one to alter the appearance of one's piecepack_ graphics through the use of configuration lists.  Here is an example:
+piecepackr_ allows one to alter the appearance of one's board game pieces through the use of configuration lists.  Here is an example:
 
 .. {r example, fig.width=13, fig.height=7.05, out.width="90%", fig.cap="Configuration list example"}
 library("grid")
@@ -31,7 +31,7 @@ cfg <- c(piecepack_suits, dark_colorscheme, traditional_ranks)
 gp_text <- gpar(fontsize=25, fontface="bold")
 grid.text("grid.piece('preview_layout')", x=0.25, y=0.90, gp=gp_text)
 pushViewport(viewport(x=0.25, y=0.43, width=inch(6)))
-grid.piece("preview_layout", cfg=)
+grid.piece("preview_layout")
 popViewport()
 grid.text("grid.piece('preview_layout', cfg=cfg)", x=0.75, y=0.90, gp=gp_text)
 pushViewport(viewport(x=0.75, y=0.43, width=inch(6)))
@@ -39,10 +39,10 @@ grid.piece("preview_layout", cfg=cfg)
 popViewport()
 .. ..
 
-There are lot more examples of customizing piecepack appearances with configuration lists in the `Print & Play demos`_.
+There are lot more examples of customizing piecepack piece appearances with configuration lists in the `Print & Play demos`_.
 
-Although one can further customize the appearance of one's piecepack graphics through the use of `custom grob functions`_ the default piecepackr_ grob function uses the configuration list to determine a piecepack component's shape, "primary" symbol,"directional mark" symbol, and gridlines (if any).  
-This program uses the abstraction that every piecepack component has a "component_side" name (like ``belt_face``), a suit, a rank, a primary symbol, a directional mark symbol, and embellishments like border lines, grid lines, and padding.  On top of the normal "suited" piecepack suits this program also recognizes an extra "unsuit" suit which is used to configure "neutral" components like tile backs and coin faces.  Although the primary and directional mark symbols can be configured directly (i.e. ``tile_face.ps_fontsize``) they are often configured indirectly by specifying various "suit" and "rank" symbol configurations (i.e. ``rank_cex``).
+Although one can further customize the appearance of one's board game pieces through the use of `custom grob functions`_ the default piecepackr_ grob function uses the configuration list to determine a board game component's shape, "primary" symbol,"directional mark" symbol, and gridlines (if any).  
+This program uses the abstraction that every board game component has a "component_side" name (like ``belt_face``), a suit, a rank, a primary symbol, a directional mark symbol, and embellishments like border lines, grid lines, and padding.  On top of the normal "suited" piecepack suits this program also recognizes an extra "unsuit" suit which is used to configure "neutral" components like tile backs and coin faces.  Although the primary and directional mark symbols can be configured directly (i.e. ``tile_face.ps_fontsize``) they are often configured indirectly by specifying various "suit" and "rank" symbol configurations (i.e. ``rank_cex``).
 
 Configurations are *often* allowed to be comma-separated to be able to specify different values for different suits or ranks e.g. ``background_color=white`` or ``background_color=pink,grey,grey,pink,white`` (note how the last [5th] element specifies that the "unsuit" background color should be "white").  
 
