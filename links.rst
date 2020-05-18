@@ -10,6 +10,7 @@
 .. _Stackpack: http://ludism.org/ppwiki/StackPack
 .. _Anatomy of a Piecepack: http://www.piecepack.org/Anatomy.html
 .. _Quivira: http://www.quivira-font.com/
+.. _Looney Pyramids: https://www.looneylabs.com/looney-pyramids
 
 .. _R: https://cran.r-project.org/
 .. _grid: https://www.rdocumentation.org/packages/grid
@@ -20,11 +21,10 @@
 .. _rgl: https://cran.r-project.org/package=rgl
 .. _tweenr: https://cran.r-project.org/package=tweenr
 
-.. _tradgames: https://github.com/piecepackr/tradgames
 .. _ppgames: https://github.com/piecepackr/ppgames
 .. _piecepackr: https://github.com/piecepackr/piecepackr
-.. _piecepackr3d: https://github.com/piecepackr/piecepackr3d
 .. _piecenikr: https://github.com/piecepackr/piecenikr
+.. _tradgames: https://github.com/piecepackr/tradgames
 
 .. _man pages: https://trevorldavis.com/R/piecepackr
 

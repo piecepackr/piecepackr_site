@@ -6,9 +6,9 @@ About
 
 .. include:: ../../links.rst
 
-This is the associated website for the piecepackr_  and ppgames_ R_ packages.  piecepackr_ is an R package designed to make configurable board game graphics. It can be used with the grid_ R package to make board game diagrams_, board game animations_, and custom `Print & Play`_ layouts.  By default it is configured to make `piecepack game`_ diagrams_, animations_, and `Print & Play`_ layouts but can be configured to make graphics for `other game systems`_.  ppgames_ is an R_ package with functions for generating piecepack_ game graphics, rulesets, and books as well as functions to parse "`Portable Piecepack Notation`_" files and a Fuji-san solver.
+This is the associated website for the piecepackr_, ppgames_, piecenikr_, and tradgames_ R_ packages.  piecepackr_ is an R package designed to make configurable board game graphics. It can be used with the grid_, rayrender_, and rgl_ graphic systems to make board game diagrams_, board game animations_, and custom `Print & Play`_ layouts.  By default it is configured to make `piecepack game`_ diagrams_, animations_, and `Print & Play`_ layouts but can be configured to make graphics for `other game systems`_.  ppgames_ is an R_ package with functions for generating piecepack_ game graphics, rulesets, and books as well as functions to parse and visualize games recorded using "`Portable Piecepack Notation`_" format plus a Fuji-san solver.  piecenikr_ contains functions for visualizing `Looney Pyramids`_ games while tradgames_ contains functions for visualizing games played with traditional game systems (such as checkers sets).
 
-This website contains several articles of documentation_ on how to use piecepackr_ and ppgames_ as well as some relevant theory and resources.  There are several demos_ using the packages.  It also contains the download links for several `Print & Play`_ pdfs of the piecepacks configured in the `Print & Play demos`_ that can be used to build your own piecepack_.  Here is a "Site Map" of the articles on this site:
+This website contains several articles of documentation_ on how to use these R_ packages as well as some relevant theory and resources plus several demos_ of the software in action.  It also contains the download links for several `Print & Play`_ pdfs of the piecepacks configured in the `Print & Play demos`_ that can be used to build your own piecepack_.  Here is a "Site Map" of the articles on this site:
 
 .. contents:: Site Map
 
@@ -81,7 +81,7 @@ These are demonstrations of using piecepackr_ to make diagrams for `other game s
 #. `Checkers <{filename}/Demos/checkers.rst>`_
 #. `Dominoes and standard 6-sided dice <{filename}/Demos/dominoes.rst>`_
 #. `Hexpack <{filename}/Demos/hexpack.rst>`_
-#. `Looney Pyramids <{filename}/Demos/looney_pyramids.rst>`_
+#. `Looney Pyramids <{filename}/Demos/looney_pyramids.rst>`__
 #. `Tak <{filename}/Demos/tak.rst>`_
 
 Integrating with other pieceapck art assets
