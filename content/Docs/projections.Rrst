@@ -144,14 +144,16 @@ rgl (piece3d)
 library("ppgames", warn.conflicts = FALSE)
 library("rgl")
 
-df <- ppgames::df_four_field_kono()
-envir <- piecepackr::game_systems("dejavu3d")
+invisible(rgl::open3d())
+rgl::view3d(phi=-30, zoom = 0.8)
 
-rgl.open()
-view3d(phi=-30, zoom = 0.8)
+df <- ppgames::df_four_field_kono()
+envir <- game_systems("dejavu3d")
 pmap_piece(df, piece3d, trans=op_transform, envir = envir, scale = 0.98, res = 150)
 .. ..
 .. {r move, echo=FALSE}
+if (Sys.which("wmctrl") != "") system("wmctrl -r RGL -e 0,-1,-1,600,600")
+Sys.sleep(2)
 rgl.snapshot("rgl_snapshot.png", top = FALSE)
 rgl.close()
 invisible(file.rename('rgl_snapshot.png', '../images/knitr/rgl_snapshot.png'))
@@ -174,7 +176,7 @@ library("rayrender")
 df <- ppgames::df_four_field_kono()
 envir <- piecepackr::game_systems("dejavu3d")
 l <- pmap_piece(df, piece, trans=op_transform, envir = envir, scale = 0.98, res = 150)
-scene <- do.call(dplyr::bind_rows, l)
+scene <- Reduce(rayrender::add_object, l)
 render_scene(scene, lookat = c(2.5, 2.5, 0), lookfrom = c(0, -2, 13))
 .. ..
 
@@ -201,6 +203,6 @@ For best results one should render with a 3D graphics system like rgl_ or rayren
 .. {r rayrender2, fig.width=5, fig.height=5, fig.cap="Pyramids are best rendered with a 3D graphics system like rayrender"}
 library("rayrender")
 l <- pmap_piece(df, piece, trans=op_transform, scale = 0.98, res = 150)
-scene <- do.call(dplyr::bind_rows, l)
+scene <- Reduce(rayrender::add_object, l)
 render_scene(scene, lookat = c(2.5, 2.5, 0), lookfrom = c(0, -2, 10))
 .. ..

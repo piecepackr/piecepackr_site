@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2020-03-03
+:modified: 2020-05-23
 
 .. contents::
 
@@ -276,6 +276,24 @@ Table of configuration list styles
     * - op_grob_fn
       - Which function to use to make a 3D ``grob`` of the game piece
         when the piece is drawn with an `oblique projection`_. Introduced in v1.3.
+      -
+      -
+    * - obj_fn
+      - Which function to use to save Wavefront OBJ file of the game piece
+        (which is used by default ``piece`` and ``piece3d`` functions).  Introduced in v1.4.
+      -
+      -
+    * - rayrender_fn
+      - Which function to use to create game pieces for use with rayrender graphic system (via ``piece`` function).  Introduced in v1.4.
+      -
+      -
+    * - rgl_fn
+      - Which function to use to draw game pieces in rgl graphic system (via ``piece3d`` function).  Introduced in v1.4.
+      -
+      -
+    * - obj_fn
+      - Which function to use to save Wavefront OBJ file of the game piece
+        (which by default is used by ``piece`` and ``piece3d`` functions).  Introduced in v1.4.
       -
       -
     * - title

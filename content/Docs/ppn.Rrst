@@ -2,9 +2,9 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2020-04-21
+:modified: 2020-05-23
 
-**Version: 0.6.0**
+**Version: 0.7.0**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of piecepack games but the structure is designed to in the future allow support for parsing alternative notation systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
@@ -155,21 +155,12 @@ Movetext
 
 * Regardless of the Movetext parser to be used the Movetext should not have any lines *starting* with ``---`` or ``...``
 * Should be (initially) parsed as UTF-8 text without restrictions on line length.
-* Additional restrictions based on which Movetext parser is used to parse it.  The default Movetext parser and its additional restrictions will be described in a later section.
-
-To implement in the future?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* Support PGN_-style "Tag Pair" syntax as an alternate way to express a key/pair in the Metadata_ "Mapping".  
-* Make recommendations about which key/value pairs to use in the Metadata_ section and more standard ways to express them.
-
-  + "Event", "Site", "Date", "Result" are consistently found in PGN_-derived notations such as PBN_, PDN_, and PSN_ (although the interpretation for "Result" differs) whereas "White", "Black", and "Round" are not (for example PBN_ uses"West", "North", "East", "South").  "Setup" also seems a good candidate to make recommendations about (and PPN exporters should explicitly setup boards with random starts since "seeds" may not be portable across programming languages).  PGN_ distinguishes between "no value" with "-" (i.e. no title, no ELO rating, etc.) and "unknown value" with "?".  "Date" seems to be interpreted as the start date for games that take more than one day to play.  Maybe suggest an "Id" tag to automatically label parsed games so could be easy (if each game has unique ID) to find a particular game in file (without needing to query multiple fields).
+* Additional restrictions based on which Movetext parser is used to parse it.  The default Movetext parser and its additional restrictions are described in the `Default Movetext Parser`_ section.
 
 Default Movetext Parser
 -----------------------
 
 * The default Movetext Parser will supports automatic Setup_ for various piecepack games via the Metadata_ mapping.
-
 
 * The default Movetext Parser supports the following Movetext elements: 
   
@@ -192,15 +183,17 @@ Setup
   + Although in general tags will treated case sensitive in this case we first process the string by converting to lower case, removing apostrophes and hyphens, "squishing" the whitespace, and converting spaces to underscores e.g. "Nine Men's Morris" will be treated as equivalent to "nine_mens_morris".  Occasionally we will provide aliases e.g. "Baroque chess" will be treated as an alias for "Ultima".
   + A ``SetUp`` of ``None`` will explicitly do a initial board setup with no pieces at all.
 
-``GameType`` example of just string of game's name for setup::
+  + ``GameType`` example of just string of game's name for setup::
 
-    GameType: Four Field Kono
+        GameType: Four Field Kono
 
-``GameType`` example that allows passing more info to setup ::
+  + ``GameType`` example that allows passing more info to setup ::
 
-    GameType:
-      Name: Fujisan
-      Seed: 11
+        GameType:
+          Name: Fujisan
+          Seed: 11
+
+* The default movetext parser accepts the optional argument ``ScalingFactor`` which changes how many "inches" a coordinate represents i.e. with ``ScalingFactor: 2`` then ``a1`` corresponds to an x-coordinate of 2 inches and a y-coordinate of 2 inches.
 
 Comments
 ~~~~~~~~
@@ -337,6 +330,12 @@ Chess-algebraic-style coordinates
 
 * The digits are considered to the y-coordinate encoded as a (base-10) integer.
 
+Get location from PieceId
++++++++++++++++++++++++++
+
+* A PieceId_ string preceded by a ``&``.
+
+
 PieceId
 ~~~~~~~
 
@@ -345,7 +344,11 @@ A PieceId_ is used to identify specific pieces on the board.  Currently PPN_ sup
 * A Location_ is used to identify the top piece at that Location_
 * ``N Location`` is used to identify the top ``N`` pieces at that Location_
 
-  + An example would be ``2b4-b3*2a2 {Move top two pieces at b4 to b3 and remove top two pieces at a2}``
+  + An example would be ``2b4-b3*2a2 {Move top two pieces at b4 to b3 and remove top two pieces at a2}``.
+
+* A PieceId_ preceded by a ``^`` identifies the piece from the game state at the beginning of the move 
+  
+  + An example would be ``a1-a2 a2-a3 {equivalent to a1-a3}`` versus ``a1-a2 ^a2-a3 {equivalent to a2-a3 a1-a2}``.
 
 MoveToken
 ~~~~~~~~~
@@ -364,113 +367,13 @@ The default movetext parser supports the following MoveTokens:
 
   + It will be placed after all the other pieces in the internal ordering.
 
-* ``:`` is used to represent a "displacement capture".  ``PieceId1:PieceId2``.  We find the Location_ of the piece(s) identified by ``PieceId2``, remove the ``PieceId2`` piece(s), and move the ``PieceId1`` piece(s) to that Location_.
+* ``:`` is used to represent a "displacement capture".  ``PieceId1:PieceId2`` means find the Location_ of the piece(s) identified by ``PieceId2``, remove the ``PieceId2`` piece(s), and move the ``PieceId1`` piece(s) to that Location_.
 
   + The ``PieceId1`` piece(s) that are moved will be placed after all the other pieces in the internal ordering.
   + Let ``Location`` be the location of the piece(s) represented by ``PieceId2``, then ``PieceId1:PieceId2`` is equivalent to ``*PieceId2 PieceId1-Location``.
 
 * ``=`` is used to replace pieces on the board with new pieces.  It can also be used to flip/rotate a piece.  ``PieceId=PieceSpec`` means replace the piece identified PieceId_ to PieceSpec_ e.g. ``b5=S> {replace top piece at b5 with Suns coin back oriented right}``.
 
-To implement in the future?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* ``#`` is used to represent a "piece swap".  Let ``Location1`` and ``Location2`` represent the Location_ of ``PieceId1`` and ``PieceId2`` respectively, then ``PieceId1:PieceId2`` is equivalent to ``^PieceId1-Location2 ^PieceId2-Location1``.
 
-* Allow ``=`` moves at the end of a move i.e. ``b7-b8=4``.
-
-* Allow the dropping of pieces "beneath" other pieces.  Perhaps use ````` or ``&`` for this?  Example::
-
-   A3`b4 {Place a three of Arms tile face under any pieces at b4}
-
-* Allow the moving of pieces "beneath" other pieces.  Perhaps use ``\`` for this?  Example::
-
-    b2\b4 {Move the top piece from b2 under any pieces at b4}
-
-* Allow specifying specific pieces within a location to move or remove:
-
-  + Array-slicing style suffixes.  Examples::
-
-      b4[1:2]-b3*a2[1:2] {move top two pieces at b4 to b3 and remove top two pieces at a2}
-      *b4[$] {Remove last piece at b4}
-      *b4[*] {Remove all pieces at b4}
-
-    - Index starting with one or zero?  Use as shortcuts ``*`` for all and ``$`` for last or board?
-
-* When moving pieces on top (or beneath) a location instead of putting all the way on top (or beneath) allow specifying the exact piece to place after (or before) in the internal piece ordering by enclosing it in ``<>`` examples::
-
-    C@b3<b3[2]> {Place a Crowns coin back right above the second piece at b3 (and hence under the top piece)}
-    C@b3<b2[$]> {Place a Crowns coin back right "after" the bottom piece at b2 (perhaps a tile) in the internal ordering}
-    b4[3]-b5<b5[2]> {Move the 3rd piece at b4 to b5 right above the 2nd piece}
-
-  - Index starting with one or zero?
-  - Allow array specification as shortcut for where to place a piece e.g. ``b2@b5[2]`` as shortcut for ``b2@b5<b5[2]>``?
-
-  + Two Bash-style brace expansions in an expression form a "cross product", would be nice to have a way to force a "pairwise product" instead, maybe by using ```'`` or use an alternative form of bracketing to braces (although there are already proposed uses for ``()``, ``[]``, ``<>``, and `````)?::
-
-     `0..5'@`a..f'`1..6' {equivalent to 0@a1 1@b2 2@c3 3@d4 4@e5 5@f6}
-
-* Allow flipping pieces over with ``+``::  
-
-    S@a3 +b{3..7} {Put Suns coin back at a3 then flip over top pieces from b3 to b7}
-
-* Allow specifying which pieces to move or remove by piece info instead of location.  
-  
-  + Perhaps use ``?`` and ``/`` with Simplified_ piece notation with ``/`` being a "greedy" search (wide interpretation possibly capturing multiple pieces) and ``?`` being a "lazy" search (narrow interpration to get exactly one piece [if only using one piecepack])::
-
-     */S {Remove all the Suns pieces from board}
-     *?S {Remove the null of Suns coin back from board}
-     /cf2-b3 {Move all 2-valued coin-faces to b3}
-     5@?cA2 {Put a 5-valued coin on top of the 2 of Arms coin}
-
-* Allow expressing macros in Metadata_ section for pieces and/or locations
-
-  + Allow to be letters, numbers, and underscores.
-  + Parse macros into normal Piece/Location notation and then parse Piece/Location notation as normal.
-  + Allow even more flexibility by allowing specification of functions to automatically adjust location/piece i.e. a function to automatically generate hexagonal coordinates?
-  + Prepend with a character like ``$`` or ``&`` for easier parsing?
-
-* Implement a more flexible "Complex" piece notation that can support adding pieces from other game systems and non-90 degree rotations
-
-  + Especially valuable if combined with macros since players wouldn't necessarily need to use this notation in their games
-
-  + Perhaps start with ``piece_side`` and/or piece specification from Simplified_ notation followed by a ``;`` and then (optionally) specify:
-   
-    - suit with ``s#;`` ( ``#`` a number starting from 0)
-    - rank with ``r#;`` ( ``#`` a number starting with 0)
-    - angle with ``a#;`` ( ``#`` degrees)
-    - reserve ``x#;`` and ``y#;`` for possible expressing 3d-tilt in far future
-    - put expansion or game system at end (default assume "piecepack")
-      
-      + can contain letters numbers and underscore but can't be a single character plus number
-
-    Examples::
-
-       tile_back
-       5;a45 {5-valued coin angled 45 degrees}
-       tf;r5;s0;playing_card_expansion {5 of Hearts tile face}
-       pyramid_top;s0;r2;icehouse_pyramids {two-pipped red icehouse pyramid}
-       tf;s0;r3;a90;blue_dominoes {a blue null-3 blue domino rotated 90-degrees}
-
-* Additional enhancements to the "Simplified" piece notation
-
-  + Use ⚀ ⚁ ⚂ ⚃ ⚄ ⚅ to represent standard d6 dice, use the color suits to indicate a special color
-  + `Domino Tile Unicode <https://en.wikipedia.org/wiki/Domino_Tiles>`__  for adding Dominoes.  Maybe if no suit info assume regular dominoes and if suit info assume special dominoes i.e. ``R🁦`` would be equivalent to ``tile_face;r0;s3;dominoes_red`` which may be stylized as red dominoes.
-
-* Allow rotating pieces (other than with ``=`` notation).  Perhaps use ``>`` and ``<``?::
-
-    b4> {Rotate piece at b4 90 degrees to the right}
-    b4>> {Rotate piece at b4 180 degrees}
-
-  + Allow at end of a move?
-  + Maybe allow degrees afterwards (in which case maybe force direction to end of Simplified_ piece notation and allow it there as well?)::
-
-      b4>45 {Rotate piece at b4 45 degrees to the right}
-      b4<25 {Rotate piece at b4 25 degrees to the left}
-
-* Allow relative moves.  
-
-  + Perhaps use coordinates enclosed by ``[]`` instead of ``()``::
-
-      b4-[+3,-2] {Move piece on top of b4 right 3 and down 2}
-
-  + Perhaps also an option that supports relative polar coordinates to make it easier to support hex arrangements::
-
-      b4-<45,2.5>
+* ``@>`` is used to rotate a piece clockwise.  ``PieceId@>Degrees`` rotates the piece(s) represented by ``PieceId`` clockwise ``Degrees`` degrees.
