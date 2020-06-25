@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Trevor L Davis'
-SITENAME = u'piecepackr: Piecepack Graphics in R'
+SITENAME = u'piecepackr: Board game graphics'
 SITEURL = 'https://trevorldavis.com/piecepackr'
 
 PATH = 'content'
