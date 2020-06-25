@@ -1,0 +1,149 @@
+News
+====
+
+:date: 2020-06-24
+
+.. include:: ../../links.rst
+
+This page is a reverse chronological list of major changes by quarter.
+
+2020-Q2
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecenikr v0.1.1-preview <https://github.com/piecepackr/piecenikr/releases/tag/v0.1.1>`_
+* `piecepackr v1.3.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.3.1>`_
+* `piecepackr v1.4.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.4.1>`_
+* `ppgames v0.4.1-preview <https://github.com/piecepackr/ppgames/releases/tag/v0.4.1>`_
+* `tradgames v0.1.1-preview <https://github.com/piecepackr/tradgames/releases/tag/v0.1.1>`_
+
+New demos
+~~~~~~~~~
+
+* `Relativity <{filename}/Demos/relativity_game.rst>`_ (featuring a rank-colored piecepack)
+
+Updated webpages
+~~~~~~~~~~~~~~~~
+
+* `Configuration lists`_
+* `Portable Piecepack Notation <{filename}/Docs/ppn.rst>`_
+
+2020-Q1
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.2.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.2.1>`_
+* `ppgames v0.3.1-preview <https://github.com/piecepackr/ppgames/releases/tag/v0.3.1>`_
+
+New demos
+~~~~~~~~~
+
+* `Checkers <{filename}/Demos/checkers.rst>`_
+* `Dominoes and standard 6-sided dice <{filename}/Demos/dominoes.rst>`_
+* `Generating alternative textures for James H. Vipond's piecepack components <{filename}/Demos/vipond_textures.rst>`_
+* `Looney Pyramids <{filename}/Demos/looney_pyramids.rst>`__
+* `Reversi-friendly piecepack <{filename}/Demos/reversi_pnp.rst>`_
+
+Updated webpages
+~~~~~~~~~~~~~~~~
+
+* `3D projections <{filename}/Docs/projections.rst>`_
+* `Chess-ranked piecepacks <{filename}/Demos/chess_pnp.rst>`_
+* `Configuration lists`_
+* `Tak <{filename}/Demos/tak.rst>`_
+
+2019-Q4
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.1.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.1.1>`_
+* `ppgames v0.2.1-preview <https://github.com/piecepackr/ppgames/releases/tag/v0.2.1>`_
+
+New demos
+~~~~~~~~~
+
+* `Chess-ranked piecepacks <{filename}/Demos/chess_pnp.rst>`_
+* `Everest <{filename}/Demos/everest_game.rst>`_
+* `Triactor <{filename}/Demos/jcd.rst>`_ (featuring the JCD piecepack)
+
+New docs
+~~~~~~~~
+
+* `Game starting arrangement functions <{filename}/Docs/game_starts.rst>`_
+
+Updated webpages
+~~~~~~~~~~~~~~~~
+
+* `About <{filename}/pages/about.rst>`_
+* `Animations`_
+* `Hexpack <{filename}/Demos/hexpack.rst>`_
+
+2019-Q3
+-------
+
+New docs
+~~~~~~~~
+
+* `Portable Piecepack Notation <{filename}/Docs/ppn.rst>`_
+* `Unicode piecepack diagrams <{filename}/Docs/unicode_diagrams.rst>`_
+* `Unicode piecepack symbols <{filename}/Docs/unicode_symbols.rst>`_
+
+Updated webpages
+~~~~~~~~~~~~~~~~
+
+* `3D projections <{filename}/Docs/projections.rst>`_
+
+2019-Q2
+-------
+
+* The first "stable" release of piecepackr_ on CRAN.
+* This website is created.
+
+New demos
+~~~~~~~~~
+
+* `Backgammon <{filename}/Demos/backgammon_game.rst>`_
+* `Chinese Zodiac ranked piecepack <{filename}/Demos/zodiac_cn_pnp.rst>`_
+* `Cribbage <{filename}/Demos/cribbage_game.rst>`_
+* `Daniel Ajoy's Dingbats suited piecepack <{filename}/Demos/dingbats_pnp.rst>`_
+* `Dual piecepacks`_
+* `Hexpack <{filename}/Demos/hexpack.rst>`_
+* `"Orthodox" (Anatomy of a Piecepack Standard) piecepack <{filename}/Demos/orthodox_pnp.rst>`_
+* `piecepackr's default piecepack <{filename}/Demos/default_pnp.rst>`_
+* `Rainbow Deck suited piecepack <{filename}/Demos/default_pnp.rst>`_
+* `Tak <{filename}/Demos/tak.rst>`_
+* `Tablut <{filename}/Demos/tablut_game.rst>`_
+
+New docs
+~~~~~~~~
+
+* `3D projections <{filename}/Docs/projections.rst>`_
+* `Animations`_
+* `Configuration lists`_
+* `Custom grob functions`_
+* `Intro to piecepackr's API <{filename}/Docs/intro.rst>`_
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.0.2 <https://github.com/piecepackr/piecepackr/releases/tag/v1.0.2>`_
+* `ppgames v0.1.0-preview <https://github.com/piecepackr/ppgames/releases/tag/v0.1.0>`_
+
+2019-Q1
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v.11.0-preview <https://github.com/piecepackr/piecepackr/releases/tag/v0.11.0-preview>`_
+
+2018-Q4
+-------
+
+* The alpha version of piecepackr_ wins a Special Achievement award in the eight community piecepack game design contest `Where No One Has Gamed Before <http://www.ludism.org/ppwiki/Where_No_One_Has_Gamed_Before_Results>`_.
