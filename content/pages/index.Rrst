@@ -3,5 +3,7 @@ About
 
 :date: 2019-03-27
 :modified: 2019-10-08
+:status: hidden
+:save_as: index.html
 
 .. include:: ../../about.rst
