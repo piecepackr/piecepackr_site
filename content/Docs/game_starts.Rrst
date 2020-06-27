@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2020-02-20
+:modified: 2020-06-26
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -91,6 +91,14 @@ Table of Supported Game Start Functions
       -
     * - `Alien City <http://www.ludism.org/ppwiki/AlienCity>`_
       - df_alien_city
+      -
+      -
+    * - `Alquerque <https://en.wikipedia.org/wiki/Alquerque>`_
+      - df_alquerque
+      -
+      -
+    * - `Awithlaknannai Mosona <https://en.wikipedia.org/wiki/Awithlaknannai_Mosona>`_
+      - df_awithlaknannai_mosona
       -
       -
     * - `Backgammon <http://www.ludism.org/ppwiki/Backgammon>`_
@@ -257,6 +265,10 @@ small_tiles <- as.list(cfgs$piecepack)
 small_tiles$width.tile = 1.75
 small_tiles <- pp_cfg(small_tiles)
 
+png("../share/rules/alquerque.png", width=6, height=6, units="in", res=72)
+pmap_piece(df_alquerque(), cfg=two_player, default.units="in")
+invisible(dev.off())
+
 png("../share/rules/american_checkers.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_american_checkers(), cfg=two_player, default.units="in")
 invisible(dev.off())
@@ -264,6 +276,10 @@ save_ruleset("american-checkers", gk_2p, "../share/rules/american_checkers.pdf")
 save_ruleset("american-checkers", gk_2p, "../share/rules/american_checkers_A4.pdf", size="A4")
 save_pamphlet("american-checkers", gk_2p, "../share/rules/american_checkers_pamphlet.pdf")
 save_pamphlet("american-checkers", gk_2p, "../share/rules/american_checkers_pamphlet_A4.pdf", size="A4")
+
+png("../share/rules/awithlaknannai_mosona.png", width=25.5, height=5.2, units="in", res=36)
+pmap_piece(df_awithlaknannai_mosona(), cfg=two_player, default.units="in")
+invisible(dev.off())
 
 png("../share/rules/breakthrough.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_breakthrough(), cfg=two_player, default.units="in")
@@ -336,7 +352,7 @@ invisible(dev.off())
 library("animation")
 library("grid")
 examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram-1.svg",
-                 `Breakthrough; Crossings` = "../share/rules/breakthrough.png",
+                 `Breakthrough / Crossings` = "../share/rules/breakthrough.png",
                  `Cell Management` = "../share/rules/cell_management.png",
                  Chaturaji = "../images/knitr/demos-chess-chaturaji-1.svg",
                  Checkers = "../share/rules/american_checkers.png",
