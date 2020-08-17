@@ -2,6 +2,7 @@ Looney Pyramids
 ===============
 
 :date: 2020-03-30
+:modified: 2020-08-14
 :tags: other-game-systems
 
 .. {r setup, echo=FALSE}
@@ -70,6 +71,7 @@ pmap_piece(df, envir=envir, default.units="in", trans=op_transform,
            op_angle = 90, op_scale=0.5)
 .. ..
 .. {r martian_chess_3d}
+envir <- c(game_systems("sans3d"), looney_pyramids())
 library("rgl")
 rgl.open()
 bg3d("white")
