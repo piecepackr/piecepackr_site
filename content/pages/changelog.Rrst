@@ -2,10 +2,24 @@ News
 ====
 
 :date: 2020-06-24
+:modified: 2020-08-14
 
 .. include:: ../../links.rst
 
 This page is a reverse chronological list of major changes by quarter.
+
+2020-Q3
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.5.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.5.1>`_
+
+Updated webpages
+~~~~~~~~~~~~~~~~
+
+* `Portable Piecepack Notation <{filename}/Docs/ppn.rst>`_
 
 2020-Q2
 -------

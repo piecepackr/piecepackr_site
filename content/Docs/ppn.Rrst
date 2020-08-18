@@ -2,11 +2,11 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2020-05-23
+:modified: 2020-08-17
 
-**Version: 0.7.0**
+**Version: 0.9.0**
 
-Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of piecepack games but the structure is designed to in the future allow support for parsing alternative notation systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
+Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
 .. warning:: The "Portable Piecepack Notation" is in alpha development and the specification is not likely to remain stable.  I'd appreciate alpha testers to test things out but probably not a good idea to start storing large amount of games in the format just yet.
 
@@ -207,9 +207,11 @@ Comments
 MoveNumbers
 ~~~~~~~~~~~
 
-* MoveNumbers are at least one letter, number, and/or underscore ``_`` followed by at least one period ``.``.
+* MoveNumbers are zero or more letters, numbers, periods, and/or underscores followed by at least one period; the semi-colon ``;`` is a special shortcut for writing the minimal a single period MoveNumber (surrounded by spaces) i.e. ``a4-b4;b4-c4`` is equivalent to ``a4-b4 . b4-c4`` [#semicolon]_.
 
   + MoveNumbers are optional but if they exist PPN parsers will often break down and label moves by MoveNumbers (i.e. to make animations of a game)
+  + Unlike in PGN_ MoveNumbers **must** end in (at least one) period.
+  + MoveNumbers must have white space before and after.
 
 Moves
 ~~~~~
@@ -239,7 +241,7 @@ Simplified
   + ``m`` for "matchstick"
   + ``s`` for "saucer"
   + ``▲`` for (piecepack) "pyramid" (which are usually opaque)
-  + ``△`` for "icehouse piece" (aka "Looney pyramid") (icehouse pieces are usually transparent)
+  + ``△`` for "icehouse piece" (icehouse pieces are usually transparent) (invented by Andy Looney aka Looney Labs' `"Looney pyramids" <https://www.looneylabs.com/looney-pyramids>`_)
   + If a ``μ`` is present will assume component comes from a (piecepack stackpack_) "subpack" aka "mini piecepack" instead of a normal sized piecepack
   + If missing and has either ``l``, ``r``, or ``x`` assumed to be a (piecepack) "pyramid" otherwise assumed to be a tile if has both suit and rank or neither suit and rank otherwise assumed to be a coin.
 
@@ -259,14 +261,14 @@ Simplified
   +  ``♥``, ``♠``, ``♣``, ``♦`` for "Hearts", "Spades", "Clubs", and "Diamonds" (playing cards expansion)
   + ``♡``, ``♤``, ``♧``, ``♢`` for (inverted 4-colored) "Hearts", "Spades", "Clubs", and "Diamonds" (dual piecepacks expansion)  
   + ``R``, ``K``, ``G``, ``B``, ``Y``, ``W`` for "Red", "Black", "Green", "Blue", "Yellow", or "White" (icehouse pieces)
-  + If missing assumed to be "Suns" for tile faces, coin backs, pawns, dice, matchsticks, and piecepack pyramids.  And "Red" for icehouse pieces
+  + If missing assumed to be "Suns" for piecepack pieces and "Red" for icehouse pieces
 
 * Ranks: ``n``, ``a``, ``0``, ``1``, ``2``, ``3``, ``4``, ``5``, ``6``, ``7``, ``8``, ``9``
 
   + ``0`` and ``1`` are aliases for the "null" ``n`` and the "ace" ``a`` especially useful with brace expansions e.g. ``{5..0}@b5 {Place six coins face up at b5 with a null on top and 5 on bottom}``
   + ``6``, ``7``, ``8``, ``9`` don't exist in a standard piecepack but could exist in piecepack expansions or in components from other game systems.
-  + If missing assumed to be "null" for tile faces, coin faces, and dice.
-  + Icehouse pieces go from 0-pip to 3-pip pieces
+  + Icehouse pieces go from 1-pip to 3-pip pieces indicated by ``1``, ``2``, and ``3`` respectively.
+  + If missing assumed to be "null" for piecepack pieces [#pawn]_, icehouse pieces are assumed to be 1-pip.
 
 * Direction: ``^``, ``<``, ``>``, ``v``
 
@@ -304,7 +306,7 @@ Examples:
 Location
 ~~~~~~~~
 
-* The default Movetext parser supports locations either by its Cartesian coordinates or chess-algebraic-style coordinates
+* The default Movetext parser supports locations by Cartesian coordinates, chess-algebraic-style coordinates, or by preceding a PieceId_ with an ``&``.
 
 Examples:
 
@@ -333,8 +335,7 @@ Chess-algebraic-style coordinates
 Get location from PieceId
 +++++++++++++++++++++++++
 
-* A PieceId_ string preceded by a ``&``.
-
+* A PieceId_ string preceded by a ``&`` indicates the x,y coordinates of that piece.
 
 PieceId
 ~~~~~~~
@@ -344,7 +345,29 @@ A PieceId_ is used to identify specific pieces on the board.  Currently PPN_ sup
 * A Location_ is used to identify the top piece at that Location_
 * ``N Location`` is used to identify the top ``N`` pieces at that Location_
 
-  + An example would be ``2b4-b3*2a2 {Move top two pieces at b4 to b3 and remove top two pieces at a2}``.
+  + An example would be ``2b4-b3*2a2 {Move top two pieces at b4 to b3 and remove top two pieces at a2}``
+  + If there are less than ``N`` pieces at that exact Location_ it will identify the ``N`` nearest pieces to the Location_ (according to 2D Euclidean distance)
+
+* ``Location[Slice]`` is used to identify a "slice" of pieces at that Location_
+
+  + Pieces at a location are indexed starting with 1 with pieces "later" in the internal ordering (i.e. "above") having a lower index
+  + An example would be ``b4[1]_%b3[2] {Move the top piece at b4 directly under the secord piece at b3}`` 
+  + Another example would be ``b4[3:6]-b3 {Move the third, fourth, fifth, and sixth pieces (from the top) at b4 to b3}`` 
+  + Another example would be ``*(2,4)[1,3,5] {Remove the first, third, and fifth pieces (from the top) located at (2,4)}`` 
+
+* ``?PieceSpec`` is used to identify a single piece with a "non-greedy" search based on their PieceSpec_
+
+  + First, the PieceSpec_ is parsed and only the explicitly listed features are searched against.
+    If there is a unique match it is identified e.g. ``?dS`` identifies the "Suns" dice in a game with a single piecepack.
+  + Second, if no match the PieceSpec_ is parsed and all assumptions listed in PieceSpec_ are made including angle,
+    if there are any matches the one last in the internal play order is returned.
+  + Third, if no match the PieceSpec_ is parsed and all assumptions listed in PieceSpec_ are made *except* angle,
+    if there are any matches the one last in the internal play order is 
+    returned e.g. ``?S5`` identifies the "5 of Suns" tile in a game with a single piecepack.
+
+* ``/PieceSpec`` is used to identify piece(s) with a "greedy" search based on their PieceSpec_
+
+  + The PieceSpec_ is parsed and only the explicitly listed features are searched against e.g. ``/M`` identifies all the "Moons" pieces, ``/cf`` identifies all the coins face up, etc.
 
 * A PieceId_ preceded by a ``^`` identifies the piece from the game state at the beginning of the move 
   
@@ -355,25 +378,41 @@ MoveToken
 
 The default movetext parser supports the following MoveTokens:
 
-* ``@`` is used to add pieces to the board.  ``PieceSpec@Location`` means drop PieceSpec_ on top of Location_.
-
-  + It will be placed after all other pieces in the internal ordering.
+* ``@`` and ``\`` are used to "drop" new pieces onto the board.  
+  
+  + ``PieceSpec@Location`` means drop PieceSpec_ on top of Location_, it will be placed after all other pieces in the internal ordering.
+  + ``PieceSpec\Location`` means drop PieceSpec_ at Location_, it will be placed before all the other pieces in the internal ordering (i.e. the bottom).
+  + ``PieceSpec@Location%PieceId`` means drop PieceSpec_ on top of Location_, it will be placed after PieceId_ in the internal ordering.
+  + ``PieceSpec\Location%PieceId`` means drop PieceSpec_ at Location_, it will be placed before PieceId_ in the internal ordering.
+  + ``PieceSpec@%PieceId`` is a shortcut for ``PieceSpec@&PieceId%PieceId`` i.e. drop PieceSpec_ directly above PieceId_.
+  + ``PieceSpec\%PieceId`` is a shortcut for ``PieceSpec\&PieceId%PieceId`` i.e. drop PieceSpec_ directly under PieceId_.
 
 * ``*`` is used to remove pieces from the board.  ``*PieceId`` means remove the piece identified by PieceId_.
 
   + Unlike other MoveTokens it can be added at the end of other Moves e.g. ``b5-c5*b4*b3 {Move top piece at b5 to c5 and remove top pieces at b4 and b3}``.
 
-* ``-`` is used to move pieces elsewhere on the board.  ``PieceId-Location`` means removing the piece identified by PieceId_ and moving it on top of Location_.
-
-  + It will be placed after all the other pieces in the internal ordering.
+* ``-`` and ``_`` (or ``‿``)  used to move existing pieces elsewhere on the board.  
+  
+  + ``PieceId-Location`` means moving the piece(s) identified by PieceId_ to Location_, it will be placed after all the other pieces in the internal ordering.
+  + ``PieceId_Location`` means moving the piece(s) identified by PieceId_ to Location_, it will be placed before all the other pieces in the internal ordering.
+  + ``PieceId1-Location%PieceId2`` means moving the piece(s) identified by ``PieceId1`` to Location_, it will be placed after the piece identified by ``PieceId2`` in the internal ordering.
+  + ``PieceId1_Location%PieceId2`` means moving the piece(s) identified by ``PieceId1`` to Location_, it will be placed before the piece identified by ``PieceId2`` in the internal ordering.
+  + ``PieceId-%PieceId2`` is a shortcut for ``PieceId1-&PieceId2%PieceId2`` i.e. move ``PieceId1`` directly above ``PieceId2``.
+  + ``PieceId_%PieceId2`` is a shortcut for ``PieceId1_&PieceId2%PieceId2`` i.e. move ``PieceId1`` directly underneath ``PieceId2``.
+  + ``‿`` (U+203F) can be used instead of ``_``.  ``_`` is easier to type and found in more fonts but ``‿`` is harder to confuse with ``-`` (especially in handwritten notes).
 
 * ``:`` is used to represent a "displacement capture".  ``PieceId1:PieceId2`` means find the Location_ of the piece(s) identified by ``PieceId2``, remove the ``PieceId2`` piece(s), and move the ``PieceId1`` piece(s) to that Location_.
 
   + The ``PieceId1`` piece(s) that are moved will be placed after all the other pieces in the internal ordering.
   + Let ``Location`` be the location of the piece(s) represented by ``PieceId2``, then ``PieceId1:PieceId2`` is equivalent to ``*PieceId2 PieceId1-Location``.
 
-* ``=`` is used to replace pieces on the board with new pieces.  It can also be used to flip/rotate a piece.  ``PieceId=PieceSpec`` means replace the piece identified PieceId_ to PieceSpec_ e.g. ``b5=S> {replace top piece at b5 with Suns coin back oriented right}``.
+* ``=`` is used "replace" pieces on the board with new pieces.  ``PieceId=PieceSpec`` means replace the piece identified PieceId_ to PieceSpec_ (with all assumptions) e.g. ``b5=S> {replace top piece at b5 with Suns coin back oriented right}``.
+
+* ``~`` is used "update" pieces on the board with new characteristics.  ``PieceId~PieceSpec`` means update the piece identified PieceId_ according to only the explicitly listed elements in PieceSpec_ e.g. ``?dS~3`` means have the "Suns" die now show the 3 rank on top without updating orientation.
 
 * ``#`` is used to represent a "piece swap".  Let ``Location1`` and ``Location2`` represent the Location_ of ``PieceId1`` and ``PieceId2`` respectively, then ``PieceId1:PieceId2`` is equivalent to ``^PieceId1-Location2 ^PieceId2-Location1``.
 
-* ``@>`` is used to rotate a piece clockwise.  ``PieceId@>Degrees`` rotates the piece(s) represented by ``PieceId`` clockwise ``Degrees`` degrees.
+* ``@>`` is used to rotate a piece clockwise.  ``PieceId@>Degrees`` rotates the piece(s) represented by PieceId_ clockwise ``Degrees`` degrees.
+
+.. [#semicolon] The intention for this is quickly indicating little "submoves" within a larger proper "move" that we'd like to be able to separately visualize but that we don't want to semantically mark as a completely separate "move".
+.. [#pawn] Internally even piecepack pawns and saucers are assigned a "null" rank even though they normally don't have a rank.  Dice are assigned the rank of the face oriented upwards even though technically the dice themselves actually have six ranks.
