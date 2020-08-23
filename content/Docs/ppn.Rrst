@@ -2,9 +2,9 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2020-08-17
+:modified: 2020-08-22
 
-**Version: 0.9.0**
+**Version: 0.9.1**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
@@ -207,11 +207,15 @@ Comments
 MoveNumbers
 ~~~~~~~~~~~
 
-* MoveNumbers are zero or more letters, numbers, periods, and/or underscores followed by at least one period; the semi-colon ``;`` is a special shortcut for writing the minimal a single period MoveNumber (surrounded by spaces) i.e. ``a4-b4;b4-c4`` is equivalent to ``a4-b4 . b4-c4`` [#semicolon]_.
+* Ordinary MoveNumbers are one or more letters, numbers, periods, and/or underscores followed by at least one period
 
-  + MoveNumbers are optional but if they exist PPN parsers will often break down and label moves by MoveNumbers (i.e. to make animations of a game)
   + Unlike in PGN_ MoveNumbers **must** end in (at least one) period.
-  + MoveNumbers must have white space before and after.
+  + Ordinary MoveNumbers must have white space before and after.
+  + One must not have any line start with ``...`` (which could interfere in determining where the Metadata_ ends).
+
+* A single period ``.`` (surrounded by white space) is a special shortcut for writing the previous MoveNumber with an extra period added to the end of it e.g. ``2. a4-b4 . b4-c4`` is equivalent to ``2. a4-b4 2.. b4-c4``
+* The semi-colon ``;`` is a special shortcut for writing the minimal a single period MoveNumber (adding some spaces around it if necessary) e.g. ``2. a4-b4;b4-c4`` is equivalent to ``2. a4-b4 . b4-c4`` which is equivalent to ``2. a4-b4 2.. b4-c4``  [#semicolon]_.
+* Putting MoveNumbers in one's Movetext_ is optional but if they exist PPN parsers will often break down and label moves by MoveNumbers (to make animations of a game or visualize the game state at a particular point in the game).
 
 Moves
 ~~~~~
