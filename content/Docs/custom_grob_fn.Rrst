@@ -2,7 +2,7 @@ Custom grob functions
 =====================
 
 :date: 2019-04-23
-:modified: 2019-04-28
+:modified: 2020-08-22
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
@@ -16,7 +16,11 @@ set_opts_chunk("docs-custom_grob_fn")
 Intro
 -----
 
+.. note:: The custom grob functions in this article use the function ``pp_shape()`` which was introduced in piecepackr_ v1.5.1
+
 Although using piecepackr_'s `configuration lists`_ provide a powerful high-level way to alter the appearance of your piecepack_ graphics piecepackr_ also allows one to modify the appearance of your piecepack graphics even more with the use of custom grob functions.  
+
+.. warning:: Some people (including the inventor James "Kyle" Droscha) feel that `adding checkers to the back of one's piecepack is a bad idea <http://www.ludism.org/ppwiki/DesignFAQ>`_, in particular they leak information about the direction of the tile face.
 
 Examples
 --------
@@ -26,8 +30,6 @@ Checkered Tile Backs
 
 The default grob function doesn't support adding checkers to the back of your piecepack tiles but piecepackr_ does include a utility function ``checkersGrob`` that can be used via a custom grob function:
 
-.. warning:: Some people (including the inventor James "Kyle" Droscha) feel that `adding checkers to the back of one's piecepack is a bad idea <http://www.ludism.org/ppwiki/DesignFAQ>`_, in particular they leak information about the direction of the tile face.
-
 .. {r checker_back, fig.cap='Custom grob function to use checkers on the tile back'}
 library("grid")
 library("piecepackr")
@@ -35,10 +37,11 @@ library("piecepackr")
 checkeredPieceGrob <- function(piece_side, suit, rank, cfg) {
     cfg <- as_pp_cfg(cfg)
     opt <- cfg$get_piece_opt(piece_side, suit, rank)
-    shape_fn <- get_shape_grob_fn(opt$shape, opt$shape_t, opt$shape_r)
-    background_grob <- shape_fn(gp=gpar(col=NA, fill=opt$background_color))
-    checkers_grob <- checkersGrob(opt$gridline_color, opt$shape, opt$shape_t)
-    border_grob <- shape_fn(gp=gpar(col=opt$border_color, fill=NA))
+    shape <- pp_shape(opt$shape, opt$shape_t, opt$shape_r, opt$back)
+
+    background_grob <- shape$shape(gp=gpar(col=NA, fill=opt$background_color))
+    checkers_grob <- shape$checkers(gp=gpar(fill=opt$gridline_color))
+    border_grob <- shape$shape(gp=gpar(col=opt$border_color, fill=NA, lex=opt$border_lex))
     gl <- gList(background_grob, checkers_grob, border_grob)
     gTree(children=gl, name=piece_side)
 }
@@ -62,8 +65,9 @@ The pawn belts in Jonathan Dietrich's `JCD piecepack`_ and Chris Sakkas' `Nine-S
 pawnBeltGrob <- function(piece_side, suit, rank, cfg) {
     cfg <- as_pp_cfg(cfg)
     opt <- cfg$get_piece_opt(piece_side, suit, rank)
-    shape_fn <- get_shape_grob_fn(opt$shape, opt$shape_t, opt$shape_r)
-    background_grob <- shape_fn(gp=gpar(col=NA, fill=opt$background_color))
+    shape <- pp_shape(opt$shape, opt$shape_t, opt$shape_r, opt$back)
+
+    background_grob <- shape$shape(gp=gpar(col=NA, fill=opt$background_color))
     center_grob <- rectGrob(width=0.3, gp=gpar(col=NA, fill=opt$ps_color))
     gp_ps1 <- gpar(col=opt$background_color, fontsize=opt$ps_fontsize, 
                   fontfamily=opt$ps_fontfamily, fontface=opt$ps_fontface)
@@ -71,7 +75,7 @@ pawnBeltGrob <- function(piece_side, suit, rank, cfg) {
     gp_ps2 <- gpar(col=opt$ps_color, fontsize=opt$ps_fontsize, 
                   fontfamily=opt$ps_fontfamily, fontface=opt$ps_fontface)
     ps_grob2 <- textGrob(opt$ps_text, x=c(0.2, 0.8), gp=gp_ps2) 
-    border_grob <- shape_fn(gp=gpar(col=opt$border_color, fill=NA))
+    border_grob <- shape$shape(gp=gpar(col=opt$border_color, fill=NA, lex=opt$border_lex))
     gl <- gList(background_grob, center_grob, ps_grob1, ps_grob2, border_grob)
 
     gTree(children=gl, name=piece_side)
@@ -89,13 +93,7 @@ piecepackr_ comes with several utility functions that can aid in the writing of 
 
 .. code:: r
 
-    help("grob_fn_helpers")
+    help("pp_shape")
     help("pp_utils")
 
-For help in writing your own custom grob functions it can also be instructive to look at the code of the default grob function ``basicPieceGrob``:
-
-.. {r default_fn}
-    print(basicPieceGrob)
-.. ..
-
-In order to draw custom grob functions it may also be helpful to learn more about grid_'s API. Some may also find the grImport2_ package useful.
+In order to draw custom grob functions it may also be helpful to learn more about grid_'s API.

@@ -2,6 +2,7 @@ Dingbats PnP
 ============
 
 :date: 2019-05-31
+:modified: 2020-08-22
 :tags: print-and-play
 
 .. {r setup, echo=FALSE}
@@ -33,21 +34,22 @@ For more info about the design please read `Daniel Ajoy`_'s description and desi
 
 It is possible to emulate Ajoy's Dingbats piecepack_ in piecepackr_ but in order to emulate his tile faces and null/ace rank symbols we'll need to write and use a custom `grob function`_ in order to add some extra circles/stars on the tile faces and add an extra circle to his null/ace rank symbols.
 
+.. note:: The custom grob function in this article uses the function ``pp_shape()`` which was introduced in piecepackr_ v1.5.1
+
 .. {r preview, fig.cap="A preview of a 'Dingbats' piecepack"}
 library("grid")
 library("piecepackr")
 ajoyDingbatsGrob <- function(piece_side, suit, rank, cfg=pp_cfg()) {
     cfg <- as_pp_cfg(cfg)
     opt <- cfg$get_piece_opt(piece_side, suit, rank)
-
-    shape_fn <- get_shape_grob_fn(opt$shape, opt$shape_t, opt$shape_r)
+    shape <- pp_shape(opt$shape, opt$shape_t, opt$shape_r, opt$back)
 
     # Background
-    background_grob <- shape_fn(gp=gpar(col=NA, fill=opt$background_color))
+    background_grob <- shape$shape(gp=gpar(col=NA, fill=opt$background_color))
 
     # Gridlines, Mat
-    gl_grob <- gridlinesGrob(opt$gridline_color, opt$shape, opt$shape_t, opt$gridline_lex)
-    mat_grob <- matGrob(opt$mat_color, opt$shape, opt$shape_t, opt$mat_width)
+    gl_grob <- shape$gridlines(gp = gpar(col = opt$gridline_color, lex = opt$gridline_lex))
+    mat_grob <- shape$mat(opt$mat_width, gp = gpar(fill = opt$mat_color))
 
     if (piece_side == "tile_face") {
         outside_circle_grob <- circleGrob(r=0.25, gp=gpar(col=NA, fill=opt$ps_color))
@@ -56,7 +58,7 @@ ajoyDingbatsGrob <- function(piece_side, suit, rank, cfg=pp_cfg()) {
         if (rank < 3) {
             inner_circle_grob <- circleGrob(r=0.23, gp=gp2)
         } else {
-            inner_circle_grob <- grobTree(concaveGrobFn(24, 0, 0.45)(gp=gp2),
+            inner_circle_grob <- grobTree(pp_shape("concave24", 0, 0.45)$shape(gp=gp2),
                                           vp=viewport(width=0.47, height=0.47))
         }
         circle_grob <- grobTree(outside_circle_grob, inner_circle_grob)
@@ -81,7 +83,7 @@ ajoyDingbatsGrob <- function(piece_side, suit, rank, cfg=pp_cfg()) {
     dm_grob <- textGrob(opt$dm_text, x=opt$dm_x, y=opt$dm_y, gp=gp_dm)
 
     # Border 
-    border_grob <- shape_fn(gp=gpar(col=opt$border_color, fill=NA, lex=opt$border_lex))
+    border_grob <- shape$shape(gp=gpar(col=opt$border_color, fill=NA, lex=opt$border_lex))
     gl <- gList(background_grob, gl_grob, mat_grob, circle_grob,
                 ps_grob, dm_grob, border_grob)
 

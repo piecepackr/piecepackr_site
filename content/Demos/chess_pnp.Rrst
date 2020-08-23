@@ -2,7 +2,7 @@ Chess
 =====
 
 :date: 2019-10-12
-:modified: 2020-02-28
+:modified: 2020-08-22
 :tags: print-and-play, ppgames
 
 .. {r setup, echo=FALSE}
@@ -13,6 +13,7 @@ set_opts_chunk("demos-chess")
 .. include:: ../../links.rst
 
 This article includes some demos of chess-ranked piecepacks as well as the starting diagrams of several chess variants playable with a piecepack.
+
 
 .. contents::
 
@@ -45,6 +46,8 @@ grid.piece("preview_layout", cfg=chess1)
 French-suited chess-ranked piecepack
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. note:: This custom grob function uses the function ``pp_shape()`` which was introduced in piecepackr_ v1.5.1
+
 If you use a `custom grob function`_ one can easily add checkers to either the tile face or back.  Using the French (playing card) suits may make it easier to play two-player games (like many chess variants).  Since we aren't using the suit symbol as the ace symbol we can move the tile face rank symbol to the lower right for aesthetic reasons without loss of essential piecepack information (can still always tell which is the "special" corner and what are the tile's suit and rank).
 
 .. {r preview2, fig.cap="French-suited chess-ranked piecepack"}
@@ -52,11 +55,10 @@ library("grid")
 checkeredPieceGrob <- function(piece_side, suit, rank, cfg) {
     cfg <- as_pp_cfg(cfg)
     opt <- cfg$get_piece_opt(piece_side, suit, rank)
-    shape_fn <- get_shape_grob_fn(opt$shape, opt$shape_t, opt$shape_r)
+    shape <- pp_shape(opt$shape, opt$shape_t, opt$shape_r, opt$back)
 
-    background_grob <- shape_fn(gp=gpar(col=NA, fill=opt$background_color))
-    checkers_grob <- checkersGrob(opt$gridline_color, opt$shape, opt$shape_t)
-    border_grob <- shape_fn(gp=gpar(col=opt$border_color, fill=NA, lex=opt$border_lex))
+    background_grob <- shape$shape(gp=gpar(col=NA, fill=opt$background_color))
+    checkers_grob <- shape$shape(gp=gpar(fill=opt$gridline_color))
 
     gp_ps <- gpar(col=opt$ps_color, fontsize=opt$ps_fontsize, 
                   fontfamily=opt$ps_fontfamily, fontface=opt$ps_fontface)
@@ -65,6 +67,8 @@ checkeredPieceGrob <- function(piece_side, suit, rank, cfg) {
     gp_dm <- gpar(col=opt$dm_color, fontsize=opt$dm_fontsize, 
                   fontfamily=opt$dm_fontfamily, fontface=opt$ps_fontface)
     dm_grob <- textGrob(opt$dm_text, x=opt$dm_x, y=opt$dm_y, gp=gp_dm)
+
+    border_grob <- shape$shape(gp=gpar(col=opt$border_color, fill=NA, lex=opt$border_lex))
 
     gl <- gList(background_grob, checkers_grob, ps_grob, dm_grob, border_grob)
 
@@ -137,21 +141,22 @@ grid.piece("preview_layout", cfg=chess4)
 Both-piecepack-and-chess-ranked piecepack
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. note:: This custom grob function uses the function ``pp_shape()`` which was introduced in piecepackr_ v1.5.1
+
 With a `custom grob function`_ and the `right chess font <https://www.chessvariants.com/d.font/utrecht.html>`_ one can make a piecepack that has both the piecepack ranks and the chess ranks.
 
 .. {r preview5, fig.cap="A piecepack with both piecepack and chess ranks"}
 chessRankGrob <- function(piece_side, suit, rank, cfg=pp_cfg()) {
     cfg <- as_pp_cfg(cfg)
     opt <- cfg$get_piece_opt(piece_side, suit, rank)
-
-    shape_fn <- get_shape_grob_fn(opt$shape, opt$shape_t, opt$shape_r)
+    shape <- pp_shape(opt$shape, opt$shape_t, opt$shape_r, opt$back)
 
     # Background
-    background_grob <- shape_fn(gp=gpar(col=NA, fill=opt$background_color))
+    background_grob <- shape$shape(gp=gpar(col=NA, fill=opt$background_color))
 
     # Gridlines, Mat
-    gl_grob <- gridlinesGrob(opt$gridline_color, opt$shape, opt$shape_t, opt$gridline_lex)
-    mat_grob <- matGrob(opt$mat_color, opt$shape, opt$shape_t, opt$mat_width)
+    gl_grob <- shape$gridlines(gp = gpar(col = opt$gridline_color, lex = opt$gridline_lex))
+    mat_grob <- shape$mat(opt$mat_width, gp = gpar(fill = opt$mat_color))
 
     # Primary symbol
     chess_ranks <- c("P", "N", "B", "R", "Q", "K")
@@ -180,7 +185,7 @@ chessRankGrob <- function(piece_side, suit, rank, cfg=pp_cfg()) {
     dm_grob <- textGrob(opt$dm_text, x=opt$dm_x, y=opt$dm_y, gp=gp_dm)
 
     # Border 
-    border_grob <- shape_fn(gp=gpar(col=opt$border_color, fill=NA, lex=opt$border_lex))
+    border_grob <- shape$shape(gp=gpar(col=opt$border_color, fill=NA, lex=opt$border_lex))
     gl <- gList(background_grob, gl_grob, mat_grob, 
                 ps_grob, dm_grob, border_grob)
 
