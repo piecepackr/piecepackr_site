@@ -2,9 +2,9 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2020-08-23
+:modified: 2020-08-26
 
-**Version: 0.9.2**
+**Version: 0.10.0**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
@@ -217,6 +217,8 @@ MoveNumbers
 * The semi-colon ``;`` is a special shortcut for writing the minimal a single period MoveNumber (adding some spaces around it if necessary) e.g. ``2. a4-b4;b4-c4`` is equivalent to ``2. a4-b4 . b4-c4`` which is equivalent to ``2. a4-b4 2.. b4-c4``  [#semicolon]_.
 * Putting MoveNumbers in one's Movetext_ is optional but if they exist PPN parsers will often break down and label moves by MoveNumbers (to make animations of a game or visualize the game state at a particular point in the game).
 
+.. [#semicolon] The intention for this is quickly indicating little "submoves" within a larger proper "move" that we'd like to be able to separately visualize but that we don't want to semantically mark as a completely separate "move".
+
 Moves
 ~~~~~
 
@@ -231,68 +233,119 @@ Moves
 PieceSpec
 ~~~~~~~~~
 
-* The default Movetext parser supports Simplified_ piecepack piece notation
+* The default Movetext_ parser supports specifying pieces by their Piece_, Side_, Suit_, Rank_, Angle_, and (game system) |Configuration|.
 
-Simplified
-++++++++++
+* Any attribute specifications beginning with a comma ``,`` must go after the other attribute specifications, otherwise it does not matter which order the piece attributes are specified.  However the following ordering may improve readability (omitting any unnecessary elements as necessary):
 
-* Pieces: ``t``, ``c``, ``d``, ``p``, ``m``, ``s``, ``▲``, ``△``
+  1. Piece_
+  2. Side_
+  3. Suit_
+  4. Rank_
+  5. Angle_
+  6. |Configuration|
 
-  + ``t`` for "tile"
-  + ``c`` for "coin"
-  + ``d`` for "die"
-  + ``p`` for "pawn"
-  + ``m`` for "matchstick"
-  + ``s`` for "saucer"
-  + ``▲`` for (piecepack) "pyramid" (which are usually opaque)
-  + ``△`` for "icehouse piece" (icehouse pieces are usually transparent) (invented by Andy Looney aka Looney Labs' `"Looney pyramids" <https://www.looneylabs.com/looney-pyramids>`_)
-  + If a ``μ`` is present will assume component comes from a (piecepack stackpack_) "subpack" aka "mini piecepack" instead of a normal sized piecepack
-  + If missing and has either ``l``, ``r``, or ``x`` assumed to be a (piecepack) "pyramid" otherwise assumed to be a tile if has both suit and rank or neither suit and rank otherwise assumed to be a coin.
+* When necessary the default Movetext_ will make Assumptions_ about unspecified elements.
 
-* Side Up: ``f``, ``b``, ``r``, ``l``
+.. _Piece:
 
-  + ``f`` for "face"
-  + ``b`` for "back" (dice cannot be "back" up)
-  + ``l``, ``r``, and ``x`` for "left", "right", and "top" (pyramids only)
-  + If missing pyramids are assumed to be "top" up.
-  + If missing tiles are assumed to be "back" up if missing suit and/or rank.
-  + If missing coins and saucers are assumed to be "face" up if missing suit.
-  + If missing pawns, dice, and matchsticks are assumed to be "face" up.
+Piece (type)
+++++++++++++
 
-* Suits: ``S``, ``M``, ``C``, ``A``, ``♠``, ``♥``, ``♦``, ``♣``, ``♡``, ``♤``, ``♧``, ``♢``, ``R``, ``K``, ``G``, ``B``, ``Y``, ``W``
+* ``t`` for "tile"
+* ``c`` for "coin"
+* ``d`` for "die"
+* ``p`` for "pawn"
+* ``m`` for "matchstick"
+* ``s`` for "saucer"
+* ``▲`` or ``/\`` for "pyramid"
+* ``🂠`` or ``[]`` for "card"
+* ``⚀``, ``⚁``, ``⚂,`` ``⚃``, ``⚄``, ``⚅`` sets the |Configuration| to "dice", Piece_ to "die", and sets the appropriate Rank_ (from 1 to 6).
 
-  + ``S``, ``M``, ``C``, ``A`` for "Suns", "Moons", "Crowns", and "Arms"
-  +  ``♥``, ``♠``, ``♣``, ``♦`` for "Hearts", "Spades", "Clubs", and "Diamonds" (playing cards expansion)
-  + ``♡``, ``♤``, ``♧``, ``♢`` for (inverted 4-colored) "Hearts", "Spades", "Clubs", and "Diamonds" (dual piecepacks expansion)  
-  + ``R``, ``K``, ``G``, ``B``, ``Y``, ``W`` for "Red", "Black", "Green", "Blue", "Yellow", or "White" (icehouse pieces)
-  + If missing assumed to be "Suns" for piecepack pieces and "Red" for icehouse pieces
+.. _Side:
 
-* Ranks: ``n``, ``a``, ``0``, ``1``, ``2``, ``3``, ``4``, ``5``, ``6``, ``7``, ``8``, ``9``
+Side Up
++++++++
+
+* ``f`` for "face"
+* ``b`` for "back" 
+* ``l`` for "left"
+* ``r`` for "right"
+* ``x`` for "top"
+
+.. _Suit:
+.. _PPNConfiguration:
+
+.. |Configuration| replace:: `Configuration <PPNConfiguration_>`_
+
+Suit and Configuration
+++++++++++++++++++++++
+
+* ``S``, ``M``, ``C``, ``A`` for "Suns", "Moons", "Crowns", and "Arms" Suit_ and "piecepack" |Configuration|
+
+  + If a ``μ`` or ``u`` is present will assume component comes from a (piecepack stackpack_) "subpack" |Configuration| aka "mini piecepack" instead of a normal sized piecepack
+  + If a ``⬢`` (U+2B22) is present will assume component comes from a "hexpack" |Configuration| (a hexagonal piecepack)
+
+*  ``♥``, ``♠``, ``♣``, ``♦`` for "Hearts", "Spades", "Clubs", and "Diamonds" Suit_ and "playing_cards_expansion" |Configuration|
+* ``♡``, ``♤``, ``♧``, ``♢`` for (inverted 4-colored) "Hearts", "Spades", "Clubs", and "Diamonds" Suit_ and "dual_piecepacks_expansion" |Configuration|  
+* ``R``, ``K``, ``G``, ``B``, ``Y``, ``W`` for "Red", "Black", "Green", "Blue", "Yellow", or "White" Suit_ 
+  
+  + If a "pyramid" Piece_ then an "icehouse_pieces" |Configuration| (invented by Andy Looney aka Looney Labs' `"Looney pyramids" <https://www.looneylabs.com/looney-pyramids>`_)
+
+* ``,sN`` manually sets the internal "suit" to the positive integer ``N`` and ``,C'`` manually sets the internal "configuration" to the string ``C``.
+* ``⚀``, ``⚁``, ``⚂,`` ``⚃``, ``⚄``, ``⚅`` sets the |Configuration| to "dice", Piece_ to "die", and sets the appropriate Rank_ (from 1 to 6).
+
+Rank
+++++
+
+* ``0`` or ``n``, ``1`` or ``a``, ``2``, ``3``, ``4``, ``5``, ``6``, ``7``, ``8``, ``9``
 
   + ``0`` and ``1`` are aliases for the "null" ``n`` and the "ace" ``a`` especially useful with brace expansions e.g. ``{5..0}@b5 {Place six coins face up at b5 with a null on top and 5 on bottom}``
   + ``6``, ``7``, ``8``, ``9`` don't exist in a standard piecepack but could exist in piecepack expansions or in components from other game systems.
+
+* By default the rank in most game systems are indexed starting with zero, the following game systems are indexed starting with one:
+
   + Icehouse pieces go from 1-pip to 3-pip pieces indicated by ``1``, ``2``, and ``3`` respectively.
-  + If missing assumed to be "null" for piecepack pieces [#pawn]_, icehouse pieces are assumed to be 1-pip.
 
-* Direction: ``^``, ``<``, ``>``, ``v``
+* ``,rN`` manually sets the internal "rank" to the integer ``N``.
+* ``⚀``, ``⚁``, ``⚂,`` ``⚃``, ``⚄``, ``⚅`` sets the |Configuration| to "dice", Piece_ to "die", and sets the appropriate Rank_ (from 1 to 6).
 
-  + ``^`` is 0 degree rotation aka oriented "up"
-  + ``<`` is a 90 degree rotation aka oriented "left"
-  + ``v`` is a 180 degree rotation aka oriented "down"
-  + ``>`` is a 270 degree rotation aka oriented "right"
-  + If missing direction should be assumed to be straight up
+Angle
++++++
 
-* Ordering of elements should not matter but the following ordering may improve readability (omitting any unnecessary elements as necessary):
+* ``^`` is 0 degree rotation aka oriented "up"
+* ``<`` is a 90 degree rotation aka oriented "left"
+* ``v`` is a 180 degree rotation aka oriented "down"
+* ``>`` is a 270 degree rotation aka oriented "right"
+* ``,aN`` manually sets an ``N`` (numeric double) degree rotation.
 
-  1. Piece
-  2. Side up
-  3. Suit
-  4. Rank
-  5. Direction
+Assumptions
++++++++++++
 
-* Simplified piecepack piece notation does not support angles that aren't a multiple of 90 degrees nor 3D tilts
+* If missing Piece_:
 
-Examples:
+  + If Side_ is ``l``, ``r``, or ``x`` then assumed to be a "pyramid" 
+  + If **both** Suit_ and Rank_ are missing or **neither** Suit_ and Rank_ are missing assumed to be a "tile"
+  + Else assumed to be a "coin"
+
+* If missing Side_:
+ 
+  + Pyramids are assumed to be "top" up.
+  + Tiles and cards are assumed to be "back" up if missing suit and/or rank (else "face").
+  + Coins and saucers are assumed to be "face" up if missing suit (else "back").
+  + Else assumed to be "face" up.
+
+* If missing Suit_:
+  
+  + Assumed to be "Suns" for "piecepack", "hexpack", and "subpack" pieces
+  + "Hearts" for "playing_cards_expansion" and "dual_piecepacks_expansion" pieces
+  + "White" for "dice" pieces
+  + "Red" for "icehouse_pieces" pieces
+
+* If missing Rank_ assumed to be "null" for piecepack pieces [#pawn]_ while "icehouse_pieces" and "dice" are assumed to be 1-pip.
+* If missing Angle_ should be assumed to be oriented straight "up" (i.e. 0 degrees)
+
+Examples
+++++++++
 
 * ``t`` tile back
 * ``Aa>`` ace of Arms tile (face) oriented "right"
@@ -305,7 +358,9 @@ Examples:
 * ``pM`` Moons pawn
 * ``p♥`` Hearts pawn
 * ``p`` (Suns) pawn
-* ``△K3`` 3-pipped black icehouse pyramid top
+* ``K3▲`` 3-pipped black icehouse pyramid top
+
+.. [#pawn] Internally even piecepack pawns and saucers are assigned a rank even though they normally don't have a rank.  Dice are assigned the rank of the face oriented upwards even though technically the dice themselves actually have six ranks.
 
 Location
 ~~~~~~~~
@@ -386,6 +441,9 @@ MoveToken
 
 The default movetext parser supports the following MoveTokens:
 
+Adding new pieces
++++++++++++++++++
+
 * ``@`` and ``\`` are used to "drop" new pieces onto the board.  
   
   + ``PieceSpec@Location`` means drop PieceSpec_ on top of Location_, it will be placed after all other pieces in the internal ordering.
@@ -395,9 +453,15 @@ The default movetext parser supports the following MoveTokens:
   + ``PieceSpec@%PieceId`` is a shortcut for ``PieceSpec@&PieceId%PieceId`` i.e. drop PieceSpec_ directly above PieceId_.
   + ``PieceSpec\%PieceId`` is a shortcut for ``PieceSpec\&PieceId%PieceId`` i.e. drop PieceSpec_ directly under PieceId_.
 
+Removing pieces
++++++++++++++++
+
 * ``*`` is used to remove pieces from the board.  ``*PieceId`` means remove the piece identified by PieceId_.
 
   + Unlike other MoveTokens it can be added at the end of other Moves e.g. ``b5-c5*b4*b3 {Move top piece at b5 to c5 and remove top pieces at b4 and b3}``.
+
+Moving pieces
++++++++++++++
 
 * ``-`` and ``_`` (or ``‿``)  used to move existing pieces elsewhere on the board.  
   
@@ -409,18 +473,19 @@ The default movetext parser supports the following MoveTokens:
   + ``PieceId_%PieceId2`` is a shortcut for ``PieceId1_&PieceId2%PieceId2`` i.e. move ``PieceId1`` directly underneath ``PieceId2``.
   + ``‿`` (U+203F) can be used instead of ``_``.  ``_`` is easier to type and found in more fonts but ``‿`` is harder to confuse with ``-`` (especially in handwritten notes).
 
+* ``#`` is used to represent a "piece swap".  Let ``Location1`` and ``Location2`` represent the Location_ of ``PieceId1`` and ``PieceId2`` respectively, then ``PieceId1:PieceId2`` is equivalent to ``^PieceId1-Location2 ^PieceId2-Location1``.
+
 * ``:`` is used to represent a "displacement capture".  ``PieceId1:PieceId2`` means find the Location_ of the piece(s) identified by ``PieceId2``, remove the ``PieceId2`` piece(s), and move the ``PieceId1`` piece(s) to that Location_.
 
   + The ``PieceId1`` piece(s) that are moved will be placed after all the other pieces in the internal ordering.
   + Let ``Location`` be the location of the piece(s) represented by ``PieceId2``, then ``PieceId1:PieceId2`` is equivalent to ``*PieceId2 PieceId1-Location``.
 
+* ``@>`` is used to rotate a piece clockwise.  ``PieceId@>Degrees`` rotates the piece(s) represented by PieceId_ clockwise ``Degrees`` degrees.
+
+Updating/replacing pieces
++++++++++++++++++++++++++
+
 * ``=`` is used "replace" pieces on the board with new pieces.  ``PieceId=PieceSpec`` means replace the piece identified PieceId_ to PieceSpec_ (with all assumptions) e.g. ``b5=S> {replace top piece at b5 with Suns coin back oriented right}``.
 
 * ``~`` is used "update" pieces on the board with new characteristics.  ``PieceId~PieceSpec`` means update the piece identified PieceId_ according to only the explicitly listed elements in PieceSpec_ e.g. ``?dS~3`` means have the "Suns" die now show the 3 rank on top without updating orientation.
 
-* ``#`` is used to represent a "piece swap".  Let ``Location1`` and ``Location2`` represent the Location_ of ``PieceId1`` and ``PieceId2`` respectively, then ``PieceId1:PieceId2`` is equivalent to ``^PieceId1-Location2 ^PieceId2-Location1``.
-
-* ``@>`` is used to rotate a piece clockwise.  ``PieceId@>Degrees`` rotates the piece(s) represented by PieceId_ clockwise ``Degrees`` degrees.
-
-.. [#semicolon] The intention for this is quickly indicating little "submoves" within a larger proper "move" that we'd like to be able to separately visualize but that we don't want to semantically mark as a completely separate "move".
-.. [#pawn] Internally even piecepack pawns and saucers are assigned a "null" rank even though they normally don't have a rank.  Dice are assigned the rank of the face oriented upwards even though technically the dice themselves actually have six ranks.
