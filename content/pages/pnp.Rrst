@@ -33,22 +33,6 @@ cfg_names <- sort(names(ee))
 rst_link <- function(url, text=basename(url)) {
     sprintf("`%s <%s>`__", text, url)
 }
-rst_list_table <- function(df, title=NULL, widths=NULL) {
-    nc <- ncol(df)  
-    cat(".. list-table::", title, "\n")
-    cat("\t:header-rows:", 1, "\n")
-    if(!is.null(widths))
-        cat("\t:widths:", widths, "\n")
-    cat("\n")
-    col_names <- names(df)
-    cat("\t* -", col_names[1], "\n")
-    for (ic in 2:nc) { cat("\t  -", col_names[ic], "\n") }
-    for(ir in 1:nrow(df)) {
-        cat("\t* -", df[ir, 1], "\n")
-        for(ic in 2:nc) { cat("\t  -", df[ir, ic], "\n") }
-    }
-    cat("\n")
-}
 titles <- sapply(cfg_names, function(x) {tt <- ee[[x]]$title; ifelse(is.null(tt), "", tt)})
 letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", cfg_names)
 A4_urls <- sprintf("{static}/share/pnp/%s_A4.pdf", cfg_names)

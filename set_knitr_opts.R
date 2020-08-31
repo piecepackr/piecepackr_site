@@ -52,3 +52,20 @@ svg2png <- function(svg, png, w=768, h=768) {
     # system2("inkscape", c("-z", "-e", png, "-w", w, "-h", h, svg)) # nolint
     rsvg::rsvg_png(svg, png, w, h)
 }
+rst_list_table <- function(df, title=NULL, widths=NULL) {
+    df <- as.data.frame(df)
+    nc <- ncol(df)
+    cat(".. list-table::", title, "\n")
+    cat("\t:header-rows:", 1, "\n")
+    if(!is.null(widths))
+        cat("\t:widths:", widths, "\n")
+    cat("\n")
+    col_names <- names(df)
+    cat("\t* -", col_names[1], "\n")
+    for (ic in 2:nc) { cat("\t  -", col_names[ic], "\n") }
+    for(ir in 1:nrow(df)) {
+        cat("\t* -", df[ir, 1], "\n")
+        for(ic in 2:nc) { cat("\t  -", df[ir, ic], "\n") }
+    }
+    cat("\n")
+}

@@ -2,9 +2,9 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2020-08-26
+:modified: 2020-08-30
 
-**Version: 0.10.0**
+**Version: 0.11.0**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
 
@@ -15,6 +15,9 @@ Portable Piecepack Notation (PPN) is a human-readable plaintext file format for 
 .. _PGN: http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm
 .. _PSN: http://genedavis.com/articles/2014/05/09/psn/
 .. _YAML: https://yaml.org/
+.. _Unicode chess glyphs: https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
+.. _Unicode playing card glyphs: https://en.wikipedia.org/wiki/Playing_cards_in_Unicode
+.. _Unicode dominoes glyphs: https://en.wikipedia.org/wiki/Domino_Tiles
 .. include:: ../../links.rst
 
 .. {r setup, echo=FALSE}
@@ -195,6 +198,21 @@ Setup
 
 * The default movetext parser accepts the optional argument ``ScalingFactor`` which changes how many "inches" a coordinate represents i.e. with ``ScalingFactor: 2`` then ``a1`` corresponds to an x-coordinate of 2 inches and a y-coordinate of 2 inches.
 
+Macros
+~~~~~~
+
+The default Movetext Parse performs macro substition in the Movetext_.  
+
+* Macros are strings surrounded by a ````` and ``'`` e.g. ```q'@b2 {The default "q" macro is for a black chess queen}``.  
+* Macros can be defined in three places (with any identically named macros earlier in this list replacing those later in the list):
+
+  1. In a "Macros" field in the Metadata_
+  2. By a specified game setup_ function
+  3. The parser includes some `builtin macros`_.
+
+* Macro names cannot include whitespace nor the semi-colon ``;``.
+* Macro substitution happens after "moves" and "comments" are identified (and split) but before "brace expansion" occurs.
+
 Comments
 ~~~~~~~~
 
@@ -252,14 +270,23 @@ Piece (type)
 ++++++++++++
 
 * ``t`` for "tile"
-* ``c`` for "coin"
+* ``c`` for "coin" if piecepack suit and "checkers2" "bit" if colored suit
 * ``d`` for "die"
 * ``p`` for "pawn"
-* ``m`` for "matchstick"
-* ``s`` for "saucer"
+* ``m`` for "matchstick" if piecepack suit and "meeples" "bit" if colored suit
+* ``s`` for "saucer" if piecepack suit and "go" stone "bit" if colored suit
+* ``●`` or ``()`` for "bit"
 * ``▲`` or ``/\`` for "pyramid"
 * ``🂠`` or ``[]`` for "card"
+* ``■`` or ``[X]`` for "board" 
+
+  + Defaults to a "checkers2" board
+
 * ``⚀``, ``⚁``, ``⚂,`` ``⚃``, ``⚄``, ``⚅`` sets the |Configuration| to "dice", Piece_ to "die", and sets the appropriate Rank_ (from 1 to 6).
+* The `Unicode chess glyphs`_ sets the |Configuration| to "chess2", Piece_ to "bit", and sets the appropriate Rank_ (and possibly Suit_)
+* The `Unicode playing card glyphs`_ sets the |Configuration| to "playing_cards_tarot", Piece_ to "card", and sets the appropriate Rank_ and possibly Suit_.
+* The `Unicode dominoes glyphs`_ sets the |Configuration| to an appropriate "dominoes" configuration, Piece_ to "tile", and sets the appropriate Rank_ and Suit_.
+* ``○`` indicates a "go" "bit", ``▦`` or ``[#]`` indicates a "go" "board", and ``⛂`` and ``⛀`` indicates a "checkers2" "bit".
 
 .. _Side:
 
@@ -289,10 +316,21 @@ Suit and Configuration
 * ``♡``, ``♤``, ``♧``, ``♢`` for (inverted 4-colored) "Hearts", "Spades", "Clubs", and "Diamonds" Suit_ and "dual_piecepacks_expansion" |Configuration|  
 * ``R``, ``K``, ``G``, ``B``, ``Y``, ``W`` for "Red", "Black", "Green", "Blue", "Yellow", or "White" Suit_ 
   
+  + If a "bit" indicated by ``●``, ``○``, or ``s`` or a "board" indicated by ``▦`` or ``[#]`` then "go"
+  + If a "bit" indicated by ``c``, ``⛂``, or ``⛀`` or a "board" indicated by ``■`` or ``[X]`` then "checkers2"
+  + If a dominoes "tile" Piece_ then an appropriate colored dominoes [#color_dominoes]_ 
   + If a "pyramid" Piece_ then an "icehouse_pieces" |Configuration| (invented by Andy Looney aka Looney Labs' `"Looney pyramids" <https://www.looneylabs.com/looney-pyramids>`_)
+  + If a ``μ`` or ``u`` is present will assume component comes from a smaller sized set:
+   
+    - "checkers1" instead of a "checkers2" set
+    - "chess1" instead of a "chess2" set
 
 * ``,sN`` manually sets the internal "suit" to the positive integer ``N`` and ``,C'`` manually sets the internal "configuration" to the string ``C``.
 * ``⚀``, ``⚁``, ``⚂,`` ``⚃``, ``⚄``, ``⚅`` sets the |Configuration| to "dice", Piece_ to "die", and sets the appropriate Rank_ (from 1 to 6).
+* The `Unicode chess glyphs`_ sets the |Configuration| to "chess2", Piece_ to "bit", and sets the appropriate Rank_ (and possibly Suit_)
+* The `Unicode playing card glyphs`_ sets the |Configuration| to "playing_cards_tarot", Piece_ to "card", and sets the appropriate Rank_ and possibly Suit_.
+* The `Unicode dominoes glyphs`_ sets the |Configuration| to an appropriate "dominoes" configuration, Piece_ to "tile", and sets the appropriate Rank_ and Suit_.
+* ``○`` indicates a "go" "bit", ``▦`` or ``[#]`` indicates a "go" "board", and ``⛂`` and ``⛀`` indicates a "checkers2" "bit".
 
 Rank
 ++++
@@ -308,6 +346,9 @@ Rank
 
 * ``,rN`` manually sets the internal "rank" to the integer ``N``.
 * ``⚀``, ``⚁``, ``⚂,`` ``⚃``, ``⚄``, ``⚅`` sets the |Configuration| to "dice", Piece_ to "die", and sets the appropriate Rank_ (from 1 to 6).
+* The `Unicode chess glyphs`_ sets the |Configuration| to "chess2", Piece_ to "bit", and sets the appropriate Rank_ (and possibly Suit_)
+* The `Unicode playing card glyphs`_ sets the |Configuration| to "playing_cards_tarot", Piece_ to "card", and sets the appropriate Rank_ and Suit_.
+* The `Unicode dominoes glyphs`_ sets the |Configuration| to an appropriate "dominoes" configuration, Piece_ to "tile", and sets the appropriate Rank_ and Suit_.
 
 Angle
 +++++
@@ -332,6 +373,7 @@ Assumptions
   + Pyramids are assumed to be "top" up.
   + Tiles and cards are assumed to be "back" up if missing suit and/or rank (else "face").
   + Coins and saucers are assumed to be "face" up if missing suit (else "back").
+  + Bits are assumed to be "back" up unless a "chess2" or "chess1" piece
   + Else assumed to be "face" up.
 
 * If missing Suit_:
@@ -360,7 +402,10 @@ Examples
 * ``p`` (Suns) pawn
 * ``K3▲`` 3-pipped black icehouse pyramid top
 
+.. [#color_dominoes] "dominoes_black", "dominoes_blue", "dominoes_green", "dominoes_red", "dominoes_white", and "dominoes_yellow"
+
 .. [#pawn] Internally even piecepack pawns and saucers are assigned a rank even though they normally don't have a rank.  Dice are assigned the rank of the face oriented upwards even though technically the dice themselves actually have six ranks.
+
 
 Location
 ~~~~~~~~
@@ -489,3 +534,20 @@ Updating/replacing pieces
 
 * ``~`` is used "update" pieces on the board with new characteristics.  ``PieceId~PieceSpec`` means update the piece identified PieceId_ according to only the explicitly listed elements in PieceSpec_ e.g. ``?dS~3`` means have the "Suns" die now show the 3 rank on top without updating orientation.
 
+Appendix
+--------
+
+.. _builtin macros:
+
+Default Macros
+~~~~~~~~~~~~~~
+
+The `default movetext parser`_ has the following built-in macros (these can be over-ridden by the Setup_ function or by the user in the Metadata_):
+
+.. {r macros, echo=FALSE, results='asis'}
+replacement <- as.character(ppgames:::macros)
+dfm <- tibble::tibble(macro = names(ppgames:::macros),
+                      replacement = replacement,
+                      hexadecimal = paste0("U+", as.hexmode(sapply(replacement, utf8ToInt))))
+rst_list_table(dfm, title = "Default parser's built-in macros")
+.. ..
