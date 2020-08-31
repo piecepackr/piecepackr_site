@@ -58,7 +58,7 @@ checkeredPieceGrob <- function(piece_side, suit, rank, cfg) {
     shape <- pp_shape(opt$shape, opt$shape_t, opt$shape_r, opt$back)
 
     background_grob <- shape$shape(gp=gpar(col=NA, fill=opt$background_color))
-    checkers_grob <- shape$shape(gp=gpar(fill=opt$gridline_color))
+    checkers_grob <- shape$checkers(gp=gpar(fill=opt$gridline_color))
 
     gp_ps <- gpar(col=opt$ps_color, fontsize=opt$ps_fontsize, 
                   fontfamily=opt$ps_fontfamily, fontface=opt$ps_fontface)
