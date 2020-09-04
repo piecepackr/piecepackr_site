@@ -77,7 +77,7 @@ rgl.open()
 bg3d("white")
 if (Sys.which("wmctrl") != "") system("wmctrl -r RGL -e 0,-1,-1,1080,1080")
 view3d(phi=-30, zoom = 0.8)
-pmap_piece(df, piece3d, envir=envir, default.units="in", trans=op_transform)
+pmap_piece(df, piece3d, envir=envir, trans=op_transform)
 .. ..
 .. {r move, echo=FALSE}
 Sys.sleep(2)
