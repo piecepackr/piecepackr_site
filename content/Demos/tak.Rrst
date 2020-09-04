@@ -129,10 +129,11 @@ systems <- game_systems("dejavu")
 piecepack <- as.list(systems$piecepack)
 piecepack$edge_color.coin <- piecepack$edge_color.tile <- "tan4"
 piecepack$shape.pawn <- "circle"
+piecepack$height.pawn <- 0.75
 piecepack$width.pawn <- 0.75
+piecepack$depth.pawn <- 1.0
 piecepack$dm_text.pawn <- ""
 piecepack$ps_r.pawn <- 0
-piecepack$depth.pawn <- 1.0
 subpack <- as.list(to_subpack(piecepack))
 subpack$depth.pawn <- 0.5
 subpack$width.tile <- 0.7

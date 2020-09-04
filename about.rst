@@ -74,6 +74,7 @@ These are demonstrations of using piecepackr_ to make diagrams for `other game s
 
 #. `Checkers <{filename}/Demos/checkers.rst>`_
 #. `Dominoes and standard 6-sided dice <{filename}/Demos/dominoes.rst>`_
+#. `Go <{filename}/Demos/go.rst>`_
 #. `Hexpack <{filename}/Demos/hexpack.rst>`_
 #. `Looney Pyramids <{filename}/Demos/looney_pyramids.rst>`__
 #. `Tak <{filename}/Demos/tak.rst>`_
