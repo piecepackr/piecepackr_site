@@ -5,10 +5,10 @@
 .. _piecepack games:
 .. _piecepack game: http://www.ludism.org/ppwiki/Games
 .. _make your own piecepack: http://www.ludism.org/ppwiki/MakingPiecepacks
-.. _JCD piecepack: http://www.piecepack.org/JCD.html
+.. _JCD piecepack: https://web.archive.org/web/2016/http://www.piecepack.org/JCD.html
 .. _Packtet: http://ludism.org/ppwiki/Packtet
 .. _Stackpack: http://ludism.org/ppwiki/StackPack
-.. _Anatomy of a Piecepack: http://www.piecepack.org/Anatomy.html
+.. _Anatomy of a Piecepack: https://web.archive.org/web/2016/http://www.piecepack.org/Anatomy.html
 .. _Quivira: http://www.quivira-font.com/
 .. _Looney Pyramids: https://www.looneylabs.com/looney-pyramids
 

@@ -2,11 +2,19 @@ News
 ====
 
 :date: 2020-06-24
-:modified: 2020-08-22
+:modified: 2020-11-15
 
 .. include:: ../../links.rst
 
 This page is a reverse chronological list of major changes by quarter.
+
+2020-Q4
+-------
+
+New docs
+~~~~~~~~
+
+* `Essential information sets of a piecepack <{filename}/Docs/essential.rst>`_
 
 2020-Q3
 -------
