@@ -268,6 +268,10 @@ small_tiles <- pp_cfg(small_tiles)
 png("../share/rules/alquerque.png", width=6, height=6, units="in", res=72)
 pmap_piece(df_alquerque(), cfg=two_player, default.units="in")
 invisible(dev.off())
+save_ruleset("alquerque", gk_2p, "../share/rules/alquerque.pdf")
+save_ruleset("alquerque", gk_2p, "../share/rules/alquerque_A4.pdf", size="A4")
+save_pamphlet("alquerque", gk_2p, "../share/rules/alquerque_pamphlet.pdf")
+save_pamphlet("alquerque", gk_2p, "../share/rules/alquerque_pamphlet_A4.pdf", size="A4")
 
 png("../share/rules/american_checkers.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_american_checkers(), cfg=two_player, default.units="in")
@@ -290,7 +294,7 @@ pmap_piece(df_cell_management(seed=42), envir=cfgs, default.units="in",
            op_scale=0.5, op_angle=60, trans=op_transform)
 invisible(dev.off())
 
-png("../share/rules/desfases.png", width=14, height=14, units="in", res=36)
+png("../share/rules/desfases.png", width=18, height=18, units="in", res=36)
 pmap_piece(df_desfases(seed=42), cfg=small_tiles, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
