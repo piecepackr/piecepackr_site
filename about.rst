@@ -21,6 +21,7 @@ These are in depth articles on specific subjects of interest to piecepackr_ user
 #. `Unicode piecepack diagrams <{filename}/Docs/unicode_diagrams.rst>`_
 #. `Game starting arrangement functions <{filename}/Docs/game_starts.rst>`_
 #. `Essential information sets of a piecepack <{filename}/Docs/essential.rst>`_
+#. `Licenses FAQ <{filename}/Docs/licenses.rst>`_
 
 Also consider looking at each of the R packages built-in documentation:
 

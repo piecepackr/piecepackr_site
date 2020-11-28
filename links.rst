@@ -32,6 +32,7 @@
 .. _Wavefront OBJ: https://en.wikipedia.org/wiki/Wavefront_.obj_file
 
 .. Demos
+.. _chess: {filename}/Demos/chess_pnp.rst
 .. _default: {filename}/Demos/default_pnp.rst
 .. _dual piecepacks:
 .. _dual: {filename}/Demos/dual_pnp.rst
