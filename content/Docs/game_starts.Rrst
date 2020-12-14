@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2020-06-26
+:modified: 2020-12-13
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -89,7 +89,7 @@ Table of Supported Game Start Functions
       - df_alice_chess
       - X
       -
-    * - `Alien City <http://www.ludism.org/ppwiki/AlienCity>`_
+    * - `Alien City <https://www.ludism.org/ppwiki/AlienCity>`_
       - df_alien_city
       -
       -
@@ -101,7 +101,7 @@ Table of Supported Game Start Functions
       - df_awithlaknannai_mosona
       -
       -
-    * - `Backgammon <http://www.ludism.org/ppwiki/Backgammon>`_
+    * - `Backgammon <https://www.ludism.org/ppwiki/Backgammon>`_
       - df_backgammon
       - X
       -
@@ -109,23 +109,23 @@ Table of Supported Game Start Functions
       - df_breakthrough
       -
       -
-    * - `Cell Management <http://www.ludism.org/ppwiki/CellManagement>`_
+    * - `Cell Management <https://www.ludism.org/ppwiki/CellManagement>`_
       - df_cell_management
       -
       - Not very PPN friendly
-    * - `Chaturaji <http://www.ludism.org/ppwiki/Chaturaji>`_
+    * - `Chaturaji <https://www.ludism.org/ppwiki/Chaturaji>`_
       - df_chaturaji
       -
       -
-    * - `(American) Checkers <http://www.ludism.org/ppwiki/Checkers>`_
+    * - `(American) Checkers <https://www.ludism.org/ppwiki/Checkers>`_
       - df_american_checkers, df_english_draughts, df_checkers
       - X
       -
-    * - `(International) Chess <http://www.ludism.org/ppwiki/Checkers>`_
+    * - `(International) Chess <https://www.ludism.org/ppwiki/Checkers>`_
       - df_international_chess, df_chess
       - X
       -
-    * - `Cribbage (Board) <http://www.ludism.org/ppwiki/Cribbage>`_
+    * - `Cribbage (Board) <https://www.ludism.org/ppwiki/Cribbage>`_
       - df_cribbage_board
       - X
       - Just a (piecepack) cribbage board (no cards)
@@ -133,15 +133,15 @@ Table of Supported Game Start Functions
       - df_crossings
       -
       -
-    * - `Desfases <http://www.ludism.org/ppwiki/Desfases>`_
+    * - `Desfases <https://www.ludism.org/ppwiki/Desfases>`_
       - df_desfases
       -
       -
-    * - `Everest <http://www.ludism.org/ppwiki/Everest>`_
+    * - `Everest <https://www.ludism.org/ppwiki/Everest>`_
       - df_everest
       -
       -
-    * - `Four Field Kono <http://www.ludism.org/ppwiki/FourFieldKono>`_
+    * - `Four Field Kono <https://www.ludism.org/ppwiki/FourFieldKono>`_
       - df_four_field_kono
       - X
       - 
@@ -149,19 +149,19 @@ Table of Supported Game Start Functions
       - df_four_seasons_chess
       - X
       -
-    * - `Froggy Bottom <http://www.ludism.org/ppwiki/FroggyBottom>`_
+    * - `Froggy Bottom <https://www.ludism.org/ppwiki/FroggyBottom>`_
       - df_froggy_bottom
       -
       -
-    * - `Fujisan <http://www.ludism.org/ppwiki/Fuji-san>`_
+    * - `Fujisan <https://www.ludism.org/ppwiki/Fuji-san>`_
       - df_fujisan
       -
       -
-    * - `Ice Floe <http://www.ludism.org/ppwiki/IceFloe>`_
+    * - `Ice Floe <https://www.ludism.org/ppwiki/IceFloe>`_
       - df_ice_floe
       -
       -
-    * - `Ley Lines <http://www.ludism.org/ppwiki/LeyLines>`_
+    * - `Ley Lines <https://www.ludism.org/ppwiki/LeyLines>`_
       - df_ley_lines
       -
       -
@@ -173,7 +173,7 @@ Table of Supported Game Start Functions
       - df_nine_mens_morris
       - X
       - 
-    * - `Plans of Action <http://www.ludism.org/ppwiki/PlansOfAction>`_
+    * - `Plans of Action <https://www.ludism.org/ppwiki/PlansOfAction>`_
       - df_plans_of_action
       - 
       -
@@ -181,7 +181,7 @@ Table of Supported Game Start Functions
       - df_rect_board_tiles
       -
       - Makes a rectangular board made from tiles
-    * - `Relativity <http://www.ludism.org/ppwiki/Relativity>`_
+    * - `Relativity <https://www.ludism.org/ppwiki/Relativity>`_
       - df_relativity
       -
       -
@@ -189,24 +189,28 @@ Table of Supported Game Start Functions
       - df_salta
       -
       -
-    * - `San Andreas <http://www.ludism.org/ppwiki/SanAndreas>`_
+    * - `San Andreas <https://www.ludism.org/ppwiki/SanAndreas>`_
       - df_san_andreas
       -
       -
-    * - `Shogi (Japanese Chess) <http://www.ludism.org/ppwiki/Shogi>`_
+    * - `Shogi (Japanese Chess) <https://www.ludism.org/ppwiki/Shogi>`_
       - df_shogi
       -
       -
-    * - `Tablut <http://www.ludism.org/ppwiki/Tablut>`_
+    * - `Tablut <https://www.ludism.org/ppwiki/Tablut>`_
       - df_tablut
       - X
       -
-    * - `The "In" Crowd <http://www.ludism.org/ppwiki/TheInCrowd>`_
+    * - `The "In" Crowd <https://www.ludism.org/ppwiki/TheInCrowd>`_
       - df_the_in_crowd
       -
       -
-    * - `Triactor <http://www.ludism.org/ppwiki/Triactor>`_
+    * - `Triactor <https://www.ludism.org/ppwiki/Triactor>`_
       - df_triactor
+      -
+      -
+    * - `Tula <https://www.ludism.org/ppwiki/Tula>`_
+      - df_tula
       -
       -
     * - `Turkish Draughts <https://en.wikipedia.org/wiki/Turkish_draughts>`_
@@ -221,11 +225,11 @@ Table of Supported Game Start Functions
       - df_ultima, df_baroque_chess
       - X
       -
-    * - `Xiangqi (Chinese Chess) <http://www.ludism.org/ppwiki/Xiangqi>`_
+    * - `Xiangqi (Chinese Chess) <https://www.ludism.org/ppwiki/Xiangqi>`_
       - df_xiangqi
       - X
       -
-    * - `Wormholes <http://www.ludism.org/ppwiki/Wormholes>`_
+    * - `Wormholes <https://www.ludism.org/ppwiki/Wormholes>`_
       - df_wormholes
       -
       -
@@ -342,6 +346,11 @@ pmap_piece(df_the_in_crowd(), envir=cfgs, default.units="in",
            op_scale=1.0, trans=op_transform)
 invisible(dev.off())
 
+png("../share/rules/tula.png", width=8.5, height=8.5, units="in", res=42)
+pmap_piece(df_tula(seed=42), envir=cfgs, default.units="in", 
+           op_scale=1.0, trans=op_transform)
+invisible(dev.off())
+
 png("../share/rules/turkish_draughts.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_turkish_draughts(), cfg=two_player, default.units="in")
 invisible(dev.off())
@@ -373,6 +382,7 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  Relativity = "../share/rules/relativity.png",
                  `San Andreas` = "../share/rules/san_andreas.png",
                  Tablut = "../images/knitr/games-tablut-starting-diagram-1.svg",
+                 Tula = "../share/rules/tula.png",
                  `Turkish Draughts` = "../share/rules/turkish_draughts.png",
                  `The "In" Crowd` = "../share/rules/the_in_crowd.png",
                  Xiangqi = "../images/knitr/demos-chess-xiangqi-1.svg",
