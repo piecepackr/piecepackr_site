@@ -107,6 +107,8 @@ Lets consider the following use case, a fan wants to adapt your ruleset by addin
     * - They must either bundle with each single-page leaflet a physcial copy of the electronic source (e.g. attach a flash drive or burnt CD to each single-page leaflet) or include a link to a website with the electronic source that they must keep up for at least one year after the convention. [#gfdlcode]_
       - No legal need to offer electronic source but may not apply any "Effective Technological Measures" to make it hard to copy/modify the leaflet. [#bysadrm]_
 
+.. _piecepackr_output:
+
 piecepackr is licensed CC BY-SA 4.0,  is its output automatically CC BY-SA 4.0 too?
 -----------------------------------------------------------------------------------
 
