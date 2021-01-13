@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2021-01-02
+:modified: 2021-01-12
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -189,6 +189,10 @@ Table of Supported Game Start Functions
       - df_nine_mens_morris
       - X
       - 
+    * - `Pass the Food <https://www.ludism.org/ppwiki/PassTheFood>`_
+      - df_pass_the_food
+      - X
+      -
     * - `Plans of Action <https://www.ludism.org/ppwiki/PlansOfAction>`_
       - df_plans_of_action
       - 
@@ -285,6 +289,7 @@ two_player <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
         border_color.tile_back="#009E73", border_lex.tile_back=5
 ))
 gk_2p <- game_kit(list(cfg=two_player))
+gk_4p <- game_kit(list(cfg=cfgs$piecepack))
 
 small_tiles <- as.list(cfgs$piecepack)
 small_tiles$width.tile = 1.75
@@ -301,10 +306,10 @@ save_pamphlet("alquerque", gk_2p, "../share/rules/alquerque_pamphlet_A4.pdf", si
 png("../share/rules/american_checkers.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_american_checkers(), cfg=two_player, default.units="in")
 invisible(dev.off())
-save_ruleset("american-checkers", gk_2p, "../share/rules/american_checkers.pdf")
-save_ruleset("american-checkers", gk_2p, "../share/rules/american_checkers_A4.pdf", size="A4")
-save_pamphlet("american-checkers", gk_2p, "../share/rules/american_checkers_pamphlet.pdf")
-save_pamphlet("american-checkers", gk_2p, "../share/rules/american_checkers_pamphlet_A4.pdf", size="A4")
+save_ruleset("American Checkers", gk_2p, "../share/rules/american_checkers.pdf")
+save_ruleset("American Checkers", gk_2p, "../share/rules/american_checkers_A4.pdf", size="A4")
+save_pamphlet("American Checkers", gk_2p, "../share/rules/american_checkers_pamphlet.pdf")
+save_pamphlet("American Checkers", gk_2p, "../share/rules/american_checkers_pamphlet_A4.pdf", size="A4")
 
 png("../share/rules/awithlaknannai_mosona.png", width=25.5, height=5.2, units="in", res=36)
 pmap_piece(df_awithlaknannai_mosona(), cfg=two_player, default.units="in")
@@ -376,6 +381,15 @@ pmap_piece(df_relativity(seed=12), envir=cfgs, default.units="in",
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
+png("../share/rules/pass_the_food.png", width=9.0, height=13.5, units="in", res=42)
+pmap_piece(df_pass_the_food(), envir=cfgs, default.units="in", 
+           op_scale=0.5, trans=op_transform)
+invisible(dev.off())
+save_ruleset("Pass the Food", gk_4p, "../share/rules/pass_the_food.pdf")
+save_ruleset("Pass the Food", gk_4p, "../share/rules/pass_the_food_A4.pdf", size="A4")
+save_pamphlet("Pass the Food", gk_4p, "../share/rules/pass_the_food_pamphlet.pdf")
+save_pamphlet("Pass the Food", gk_4p, "../share/rules/pass_the_food_pamphlet_A4.pdf", size="A4")
+
 png("../share/rules/plans_of_action.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_plans_of_action(seed=32), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
@@ -433,6 +447,7 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  `Jul-Gono` = "../share/rules/jul_gono.png",
                  `Ley Lines` = "../share/rules/ley_lines.png",
                  `Lines of Action` = "../share/rules/lines_of_action.png",
+                 `Pass the Food` = "../share/rules/pass_the_food.png",
                  `Plans of Action` = "../share/rules/plans_of_action.png",
                  Relativity = "../share/rules/relativity.png",
                  `San Andreas` = "../share/rules/san_andreas.png",

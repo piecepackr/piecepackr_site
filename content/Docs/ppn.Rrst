@@ -45,7 +45,7 @@ Checkers
 ~~~~~~~~
 
 .. {r checkers_animation, echo=FALSE, results='hide'}
-ppn_file <- system.file("ppn/checkers.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/american-checkers.ppn", package = "ppgames")
 checkers <- read_ppn(ppn_file)[[1]]
 animate_game(checkers, file = "checkers.gif", 
             annotation = FALSE, cfg = two_player,
