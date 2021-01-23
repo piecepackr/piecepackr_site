@@ -336,7 +336,6 @@ pmap_piece(df_shogi(has_subpack = TRUE), envir = two_player_stackpack, op_scale=
 Xiangqi (Chinese Chess)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-
 .. {r xiangqi-stackpack, fig.cap="Xiangqi starting diagram", fig.width=10, fig.height=12}
 pmap_piece(df_xiangqi(has_subpack = TRUE), envir = two_player_stackpack, op_scale=0.5, 
            trans=op_transform, default.units="in")
@@ -344,10 +343,10 @@ pmap_piece(df_xiangqi(has_subpack = TRUE), envir = two_player_stackpack, op_scal
 
 .. {r save_games, echo=FALSE}
 gk <- game_kit(list(cfg=chess5))
-save_ruleset("alice-chess", gk, "../share/rules/alice-chess.pdf")
+save_ruleset("alice chess", gk, "../share/rules/alice-chess.pdf")
 save_ruleset("chaturaji", gk, "../share/rules/chaturaji.pdf")
-save_ruleset("international-chess", gk, "../share/rules/international-chess.pdf")
-save_ruleset("four-seasons-chess", gk, "../share/rules/four-seasons-chess.pdf")
+save_ruleset("international chess", gk, "../share/rules/international-chess.pdf")
+save_ruleset("four seasons chess", gk, "../share/rules/four-seasons-chess.pdf")
 save_ruleset("ultima", gk, "../share/rules/ultima.pdf")
 save_ruleset("xiangqi", gk, "../share/rules/xiangqi.pdf")
 svg2png("../images/knitr/demos-chess-alice-chess-1.svg",
@@ -372,4 +371,11 @@ svg2png("../images/knitr/demos-chess-xiangqi-1.svg",
         "../share/rules/xiangqi.png", 500, 600)
 svg2png("../images/knitr/demos-chess-xiangqi-stackpack-1.svg",
         "../share/rules/xiangqi-stackpack.png", 500, 600)
+.. ..
+
+.. {r animation, echo=FALSE}
+game <- ppgames::read_ppn(system.file("ppn/international-chess.ppn", package="ppgames"))[[1]]
+ppgames::animate_game(game, file = "../images/knitr/international-chess.gif",
+                      cfg = chess5, trans = op_transform, op_scale = 0.5,
+                      n_transitions = 6, n_pauses = 3, fps = 9)
 .. ..
