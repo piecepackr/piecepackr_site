@@ -44,7 +44,7 @@ Examples
 Chess
 ~~~~~
 
-An example game of chess:
+An example game of `chess <https://ludism.org/ppwiki/Chess>`__:
 
 .. {r chess, echo=FALSE, results='asis'}
 ppn_file <- system.file("ppn/international-chess.ppn", package = "ppgames")
@@ -57,6 +57,8 @@ cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 
 Checkers
 ~~~~~~~~
+
+An example game of `checkers <https://ludism.org/ppwiki/Checkers>`_:
 
 .. {r checkers_animation, echo=FALSE, results='hide'}
 ppn_file <- system.file("ppn/american-checkers.ppn", package = "ppgames")
@@ -78,6 +80,8 @@ cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 Desfases
 ~~~~~~~~
 
+An example game of `Desfases <https://ludism.org/ppwiki/Desfases>`_:
+
 .. {r desfases, echo=FALSE, results='asis'}
 ppn_file <- system.file("ppn/desfases.ppn", package = "ppgames")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
@@ -89,6 +93,8 @@ cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 
 Four Field Kono
 ~~~~~~~~~~~~~~~
+
+An example game of `Four Field Kono <https://ludism.org/ppwiki/FourFieldKono>`_:
 
 .. {r kono_animation, echo=FALSE, results='hide'}
 ppn_file <- system.file("ppn/four-field-kono.ppn", package = "ppgames")
@@ -110,7 +116,7 @@ cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 Fuji-san
 ~~~~~~~~
 
-A game of Fuji-san with a specific starting coin setup:: 
+A game of `Fuji-san <https://ludism.org/ppwiki/Fuji-san>`_ with a specific starting coin setup:: 
 
     ---
     GameType:
@@ -129,6 +135,8 @@ A game of Fuji-san with a specific starting coin setup::
 Japan
 ~~~~~
 
+An example game of `Japan <https://ludism.org/ppwiki/Japan>`_:
+
 .. {r japan, echo=FALSE, results='asis'}
 ppn_file <- system.file("ppn/japan.ppn", package = "ppgames")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
@@ -140,6 +148,8 @@ cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 
 Martian Chess
 ~~~~~~~~~~~~~
+
+An example game of `Martian Chess <https://www.looneylabs.com/content/martian-chess>`_:
 
 .. {r martian-chess, echo=FALSE, results='asis'}
 ppn_file <- system.file("ppn/martian-chess.ppn", package = "piecenikr")
