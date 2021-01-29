@@ -2,6 +2,7 @@ Relativity
 ==========
 
 :date: 2020-05-08
+:modified: 2021-01-28
 :tags: ppgames
 
 .. {r setup, echo=FALSE}
@@ -28,14 +29,13 @@ cfg <- pp_cfg(cfg)
 
 ppn_file <- system.file("ppn/relativity.ppn", package = "ppgames")
 game <- read_ppn(ppn_file)[[1]]
-animate_game(game, file = "relativity.gif", cfg = cfg,
-             trans = op_transform, op_scale = 0.5, 
-             n_transitions = 15, n_pauses = 10, fps = 12.5)
+animate_game(game, file = "relativity.gif", annotate = FALSE,
+             cfg = cfg, trans = op_transform, op_scale = 0.5, 
+             n_transitions = 5, n_pauses = 2, fps = 9)
 .. ..
 
 .. {r move, echo=FALSE}
 invisible(file.rename('relativity.gif', '../images/knitr/relativity.gif'))
-
 .. ..
 
 .. figure:: {static}/images/knitr/relativity.gif

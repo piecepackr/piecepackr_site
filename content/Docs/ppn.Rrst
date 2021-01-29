@@ -2,11 +2,11 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2020-08-30
+:modified: 2021-01-28
 
-**Version: 0.11.0**
+**Version: 0.11.1**
 
-Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a prototype parser for this file format written in R that can be used to generate images, plaintext Unicode diagrams, and animations for the games saved in this file format.
+Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppgames/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppgames/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppgames/dev/reference/cat_piece.html>`_, and `animations <https://trevorldavis.com/R/ppgames/dev/reference/animate_game.html>`__ for the games saved in this file format.
 
 .. warning:: The "Portable Piecepack Notation" is in alpha development and the specification is not likely to remain stable.  I'd appreciate alpha testers to test things out but probably not a good idea to start storing large amount of games in the format just yet.
 
@@ -41,20 +41,33 @@ two_player <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
 Examples
 --------
 
+Chess
+~~~~~
+
+An example game of chess:
+
+.. {r chess, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/international-chess.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: {static}/images/knitr/international-chess.gif
+    :alt: Animation of a checkers game
+    :align: center
+
 Checkers
 ~~~~~~~~
 
 .. {r checkers_animation, echo=FALSE, results='hide'}
 ppn_file <- system.file("ppn/american-checkers.ppn", package = "ppgames")
 checkers <- read_ppn(ppn_file)[[1]]
-animate_game(checkers, file = "checkers.gif", 
-            annotation = FALSE, cfg = two_player,
-            trans = op_transform, op_scale = 0.5)
+animate_game(checkers, file = "checkers.gif", annotate = TRUE, 
+            cfg = two_player, trans = op_transform, op_scale = 0.5,
+            n_transitions = 5, n_pauses = 2, fps = 9)
 invisible(file.rename('checkers.gif', '../images/knitr/checkers.gif'))
 .. ..
 
 .. {r checkers, echo=FALSE, results='asis'}
-
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
@@ -62,22 +75,37 @@ cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
     :alt: Animation of a checkers game
     :align: center
 
+Desfases
+~~~~~~~~
+
+.. {r desfases, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/desfases.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: https://trevorldavis.com/share/piecepack/desfases.gif
+    :alt: Animation of a game of Desfases
+    :align: center
+
 Four Field Kono
 ~~~~~~~~~~~~~~~
 
-A game of Four Field Kono with automatic setup::
+.. {r kono_animation, echo=FALSE, results='hide'}
+ppn_file <- system.file("ppn/four-field-kono.ppn", package = "ppgames")
+game <- read_ppn(ppn_file)[[1]]
+animate_game(game, file = "four-field-kono.gif", annotate = TRUE,
+             cfg = two_player, trans = op_transform, op_scale = 0.5,
+             n_transitions = 5, n_pauses = 2, fps = 9)
+invisible(file.rename('four-field-kono.gif', '../images/knitr/four-field-kono.gif'))
+.. ..
 
-    GameType: Four Field Kono
+.. {r four-field-kono, echo=FALSE, results='asis'}
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
 
-    1. b1:b3 1... d3:b3 2. c1:c3 2... a3:c3 3. c2-c1 3... b4:b2 4. a1-b1 4... b3:b1
-    5. d1:b1 5... c3-c2 6. a2-a3 6... b2:d2 7. a3-b3 7... c4-c3 8. c1-d1 8... d4-d3
-    9. b1-b2 9... d2:b2 10. b3-a3 10... b2-b1 {Player 1's loss is assured with the
-     separation of their two remaining pieces and they should resign in a real game}
-    11. a3-a2 11... b1-c1 12. d1-d2 12... c1-d1 13. a2-a3 13... a4-b4
-    14. a3-a4 14... b4-c4 15. a4-b4 15... c4-d4 16. b4-a4 16... d4:d2 {Player 2 wins}
-
-.. image:: https://www.trevorldavis.com/share/piecepack/four_field_kono_example.gif
+.. image:: {static}/images/knitr/four-field-kono.gif
     :alt: Four Field Kono example
+    :align: center
 
 Fuji-san
 ~~~~~~~~
@@ -98,25 +126,71 @@ A game of Fuji-san with a specific starting coin setup::
     :alt: Animation of a Fuji-san game
     :align: center
 
+Japan
+~~~~~
+
+.. {r japan, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/japan.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: https://trevorldavis.com/share/piecepack/japan_grid.gif
+    :alt: Japan example
+    :align: center
+
+Martian Chess
+~~~~~~~~~~~~~
+
+.. {r martian-chess, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/martian-chess.ppn", package = "piecenikr")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: https://raw.githubusercontent.com/piecepackr/piecenikr/master/man/figures/martian-chess.gif
+    :alt: Martian Chess example
+    :align: center
+
+Relativity
+~~~~~~~~~~
+
+An example game of `Relativity <{filename}/Demos/relativity_game.rst>`_:
+
+.. {r relativity, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/relativity.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: {static}/images/knitr/relativity.gif
+    :alt: Four Field Kono example
+    :align: center
+
+Tablut
+~~~~~~
+
+An example game of `Tablut <{filename}/Demos/tablut_game.rst>`_:
+
+.. {r tablut, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/tablut.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: {static}/images/knitr/tablut.gif
+    :alt: Tablut example
+    :align: center
+
 Tic-Tac-Toe
 ~~~~~~~~~~~
 
-A simple game of Tic-Tac-Toe with no automatic setup::
+A simple game of Tic-Tac-Toe with no automatic setup:
 
-    ---
-    Event: Example Tic-Tac-Toe Game
-    Result: 1-0
-    ...
-    setup. t@b2
-    1. S@b2 1... M@a2 {? (1... M@a1)}
-    2. S@c1 2... M@a3
-    3. S@a1 3... M@c3
-    4. S@b1 {X wins}
+.. {r tic-tac-toe, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/tic-tac-toe.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
 
 .. image:: {static}/images/knitr/tictactoe.gif
     :alt: Animation of a tic-tac-toe game
     :align: center
-
 
 PPN File Structure
 ------------------
