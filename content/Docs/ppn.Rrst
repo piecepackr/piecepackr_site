@@ -2,9 +2,9 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2021-01-28
+:modified: 2021-02-07
 
-**Version: 0.11.1**
+**Version: 0.12.0**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppgames/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppgames/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppgames/dev/reference/cat_piece.html>`_, and `animations <https://trevorldavis.com/R/ppgames/dev/reference/animate_game.html>`__ for the games saved in this file format.
 
@@ -73,10 +73,6 @@ invisible(file.rename('checkers.gif', '../images/knitr/checkers.gif'))
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
-.. image:: {static}/images/knitr/checkers.gif
-    :alt: Animation of a checkers game
-    :align: center
-
 Desfases
 ~~~~~~~~
 
@@ -109,28 +105,29 @@ invisible(file.rename('four-field-kono.gif', '../images/knitr/four-field-kono.gi
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
-.. image:: {static}/images/knitr/four-field-kono.gif
-    :alt: Four Field Kono example
-    :align: center
-
 Fuji-san
 ~~~~~~~~
 
-A game of `Fuji-san <https://ludism.org/ppwiki/Fuji-san>`_ with a specific starting coin setup:: 
+A game of `Fuji-san <https://ludism.org/ppwiki/Fuji-san>`_ with a specific starting coin setup:
 
-    ---
-    GameType:
-      Name: Fujisan
-      Coins: "44452n24n3aa\na25335325ann"
-    ...
-    1. a1-b1 2. n2-k2 3. b1-e1 4. e1-j1 5. j1-j2 6. j2-l2 7. k2-m2
-    8. m2-m1 9. l2-l1 10. n1-k1 11. m1-i1 12. i1-d1 13. d1-d2 14. l1-i1
-    11. i1-i2 16. k1-k2 17. k2-e2 18. i2-c2 19. a2-f2 20. e2-h2 21. h2-g2
-    22. c2-h2 23. h2-h1 24. d2-h2 25. f2-b2 26. b2-b1 27. b1-g1
+.. {r fuji-san, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/fujisan.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
 
 .. image:: {static}/images/knitr/fujisan.gif
     :alt: Animation of a Fuji-san game
     :align: center
+
+Ice Floe
+~~~~~~~~
+
+A game of `Ice Floe <https://ludism.org/ppwiki/IceFloe>`_:
+
+.. {r ice-floe, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/ice-floe.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
 
 Japan
 ~~~~~
@@ -184,10 +181,6 @@ ppn_file <- system.file("ppn/tablut.ppn", package = "ppgames")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
-.. image:: {static}/images/knitr/tablut.gif
-    :alt: Tablut example
-    :align: center
-
 Tic-Tac-Toe
 ~~~~~~~~~~~
 
@@ -197,10 +190,6 @@ A simple game of Tic-Tac-Toe with no automatic setup:
 ppn_file <- system.file("ppn/tic-tac-toe.ppn", package = "ppgames")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
-
-.. image:: {static}/images/knitr/tictactoe.gif
-    :alt: Animation of a tic-tac-toe game
-    :align: center
 
 PPN File Structure
 ------------------
@@ -295,7 +284,7 @@ The default Movetext Parse performs macro substition in the Movetext_.
   3. The parser includes some `builtin macros`_.
 
 * Macro names cannot include whitespace nor the semi-colon ``;``.
-* Macro substitution happens after "moves" and "comments" are identified (and split) but before "brace expansion" occurs.
+* Macro substitution happens after "moves" and "comments" are identified (and split).
 
 Comments
 ~~~~~~~~
@@ -304,7 +293,7 @@ Comments
 
   + All whitespace will be parsed as single spaces, in particular comments can span multiple lines
   + Braces are not allowed within comment braces
-  + Must have white space before and after the braces (otherwise will be considered to be a brace expansion)
+  + Must have white space before the ``{`` and after the ``}`` (otherwise will be considered to be a brace expansion)
 
 MoveNumbers
 ~~~~~~~~~~~
@@ -520,11 +509,37 @@ Chess-algebraic-style coordinates
 
 * The digits are considered to the y-coordinate encoded as a (base-10) integer.
 
+Relative coordinates
+++++++++++++++++++++
+
+* Relative coordinates has three forms:
+
+  1. ``Offset`` are coordinates relative to the pieces being moved
+  2. ``Offset|Location`` are coordinates relative to ``Location`` (which itself could be expressed in relative coordinates)
+  3. ``Offset$PieceId`` are coordinates relative to the ``Location`` of ``PieceId`` (it is a shortcut for ``Offset|&PieceId``)
+
+* ``Offset`` can be specified in two ways:
+
+  1. ``<X,Y>`` where ``X`` is the x-coordinate relative offset and ``Y`` is the y-coordinate relative offset 
+     e.g. ``?pS-<4,-2> {move the suns pawn four to the right and two down from its current position}`` or ``?pS-<-2,3>$?pA {move the suns pawn two to the left and three up relative to the arms pawn}``
+  2. ``N Direction`` is a ``N`` distance relative offset in the ``Direction`` direction
+     
+     + The directions are U, R, D, L or alternatively N, E, S, W and represent "Up", "Right", "Down" and "Left" orthogonal moves
+       i.e. ``?pS-3R {move the suns pawn three to the right}``
+     + The "intercardinal" directions (i.e. NE, SE, SW, NW as well as UR, DR, DL, UL) represent diagonal moves on a rectangular board
+       i.e. ``?pS-3NE {move the suns pawn three to the right and three up}``
+     + The "half-wind" directions (i.e. NNE, NEN, ESE, SSE, SSW, WSW, WNW, NNW as well as U,R,D,L equivalents) represent diagonal moves on a hexagonal board
+       i.e. ``?pS-3NNE {move the suns pawn three in a hexagonal diagonal direction up and right}``.  
+       
+       * Use NNE, SSE, SSW, NNW directions on hexagonal boards that allow horizontal moves and ENE, ESE, WSW, WNW directions on hexagonal boards that allow vertical moves.
+       * Note that real-life "half-wind" directions are multiples of 22.5 degrees while the "half-wind" directions in PPN_ are instead rounded to multiples of 30 degrees (to correspond to hex board movement angles).
+
 Get location from PieceId
 +++++++++++++++++++++++++
 
 * A PieceId_ string preceded by a ``&`` indicates the x,y coordinates of that piece.
 
+  + The ``&`` is optional in front of a ``?`` e.g. ``3?A4-2R`` is a shortcut for ``3&?A4-2R``
   + For the PieceId_ form ``N Location`` it returns the x,y coordinates of that Location_.
   + Otherwise if PieceId_ identifies several pieces (e.g. "greedy" search) then it returns
     the x,y, coordinates of the "last" piece (according to internal ordering of pieces).
@@ -564,6 +579,14 @@ A PieceId_ is used to identify specific pieces on the board.  Currently PPN_ sup
 * A PieceId_ preceded by a ``^`` identifies the piece from the game state at the beginning of the move 
   
   + An example would be ``a1-a2 a2-a3 {equivalent to a1-a3}`` versus ``a1-a2 ^a2-a3 {equivalent to a2-a3 a1-a2}``.
+
+* An empty PieceId_ corresponds to the last "active" piece(s).
+
+  + An example would be ``?Sp-a4;-a5;* {equivalent to ?Sp-a4 . ?Sp-a5 . *?Sp}``
+  + Note if this refers to multiple pieces then the Location_ of these pieces 
+    is then that of the "active" piece last in the internal ordering of pieces.
+    However if these pieces were originally specified by the ``N Location`` PieceId_ 
+    formulation then the Location_ originally corresponded to ``Location`` but now does not.
 
 MoveToken
 ~~~~~~~~~
