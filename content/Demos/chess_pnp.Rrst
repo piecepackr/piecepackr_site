@@ -378,4 +378,8 @@ game <- ppgames::read_ppn(system.file("ppn/international-chess.ppn", package="pp
 ppgames::animate_game(game, file = "../images/knitr/international-chess.gif",
                       cfg = chess5, trans = op_transform, op_scale = 0.5,
                       n_transitions = 6, n_pauses = 3, fps = 9)
+game <- ppgames::read_ppn(system.file("ppn/xiangqi.ppn", package="ppgames"))[[1]]
+ppgames::animate_game(game, file = "../images/knitr/xiangqi.gif",
+                      cfg = chess5, trans = op_transform, op_scale = 0.5,
+                      n_transitions = 6, n_pauses = 3, fps = 9)
 .. ..
