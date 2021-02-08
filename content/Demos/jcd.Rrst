@@ -26,6 +26,8 @@ JCD piecepack configuration
 
 The strategy for our `JCD piecepack`_ configuration_ will be to extract the gif images from `VASSAL's piecepack module`_ (which is actually a zip file) and then use piecepackr_'s ``picturePieceGrobFn`` to make a `grob function`_ that directly uses those images.  If you don't want checkered tile backs set ``checkered=FALSE``.
 
+|
+
 .. {r jcd_piecepack}
 library("piecepackr")
 

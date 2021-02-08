@@ -32,9 +32,11 @@ For more info about the design please read `Daniel Ajoy`_'s description and desi
 
     `Homemade PiecePack <https://boardgamegeek.com/image/1639074/piecepack>`_ by `Daniel Ajoy`_ / `CC BY-NC-SA 3.0`_ 
 
+.. note:: The custom grob function in this article uses the function ``pp_shape()`` which was introduced in piecepackr_ v1.5.1
+
 It is possible to emulate Ajoy's Dingbats piecepack_ in piecepackr_ but in order to emulate his tile faces and null/ace rank symbols we'll need to write and use a custom `grob function`_ in order to add some extra circles/stars on the tile faces and add an extra circle to his null/ace rank symbols.
 
-.. note:: The custom grob function in this article uses the function ``pp_shape()`` which was introduced in piecepackr_ v1.5.1
+|
 
 .. {r preview, fig.cap="A preview of a 'Dingbats' piecepack"}
 library("grid")

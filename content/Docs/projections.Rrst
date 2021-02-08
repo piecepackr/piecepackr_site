@@ -177,7 +177,7 @@ df <- ppgames::df_four_field_kono()
 envir <- piecepackr::game_systems("dejavu3d")
 l <- pmap_piece(df, piece, trans=op_transform, envir = envir, scale = 0.98, res = 150)
 scene <- Reduce(rayrender::add_object, l)
-render_scene(scene, lookat = c(2.5, 2.5, 0), lookfrom = c(0, -2, 13))
+render_scene(scene, lookat = c(2.5, 2.5, 0), lookfrom = c(0, -2, 13), clamp_value=8)
 .. ..
 
 Pyramids
@@ -204,5 +204,5 @@ For best results one should render with a 3D graphics system like rgl_ or rayren
 library("rayrender")
 l <- pmap_piece(df, piece, trans=op_transform, scale = 0.98, res = 150)
 scene <- Reduce(rayrender::add_object, l)
-render_scene(scene, lookat = c(2.5, 2.5, 0), lookfrom = c(0, -2, 10))
+render_scene(scene, lookat = c(2.5, 2.5, 0), lookfrom = c(0, -2, 10), clamp_value = 8)
 .. ..
