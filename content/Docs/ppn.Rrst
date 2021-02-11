@@ -2,9 +2,9 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2021-02-07
+:modified: 2021-02-10
 
-**Version: 0.12.0**
+**Version: 0.13.0**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppgames/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppgames/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppgames/dev/reference/cat_piece.html>`_, and `animations <https://trevorldavis.com/R/ppgames/dev/reference/animate_game.html>`__ for the games saved in this file format.
 
@@ -544,6 +544,8 @@ Get location from PieceId
   + Otherwise if PieceId_ identifies several pieces (e.g. "greedy" search) then it returns
     the x,y, coordinates of the "last" piece (according to internal ordering of pieces).
 
+* An empty Location_ string is a shortcut for just ``&`` i.e. the location of the "last active" piece(s).
+
 PieceId
 ~~~~~~~
 
@@ -608,9 +610,9 @@ Adding new pieces
 Removing pieces
 +++++++++++++++
 
-* ``*`` is used to remove pieces from the board.  ``*PieceId`` means remove the piece identified by PieceId_.
+* ``*`` is used to remove pieces from the board.  ``*PieceId`` means remove the piece(s) identified by PieceId_.
 
-  + Unlike other MoveTokens it can be added at the end of other Moves e.g. ``b5-c5*b4*b3 {Move top piece at b5 to c5 and remove top pieces at b4 and b3}``.
+  + Unlike most other MoveTokens it can be added at the end of other Moves e.g. ``b5-c5*b4*b3 {Move top piece at b5 to c5 and remove top pieces at b4 and b3}``.
 
 Moving pieces
 +++++++++++++
@@ -632,7 +634,19 @@ Moving pieces
   + The ``PieceId1`` piece(s) that are moved will be placed after all the other pieces in the internal ordering.
   + Let ``Location`` be the location of the piece(s) represented by ``PieceId2``, then ``PieceId1:PieceId2`` is equivalent to ``*PieceId2 PieceId1-Location``.
 
-* ``@>`` is used to rotate a piece clockwise.  ``PieceId@>Degrees`` rotates the piece(s) represented by PieceId_ clockwise ``Degrees`` degrees.
+* ``@>`` and ``$>`` are used to rotate pieces clockwise.  
+  
+  + ``PieceId@>Degrees`` rotates each of the piece(s) represented by PieceId_ clockwise ``Degrees`` degrees.
+  + ``PieceId@>Degrees|Location`` rotates each of the piece(s) represented by PieceId_ clockwise ``Degrees`` degrees around Location_.
+  + ``PieceId1@>Degrees$PieceId2`` is a shortcut for ``PieceId1@>Degrees|&PieceId2`` i.e. rotate each of the piece(s) represented by ``PieceId1`` clockwise ``Degrees`` degrees around the Location_ of ``PieceId2``.
+  + ``PieceId$>Degrees`` is a shortcut for ``PieceId@>Degrees$PieceId`` e.g. depending on the context ``3?Sa$>90`` could mean spin the Suns of arms tile 90 degrees including the two pieces on top of it.
+
+* ``+`` is used to "flip" pieces.  ``+PieceId`` means "flip" the piece(s) identified by PieceId_.
+
+  + A "pyramid_top" flips to "pyramid_face" while other pyramid sides flip to "pyramid_top".
+  + "die_face" flips to "die_face" but with a new rank plus three modulo six.
+  + All other pieces flip back and forth from "back" to "face", "top" to "base", and "left" to "right".
+  + Unlike most other MoveTokens it can be added at the end of other Moves.
 
 Updating/replacing pieces
 +++++++++++++++++++++++++
@@ -658,3 +672,55 @@ dfm <- tibble::tibble(macro = names(ppgames:::macros),
                       hexadecimal = paste0("U+", as.hexmode(sapply(replacement, utf8ToInt))))
 rst_list_table(dfm, title = "Default parser's built-in macros")
 .. ..
+
+Extending the PPN R parser
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If one would like to help **develop** the prototype R parser here are some notes.
+
+Adding a new game (setup)
++++++++++++++++++++++++++
+
+To add a new game setup_ one writes an R function called ``df_game_name`` where ``game_name`` corresponds to the name of your game converted to "snake case" e.g. ``df_four_field_kono``.  It must return a ``tibble::tibble()`` of the pieces in order of placement onto the board with the following columns (name matters, order doesn't):
+
+* ``piece_side``
+* ``x``
+* ``y``
+* ``suit``
+* ``rank``
+* ``angle`` (only needed if any are non-zero)
+* ``cfg`` (only needed if there are non-piecepack components)
+
+The function can optionally take arguments to influence the setup, some existing arguments other game setup functions take are:
+
+``seed``
+  For games with random setups passing the same seed should return the same setup
+``tiles``, ``dice``, ``coins`` 
+  For games with random setups pass in a string that instructs exactly 
+  how one would like the tiles, dice, or coins arranged
+``has_matchsticks``, ``has_subpack``
+  Provide an alternative setup if the player has (piecepack) matchsticks or a (piecepack) subpack
+
+Before returning the ``tibble`` one may add additional "attributes" using the ``attr()`` function, currently a handful of functions set a ``scale_factor`` attribute which adjusts how many inches a coordinate unit is worth.
+
+If the game is a piecepack game it should ideally be contributed to the ppgames_ R package, if it is a Looney pyramids game it should ideally be contributed to the piecenikr_ R package, if it is a game that is played with traditional components (like checkers sets, chess sets, dominoes, etc.) it should ideally be contributed to the tradgames_ R package.  Variants of the "same game" can be contributed to multiple packages (e.g. American checkers can be played with both a checkers set as well as a piecepack so it shows up both in ppgames_ and tradgames_).
+
+There are several pre-existing game setup functions in the R packages ppgames_, piecenikr_, and tradgames_ that can be used for inspiration e.g. https://github.com/piecepackr/ppgames/blob/master/R/game_starts.R .
+
+Adding a new game notation parser
++++++++++++++++++++++++++++++++++
+
+If you'd like to use a different game notation other than that of the `default movetext parser`_ then it is possible to write and use alternative game notation parsers that can be used with PPN files.   One may then indicate the alternative parser to use via the ``MovetextParser`` field in the game's metadata_.  One should write an R function named ``parser_p_name`` where ``p_name`` is a descriptive name in "snake case".  The first argument of the function should be ``movetext`` which will receive a character vector of the PPN movetext_ and second argument should be ``metadata`` which will receive a list of the PPN metadata_.  Additionally if the ``MovetextParser`` element of the metadata_ was passed additional arguments those will be passed to the function as well.  For example the `default movetext parser`_ supports an optional ``scale_factor`` argument which lets a user adjust how many inches a coordinate unit is worth.  The parser function should return a list which (ideally) contains the following fields (at least) so one can visualize the results using existing functions like ``plot_move()`` or ``animate_game()``:
+
+movetext
+  A character vector of the movetext passed into the parser
+metadata
+  A named list of the metadata passed into the parser
+moves
+  A named list of the parsed "moves"
+comments
+  A named list of the parsed move "comments"
+dfs
+  A named list of tibble game states after each move.  The first "move" often represents the initial game setup.
+
+One potential hack for writing a parser would to convert your game's notation into that of the `default movetext parser`_ and have it then parse the game.
