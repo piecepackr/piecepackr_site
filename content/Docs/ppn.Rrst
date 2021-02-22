@@ -2,9 +2,9 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2021-02-10
+:modified: 2021-02-21
 
-**Version: 0.13.0**
+**Version: 0.14.0**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppgames/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppgames/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppgames/dev/reference/cat_piece.html>`_, and `animations <https://trevorldavis.com/R/ppgames/dev/reference/animate_game.html>`__ for the games saved in this file format.
 
@@ -156,6 +156,16 @@ cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. image:: https://raw.githubusercontent.com/piecepackr/piecenikr/master/man/figures/martian-chess.gif
     :alt: Martian Chess example
     :align: center
+
+Plans of Action
+~~~~~~~~~~~~~~~
+
+An example game of `Plans of Action <https://www.ludism.org/ppwiki/PlansOfAction>`_:
+
+.. {r plans-of-action, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/plans-of-action.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
 
 Relativity
 ~~~~~~~~~~
@@ -626,6 +636,7 @@ Moving pieces
   + ``PieceId-%PieceId2`` is a shortcut for ``PieceId1-&PieceId2%PieceId2`` i.e. move ``PieceId1`` directly above ``PieceId2``.
   + ``PieceId_%PieceId2`` is a shortcut for ``PieceId1_&PieceId2%PieceId2`` i.e. move ``PieceId1`` directly underneath ``PieceId2``.
   + ``‿`` (U+203F) can be used instead of ``_``.  ``_`` is easier to type and found in more fonts but ``‿`` is harder to confuse with ``-`` (especially in handwritten notes).
+  + ``!PieceId`` is a shortcut for ``PieceId-<0,0>`` i.e. move the piece(s) identified by PieceId_ to the end of the internal ordering without changing its x,y coordinates.
 
 * ``#`` is used to represent a "piece swap".  Let ``Location1`` and ``Location2`` represent the Location_ of ``PieceId1`` and ``PieceId2`` respectively, then ``PieceId1:PieceId2`` is equivalent to ``^PieceId1-Location2 ^PieceId2-Location1``.
 
