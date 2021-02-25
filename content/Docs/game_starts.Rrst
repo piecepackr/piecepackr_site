@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2021-01-12
+:modified: 2021-02-24
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -74,10 +74,49 @@ It is also possible to pass in arguments to the game start function by passing a
     :alt: Animation of a Fuji-san game
     :align: center
 
-Table of Supported Game Start Functions
----------------------------------------
+In particular for supported games playable with either a piecepack_ or another game system (like a checkers board) one can inform PPN of the alternative game system to use via a ``System`` argument to the ``GameType`` field::
 
-.. list-table:: Game Start Functions
+    ---
+    GameType:
+      Name: Four Field Kono
+      System: Checkers
+    ...
+    1. b1:b3 1... d3:b3 2. c1:c3 2... a3:c3 3. c2-c1 3... b4:b2 4. a1-b1 4... b3:b1
+    5. d1:b1 5... c3-c2 6. a2-a3 6... b2:d2 7. a3-b3 7... c4-c3 8. c1-d1 8... d4-d3
+    9. b1-b2 9... d2:b2 10. b3-a3 10... b2-b1 {Player 1's loss is assured with the
+     separation of their two remaining pieces and they should resign in a real game}
+    11. a3-a2 11... b1-c1 12. d1-d2 12... c1-d1 13. a2-a3 13... a4-b4
+    14. a3-a4 14... b4-c4 15. a4-b4 15... c4-d4 16. b4-a4 16... d4:d2 {Player 2 wins}
+
+Supported Game Start Functions
+------------------------------
+
+Contained in piecenikr
+~~~~~~~~~~~~~~~~~~~~~~
+
+Please note some Looney Pyramids / piecepack hybrids like `Alien City`_ are contained in the ppgames_ package.
+
+.. list-table:: Game Start Functions contained in piecenikr
+    :header-rows: 1
+    :widths: 30, 30, 40
+
+    * - game
+      - df_names
+      - comment 
+    * - `Martian Chess <https://www.looneylabs.com/content/martian-chess>`_
+      - df_martian_chess
+      -
+
+Contained in ppgames
+~~~~~~~~~~~~~~~~~~~~
+
+.. figure:: {static}/images/knitr/piecepack_games.gif
+    :alt: Some games supported in ppgames
+    :align: center
+
+    Some games supported in ppgames
+
+.. list-table:: Game Start Functions contained in ppgames
     :header-rows: 1
     :widths: 30, 20, 10, 40
 
@@ -95,7 +134,7 @@ Table of Supported Game Start Functions
       -
     * - `Alquerque <https://en.wikipedia.org/wiki/Alquerque>`_
       - df_alquerque
-      -
+      - X
       -
     * - `Awithlaknannai Mosona <https://en.wikipedia.org/wiki/Awithlaknannai_Mosona>`_
       - df_awithlaknannai_mosona
@@ -112,7 +151,7 @@ Table of Supported Game Start Functions
     * - `Cell Management <https://www.ludism.org/ppwiki/CellManagement>`_
       - df_cell_management
       -
-      - Not very PPN friendly
+      -
     * - `Chaturaji <https://www.ludism.org/ppwiki/Chaturaji>`_
       - df_chaturaji
       -
@@ -128,7 +167,7 @@ Table of Supported Game Start Functions
     * - `Chinese Checkers <https://www.ludism.org/ppwiki/ChineseCheckers>`_
       - df_chinese_checkers
       -
-      -
+      - A mini Halma variant
     * - `Cribbage (Board) <https://www.ludism.org/ppwiki/Cribbage>`_
       - df_cribbage_board
       - X
@@ -139,6 +178,10 @@ Table of Supported Game Start Functions
       -
     * - `Desfases <https://www.ludism.org/ppwiki/Desfases>`_
       - df_desfases
+      -
+      -
+    * - `Evade <https://www.ludism.org/ppwiki/Evade>`_
+      - df_evade
       -
       -
     * - `Everest <https://www.ludism.org/ppwiki/Everest>`_
@@ -193,8 +236,20 @@ Table of Supported Game Start Functions
       - df_pass_the_food
       - X
       -
+    * - `Piece Packing Pirates <https://www.ludism.org/ppwiki/PiecePackingPirates>`_
+      - df_piece_packing_pirates
+      -
+      -
+    * - `Piecepackman <https://www.ludism.org/ppwiki/Piecepackman>`_
+      - df_piecepackman
+      -
+      - Currently just the "Roundabout" variant
     * - `Plans of Action <https://www.ludism.org/ppwiki/PlansOfAction>`_
       - df_plans_of_action
+      - 
+      -
+    * - `Quatri <https://www.ludism.org/ppwiki/Quatri>`_
+      - df_quatri
       - 
       -
     * - Rect Board Tiles
@@ -258,11 +313,37 @@ Table of Supported Game Start Functions
       - X
       -
 
-.. figure:: {static}/images/knitr/piecepack_games.gif
-    :alt: Some games supported in ppgames
-    :align: center
+Contained in tradgames
+~~~~~~~~~~~~~~~~~~~~~~
 
-    Some games supported in ppgames
+.. list-table:: Game Start Functions contained in tradgames
+    :header-rows: 1
+    :widths: 30, 30, 40
+
+    * - game
+      - df_names
+      - comment 
+    * - Breakthrough
+      - df_breakthrough
+      - 
+    * - (American) Checkers
+      - df_american_checkers
+      -
+    * - Crossings
+      - df_crossings
+      - 
+    * - Focus
+      - df_focus
+      -
+    * - Four-Field Kono
+      - df_four_field_kono
+      -
+    * - Lines of Action
+      - df_lines_of_action
+      -
+    * - Turkish Draughts
+      - df_turkish_draughts
+      -
 
 .. {r various-images, echo=FALSE}
 library("piecepackr")
@@ -390,9 +471,19 @@ save_ruleset("Pass the Food", gk_4p, "../share/rules/pass_the_food_A4.pdf", size
 save_pamphlet("Pass the Food", gk_4p, "../share/rules/pass_the_food_pamphlet.pdf")
 save_pamphlet("Pass the Food", gk_4p, "../share/rules/pass_the_food_pamphlet_A4.pdf", size="A4")
 
+png("../share/rules/piece_packing_pirates.png", width=17, height=16, units="in", res=36)
+pmap_piece(df_piece_packing_pirates(seed=42), envir=cfgs, default.units="in", 
+           op_scale=0.5, trans=op_transform)
+invisible(dev.off())
+
 png("../share/rules/plans_of_action.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_plans_of_action(seed=32), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/quatri.png", width=5, height=5, units="in", res=72)
+pmap_piece(df_quatri(), envir=cfgs, default.units="in", 
+           op_scale=0.5, trans=op_transform)
 invisible(dev.off())
 
 png("../share/rules/san_andreas.png", width=11, height=17, units="in", res=36)
@@ -448,7 +539,9 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  `Ley Lines` = "../share/rules/ley_lines.png",
                  `Lines of Action` = "../share/rules/lines_of_action.png",
                  `Pass the Food` = "../share/rules/pass_the_food.png",
+                 `Piece Packing Pirates` = "../share/rules/piece_packing_pirates.png",
                  `Plans of Action` = "../share/rules/plans_of_action.png",
+                 Quatri = "../share/rules/quatri.png",
                  Relativity = "../share/rules/relativity.png",
                  `San Andreas` = "../share/rules/san_andreas.png",
                  Tablut = "../images/knitr/games-tablut-starting-diagram-1.svg",
