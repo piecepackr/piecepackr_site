@@ -88,6 +88,9 @@ In particular for supported games playable with either a piecepack_ or another g
     11. a3-a2 11... b1-c1 12. d1-d2 12... c1-d1 13. a2-a3 13... a4-b4
     14. a3-a4 14... b4-c4 15. a4-b4 15... c4-d4 16. b4-a4 16... d4:d2 {Player 2 wins}
 
+.. image:: https://www.trevorldavis.com/share/piecepack/four-field-kono-trad.gif
+    :alt: Four Field Kono example using checkers and a board instead of a piecepack
+
 Supported Game Start Functions
 ------------------------------
 
@@ -171,7 +174,7 @@ Contained in ppgames
     * - `Cribbage (Board) <https://www.ludism.org/ppwiki/Cribbage>`_
       - df_cribbage_board
       - X
-      - Just a (piecepack) cribbage board (no cards)
+      - Just a (piecepack) cribbage board
     * - `Crossings <https://en.wikipedia.org/wiki/Crossings_(game)>`_
       - df_crossings
       -
@@ -236,8 +239,16 @@ Contained in ppgames
       - df_pass_the_food
       - X
       -
+    * - `Piece Gaps <https://www.ludism.org/ppwiki/PieceGaps>`_
+      - df_piece_gaps
+      -
+      -
     * - `Piece Packing Pirates <https://www.ludism.org/ppwiki/PiecePackingPirates>`_
       - df_piece_packing_pirates
+      -
+      -
+    * - `Piecepack Klondike <https://www.ludism.org/ppwiki/PiecepackKlondike>`_
+      - df_piecepack_klondike
       -
       -
     * - `Piecepackman <https://www.ludism.org/ppwiki/Piecepackman>`_
@@ -255,7 +266,7 @@ Contained in ppgames
     * - Rect Board Tiles
       - df_rect_board_tiles
       -
-      - Makes a rectangular board made from tiles
+      - Makes a rectangular board with tiles
     * - `Relativity <https://www.ludism.org/ppwiki/Relativity>`_
       - df_relativity
       -
@@ -457,11 +468,6 @@ png("../share/rules/lines_of_action.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_lines_of_action(), cfg=two_player, default.units="in")
 invisible(dev.off())
 
-png("../share/rules/relativity.png", width=7, height=5, units="in", res=72)
-pmap_piece(df_relativity(seed=12), envir=cfgs, default.units="in", 
-           op_scale=0.5, op_angle=45, trans=op_transform)
-invisible(dev.off())
-
 png("../share/rules/pass_the_food.png", width=9.0, height=13.5, units="in", res=42)
 pmap_piece(df_pass_the_food(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
@@ -471,8 +477,18 @@ save_ruleset("Pass the Food", gk_4p, "../share/rules/pass_the_food_A4.pdf", size
 save_pamphlet("Pass the Food", gk_4p, "../share/rules/pass_the_food_pamphlet.pdf")
 save_pamphlet("Pass the Food", gk_4p, "../share/rules/pass_the_food_pamphlet_A4.pdf", size="A4")
 
+png("../share/rules/piece_gaps.png", width=13.5, height=9.5, units="in", res=36)
+pmap_piece(df_piece_gaps(seed=72), envir=cfgs, default.units="in", 
+           op_scale=0.5, trans=op_transform)
+invisible(dev.off())
+
 png("../share/rules/piece_packing_pirates.png", width=17, height=16, units="in", res=36)
 pmap_piece(df_piece_packing_pirates(seed=42), envir=cfgs, default.units="in", 
+           op_scale=0.5, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/piecepack_klondike.png", width=14, height=7.5, units="in", res=36)
+pmap_piece(df_piecepack_klondike(seed=21), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
 
@@ -484,6 +500,11 @@ invisible(dev.off())
 png("../share/rules/quatri.png", width=5, height=5, units="in", res=72)
 pmap_piece(df_quatri(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/relativity.png", width=7, height=5, units="in", res=72)
+pmap_piece(df_relativity(seed=12), envir=cfgs, default.units="in", 
+           op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
 png("../share/rules/san_andreas.png", width=11, height=17, units="in", res=36)
@@ -539,7 +560,9 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  `Ley Lines` = "../share/rules/ley_lines.png",
                  `Lines of Action` = "../share/rules/lines_of_action.png",
                  `Pass the Food` = "../share/rules/pass_the_food.png",
+                 `Piece Gaps` = "../share/rules/piece_gaps.png",
                  `Piece Packing Pirates` = "../share/rules/piece_packing_pirates.png",
+                 `Piecepack Klondike` = "../share/rules/piecepack_klondike.png",
                  `Plans of Action` = "../share/rules/plans_of_action.png",
                  Quatri = "../share/rules/quatri.png",
                  Relativity = "../share/rules/relativity.png",
