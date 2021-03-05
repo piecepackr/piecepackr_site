@@ -223,6 +223,10 @@ Contained in ppgames
       - df_jul_gono
       -
       - 
+    * - `Landlocked <https://www.ludism.org/ppwiki/Landlocked>`_
+      - df_landlocked
+      -
+      -
     * - `Ley Lines <https://www.ludism.org/ppwiki/LeyLines>`_
       - df_ley_lines
       -
@@ -283,12 +287,20 @@ Contained in ppgames
       - df_shogi
       -
       -
+    * - `Skyscrapers <https://www.ludism.org/ppwiki/Skyscrapers>`_
+      - df_skyscrapers
+      -
+      -
     * - `Tablut <https://www.ludism.org/ppwiki/Tablut>`_
       - df_tablut
       - X
       -
     * - `The "In" Crowd <https://www.ludism.org/ppwiki/TheInCrowd>`_
       - df_the_in_crowd
+      -
+      -
+    * - `The Magic Bag <https://www.ludism.org/ppwiki/The_Magic_Bag>`_
+      - df_the_magic_bag
       -
       -
     * - `Tower of Babel <https://www.ludism.org/ppwiki/TowerOfBabel>`_
@@ -459,6 +471,11 @@ pmap_piece(df_jul_gono(), envir=cfgs, default.units="in",
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
 
+png("../share/rules/landlocked.png", width=11, height=11, units="in", res=36)
+pmap_piece(df_landlocked(seed=91), envir=cfgs, default.units="in", 
+           op_scale=1.0, op_angle=45, trans=op_transform)
+invisible(dev.off())
+
 png("../share/rules/ley_lines.png", width=14, height=16, units="in", res=36)
 pmap_piece(df_ley_lines(), envir=cfgs, default.units="in", 
            op_scale=1.0, op_angle=90, trans=op_transform)
@@ -512,9 +529,19 @@ pmap_piece(df_san_andreas(), envir=cfgs, default.units="in",
            op_scale=1.0, trans=op_transform)
 invisible(dev.off())
 
+png("../share/rules/skyscrapers.png", width=11, height=11, units="in", res=36)
+pmap_piece(df_skyscrapers(seed=91), envir=cfgs, default.units="in", 
+           op_scale=1.0, op_angle=45, trans=op_transform)
+invisible(dev.off())
+
 png("../share/rules/the_in_crowd.png", width=7.5, height=7.5, units="in", res=42)
 pmap_piece(df_the_in_crowd(), envir=cfgs, default.units="in", 
            op_scale=1.0, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/the_magic_bag.png", width=9, height=19, units="in", res=36)
+pmap_piece(df_the_magic_bag(seed=91), envir=cfgs, default.units="in", 
+           op_scale=1.0, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
 png("../share/rules/tower_of_babel.png", width=6, height=7.5, units="in", res=42)
@@ -557,6 +584,7 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  Iceberg = "../share/rules/iceberg.png",
                  `Ice Floe` = "../share/rules/ice_floe.png",
                  `Jul-Gono` = "../share/rules/jul_gono.png",
+                 Landlocked = "../share/rules/landlocked.png",
                  `Ley Lines` = "../share/rules/ley_lines.png",
                  `Lines of Action` = "../share/rules/lines_of_action.png",
                  `Pass the Food` = "../share/rules/pass_the_food.png",
@@ -567,9 +595,11 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  Quatri = "../share/rules/quatri.png",
                  Relativity = "../share/rules/relativity.png",
                  `San Andreas` = "../share/rules/san_andreas.png",
+                 Skyscrapers = "../share/rules/skyscrapers.png",
                  Tablut = "../images/knitr/games-tablut-starting-diagram-1.svg",
                  Tula = "../share/rules/tula.png",
                  `Turkish Draughts` = "../share/rules/turkish_draughts.png",
+                 `The Magic Bag` = "../share/rules/the_magic_bag.png",
                  `The "In" Crowd` = "../share/rules/the_in_crowd.png",
                  `Tower of Babel` = "../share/rules/tower_of_babel.png",
                  Xiangqi = "../images/knitr/demos-chess-xiangqi-1.svg",
