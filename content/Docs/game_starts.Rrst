@@ -175,12 +175,20 @@ Contained in ppgames
       - df_cribbage_board
       - X
       - Just a (piecepack) cribbage board
+    * - `Coin Collectors <https://www.ludism.org/ppwiki/CoinCollectors>`_
+      - df_coin_collectors
+      -
+      -
     * - `Crossings <https://en.wikipedia.org/wiki/Crossings_(game)>`_
       - df_crossings
       -
       -
     * - `Desfases <https://www.ludism.org/ppwiki/Desfases>`_
       - df_desfases
+      -
+      -
+    * - `Easy Slider <https://www.ludism.org/ppwiki/EasySlider>`_
+      - df_easy_slider
       -
       -
     * - `Evade <https://www.ludism.org/ppwiki/Evade>`_
@@ -191,6 +199,10 @@ Contained in ppgames
       - df_everest
       -
       -
+    * - `Four Blind Mice <https://www.ludism.org/ppwiki/FourBlindMice>`_
+      - df_four_blind_mice
+      -
+      - 
     * - `Four Field Kono <https://www.ludism.org/ppwiki/FourFieldKono>`_
       - df_four_field_kono
       - X
@@ -233,6 +245,10 @@ Contained in ppgames
       -
     * - `Lines of Action <https://en.wikipedia.org/wiki/Lines_of_Action>`_
       - df_lines_of_action
+      -
+      -
+    * - `Mathrix <https://www.ludism.org/ppwiki/Mathrix>`_
+      - df_mathrix
       -
       -
     * - `Nine Men's Morris <https://en.wikipedia.org/wiki/Nine_men%27s_morris>`_
@@ -289,6 +305,10 @@ Contained in ppgames
       -
     * - `Skyscrapers <https://www.ludism.org/ppwiki/Skyscrapers>`_
       - df_skyscrapers
+      -
+      -
+    * - `Slides of Action <https://www.ludism.org/ppwiki/SlidesOfAction>`_
+      - df_slides_of_action
       -
       -
     * - `Tablut <https://www.ludism.org/ppwiki/Tablut>`_
