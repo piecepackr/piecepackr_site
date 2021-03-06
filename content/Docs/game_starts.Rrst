@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2021-02-24
+:modified: 2021-03-05
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -168,7 +168,7 @@ Contained in ppgames
       - X
       -
     * - `Chinese Checkers <https://www.ludism.org/ppwiki/ChineseCheckers>`_
-      - df_chinese_checkers
+      - df_chinese_checkers, df_mini_halma
       -
       - A mini Halma variant
     * - `Cribbage (Board) <https://www.ludism.org/ppwiki/Cribbage>`_
@@ -433,8 +433,18 @@ pmap_piece(df_chinese_checkers(), envir=cfgs, default.units="in",
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
 
+png("../share/rules/coin_collectors.png", width=12.5, height=11, units="in", res=36)
+pmap_piece(df_coin_collectors(seed=17), envir=cfgs, default.units="in", 
+           op_scale=0.5, op_angle=45, trans=op_transform)
+invisible(dev.off())
+
 png("../share/rules/desfases.png", width=18, height=18, units="in", res=36)
 pmap_piece(df_desfases(seed=42), cfg=small_tiles, default.units="in", 
+           op_scale=0.5, op_angle=45, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/easy_slider.png", width=12, height=12, units="in", res=36)
+pmap_piece(df_easy_slider(seed=17), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
@@ -473,7 +483,7 @@ invisible(dev.off())
 
 png("../share/rules/landlocked.png", width=11, height=11, units="in", res=36)
 pmap_piece(df_landlocked(seed=91), envir=cfgs, default.units="in", 
-           op_scale=1.0, op_angle=45, trans=op_transform)
+           op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
 png("../share/rules/ley_lines.png", width=14, height=16, units="in", res=36)
@@ -483,6 +493,11 @@ invisible(dev.off())
 
 png("../share/rules/lines_of_action.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_lines_of_action(), cfg=two_player, default.units="in")
+invisible(dev.off())
+
+png("../share/rules/mathrix.png", width=7, height=5, units="in", res=72)
+pmap_piece(df_mathrix(seed=19), envir=cfgs, default.units="in", 
+           op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
 png("../share/rules/pass_the_food.png", width=9.0, height=13.5, units="in", res=42)
@@ -531,7 +546,12 @@ invisible(dev.off())
 
 png("../share/rules/skyscrapers.png", width=11, height=11, units="in", res=36)
 pmap_piece(df_skyscrapers(seed=91), envir=cfgs, default.units="in", 
-           op_scale=1.0, op_angle=45, trans=op_transform)
+           op_scale=0.5, op_angle=45, trans=op_transform)
+invisible(dev.off())
+
+png("../share/rules/slides_of_action.png", width=5, height=5, units="in", res=72)
+pmap_piece(df_slides_of_action(), envir=cfgs, default.units="in",
+           op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
 png("../share/rules/the_in_crowd.png", width=7.5, height=7.5, units="in", res=42)
@@ -571,11 +591,13 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  `Breakthrough / Crossings` = "../share/rules/breakthrough.png",
                  `Cell Management` = "../share/rules/cell_management.png",
                  Chaturaji = "../images/knitr/demos-chess-chaturaji-1.svg",
-                 `Chinese Checkers` = "../share/rules/chinese_checkers.png",
+                 `Chinese Checkers aka Mini Halma` = "../share/rules/chinese_checkers.png",
                  Checkers = "../share/rules/american_checkers.png",
                  Chess = "../images/knitr/demos-chess-international-chess-1.svg",
                  Cribbage = "../images/knitr/games-cribbage-starting-diagram-1.svg",
+                 `Coin Collectors` = "../share/rules/coin_collectors.png",
                  Desfases = "../share/rules/desfases.png",
+                 `Easy Slider` = "../share/rules/easy_slider.png",
                  Evade = "../share/rules/evade.png",
                  Everest = "../images/knitr/games-everest-starting-diagram-1.svg",
                  `Four Field Kono` = "../share/rules/four_field_kono.png",
@@ -587,6 +609,7 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  Landlocked = "../share/rules/landlocked.png",
                  `Ley Lines` = "../share/rules/ley_lines.png",
                  `Lines of Action` = "../share/rules/lines_of_action.png",
+                 Mathrix = "../share/rules/mathrix.png",
                  `Pass the Food` = "../share/rules/pass_the_food.png",
                  `Piece Gaps` = "../share/rules/piece_gaps.png",
                  `Piece Packing Pirates` = "../share/rules/piece_packing_pirates.png",
@@ -596,6 +619,7 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  Relativity = "../share/rules/relativity.png",
                  `San Andreas` = "../share/rules/san_andreas.png",
                  Skyscrapers = "../share/rules/skyscrapers.png",
+                 `Slides of Action` = "../share/rules/slides_of_action.png",
                  Tablut = "../images/knitr/games-tablut-starting-diagram-1.svg",
                  Tula = "../share/rules/tula.png",
                  `Turkish Draughts` = "../share/rules/turkish_draughts.png",
