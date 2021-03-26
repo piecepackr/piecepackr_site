@@ -2,7 +2,7 @@ News
 ====
 
 :date: 2020-06-24
-:modified: 2021-01-28
+:modified: 2021-03-23
 
 .. include:: ../../links.rst
 
@@ -10,6 +10,13 @@ This page is a reverse chronological list of major changes by quarter.
 
 2021-Q1
 -------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.7.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.7.1>`_
+* `ppgames v0.6.1 <https://github.com/piecepackr/ppgames/releases/tag/v0.6.1>`_
+* `tradgames v0.2.1 <https://github.com/piecepackr/tradgames/releases/tag/v0.2.1>`_
 
 Updated webpages
 ~~~~~~~~~~~~~~~~
