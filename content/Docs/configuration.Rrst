@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2020-05-23
+:modified: 2021-03-23
 
 .. contents::
 
@@ -175,8 +175,8 @@ Table of configuration list styles
     * - edge_color
       - Which color to use for the edge of the piece when
         drawn with an oblique projection.
-      -
       - suit_color, background_color
+      - suit
     * - annotation_color
       - What color to suggest for annotating graphics
       - 
@@ -312,6 +312,14 @@ Table of configuration list styles
       - Additional copyrights
       -
       -
+    * - lacks_rank
+      - Which "piece_side"'s should we assume don't vary by rank.  Introduced in v1.7.
+      -
+      -
+    * - lacks_suit
+      - Which "piece_side"'s should we assume don't vary by suit.  Introduced in v1.7.
+      -
+      -
     * - shadow_fn
       - Which function to use to make a ``grob`` of the edges of the game piece
         when the piece is drawn with a 3D oblique projection.
@@ -357,7 +365,7 @@ print(cfgs$dual5)
 grid.piece("preview_layout", cfg=cfgs$dual5)
 .. ..
 
-.. {r demo_cfgs2, fig.cap="Can use multiple configurations stored in an enivronment at the same time", fig.width=6.05, fig.height=4.05}
+.. {r demo_cfgs2, fig.cap="Can use multiple configurations stored in an environment at the same time", fig.width=6.05, fig.height=4.05}
     pushViewport(viewport(width=inch(6), height=inch(4)))
     grid.piece("tile_face", rank=1:6, 
                cfg=paste0("dual", 1:6), envir=cfgs,

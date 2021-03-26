@@ -2,6 +2,7 @@ Print-and-Play PDFs
 ===================
 
 :date: 2019-03-27
+:modified: 2021-03-17
 :tags: print-and-play
 
 .. {r setup, echo=FALSE}
@@ -19,11 +20,8 @@ ee <- new.env()
 for (ff in RData_files) { 
     load(ff, envir=ee) 
 }
-nn <- sort(names(ee))
-for (name in nn) {
-    cfg <- ee[[name]]
-    save_print_and_play(cfg, sprintf("../share/pnp/%s_letter.pdf", name), "letter")
-    save_print_and_play(cfg, sprintf("../share/pnp/%s_A4.pdf", name), "A4")
+for (name in sort(names(ee))) {
+    ee[[name]]$cache$reset()
 }
 save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 .. ..

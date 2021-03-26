@@ -122,4 +122,5 @@ grid.piece("preview_layout", cfg=dual6)
 
 .. {r save, echo=FALSE}
 save(dual1, dual2, dual3, dual4, dual5, dual6, file="../tmp/dual.RData")
+create_pnp("../tmp/dual.RData")
 .. ..

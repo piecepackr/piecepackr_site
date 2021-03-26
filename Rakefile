@@ -23,7 +23,7 @@ end
 file 'content/pages/pnp.Rrst' => Rake::FileList["content/Demos/*_pnp.Rrst"]
 file 'content/Docs/game_starts.Rrst' => Rake::FileList["content/Demos/*_game.Rrst"] 
 file 'content/Docs/game_starts.Rrst' => "content/Demos/chess_pnp.Rrst" 
-file 'content/Docs/configuration.Rrst' => "content/pages/pnp.Rrst"
+file 'content/Docs/configuration.Rrst' => "content/pages/pnp.rst"
 
 desc "Build website"
 task :default => rrst_files.ext(".rst")

@@ -9,6 +9,19 @@ set_opts_chunk <- function(prefix="prefix") {
                     fig.align="center", warning=FALSE)
 }
 
+create_pnp <- function(Rdata_file) {
+    if (!file.exists("../share/pnp")) dir.create("../share/pnp")
+    ee <- new.env()
+    load(Rdata_file, envir=ee)
+    nn <- sort(names(ee))
+    for (name in nn) {
+        cfg <- ee[[name]]
+        piecepackr::save_print_and_play(cfg, sprintf("../share/pnp/%s_letter.pdf", name), "letter")
+        piecepackr::save_print_and_play(cfg, sprintf("../share/pnp/%s_A4.pdf", name), "A4")
+    }
+    invisible(NULL)
+}
+
 save_rulebook <- function(book, gk=game_kit(), output=NULL) {
     tr <- tempfile(fileext=".R")
     on.exit(unlink(tr))

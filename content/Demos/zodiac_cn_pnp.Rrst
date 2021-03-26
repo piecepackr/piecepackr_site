@@ -43,5 +43,6 @@ grid.piece("preview_layout", cfg=zodiac_cn2)
 
 .. {r save, echo=FALSE}
 save(zodiac_cn1, zodiac_cn2, file="../tmp/zodiac_cn.RData")
+create_pnp("../tmp/zodiac_cn.RData")
 .. ..
 

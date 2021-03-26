@@ -84,4 +84,5 @@ grid.piece("preview_layout", cfg=orthodox3)
 
 .. {r save, echo=FALSE}
 save(orthodox1, orthodox2, orthodox3, file="../tmp/orthodox.RData")
+create_pnp("../tmp/orthodox.RData")
 .. ..

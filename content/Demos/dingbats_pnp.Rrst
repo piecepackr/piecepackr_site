@@ -149,4 +149,5 @@ grid.piece("preview_layout", cfg=dingbats2)
 
 .. {r save, echo=FALSE}
 save(dingbats1, dingbats2, file="../tmp/dingbats.RData")
+create_pnp("../tmp/dingbats.RData")
 .. ..

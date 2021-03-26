@@ -25,4 +25,5 @@ grid.piece("preview_layout", cfg=default)
 
 .. {r save, echo=FALSE}
 save(default, file="../tmp/default.RData")
+create_pnp("../tmp/default.RData")
 .. ..

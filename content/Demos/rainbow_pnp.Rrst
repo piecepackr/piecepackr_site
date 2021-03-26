@@ -50,4 +50,5 @@ grid.piece("preview_layout", cfg=rainbow2)
 
 .. {r save, echo=FALSE}
 save(rainbow1, rainbow2, file="../tmp/rainbow.RData")
+create_pnp("../tmp/rainbow.RData")
 .. ..

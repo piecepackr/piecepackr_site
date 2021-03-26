@@ -145,6 +145,9 @@ Both-piecepack-and-chess-ranked piecepack
 
 With a `custom grob function`_ and the `right chess font <https://www.chessvariants.com/d.font/utrecht.html>`_ one can make a piecepack that has both the piecepack ranks and the chess ranks.
 
+|
+|
+
 .. {r preview5, fig.cap="A piecepack with both piecepack and chess ranks"}
 chessRankGrob <- function(piece_side, suit, rank, cfg=pp_cfg()) {
     cfg <- as_pp_cfg(cfg)
@@ -223,8 +226,9 @@ chess5 <- pp_cfg(chess5)
 grid.piece("preview_layout", cfg=chess5)
 .. ..
 
-.. {r save_pnp, echo=FALSE}
+.. {r create_pnp, echo=FALSE}
 save(chess1, chess2, chess3, chess4, chess5, file="../tmp/chess.RData")
+create_pnp("../tmp/chess.RData")
 .. ..
 
 Some chess variants playable with a piecepack
