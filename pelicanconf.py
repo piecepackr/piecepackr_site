@@ -6,6 +6,8 @@ AUTHOR = u'Trevor L Davis'
 SITENAME = u'piecepackr: Board game graphics'
 SITEURL = 'https://trevorldavis.com/piecepackr'
 
+FAVICON_IMG = 'https://trevorldavis.com/share/piecepack/favicon.ico'
+
 PATH = 'content'
 
 TIMEZONE = 'America/Los_Angeles'
