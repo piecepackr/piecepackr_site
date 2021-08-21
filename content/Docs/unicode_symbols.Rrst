@@ -824,7 +824,7 @@ Assuming you have appropriate fonts on your system, in order to use a particular
     dual1 <- pp_cfg(dual1)
     grid.piece("preview_layout", cfg=dual1)
 
-.. figure:: {static}/images/knitr/demos-dual-preview1-1.svg
+.. figure:: {static}/images/knitr/demos-dual-preview1-1.png
     :align: center
     :alt: A preview of the piecepack-suited piecepack
     :width: 60%

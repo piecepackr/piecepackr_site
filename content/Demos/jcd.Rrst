@@ -128,5 +128,4 @@ p <- as.raster(png::readPNG("../share/rules/triactor.png"))
 png("../share/rules/triactor_small.png", width=21, height=13, units="in", res=36)
 grid.raster(p)
 invisible(dev.off())
-
 .. ..

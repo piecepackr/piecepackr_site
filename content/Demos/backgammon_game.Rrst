@@ -29,6 +29,8 @@ pmap_piece(df_backgammon(), cfg=cfg, default.units="in")
 .. {r save, echo=FALSE}
 gk <- game_kit(list(cfg=cfg))
 save_ruleset("backgammon", gk, "../share/rules/backgammon.pdf")
-svg2png("../images/knitr/games-backgammon-starting-diagram-1.svg",
-        "../share/rules/backgammon.png", 1200, 240)
+# svg2png("../images/knitr/games-backgammon-starting-diagram-1.svg",
+#         "../share/rules/backgammon.png", 1200, 240)
+resize_png("../images/knitr/games-backgammon-starting-diagram-1.png",
+           "../share/rules/backgammon.png", 1200, 240)
 .. ..

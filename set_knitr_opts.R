@@ -2,7 +2,7 @@ if (dir.exists("../share") && !dir.exists("../share/rules"))
     dir.create("../share/rules")
 
 set_opts_chunk <- function(prefix="prefix") {
-    knitr::opts_chunk$set(out.width="60%", dev="svg",
+    knitr::opts_chunk$set(out.width="60%", dev="png",
                     fig.width=6.05, fig.height=6.05,
                     fig.path=paste0("content/images/knitr/", prefix, "-"),
                     fig.process=function(x) gsub("^content", "{static}", x),
@@ -43,7 +43,7 @@ save_ruleset <- function(game, gk=game_kit(), output=NULL, size="letter") {
     save(game, gk, output, size, file=trdata)
     code <- c("library('ppgames')",
               sprintf("load('%s')", trdata),
-              "save_ruleset(game, gk, output, size=size)")
+              "save_ruleset(game, gk, output, size=size, quietly=TRUE)")
     writeLines(code, tr)
     system2("Rscript", tr)
 }
@@ -56,7 +56,7 @@ save_pamphlet <- function(game, gk=game_kit(), output=NULL, size="letter") {
     save(game, gk, output, size, file=trdata)
     code <- c("library('ppgames')",
               sprintf("load('%s')", trdata),
-              "save_pamphlet(game, gk, output, size=size)")
+              "save_pamphlet(game, gk, output, size=size, quietly=TRUE)")
     writeLines(code, tr)
     system2("Rscript", tr)
 }
@@ -64,6 +64,9 @@ save_pamphlet <- function(game, gk=game_kit(), output=NULL, size="letter") {
 svg2png <- function(svg, png, w=768, h=768) {
     # system2("inkscape", c("-z", "-e", png, "-w", w, "-h", h, svg)) # nolint
     rsvg::rsvg_png(svg, png, w, h)
+}
+resize_png <- function(png.in, png.out, w=768, h=768) {
+    system2("convert", c(png.in, "-resize", paste0(w, "x", h), png.out)) # nolint
 }
 rst_list_table <- function(df, title=NULL, widths=NULL) {
     df <- as.data.frame(df)

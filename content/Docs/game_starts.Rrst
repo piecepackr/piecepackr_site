@@ -607,19 +607,19 @@ invisible(dev.off())
 .. {r game_animation, echo=FALSE, results='hide', message=FALSE}
 library("animation")
 library("grid")
-examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram-1.svg",
+examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram-1.png",
                  `Breakthrough / Crossings` = "../share/rules/breakthrough.png",
                  `Cell Management` = "../share/rules/cell_management.png",
-                 Chaturaji = "../images/knitr/demos-chess-chaturaji-1.svg",
+                 Chaturaji = "../images/knitr/demos-chess-chaturaji-1.png",
                  `Chinese Checkers aka Mini Halma` = "../share/rules/chinese_checkers.png",
                  Checkers = "../share/rules/american_checkers.png",
-                 Chess = "../images/knitr/demos-chess-international-chess-1.svg",
-                 Cribbage = "../images/knitr/games-cribbage-starting-diagram-1.svg",
+                 Chess = "../images/knitr/demos-chess-international-chess-1.png",
+                 Cribbage = "../images/knitr/games-cribbage-starting-diagram-1.png",
                  `Coin Collectors` = "../share/rules/coin_collectors.png",
                  Desfases = "../share/rules/desfases.png",
                  `Easy Slider` = "../share/rules/easy_slider.png",
                  Evade = "../share/rules/evade.png",
-                 Everest = "../images/knitr/games-everest-starting-diagram-1.svg",
+                 Everest = "../images/knitr/games-everest-starting-diagram-1.png",
                  `Four Field Kono` = "../share/rules/four_field_kono.png",
                  `Fuji-san` = "../share/rules/fujisan.png",
                  `Grasshopper` = "../share/rules/grasshopper.png",
@@ -640,13 +640,13 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  `San Andreas` = "../share/rules/san_andreas.png",
                  Skyscrapers = "../share/rules/skyscrapers.png",
                  `Slides of Action` = "../share/rules/slides_of_action.png",
-                 Tablut = "../images/knitr/games-tablut-starting-diagram-1.svg",
+                 Tablut = "../images/knitr/games-tablut-starting-diagram-1.png",
                  Tula = "../share/rules/tula.png",
                  `Turkish Draughts` = "../share/rules/turkish_draughts.png",
                  `The Magic Bag` = "../share/rules/the_magic_bag.png",
                  `The "In" Crowd` = "../share/rules/the_in_crowd.png",
                  `Tower of Babel` = "../share/rules/tower_of_babel.png",
-                 Xiangqi = "../images/knitr/demos-chess-xiangqi-1.svg",
+                 Xiangqi = "../images/knitr/demos-chess-xiangqi-1.png",
                  Wormholes = "../share/rules/wormholes.png")
 
 draw_example_games <- function() {

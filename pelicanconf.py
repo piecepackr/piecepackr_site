@@ -33,7 +33,7 @@ FEED_ALL_ATOM = 'feeds/all.atom.xml'
 
 DEFAULT_PAGINATION = False
 
-PLUGINS = ['pelican_comment_system']
+# PLUGINS = ['pelican_comment_system']
 PELICAN_COMMENT_SYSTEM = True
 PELICAN_COMMENT_SYSTEM_IDENTICON_DATA = ('author',)
 PELICAN_COMMENT_SYSTEM_EMAIL_USER = 'piecepackr'

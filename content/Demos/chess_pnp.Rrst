@@ -353,28 +353,50 @@ save_ruleset("international chess", gk, "../share/rules/international-chess.pdf"
 save_ruleset("four seasons chess", gk, "../share/rules/four-seasons-chess.pdf")
 save_ruleset("ultima", gk, "../share/rules/ultima.pdf")
 save_ruleset("xiangqi", gk, "../share/rules/xiangqi.pdf")
-svg2png("../images/knitr/demos-chess-alice-chess-1.svg",
-        "../share/rules/alice-chess.png", 950, 450)
-svg2png("../images/knitr/demos-chess-chaturaji-1.svg",
-        "../share/rules/chaturaji.png", 600, 600)
-svg2png("../images/knitr/demos-chess-chaturaji-stackpack-1.svg",
-        "../share/rules/chaturaji-stackpack.png", 600, 600)
-svg2png("../images/knitr/demos-chess-international-chess-1.svg",
-        "../share/rules/fide-chess.png", 600, 600) ####
-svg2png("../images/knitr/demos-chess-international-chess-1.svg",
-        "../share/rules/international-chess.png", 600, 600)
-svg2png("../images/knitr/demos-chess-international-chess-stackpack-1.svg",
-        "../share/rules/international-chess-stackpack.png", 600, 600) ####
-svg2png("../images/knitr/demos-chess-four-seasons-chess-1.svg",
-        "../share/rules/four-seasons-chess.png", 600, 600)
-svg2png("../images/knitr/demos-chess-shogi-stackpack-1.svg",
-        "../share/rules/shogi-stackpack.png", 500, 600)
-svg2png("../images/knitr/demos-chess-ultima-1.svg",
-        "../share/rules/ultima.png", 600, 600)
-svg2png("../images/knitr/demos-chess-xiangqi-1.svg",
-        "../share/rules/xiangqi.png", 500, 600)
-svg2png("../images/knitr/demos-chess-xiangqi-stackpack-1.svg",
-        "../share/rules/xiangqi-stackpack.png", 500, 600)
+# svg2png("../images/knitr/demos-chess-alice-chess-1.svg",
+#         "../share/rules/alice-chess.png", 950, 450)
+# svg2png("../images/knitr/demos-chess-chaturaji-1.svg",
+#         "../share/rules/chaturaji.png", 600, 600)
+# svg2png("../images/knitr/demos-chess-chaturaji-stackpack-1.svg",
+#         "../share/rules/chaturaji-stackpack.png", 600, 600)
+# svg2png("../images/knitr/demos-chess-international-chess-1.svg",
+#         "../share/rules/fide-chess.png", 600, 600) ####
+# svg2png("../images/knitr/demos-chess-international-chess-1.svg",
+#         "../share/rules/international-chess.png", 600, 600)
+# svg2png("../images/knitr/demos-chess-international-chess-stackpack-1.svg",
+#         "../share/rules/international-chess-stackpack.png", 600, 600) ####
+# svg2png("../images/knitr/demos-chess-four-seasons-chess-1.svg",
+#         "../share/rules/four-seasons-chess.png", 600, 600)
+# svg2png("../images/knitr/demos-chess-shogi-stackpack-1.svg",
+#         "../share/rules/shogi-stackpack.png", 500, 600)
+# svg2png("../images/knitr/demos-chess-ultima-1.svg",
+#         "../share/rules/ultima.png", 600, 600)
+# svg2png("../images/knitr/demos-chess-xiangqi-1.svg",
+#         "../share/rules/xiangqi.png", 500, 600)
+# svg2png("../images/knitr/demos-chess-xiangqi-stackpack-1.svg",
+#         "../share/rules/xiangqi-stackpack.png", 500, 600)
+resize_png("../images/knitr/demos-chess-alice-chess-1.png",
+           "../share/rules/alice-chess.png", 950, 450)
+resize_png("../images/knitr/demos-chess-chaturaji-1.png",
+           "../share/rules/chaturaji.png", 600, 600)
+resize_png("../images/knitr/demos-chess-chaturaji-stackpack-1.png",
+           "../share/rules/chaturaji-stackpack.png", 600, 600)
+resize_png("../images/knitr/demos-chess-international-chess-1.png",
+           "../share/rules/fide-chess.png", 600, 600) ####
+resize_png("../images/knitr/demos-chess-international-chess-1.png",
+           "../share/rules/international-chess.png", 600, 600)
+resize_png("../images/knitr/demos-chess-international-chess-stackpack-1.png",
+           "../share/rules/international-chess-stackpack.png", 600, 600) ####
+resize_png("../images/knitr/demos-chess-four-seasons-chess-1.png",
+           "../share/rules/four-seasons-chess.png", 600, 600)
+resize_png("../images/knitr/demos-chess-shogi-stackpack-1.png",
+           "../share/rules/shogi-stackpack.png", 500, 600)
+resize_png("../images/knitr/demos-chess-ultima-1.png",
+           "../share/rules/ultima.png", 600, 600)
+resize_png("../images/knitr/demos-chess-xiangqi-1.png",
+           "../share/rules/xiangqi.png", 500, 600)
+resize_png("../images/knitr/demos-chess-xiangqi-stackpack-1.png",
+           "../share/rules/xiangqi-stackpack.png", 500, 600)
 .. ..
 
 .. {r animation, echo=FALSE}

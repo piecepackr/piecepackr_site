@@ -24,7 +24,8 @@ grid.draw(textGrob_cribbage_board(cfg$get_suit_color()))
 .. {r save, echo=FALSE}
 gk <- game_kit(list(cfg=cfg))
 save_ruleset("cribbage", gk, "../share/rules/cribbage.pdf")
-svg2png("../images/knitr/games-cribbage-starting-diagram-1.svg",
-        "../share/rules/cribbage.png", 333, 1221)
-
+# svg2png("../images/knitr/games-cribbage-starting-diagram-1.svg",
+#         "../share/rules/cribbage.png", 333, 1221)
+resize_png("../images/knitr/games-cribbage-starting-diagram-1.png",
+           "../share/rules/cribbage.png", 333, 1221)
 .. ..

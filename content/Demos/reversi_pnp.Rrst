@@ -79,6 +79,8 @@ pmap_piece(df, envir=envir, default.units="in", trans=op_transform, op_scale=0.5
 .. {r save, echo=FALSE}
 save(reversi1, file="../tmp/reversi.RData")
 create_pnp("../tmp/reversi.RData")
-svg2png("../images/knitr/games-reversi-end-diagram-1.svg",
-        "../share/rules/reversi.png", 768, 768)
+# svg2png("../images/knitr/games-reversi-end-diagram-1.svg",
+#         "../share/rules/reversi.png", 768, 768)
+resize_png("../images/knitr/games-reversi-end-diagram-1.png",
+           "../share/rules/reversi.png", 768, 768)
 .. ..

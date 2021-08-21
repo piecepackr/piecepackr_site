@@ -29,6 +29,8 @@ pmap_piece(df_everest(), cfg=cfg, default.units="in", op_scale=1.0, trans=op_tra
 
 .. {r save, echo=FALSE}
 gk <- game_kit(list(cfg=cfg))
-svg2png("../images/knitr/games-everest-starting-diagram-1.svg",
-        "../share/rules/everest.png", 450, 350)
+# svg2png("../images/knitr/games-everest-starting-diagram-1.svg",
+#         "../share/rules/everest.png", 450, 350)
+resize_png("../images/knitr/games-everest-starting-diagram-1.png",
+           "../share/rules/everest.png", 450, 350)
 .. ..

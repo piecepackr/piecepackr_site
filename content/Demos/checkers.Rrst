@@ -31,8 +31,10 @@ pmap_piece(df, envir=envir, default.units="in", trans=op_transform, op_scale=0.5
 
 .. {r various-images, echo=FALSE}
 library("tradgames")
-svg2png("../images/knitr/games-checkers-breakthrough-1.svg",
-        "../share/rules/checkers_breakthrough.png", 600, 600)
+# svg2png("../images/knitr/games-checkers-breakthrough-1.svg",
+#         "../share/rules/checkers_breakthrough.png", 600, 600)
+resize_png("../images/knitr/games-checkers-breakthrough-1.png",
+           "../share/rules/checkers_breakthrough.png", 600, 600)
 
 png("../share/rules/checkers_american_checkers.png", width=9, height=9, units="in", res=36)
 pmap_piece(df_american_checkers(), envir=envir, default.units="in", 
