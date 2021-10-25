@@ -11,6 +11,7 @@
 .. _Anatomy of a Piecepack: https://web.archive.org/web/2016/http://www.piecepack.org/Anatomy.html
 .. _Quivira: http://www.quivira-font.com/
 .. _Looney Pyramids: https://www.looneylabs.com/looney-pyramids
+.. _Game Bit: https://github.com/trevorld/game-bit-font
 
 .. _R: https://cran.r-project.org/
 .. _grid: https://www.rdocumentation.org/packages/grid
