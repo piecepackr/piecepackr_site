@@ -2,7 +2,7 @@ News
 ====
 
 :date: 2020-06-24
-:modified: 2021-03-23
+:modified: 2022-01-13
 
 .. include:: ../../links.rst
 
@@ -10,6 +10,12 @@ This page is a reverse chronological list of major changes by quarter.
 
 2021-Q4
 -------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.9.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.8.1>`_
+* `piecepackr v1.9.2 <https://github.com/piecepackr/piecepackr/releases/tag/v1.9.2>`_
 
 Updated webpages
 ~~~~~~~~~~~~~~~~

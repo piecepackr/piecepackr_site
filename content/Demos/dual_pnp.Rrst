@@ -71,7 +71,7 @@ grid.piece("preview_layout", cfg=dual2)
 Dual piecepacks #2 ("Black" and "White" French-suits)
 -----------------------------------------------------
 
-.. {r preview3, fig.cap='A preview of the "black" french-suited piecepack'}
+.. {r preview3, fig.cap="A preview of the 'black' french-suited piecepack"}
 french_suits_black <- list(suit_text="\u2665,\u2660,\u2663,\u2666,\uaa5c", # ♥,♠,♣,♦,꩜
                         suit_fontfamily="Noto Sans Symbols,Noto Sans Symbols,Noto Sans Symbols,Noto Sans Symbols,Noto Sans Cham",
                         suit_cex="1,1,1,1,0.9")
@@ -82,7 +82,7 @@ dual3 <- pp_cfg(dual3)
 grid.piece("preview_layout", cfg=dual3)
 .. ..
 
-.. {r preview4, fig.cap='A preview of the "white" french-suited piecepack'}
+.. {r preview4, fig.cap="A preview of the 'white' french-suited piecepack"}
 french_suits_white <- french_suits_black
 french_suits_white$suit_text <- "\u2661,\u2664,\u2667,\u2662,\uaa5c" # ♡,♤,♧,♢,꩜
 dual4 <- c(french_suits_white, dark_colorscheme, ranks_noto)
@@ -95,7 +95,7 @@ grid.piece("preview_layout", cfg=dual4)
 Dual piecepacks #3 ("Black" and "White" Swiss-suits)
 -----------------------------------------------------
 
-.. {r preview5, fig.cap='A preview of the "black" swiss-suited piecepack'}
+.. {r preview5, fig.cap="A preview of the 'black' swiss-suited piecepack"}
 orthodox_ranks <- list(rank_text=",a,2,3,4,5", 
                        use_suit_as_ace=TRUE)
 black_colorscheme <- list(suit_color="black,black,black,black,grey40", 
@@ -110,7 +110,7 @@ dual5 <- pp_cfg(dual5)
 grid.piece("preview_layout", cfg=dual5)
 .. ..
 
-.. {r preview6, fig.cap='A preview of the "white" swiss-suited piecepack'}
+.. {r preview6, fig.cap="A preview of the 'white' swiss-suited piecepack"}
 white_colorscheme <- black_colorscheme
 white_colorscheme$suit_color <- "white,white,white,white,grey40"
 dual6 <- c(swiss_suits, white_colorscheme, orthodox_ranks)

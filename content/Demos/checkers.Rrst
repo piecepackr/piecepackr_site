@@ -14,7 +14,7 @@ set_opts_chunk("games-checkers")
 
 Version 1.3 of piecepackr_ comes with built-in configurations for checker boards and checkers in a variety of colors and sizes via the ``game_systems()`` function.  The boards for the ``checkers1`` configuration has 1" cells and the ``checkers2`` configuration has 2" cells.  Number of rows/columns is controlled by the ``board`` component's rank and the color of the board and checker ``bit`` components are controlled by the suit.  The ``face`` of the ``board`` has checkers and the ``back`` has lines.  Here is an example of the setup for Dan Troyka's game `Breakthrough <https://en.wikipedia.org/wiki/Breakthrough_(board_game)>`_ as well as Robert Abbott's game `Crossings <https://en.wikipedia.org/wiki/Crossings_(game)>`_.
 
-.. {r breakthrough, fig.width=9, fig.height=9, fig.cap='Setup for Dan Troyka\'s "Breakthrough" as well as Robert Abbott\'s "Crossings"'}
+.. {r breakthrough, fig.width=9, fig.height=9, fig.cap='Setup for Dan Troyka\'s *Breakthrough* as well as Robert Abbott\'s *Crossings*'}
 library("piecepackr")
 library("tibble")
 envir <- game_systems()

@@ -46,7 +46,7 @@ R package installation instructions (start R with ``R``):
 
 .. code:: r
 
-   install.packages(c("remotes", "rsvg"))
+   install.packages(c("remotes", "ragg", "rsvg"))
    remotes::install_github("piecepackr/piecepackr")
    remotes::install_github("piecepackr/tradgames")
    remotes::install_github("piecepackr/ppgames")

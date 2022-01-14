@@ -60,7 +60,7 @@ grid.piece("die_face", s=2, r=1, cfg=cfg)
 
 The ``preview_layout`` grob allows one to see a preview of a given configuration list:
 
-.. {r draw_preview, fig.cap='"preview_layout" allows one to see a preview of a configuration', out.width='60%'}
+.. {r draw_preview, fig.cap="'preview_layout' allows one to see a preview of a configuration", out.width='60%'}
 grid.piece("preview_layout", cfg=cfg)
 .. ..
 

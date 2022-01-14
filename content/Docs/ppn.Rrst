@@ -52,7 +52,7 @@ cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
 .. image:: {static}/images/knitr/international-chess.gif
-    :alt: Animation of a checkers game
+    :alt: Animation of a chess game
     :align: center
 
 Checkers
