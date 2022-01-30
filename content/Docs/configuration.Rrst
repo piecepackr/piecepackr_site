@@ -333,6 +333,7 @@ Table of configuration list styles
       - Which function to use to make a ``grob`` of the edges of the game piece
         when the piece is drawn with a 3D oblique projection.
         Deprecated in v1.3 (use ``op_grob_fn`` instead).
+        Removed in v1.10.
       -
       -
 
