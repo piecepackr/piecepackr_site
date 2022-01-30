@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2021-03-23
+:modified: 2022-01-30
 
 .. contents::
 
@@ -273,27 +273,36 @@ Table of configuration list styles
       - Which `grob function`_ to use to make a 2D ``grob`` of the game piece.
       -
       -
+    * - grob_with_bleed_fn
+      - Which function to use to make a ``grob`` of the game piece with a "bleed".  
+        Introduced in v1.10.
+      -
+      -
     * - op_grob_fn
       - Which function to use to make a 3D ``grob`` of the game piece
-        when the piece is drawn with an `oblique projection`_. Introduced in v1.3.
+        when the piece is drawn with an `oblique projection`_. 
+        Introduced in v1.3.
       -
       -
     * - obj_fn
       - Which function to use to save Wavefront OBJ file of the game piece
-        (which is used by default ``piece`` and ``piece3d`` functions).  Introduced in v1.4.
+        (which is used by default ``piece()`` and ``piece3d()`` functions).  
+        Introduced in v1.4.
       -
       -
     * - rayrender_fn
-      - Which function to use to create game pieces for use with rayrender graphic system (via ``piece`` function).  Introduced in v1.4.
+      - Which function to use to create game pieces for use with rayrender graphic system (via ``piece()`` function).  
+        Introduced in v1.4.
+      -
+      -
+    * - rayvertex_fn
+      - Which function to use to create game pieces for use with rayvertex graphic system (via ``piece_mesh()`` function).
+        Introduced in v1.9.
       -
       -
     * - rgl_fn
-      - Which function to use to draw game pieces in rgl graphic system (via ``piece3d`` function).  Introduced in v1.4.
-      -
-      -
-    * - obj_fn
-      - Which function to use to save Wavefront OBJ file of the game piece
-        (which by default is used by ``piece`` and ``piece3d`` functions).  Introduced in v1.4.
+      - Which function to use to draw game pieces in rgl graphic system (via ``piece3d()`` function).  
+        Introduced in v1.4.
       -
       -
     * - title
