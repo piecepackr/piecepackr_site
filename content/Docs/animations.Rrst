@@ -21,6 +21,8 @@ Directly using the 'animations' package
 
 Here is a simple example of using the ``saveGIF`` function from the `animation package`_ and ``piecepackr::grid.piece`` directly to make a GIF animation of a tic-tac-toe game of "Suns" versus "Moons" played on the "lines" of a single tile back:
 
+|
+
 .. {r tic-tac-toe, results='hide', message=FALSE}
 library("animation")
 library("grid")
