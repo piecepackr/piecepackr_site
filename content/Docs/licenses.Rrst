@@ -2,6 +2,7 @@ Licenses FAQ
 ============
 
 :date: 2020-11-28
+:modified: 2022-02-04
 
 This article contains some of my thoughts and opinions on piecepack game licenses.  Note however that I am not a lawyer and this should not be construed as legal advice.  Also, as I am a citizen of the United States, these opinions are heavily informed by American law and may be poorly suited for residents of other countries.
 
@@ -109,10 +110,10 @@ Lets consider the following use case, a fan wants to adapt your ruleset by addin
 
 .. _piecepackr_output:
 
-piecepackr is licensed CC BY-SA 4.0,  is its output automatically CC BY-SA 4.0 too?
------------------------------------------------------------------------------------
+piecepackr is licensed under the MIT license,  is its output automatically MIT licensed too?
+--------------------------------------------------------------------------------------------
 
-Although the **code** of piecepackr is licensed CC BY-SA 4.0 (which is compatible with GPL-3) under American law the graphical **output** will probably either be the copyright of the creator or not sufficiently creative to warrant copyright protection.  In general under American law copyright is assigned to the software **user** and not the software program (which as an algorithm is not considered a *creative* agent).  However there may be conditions where the graphical **output** of piecepackr_ is protected by someone else's copyright (or trademark):
+Although the **code** of piecepackr is licensed under the `MIT license <https://opensource.org/licenses/MIT>`_ under American law the graphical **output** will probably either be the copyright of the creator or not sufficiently creative to warrant copyright protection.  In general under American law copyright is assigned to the software **user** and not the software program (which as an algorithm is not considered a *creative* agent).  However there may be conditions where the graphical **output** of piecepackr_ is protected by someone else's copyright (or trademark):
 
 1. Although the `copyright protection of typefaces <https://en.wikipedia.org/wiki/Intellectual_property_protection_of_typefaces#United_States>`_ varies internationally, under American law **typefaces** cannot be protected by copyright but software **fonts** can be protected by copyright.  In a couple of graphic devices (in particular ``cairo_pdf``) piecepackr_ will *embed* copyrightable font software into the resulting image.  For example in the chess_ demo I had to get written permission from the author, Hans Bodlaender, to use the `Chess Utrecht <https://www.chessvariants.com/d.font/utrecht.html>`_ font in one of my designs.
 2. It is possible with a `custom grob function`_ to embed images, depending on which images you embed you could easily fall afoul of copyright/trademark law.  The `Triactor demo <{filename}/Demos/jcd.rst>`_ is an example of embedding images in a game diagram which required me to comply with the CC BY-NC-SA 2.0 license of the Triactor rule set.
