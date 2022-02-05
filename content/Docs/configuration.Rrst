@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2022-01-30
+:modified: 2022-02-04
 
 .. contents::
 
@@ -319,6 +319,10 @@ Table of configuration list styles
       -
     * - copyright
       - Additional copyrights
+      -
+      -
+    * - spdx_id
+      - [SPDX Identifier](https://spdx.org/licenses/) for the graphical design license.  Introduced in v1.10.
       -
       -
     * - lacks_rank
