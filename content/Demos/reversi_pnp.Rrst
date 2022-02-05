@@ -2,6 +2,7 @@ Reversi
 =======
 
 :date: 2020-01-05
+:modified: 2022-02-04
 :tags: print-and-play
 
 .. {r setup, echo=FALSE}
@@ -29,7 +30,12 @@ dejavu_credit <- c("\u25cf This piecepack uses characters from the font Dejavu S
                     "\thttps://dejavu-fonts.github.io/",
                     "\thttps://dejavu-fonts.github.io/License.html")
 reversi1$credit <- dejavu_credit
+reversi1$description <- ""
 reversi1$title <- "Reversi-friendly piecepack"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    reversi1$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
+    reversi1$spdx_id <- "CC-BY-SA-4.0"
+}
 
 reversi1 <- pp_cfg(reversi1)
 grid.piece("preview_layout", cfg=reversi1)

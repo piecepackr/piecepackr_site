@@ -2,6 +2,7 @@ Chinese Zodiac ranked piecepack PnP
 ===================================
 
 :date: 2019-06-23
+:modified: 2022-02-04
 :tags: print-and-play
 
 .. {r setup, echo=FALSE}
@@ -29,6 +30,10 @@ noto_credit <- c("\u25cf This piecepack uses characters from Google Noto Fonts. 
 zodiac_cn1$credit <- noto_credit
 zodiac_cn1$description <- c('This piecepack uses ranks and suits from the Chinese Zodiac')
 zodiac_cn1$title <- "Chinese Zodiac (Trines 1+2)"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    zodiac_cn1$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
+    zodiac_cn1$spdx_id <- "CC-BY-SA-4.0"
+}
 zodiac_cn1 <- pp_cfg(zodiac_cn1)
 grid.piece("preview_layout", cfg=zodiac_cn1)
 .. ..

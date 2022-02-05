@@ -2,7 +2,7 @@ Chess
 =====
 
 :date: 2019-10-12
-:modified: 2020-08-22
+:modified: 2022-01-04
 :tags: print-and-play, ppgames
 
 .. {r setup, echo=FALSE}
@@ -39,6 +39,10 @@ chess1 <-  list(suit_text = "🌞,🌜,👑,⚜,꩜",
 chess1$description <- 'This is a chess-ranked piecepack that swaps in the six chess rank symbols for the six piecepack rank symbols.'
 chess1$credit <- c(noto_credit)
 chess1$title <- "Chess-ranked piecepack"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    chess1$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
+    chess1$spdx_id <- "CC-BY-SA-4.0"
+}
 chess1 <- pp_cfg(chess1)
 grid.piece("preview_layout", cfg=chess1)
 .. ..
@@ -88,6 +92,10 @@ chess2 <- list(suit_color = "darkred,black,dimgrey,hotpink2,grey",
 chess2$description <- 'This is a French-suited chess-ranked piecepack.'
 chess2$credit <- c(noto_credit)
 chess2$title <- "French-suited chess-ranked piecepack"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    chess2$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
+    chess2$spdx_id <- "CC-BY-SA-4.0"
+}
 chess2 <- pp_cfg(chess2)
 grid.piece("preview_layout", cfg=chess2)
 .. ..
@@ -117,6 +125,10 @@ chess3 <- list(suit_text = "♠,♣,🌜,⚓,,,★",
 chess3$description <- 'This is a chess-ranked piecepack with a mirrored-color-scheme.'
 chess3$credit <- c(noto_credit)
 chess3$title <- "Black-suited mirrored-color-scheme chess-ranked piecepack"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    chess3$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
+    chess3$spdx_id <- "CC-BY-SA-4.0"
+}
 chess3 <- pp_cfg(chess3)
 grid.piece("preview_layout", cfg=chess3)
 .. ..
@@ -222,6 +234,10 @@ noto_credit <- c("\u25cf This piecepack uses characters from Google Noto Fonts. 
                  "\thttps://www.google.com/get/noto/")
 chess5$credit <- c(utrecht_credit, noto_credit)
 chess5$title <- "Piecepack-and-chess-ranked piecepack"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    chess5$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
+    chess5$spdx_id <- "CC-BY-SA-4.0"
+}
 chess5 <- pp_cfg(chess5)
 grid.piece("preview_layout", cfg=chess5)
 .. ..

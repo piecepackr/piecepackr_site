@@ -2,6 +2,7 @@ Rainbow Deck suited piecepack PnP
 =================================
 
 :date: 2019-06-23
+:modified: 2022-02-04
 :tags: print-and-play
 
 .. {r setup, echo=FALSE}
@@ -35,6 +36,10 @@ rainbow1$credit <- c(noto_credit, RD_credit)
 rainbow1$description <- c('This piecepack uses the suits from Chen Changcai\'s "Rainbow Deck"',
                 "\thttps://boardgamegeek.com/boardgame/59655/rainbow-deck")
 rainbow1$title <- "Rainbow Deck (dark suits)"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    rainbow1$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
+    rainbow1$spdx_id <- "CC-BY-SA-4.0"
+}
 rainbow1 <- pp_cfg(rainbow1)
 grid.piece("preview_layout", cfg=rainbow1)
 .. ..

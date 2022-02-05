@@ -2,6 +2,7 @@ Orthodox PnP
 ============
 
 :date: 2019-05-26
+:modified: 2022-02-04
 :tags: print-and-play
 
 .. {r setup, echo=FALSE}
@@ -53,6 +54,10 @@ description <- "This 'orthodox' piecepack fully complies with the 'Anatomy of a 
 orthodox1$description <- description
 orthodox1$credit <- noto_credit
 orthodox1$title <- "Orthodox piecepack (Green Crowns)"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    orthodox1$copyright <- "Created in 2019 by Trevor L Davis.  No Rights Reserved."
+    orthodox1$spdx_id <- "CC0-1.0"
+}
 orthodox1 <- pp_cfg(orthodox1)
 grid.piece("preview_layout", cfg=orthodox1)
 .. ..
@@ -77,7 +82,7 @@ orthodox3$suit_cex.pawn = 0.5
 orthodox3$suit_text.saucer_face = NULL
 orthodox3$suit_cex.saucer_face <- 0.5
 orthodox3$title <- "French-suited piecepack (Orthodox)"
-orthodox3$description <- NULL
+orthodox3$description <- ""
 orthodox3 <- pp_cfg(orthodox3)
 grid.piece("preview_layout", cfg=orthodox3)
 .. ..

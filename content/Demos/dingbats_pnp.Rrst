@@ -2,7 +2,7 @@ Dingbats PnP
 ============
 
 :date: 2019-05-31
-:modified: 2020-08-22
+:modified: 2022-04-04
 :tags: print-and-play
 
 .. {r setup, echo=FALSE}
@@ -119,6 +119,10 @@ description <- c('This piecepack emulates Daniel Ajoy\'s "Piecepack Design Varia
 dingbats1$description <- description
 dingbats1$credit <- c(dejavu_credit, ajoy_credit)
 dingbats1$title <- "Dingbats piecepack (Dingbat suits)"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    dingbats1$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
+    dingbats1$spdx_id <- "CC-BY-3.0"
+}
 dingbats1 <- pp_cfg(dingbats1)
 grid.piece("preview_layout", cfg=dingbats1)
 .. ..

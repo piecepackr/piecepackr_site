@@ -2,6 +2,7 @@ Default PnP
 ===========
 
 :date: 2019-04-06
+:modified: 2022-02-04
 :tags: print-and-play
 
 .. {r setup, echo=FALSE}
@@ -20,6 +21,13 @@ The default type of piecepack built by this software if the user does no configu
 .. {r preview, fig.cap='A preview of the default piecepack made by piecepackr'}
 library("piecepackr")
 default <- pp_cfg(list())
+default$description <- 'This is the default piecepack produced by `pp_cfg()`.'
+default$title <- "{piecepackr}'s default piecepack"
+default$credit <- ""
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    default$copyright <- "Created in 2019 by Trevor L Davis.  No Rights Reserved."
+    default$spdx_id <- "CC0-1.0"
+}
 grid.piece("preview_layout", cfg=default)
 .. ..
 

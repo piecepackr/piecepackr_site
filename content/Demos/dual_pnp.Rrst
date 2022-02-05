@@ -2,7 +2,7 @@ Dual piecepacks PnP
 ===================
 
 :date: 2019-04-07
-:modified: 2019-04-28
+:modified: 2022-02-04
 :tags: print-and-play
 
 .. {r setup, echo=FALSE}
@@ -48,7 +48,12 @@ noto_credit <- c("\u25cf This piecepack uses characters from Google Noto Fonts. 
                  "\thttps://www.google.com/get/noto/")
 dual1 <- c(piecepack_suits, dark_colorscheme, ranks_noto)
 dual1$credit <- noto_credit
+dual1$description <- ""
 dual1$title <- "Piecepack-suited (Un-inverted colors)"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    dual1$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
+    dual1$spdx_id <- "CC-BY-SA-4.0"
+}
 dual1 <- pp_cfg(dual1)
 grid.piece("preview_layout", cfg=dual1)
 .. ..
@@ -63,7 +68,12 @@ quivira_credit <- c("\u25cf This piecepack uses characters from the font Quivira
 
 dual2 <- c(latin_suits, dark_colorscheme, ranks_noto)
 dual2$credit <- c(quivira_credit, noto_credit)
+dual2$description <- ""
 dual2$title <- "Latin-suited (Inverted colors)"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    dual2$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
+    dual2$spdx_id <- "CC-BY-SA-4.0"
+}
 dual2 <- pp_cfg(dual2)
 grid.piece("preview_layout", cfg=dual2)
 .. ..
@@ -78,6 +88,11 @@ french_suits_black <- list(suit_text="\u2665,\u2660,\u2663,\u2666,\uaa5c", # ♥
 dual3 <- c(french_suits_black, dark_colorscheme, ranks_noto)
 dual3$title <- "French-suited (Black)"
 dual3$credit <- noto_credit
+dual3$description <- ""
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    dual3$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
+    dual3$spdx_id <- "CC-BY-SA-4.0"
+}
 dual3 <- pp_cfg(dual3)
 grid.piece("preview_layout", cfg=dual3)
 .. ..
@@ -87,7 +102,12 @@ french_suits_white <- french_suits_black
 french_suits_white$suit_text <- "\u2661,\u2664,\u2667,\u2662,\uaa5c" # ♡,♤,♧,♢,꩜
 dual4 <- c(french_suits_white, dark_colorscheme, ranks_noto)
 dual4$title <- "French-suited (White)"
-dual3$credit <- noto_credit
+dual4$credit <- noto_credit
+dual4$description <- ""
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    dual4$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
+    dual4$spdx_id <- "CC-BY-SA-4.0"
+}
 dual4 <- pp_cfg(dual4)
 grid.piece("preview_layout", cfg=dual4)
 .. ..
@@ -106,6 +126,11 @@ swiss_suits <- list(suit_text="\ue005,\ue004,\ue000,\ue003,\ue00a",
 dual5 <- c(swiss_suits, black_colorscheme, orthodox_ranks)
 dual5$title <- "Swiss-suited (Black)"
 dual5$credit <- quivira_credit
+dual5$description <- ""
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    dual5$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
+    dual5$spdx_id <- "CC-BY-SA-4.0"
+}
 dual5 <- pp_cfg(dual5)
 grid.piece("preview_layout", cfg=dual5)
 .. ..
@@ -116,6 +141,11 @@ white_colorscheme$suit_color <- "white,white,white,white,grey40"
 dual6 <- c(swiss_suits, white_colorscheme, orthodox_ranks)
 dual6$title <- "Swiss-suited (White)"
 dual6$credit <- quivira_credit
+dual6$description <- ""
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    dual6$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
+    dual6$spdx_id <- "CC-BY-SA-4.0"
+}
 dual6 <- pp_cfg(dual6)
 grid.piece("preview_layout", cfg=dual6)
 .. ..
