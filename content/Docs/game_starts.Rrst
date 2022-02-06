@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2021-03-05
+:modified: 2022-02-06
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -146,6 +146,10 @@ Contained in ppgames
     * - `Backgammon <https://www.ludism.org/ppwiki/Backgammon>`_
       - df_backgammon
       - X
+      -
+    * - `Brandubh <http://tafl.cyningstan.com/page/171/brandub>`_
+      - df_brandubh
+      -
       -
     * - `Breakthrough <https://en.wikipedia.org/wiki/Breakthrough_(board_game)>`_
       - df_breakthrough
@@ -439,6 +443,11 @@ png("../share/rules/awithlaknannai_mosona.png", width=25.5, height=5.2, units="i
 pmap_piece(df_awithlaknannai_mosona(), cfg=two_player, default.units="in")
 invisible(dev.off())
 
+png("../share/rules/brandubh.png", width=8, height=8, units="in", res=72)
+pmap_piece(df_brandubh(), cfg=traditional, default.units="in",
+           op_scale=0.5, trans=op_transform)
+invisible(dev.off())
+
 png("../share/rules/breakthrough.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_breakthrough(), cfg=two_player, default.units="in")
 invisible(dev.off())
@@ -608,6 +617,7 @@ invisible(dev.off())
 library("animation")
 library("grid")
 examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram-1.png",
+                 Brandubh = "../share/rules/brandubh.png",
                  `Breakthrough / Crossings` = "../share/rules/breakthrough.png",
                  `Cell Management` = "../share/rules/cell_management.png",
                  Chaturaji = "../images/knitr/demos-chess-chaturaji-1.png",
