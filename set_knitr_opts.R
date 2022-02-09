@@ -28,7 +28,9 @@ save_rulebook <- function(book, gk=game_kit(), output=NULL) {
     trdata <- tempfile(fileext=".RData")
     on.exit(unlink(trdata))
     save(book, gk, output, file=trdata)
-    code <- c("library('ppgames')",
+    code <- c("library('grid')",
+              "library('piecepackr')",
+              "library('ppgames')",
               sprintf("load('%s')", trdata),
               "save_rulebook(book, gk=gk, output=output)")
     writeLines(code, tr)
@@ -41,7 +43,9 @@ save_ruleset <- function(game, gk=game_kit(), output=NULL, size="letter") {
     trdata <- tempfile(fileext=".RData")
     on.exit(unlink(trdata))
     save(game, gk, output, size, file=trdata)
-    code <- c("library('ppgames')",
+    code <- c("library('grid')",
+              "library('piecepackr')",
+              "library('ppgames')",
               sprintf("load('%s')", trdata),
               "save_ruleset(game, gk, output, size=size, quietly=TRUE)")
     writeLines(code, tr)
@@ -54,7 +58,9 @@ save_pamphlet <- function(game, gk=game_kit(), output=NULL, size="letter") {
     trdata <- tempfile(fileext=".RData")
     on.exit(unlink(trdata))
     save(game, gk, output, size, file=trdata)
-    code <- c("library('ppgames')",
+    code <- c("library('grid')",
+              "library('piecepackr')",
+              "library('ppgames')",
               sprintf("load('%s')", trdata),
               "save_pamphlet(game, gk, output, size=size, quietly=TRUE)")
     writeLines(code, tr)

@@ -369,6 +369,9 @@ save_ruleset("international chess", gk, "../share/rules/international-chess.pdf"
 save_ruleset("four seasons chess", gk, "../share/rules/four-seasons-chess.pdf")
 save_ruleset("ultima", gk, "../share/rules/ultima.pdf")
 save_ruleset("xiangqi", gk, "../share/rules/xiangqi.pdf")
+save_ruleset("xiangqi", gk, "../share/rules/xiangqi_A4.pdf", size="A4")
+save_pamphlet("xiangqi", gk, "../share/rules/xiangqi_pamphlet.pdf")
+save_pamphlet("xiangqi", gk, "../share/rules/xiangqi_pamphlet_A4.pdf", size="A4")
 # svg2png("../images/knitr/demos-chess-alice-chess-1.svg",
 #         "../share/rules/alice-chess.png", 950, 450)
 # svg2png("../images/knitr/demos-chess-chaturaji-1.svg",
