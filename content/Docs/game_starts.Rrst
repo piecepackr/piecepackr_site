@@ -414,7 +414,8 @@ two_player <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
         suit_color="#D55E00,#000000,#F0E442,#0072B2,#009E73",
         background_color="#000000,#D55E00,#0072B2,#F0E442,white",
         mat_width.tile_back=0.05, mat_color.tile_back="white",
-        border_color.tile_back="#009E73", border_lex.tile_back=5
+        border_color.tile_back="#009E73", border_lex.tile_back=5,
+        annotation_color = "#E69F00"
 ))
 gk_2p <- game_kit(list(cfg=two_player))
 gk_4p <- game_kit(list(cfg=cfgs$piecepack))
@@ -529,6 +530,15 @@ pmap_piece(df_mathrix(seed=19), envir=cfgs, default.units="in",
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
 
+png("../share/rules/nine_mens_morris.png", width=15, height=15, units="in", res=36)
+pmap_piece(df_nine_mens_morris(), envir=cfgs, default.units="in")
+invisible(dev.off())
+
+save_ruleset("nine mens morris", gk_2p, "../share/rules/nine_mens_morris.pdf")
+save_ruleset("nine mens morris", gk_2p, "../share/rules/nine_mens_morris_A4.pdf", size="A4")
+save_pamphlet("nine mens morris", gk_2p, "../share/rules/nine_mens_morris_pamphlet.pdf")
+save_pamphlet("nine mens morris", gk_2p, "../share/rules/nine_mens_morris_pamphlet_A4.pdf", size="A4")
+
 png("../share/rules/pass_the_food.png", width=9.0, height=13.5, units="in", res=42)
 pmap_piece(df_pass_the_food(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
@@ -640,6 +650,7 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  `Ley Lines` = "../share/rules/ley_lines.png",
                  `Lines of Action` = "../share/rules/lines_of_action.png",
                  Mathrix = "../share/rules/mathrix.png",
+                 `Nine/Twelve Men\'s Morrois` = "../share/rules/nine_mens_morris.png",
                  `Pass the Food` = "../share/rules/pass_the_food.png",
                  `Piece Gaps` = "../share/rules/piece_gaps.png",
                  `Piece Packing Pirates` = "../share/rules/piece_packing_pirates.png",
