@@ -45,6 +45,9 @@ ppgames::animate_game(game, file = "../images/knitr/tablut.gif",
 .. {r save, echo=FALSE}
 gk <- game_kit(list(cfg=cfg))
 save_ruleset("tablut", gk, "../share/rules/tablut.pdf")
+save_ruleset("tablut", gk, "../share/rules/tablut_A4.pdf", size="A4")
+save_pamphlet("tablut", gk, "../share/rules/tablut_pamphlet.pdf")
+save_pamphlet("tablut", gk, "../share/rules/tablut_pamphlet_A4.pdf", size="A4")
 # svg2png("../images/knitr/games-tablut-starting-diagram-1.svg",
 #         "../share/rules/tablut.png", 768, 768)
 resize_png("../images/knitr/games-tablut-starting-diagram-1.png",

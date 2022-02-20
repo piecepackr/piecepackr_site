@@ -539,6 +539,11 @@ save_ruleset("nine mens morris", gk_2p, "../share/rules/nine_mens_morris_A4.pdf"
 save_pamphlet("nine mens morris", gk_2p, "../share/rules/nine_mens_morris_pamphlet.pdf")
 save_pamphlet("nine mens morris", gk_2p, "../share/rules/nine_mens_morris_pamphlet_A4.pdf", size="A4")
 
+save_ruleset("twelve mens morris", gk_2p, "../share/rules/twelve_mens_morris.pdf")
+save_ruleset("twelve mens morris", gk_2p, "../share/rules/twelve_mens_morris_A4.pdf", size="A4")
+save_pamphlet("twelve mens morris", gk_2p, "../share/rules/twelve_mens_morris_pamphlet.pdf")
+save_pamphlet("twelve mens morris", gk_2p, "../share/rules/twelve_mens_morris_pamphlet_A4.pdf", size="A4")
+
 png("../share/rules/pass_the_food.png", width=9.0, height=13.5, units="in", res=42)
 pmap_piece(df_pass_the_food(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
