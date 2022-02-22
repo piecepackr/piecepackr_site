@@ -13,7 +13,7 @@ set_opts_chunk("games-backgammon")
 
 `Backgammon <{static}/share/rules/backgammon.pdf>`_ is one of the oldest known board games. Like other classic board games like checkers and chess it is also possible to play with a single piecepack_.  Below is a starting diagram for playing a game of backgammon with a piecepack.
 
-.. {r starting-diagram, fig.cap='Starting diagram for a game of backgammon', fig.width=25, fig.height=5}
+.. {r starting-diagram, fig.cap='Starting diagram for a game of backgammon', fig.width=26, fig.height=6}
 library("grid")
 library("piecepackr")
 library("ppgames", warn.conflicts=FALSE)
