@@ -2,11 +2,21 @@ News
 ====
 
 :date: 2020-06-24
-:modified: 2022-01-13
+:modified: 2022-02-22
 
 .. include:: ../../links.rst
 
 This page is a reverse chronological list of major changes by quarter.
+
+2022-Q1
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.10.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.10.1>`_
+* `ppgames v0.7.0 <https://github.com/piecepackr/ppgames/releases/tag/v0.7.0>`_
+
 
 2021-Q4
 -------
@@ -14,7 +24,7 @@ This page is a reverse chronological list of major changes by quarter.
 Software releases
 ~~~~~~~~~~~~~~~~~
 
-* `piecepackr v1.9.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.8.1>`_
+* `piecepackr v1.9.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.9.1>`_
 * `piecepackr v1.9.2 <https://github.com/piecepackr/piecepackr/releases/tag/v1.9.2>`_
 
 Updated webpages
