@@ -16,9 +16,11 @@
 .. _R: https://cran.r-project.org/
 .. _grid: https://www.rdocumentation.org/packages/grid
 .. _animation package: https://cran.r-project.org/package=animation
+.. _ggplot2: https://cran.r-project.org/package=ggplot2
 .. _gifski: https://cran.r-project.org/package=gifski
 .. _grImport2: https://cran.r-project.org/package=grImport2
 .. _rayrender: https://cran.r-project.org/package=rayrender
+.. _rayvertex: https://cran.r-project.org/package=rayvertex
 .. _rgl: https://cran.r-project.org/package=rgl
 .. _tweenr: https://cran.r-project.org/package=tweenr
 
