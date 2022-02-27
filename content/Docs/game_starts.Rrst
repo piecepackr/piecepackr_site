@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2022-02-06
+:modified: 2022-02-25
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -249,6 +249,10 @@ Contained in ppgames
       -
     * - `Lines of Action <https://en.wikipedia.org/wiki/Lines_of_Action>`_
       - df_lines_of_action
+      -
+      -
+    * - `Ludo <https://en.wikipedia.org/wiki/Ludo_(board_game)>`_
+      - df_ludo
       -
       -
     * - `Mathrix <https://www.ludism.org/ppwiki/Mathrix>`_
@@ -525,6 +529,8 @@ png("../share/rules/lines_of_action.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_lines_of_action(), cfg=two_player, default.units="in")
 invisible(dev.off())
 
+render_piece(df_ludo(), "../share/rules/ludo.png", ppi=36, envir=cfgs)
+
 png("../share/rules/mathrix.png", width=7, height=5, units="in", res=72)
 pmap_piece(df_mathrix(seed=19), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
@@ -654,6 +660,7 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  Landlocked = "../share/rules/landlocked.png",
                  `Ley Lines` = "../share/rules/ley_lines.png",
                  `Lines of Action` = "../share/rules/lines_of_action.png",
+                 Ludo = "../share/rules/ludo.png",
                  Mathrix = "../share/rules/mathrix.png",
                  `Nine/Twelve Men\'s Morrois` = "../share/rules/nine_mens_morris.png",
                  `Pass the Food` = "../share/rules/pass_the_food.png",
