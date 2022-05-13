@@ -73,7 +73,7 @@ pmap_piece(df, envir=envir, default.units="in", trans=op_transform,
 .. {r martian_chess_3d}
 envir <- c(game_systems("sans3d"), looney_pyramids())
 library("rgl")
-rgl.open()
+open3d()
 bg3d("white")
 if (Sys.which("wmctrl") != "") system("wmctrl -r RGL -e 0,-1,-1,1080,1080")
 view3d(phi=-30, zoom = 0.8)
@@ -81,8 +81,8 @@ pmap_piece(df, piece3d, envir=envir, trans=op_transform)
 .. ..
 .. {r move, echo=FALSE}
 Sys.sleep(2)
-rgl.snapshot("martian_chess_rgl.png", top = FALSE)
-rgl.close()
+snapshot3d("martian_chess_rgl.png", top = FALSE)
+close3d()
 invisible(file.rename('martian_chess_rgl.png', '../images/knitr/martian_chess_rgl.png'))
 .. ..
 

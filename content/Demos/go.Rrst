@@ -62,7 +62,7 @@ It is recommended when plotting go stones in rgl_ to set ``lit=TRUE``:
 
 .. {r go-rgl, fig.width=20, fig.height=20, fig.cap='2D Multi-player Go diagram'}
 library("rgl")
-rgl.open()
+open3d()
 bg3d("white")
 if (Sys.which("wmctrl") != "") system("wmctrl -r RGL -e 0,-1,-1,1080,1080")
 view3d(phi=-30, zoom = 0.8)
@@ -72,8 +72,8 @@ pmap_piece(df, piece3d, cfg=cfg, trans=op_transform, lit=TRUE)
 
 .. {r move, echo=FALSE}
 Sys.sleep(2)
-rgl.snapshot("go_rgl.png", top = FALSE)
-rgl.close()
+snapshot3d("go_rgl.png", top = FALSE)
+close3d()
 invisible(file.rename('go_rgl.png', '../images/knitr/go_rgl.png'))
 .. ..
 

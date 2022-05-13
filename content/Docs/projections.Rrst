@@ -154,8 +154,8 @@ pmap_piece(df, piece3d, trans=op_transform, envir = envir, scale = 0.98, res = 1
 .. {r move, echo=FALSE}
 if (Sys.which("wmctrl") != "") system("wmctrl -r RGL -e 0,-1,-1,600,600")
 Sys.sleep(2)
-rgl.snapshot("rgl_snapshot.png", top = FALSE)
-rgl.close()
+snapshot3d("rgl_snapshot.png", top = FALSE)
+close3d()
 invisible(file.rename('rgl_snapshot.png', '../images/knitr/rgl_snapshot.png'))
 .. ..
 
