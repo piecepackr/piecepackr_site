@@ -2,11 +2,13 @@ if (dir.exists("../share") && !dir.exists("../share/rules"))
     dir.create("../share/rules")
 
 set_opts_chunk <- function(prefix="prefix") {
-    knitr::opts_chunk$set(out.width="60%", dev="ragg_png",
-                    fig.width=6.05, fig.height=6.05,
-                    fig.path=paste0("content/images/knitr/", prefix, "-"),
-                    fig.process=function(x) gsub("^content", "{static}", x),
-                    fig.align="center", warning=FALSE)
+    knitr::opts_chunk$set(dev="png", dev.args = list(type = "cairo"),
+                          fig.width=6.05, fig.height=6.05,
+                          fig.path=paste0("content/images/knitr/", prefix, "-"),
+                          fig.process=function(x) gsub("^content", "{static}", x),
+                          fig.align="center",
+                          out.width="60%",
+                          warning=FALSE)
 }
 
 create_pnp <- function(Rdata_file) {
