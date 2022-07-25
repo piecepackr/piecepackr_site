@@ -530,6 +530,10 @@ pmap_piece(df_lines_of_action(), cfg=two_player, default.units="in")
 invisible(dev.off())
 
 render_piece(df_ludo(), "../share/rules/ludo.png", ppi=36, envir=cfgs)
+save_ruleset("Ludo", gk_4p, "../share/rules/ludo.pdf")
+save_ruleset("Ludo", gk_4p, "../share/rules/ludo_A4.pdf", size="A4")
+save_pamphlet("Ludo", gk_4p, "../share/rules/ludo_pamphlet.pdf")
+save_pamphlet("Ludo", gk_4p, "../share/rules/ludo_pamphlet_A4.pdf", size="A4")
 
 png("../share/rules/mathrix.png", width=7, height=5, units="in", res=72)
 pmap_piece(df_mathrix(seed=19), envir=cfgs, default.units="in", 
