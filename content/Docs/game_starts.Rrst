@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2022-02-25
+:modified: 2022-07-25
 
 The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece`` or ``ppgames::cat_piece`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn`` to initially setup the game pieces.
 
@@ -309,7 +309,7 @@ Contained in ppgames
       -
     * - `Shogi (Japanese Chess) <https://www.ludism.org/ppwiki/Shogi>`_
       - df_shogi
-      -
+      - X
       -
     * - `Skyscrapers <https://www.ludism.org/ppwiki/Skyscrapers>`_
       - df_skyscrapers
