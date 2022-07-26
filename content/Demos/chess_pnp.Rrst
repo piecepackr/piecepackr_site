@@ -369,10 +369,13 @@ save_ruleset("international chess", gk, "../share/rules/international-chess.pdf"
 save_ruleset("four seasons chess", gk, "../share/rules/four-seasons-chess.pdf")
 save_ruleset("ultima", gk, "../share/rules/ultima.pdf")
 
+render_piece(df_shogi(), "../share/rules/shogi.png", ppi=36, 
+             envir=list(piecepack=chess5))
 save_ruleset("shogi", gk, "../share/rules/shogi.pdf")
 save_ruleset("shogi", gk, "../share/rules/shogi_A4.pdf", size="A4")
 save_pamphlet("shogi", gk, "../share/rules/shogi_pamphlet.pdf")
 save_pamphlet("shogi", gk, "../share/rules/shogi_pamphlet_A4.pdf", size="A4")
+
 save_ruleset("xiangqi", gk, "../share/rules/xiangqi.pdf")
 save_ruleset("xiangqi", gk, "../share/rules/xiangqi_A4.pdf", size="A4")
 save_pamphlet("xiangqi", gk, "../share/rules/xiangqi_pamphlet.pdf")
