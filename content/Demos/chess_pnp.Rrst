@@ -363,11 +363,17 @@ pmap_piece(df_xiangqi(has_subpack = TRUE), envir = two_player_stackpack, op_scal
 
 .. {r save_games, echo=FALSE}
 gk <- game_kit(list(cfg=chess5))
+# crib sheets
 save_ruleset("alice chess", gk, "../share/rules/alice-chess.pdf")
 save_ruleset("chaturaji", gk, "../share/rules/chaturaji.pdf")
-save_ruleset("international chess", gk, "../share/rules/international-chess.pdf")
 save_ruleset("four seasons chess", gk, "../share/rules/four-seasons-chess.pdf")
 save_ruleset("ultima", gk, "../share/rules/ultima.pdf")
+
+# full rules
+save_ruleset("international chess", gk, "../share/rules/international_chess.pdf")
+save_ruleset("international chess", gk, "../share/rules/international_chess_A4.pdf", size="A4")
+save_pamphlet("international chess", gk, "../share/rules/international_chess_pamphlet.pdf")
+save_pamphlet("international chess", gk, "../share/rules/international_chess_pamphlet_A4.pdf", size="A4")
 
 render_piece(df_shogi(), "../share/rules/shogi.png", ppi=36, 
              envir=list(piecepack=chess5))
