@@ -274,7 +274,7 @@ pmap_piece(df_chaturaji(), cfg=chess5, op_scale=0.5,
 (International) Chess
 ~~~~~~~~~~~~~~~~~~~~~
 
-`(International) Chess <{static}/share/rules/international-chess.pdf>`_ is a classic board game playable with a single piecepack.
+`(International) Chess <{static}/share/rules/international_chess.pdf>`_ is a classic board game playable with a single piecepack.
 
 .. {r international-chess, fig.cap="(FIDE) Chess starting diagram", fig.width=9, fig.height=9}
 pmap_piece(df_international_chess(), cfg=chess5, op_scale=0.5, 
@@ -329,8 +329,8 @@ two_player_stackpack <- list(piecepack = two_player_scheme,
                              subpack = to_subpack(two_player_scheme))
 .. ..
 
-Chaturaji Chess
-~~~~~~~~~~~~~~~
+Chaturaji
+~~~~~~~~~
 
 .. {r chaturaji-stackpack, fig.cap = "Chaturaji diagram", fig.width=9, fig.height=9}
 pmap_piece(df_chaturaji(has_subpack = TRUE), envir = two_player_stackpack,
@@ -365,11 +365,15 @@ pmap_piece(df_xiangqi(has_subpack = TRUE), envir = two_player_stackpack, op_scal
 gk <- game_kit(list(cfg=chess5))
 # crib sheets
 save_ruleset("alice chess", gk, "../share/rules/alice-chess.pdf")
-save_ruleset("chaturaji", gk, "../share/rules/chaturaji.pdf")
 save_ruleset("four seasons chess", gk, "../share/rules/four-seasons-chess.pdf")
 save_ruleset("ultima", gk, "../share/rules/ultima.pdf")
 
 # full rules
+save_ruleset("chaturaji", gk, "../share/rules/chaturaji.pdf")
+save_ruleset("chaturaji", gk, "../share/rules/chaturaji_A4.pdf", size="A4")
+save_pamphlet("chaturaji", gk, "../share/rules/chaturaji_pamphlet.pdf")
+save_pamphlet("chaturaji", gk, "../share/rules/chaturaji_pamphlet_A4.pdf", size="A4")
+
 save_ruleset("international chess", gk, "../share/rules/international_chess.pdf")
 save_ruleset("international chess", gk, "../share/rules/international_chess_A4.pdf", size="A4")
 save_pamphlet("international chess", gk, "../share/rules/international_chess_pamphlet.pdf")

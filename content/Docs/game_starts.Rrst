@@ -141,7 +141,7 @@ Contained in ppgames
       -
     * - `Awithlaknannai Mosona <https://en.wikipedia.org/wiki/Awithlaknannai_Mosona>`_
       - df_awithlaknannai_mosona
-      -
+      - X
       -
     * - `Backgammon <https://www.ludism.org/ppwiki/Backgammon>`_
       - df_backgammon
@@ -161,7 +161,7 @@ Contained in ppgames
       -
     * - `Chaturaji <https://www.ludism.org/ppwiki/Chaturaji>`_
       - df_chaturaji
-      -
+      - X
       -
     * - `(American) Checkers <https://www.ludism.org/ppwiki/Checkers>`_
       - df_american_checkers, df_english_draughts, df_checkers
@@ -176,7 +176,7 @@ Contained in ppgames
       -
       - A mini Halma variant
     * - `Cribbage (Board) <https://www.ludism.org/ppwiki/Cribbage>`_
-      - df_cribbage_board
+      - df_cribbage, df_cribbage_board
       - X
       - Just a (piecepack) cribbage board
     * - `Coin Collectors <https://www.ludism.org/ppwiki/CoinCollectors>`_
