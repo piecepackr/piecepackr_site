@@ -25,6 +25,12 @@ file 'content/Docs/game_starts.Rrst' => Rake::FileList["content/Demos/*_game.Rrs
 file 'content/Docs/game_starts.Rrst' => "content/Demos/chess_pnp.Rrst" 
 file 'content/Docs/configuration.Rrst' => "content/pages/pnp.rst"
 
+file 'about.Rrst' => Rake::FileList["content/Demos/*.Rrst"]
+file 'about.Rrst' => Rake::FileList["content/Docs/*.Rrst"]
+
+file 'content/pages/about.Rrst' => "about.rst"
+file 'content/pages/index.Rrst' => "about.rst"
+
 desc "Build website"
 task :default => rrst_files.ext(".rst")
 task :default do

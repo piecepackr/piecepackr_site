@@ -2,6 +2,34 @@
 
 This is the associated website for the piecepackr_, ppgames_, piecenikr_, and tradgames_ R_ packages.  piecepackr_ is an R package designed to make configurable board game graphics. It can be used with the ggplot2_, grid_, rayrender_, rayvertex_, and rgl_ graphic systems to make board game diagrams_, board game animations_, and custom `Print & Play`_ layouts.  By default it is configured to make `piecepack game`_ diagrams_, animations_, and `Print & Play`_ layouts but can be configured to make graphics for `other game systems`_.  ppgames_ is an R_ package with functions for generating piecepack_ game graphics, rulesets, and books as well as functions to parse and visualize games recorded using "`Portable Piecepack Notation`_" format plus a Fuji-san solver.  piecenikr_ contains functions for visualizing `Looney Pyramids`_ games while tradgames_ contains functions for visualizing games played with traditional game systems (such as checkers sets).
 
+.. {r piecepackr_animation, echo=FALSE, results='hide', message=FALSE}
+library("animation")
+library("grid")
+examples <- list(
+    chaturaji = "content/images/knitr/demos-chess-chaturaji-1.png",
+    checkers = "content/images/knitr/games-checkers-breakthrough-1.png",
+    dominoes = "content/images/knitr/games-dominoes-diagram-1.png",
+    go = "content/images/knitr/games-go-grid-1.png",
+    icehouse = "content/images/knitr/martian_chess_rgl.png",
+    rayvertex = "content/images/knitr/rayvertex.png",
+    tablut = "content/images/knitr/games-tablut-starting-diagram-1.png"
+)
+
+draw_examples <- function() {
+    for (i in seq_along(examples)) {
+        grid.newpage()
+        grid.draw(piecepackr::file2grob(examples[[i]], distort=FALSE))
+    }
+}
+saveGIF({draw_examples()}, movie.name="piecepackr_examples.gif",
+        ani.height=600, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
+invisible(file.rename('piecepackr_examples.gif', 'content/images/knitr/piecepackr_examples.gif'))
+.. ..
+
+.. image:: {static}/images/knitr/piecepackr_examples.gif
+    :alt: Some example graphics generated with piecepackr
+    :align: center
+
 This website contains several articles of documentation_ on how to use these R_ packages as well as some relevant theory and resources plus several demos_ of the software in action.  It also contains the download links for several `Print & Play`_ pdfs of the piecepacks configured in the `Print & Play demos`_ that can be used to build your own piecepack_.  Here is a "Site Map" of the articles on this site:
 
 .. contents:: Site Map
