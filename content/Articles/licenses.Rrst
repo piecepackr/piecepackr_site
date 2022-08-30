@@ -1,0 +1,150 @@
+Licenses FAQ
+============
+
+:date: 2020-11-28
+:modified: 2022-02-04
+:summary: Information (and opinions) on piecepack game licenses.
+
+This article contains some of my thoughts and opinions on piecepack game licenses.  Note however that I am not a lawyer and this should not be construed as legal advice.  Also, as I am a citizen of the United States, these opinions are heavily informed by American law and may be poorly suited for residents of other countries.
+
+.. warning:: I am not a lawyer.  My legal opinions should not be construed as legal advice.
+
+.. contents::
+
+.. include:: ../../links.rst
+
+How can I protect the intellectual property in my piecepack game?
+-----------------------------------------------------------------
+
+In the United States there are four forms of protection for piecepack games:
+
+1. Technically games may be protected by `utility or design patent <https://www.boardgamegeek.com/geeklist/20416/board-and-card-game-patents>`_.  However patenting a game using just the piecepack components may no longer be possible after the `Alice Corporation Pty Ltd. v. CLS Bank Int'l <https://en.wikipedia.org/wiki/Alice_Corp._v._CLS_Bank_International>`_ decision which made it harder to patent mere ideas (e.g. see `Ex Parte Kuester <https://ipspotlight.files.wordpress.com/2014/11/ex-parte-kuester.pdf>`_).
+2. `Copyright does not offer much protection for board games <https://www.copyright.gov/fls/fl108.pdf>`_:
+
+      Copyright does not protect the idea for a game, its name or title, or the method or methods for playing it. Nor does copyright protect any idea, system, method, device, or trademark ma­terial involved in developing, merchandising, or playing a game. Once a game has been made public, nothing in the copyright law prevents others from developing another game based on similar principles. Copyright protects only the particular manner of an author’s expression in literary, artistic, or musical form. 
+
+   However 
+
+      Material prepared in connection with a game may be subject to copyright if it contains a sufficient amount of literary or pictorial expression. For example, the text matter describing the rules of the game or the pictorial matter appearing on the gameboard or container may be registrable.
+
+3. Elements of a board game may be `protected by trademark <https://www.americanbar.org/groups/intellectual_property_law/publications/landslide/2014-15/march-april/not-playing-around-board-games-intellectual-property-law/>`_
+
+      As noted above, game names are an obvious option for trademark protection, but game designers and publishers have also sought to register and protect trade dress in game board designs, distinctive card layouts, and even game tokens.
+
+   I'm not sure though how much effective trademark protection is actually provided for a game using public domain piecepack components especially if it is being offered for free download and isn't being sold commercially.  How much protection is there for new card games playable with a standard deck of playing cards or for chess variants?
+
+4. Although not enforceable by American law, probably the most effective form of protection against piecepack game "theft" are actually the norms within the piecepack community in particular and more broadly the board game (designer) community against "stealing" (other designers') games.  This form of IP is similar to how `comedians protect their jokes <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1138376>`_ and `magicians protect their tricks <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1005564&rec=1&srcabs=1138376&pos=1>`_.
+   This means that although piecepack games can generally be legally cloned (e.g. see the court case of `Bang! versus Legends of the Three Kingdoms <https://strebecklaw.com/court-rules-favor-cloned-tabletop-game-no-protection-us-copyright-law/>`_) such cloning may likely be rare since it violates community norms and would likely be socially sanctioned.
+
+What license should I use for my piecepack game?
+------------------------------------------------
+
+If you want individuals to be able to do whatever they want with your game choose the Creative Commons `CC0 1.0 Universal Public Domain Dedication <https://creativecommons.org/publicdomain/zero/1.0/>`_ (CC0 1.0) [#publicdomain]_.  If you want to be very permissive about what individuals can do with your game, but want them to give you credit then choose the Creative Commons `Attribution 4.0 International <https://creativecommons.org/licenses/by/4.0/>`_ license (CC BY 4.0).  If you want individuals who adapt your game to have to give their users the same freedom you gave them then choose the Creative Commons `Attribution-ShareAlike 4.0 International <https://creativecommons.org/licenses/by-sa/4.0/>`_ license (CC BY-SA 4.0).
+
+Why not use a license with a non-commercial clause?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* It prevents certain use cases without offering much more protection from commercial explotaition than a "copyleft" "ShareAlike" license and does not actually legally prevent all scenarios where individuals may "profit" from the work:
+
+   + http://www.opensourcejahrbuch.de/download/jb2006/chapter_06/osjb2006-06-02-en-moeller.pdf
+   + https://creativecommons.org/2017/02/24/update-great-minds-v-fedex-office-litigation-involving-nc-sa/
+   + Note most piecepack games can generally be legally "cloned" regardless of chosen license (at least in the United States) so
+     in particular a "noncommercial" license does not offer much protection in our specific use case.
+
+* What exactly non-commercial means is not well defined:
+
+   + https://www.cnet.com/news/does-the-noncommercial-creative-commons-license-make-sense/
+   + https://wiki.creativecommons.org/wiki/Defining_Noncommercial
+
+* Certain free culture distribution channels (like free software repos) refuse to distribute media with a non-commercial clause,
+  so your game is less likely to be included in a collection of good free culture piecepack games.
+
+Why not use a license with a no-derivatives clause?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Given that most piecepack games can generally be legally "cloned" regardless of chosen license what is your goal in preventing derivatives?  In particular what is the harm discouraging your game being translated into another language for players who don't know English, it being enhanced with additional diagrams, or it being converted into a pamphlet that can be distributed at a game convention or library? 
+* Note however though a Creative Commons license with a no-derivatives clause is better than the default "All Rights Reserved" since it allows the game to be preserved and shared by third parties (such as the `piecepack wiki <ludism.org/ppwik>`_) so is to be recommended for game designers who really don't want to use a more permissive license (even if "copyleft").
+
+Why not use a custom license?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* People do not like spending time trying to understand a custom license.
+* Custom licenses are often ambiguous or contain legal mistakes.  In particular with custom licenses in old piecepack games, it is often not clear whether derivatives are allowed at all.
+* Custom licenses are often not compatible with other free cultural work licenses.
+
+Why not use an earlier Creative Commons license?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* The 4.0 branch of Creative Commons license are the `latest and greatest Creative Commons licenses <https://wiki.creativecommons.org/wiki/License_Versions#Compatibility_mechanism_in_BY-SA_licenses>`_ and incorporates wisdom learned implementing the earlier licenses.
+* In particular with CC BY-SA 4.0 has a very forward-looking ShareLike compatibility mechanism that greatly simplifies future license compliance when combining assets
+  from `"compatible" licenses <https://creativecommons.org/share-your-work/licensing-considerations/compatible-licenses>`_ since users only need to comply with the terms of the last license applied instead of needing to read and comply with every license in the "license stack":
+
+  + https://wiki.creativecommons.org/wiki/ShareAlike_compatibility
+
+  This means your game is more likely to stay relevant decades into the future.
+
+Can I offer individuals more than one choice of licenses they can use?
+----------------------------------------------------------------------
+
+Yes, this known as `multi-licensing <https://en.wikipedia.org/wiki/Multi-licensing>`_.  In the common case of offering exactly two license choices this is known as "dual-licensing".  `Dual-licensing an old piecepack game under a modern Creative Commons license <http://www.ludism.org/ppwiki/RelicensedGames>`_ can be done after the fact by a declaration by the author without manually editing all the old games.  Technically under American law any author of a jointly authored game can `unilaterally dual license their game under a Creative Commons license <https://info.legalzoom.com/article/joint-authorship-and-copyright>`_. [#joint]_
+
+.. _gfdl:
+
+Why is the CC BY-SA 4.0 license better than the GFDL?
+-----------------------------------------------------
+
+Both the Creative Commons Attribution-ShareAlike and the `GNU Free Documentation License <https://www.gnu.org/licenses/fdl-1.3.html>`_ (GFDL) licenses are `Free Cultural Works <https://freedomdefined.org/Definition>`_ copyleft licenses [#invariant]_.  Why is the GFDL license more of a hassle to work with than the CC BY-SA 4.0 license?
+
+Lets consider the following use case, a fan wants to adapt your ruleset by adding some illustrations, condensing it into a easy to handout one-page leaflet, and then hand out 101 copies for free at a local game convention (maybe translating into the local language).  Here is a table of some requirements that are more of a hassle with the GFDL license than the CC BY-SA 4.0 license:
+
+.. list-table:: Leaflet adaption requirements
+    :header-rows: 1
+
+    * - GFDL
+      - CC BY-SA 4.0
+    * - They must include the text of the entire GFDL license in the leaflet. [#gfdllicense]_  Note that GFDL v1.3 is 3,691 words long and such a leaflet may need to devote more space to the license than your game...
+      - One may include a URI (hyperlink) to the CC BY-SA 4.0 license instead of the full text of the license. [#bysalicense]_
+    * - Beginning of the leaflet cannot be the name of the game (assuming you put the name of the game on top of your ruleset). [#gfdltitle]_
+      - Putting the name of the game at the top of the leaflet is fine.
+    * - They must either bundle with each single-page leaflet a physcial copy of the electronic source (e.g. attach a flash drive or burnt CD to each single-page leaflet) or include a link to a website with the electronic source that they must keep up for at least one year after the convention. [#gfdlcode]_
+      - No legal need to offer electronic source but may not apply any "Effective Technological Measures" to make it hard to copy/modify the leaflet. [#bysadrm]_
+
+.. _piecepackr_output:
+
+piecepackr is licensed under the MIT license,  is its output automatically MIT licensed too?
+--------------------------------------------------------------------------------------------
+
+Although the **code** of piecepackr is licensed under the `MIT license <https://opensource.org/licenses/MIT>`_ under American law the graphical **output** will probably either be the copyright of the creator or not sufficiently creative to warrant copyright protection.  In general under American law copyright is assigned to the software **user** and not the software program (which as an algorithm is not considered a *creative* agent).  However there may be conditions where the graphical **output** of piecepackr_ is protected by someone else's copyright (or trademark):
+
+1. Although the `copyright protection of typefaces <https://en.wikipedia.org/wiki/Intellectual_property_protection_of_typefaces#United_States>`_ varies internationally, under American law **typefaces** cannot be protected by copyright but software **fonts** can be protected by copyright.  In a couple of graphic devices (in particular ``cairo_pdf``) piecepackr_ will *embed* copyrightable font software into the resulting image.  For example in the chess_ demo I had to get written permission from the author, Hans Bodlaender, to use the `Chess Utrecht <https://www.chessvariants.com/d.font/utrecht.html>`_ font in one of my designs.
+2. It is possible with a `custom grob function`_ to embed images, depending on which images you embed you could easily fall afoul of copyright/trademark law.  The `Triactor demo <{filename}/Articles/jcd.rst>`_ is an example of embedding images in a game diagram which required me to comply with the CC BY-NC-SA 2.0 license of the Triactor rule set.
+3. piecepackr_'s configuration_ (especially with `custom grob function`_) is sufficiently flexible that one could configure and use a board game design that is protected under someone else's copyright/trademark. For example the spin-off package piecenikr_ generates images for Looney Labs' patented and trademarked `Looney Pyramids`_ game system.
+
+Note that the piecepackr_'s built-in configurations_ returned by the ``game_systems()`` command should avoid any of these potential issues:
+
+1. Uses fonts which should allow you to embed them in images/documents without even requiring attribution.
+2. Does not embed any outside copyrighted images. [#meeple]_
+3. Only contains public domain game systems (which should not suffer from copyright / trademark issues).
+
+.. 2. Even if the game diagrams for some reason had to be CC BY-SA 4.0, that doesn't mean the entire rule set needs to be under a CC BY-SA 4.0.  If you clearly attribute and license just the game diagrams under the CC BY-SA 4.0 the rest of the rule set can be under any other license.  This is known as a "collective work" and such use has been successfully defended under American law (i.e. `Drauglis v. Kappa Map Group, LLC <https://wiki.creativecommons.org/wiki/Drauglis_v._Kappa_Map_Group,_LLC>`_).
+
+Footnotes
+---------
+
+.. [#publicdomain] Not all countries recognize dedicating into the public domain, the CC0 acts as a "`public domain equivalent license <https://en.wikipedia.org/wiki/Public-domain-equivalent_license>`_" in such jurisdictions.
+
+.. [#joint] This is not true in all countries, for example `in the United Kingdom all joint authors must agree to dual-license a rule set <https://www.britishcopyright.org/information/co-authors-or-joint-authors-of-books/>`_.
+
+.. [#invariant] Assuming the GFDL work doesn't have any *invariant* sections (and zero of the piecepack games released under the GFDL have an *invariant* section).
+
+.. [#gfdllicense] "you must do these things in the Modified Version... Include an unaltered copy of this License."
+
+.. [#bysalicense] "You must include the text of, **or the URI or hyperlink to**, the Adapter's License You apply." (emphasis mine)
+
+.. [#gfdltitle] "you must do these things in the Modified Version: ... Use ... a title distinct from that of the Document"
+
+.. [#gfdlcode] "you must either include a machine-readable Transparent copy along with each Opaque copy, or state in or with each Opaque copy a computer-network location from which the general network-using public has access to download using public-standard network protocols a complete Transparent copy of the Document, free of added material. If you use the latter option, you must take reasonably prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this Transparent copy will remain thus accessible at the stated location until at least one year after the last time you distribute an Opaque copy (directly or through your agents or retailers) of that edition to the public."
+
+.. [#bysadrm] "You may not ... apply any Effective Technological Measures to, Adapted Material that restrict exercise of the rights granted under the Adapter's License You apply."  Merely printing a CC BY-SA work on paper is not considered to be an "Effective Technological Measure" but deliberately using "security printing" technology like "simulated watermarking" to make it harder to photocopy/scan a document may qualify.
+
+.. [#meeple] The outline for meeple shape used in the "meeples" configuration (also used in some face cards in the playing cards) was extracted (converted into a dataset of normalized x, y coordinates) from `Meeple icon <https://game-icons.net/1x1/delapouite/meeple.html>`_ by `Delapouite <https://delapouite.com/>`_ / `CC BY 3.0 <http://creativecommons.org/licenses/by/3.0/>`_.  Since "simple shapes" nor data can be copyrighted under American law this meeple outline is not copyrightable in the United States.  However, in other legal jurisdictions with stricter copyright laws you may need to give the proper CC BY attribution if you use any of the meeples.

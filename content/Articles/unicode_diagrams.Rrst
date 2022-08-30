@@ -1,0 +1,119 @@
+Unicode piecepack diagrams
+==========================
+
+:date: 2019-09-02
+:modified: 2021-10-18
+:tags: ppgames-features
+:summary: This article includes details on how to make piecepack_ game diagrams using just Unicode.  
+  The ppgames_ R packages has a prototype function ``cat_piece()`` which generates piecepack Unicode text diagrams.
+  `Game Bit`_ Mono and Duo are a pair of bitmap fonts with with special piecepack support in its Private Use Area.
+
+.. include:: ../../links.rst
+
+This article includes details on how to make piecepack_ game diagrams using just Unicode.  There is another article full of tables of useful piecepack `Unicode symbols`_.
+
+.. contents::
+
+Unicode text diagram theory
+---------------------------
+
+Rank and Suit symbols
+~~~~~~~~~~~~~~~~~~~~~
+
+The standard (and many non-standard) piecepack suit and rank symbols are available in Unicode.  See the `Unicode symbols`_ article for tables of piecepack Unicode suit and rank symbols.  
+
+Rotation
+^^^^^^^^
+
+Although Unicode in general doesn't support character rotations for some rank/suit symbols Unicode also has glyphs that are (or look like they are) `rotated versions of those glyhps <https://en.wikipedia.org/wiki/Transformation_of_text>`_ (i.e. both ☾ and ☽ (crescent) moons and both † and ⸸ daggers) or are symbols that are symmetric across certain (or all) axes of rotation such as the (alchemical) sun symbol ☉.  For some piecepack game diagrams you'll want to have rotated versions of your rank/suit symbols in order to indicate rotated coins, tiles, dice, and perhaps directional pawns.  Often Unicode will only have (if any) one or two rotations but will sometimes have more rotations - in particular Unicode 12.0 includes all 45 degree rotations of `chess piece glyphs <https://en.wikipedia.org/wiki/Chess_Symbols_(Unicode_block)>`_.
+
+Color
+^^^^^
+
+In general Unicode itself doesn't encode color.  But many text platforms do support coloring individiual characters such as terminals:
+
+* https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+* https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+
+And web pages:
+
+* https://www.w3schools.com/csS/css_text.asp
+* https://www.w3schools.com/cssref/css_colors_legal.asp
+
+If on such a platform you could color the suit/rank symbols in the appropriate suit color or perhaps `(as suggested by Michael Van Biesbrouck) <https://boardgamegeek.com/article/32587586#32587586>`_ use color to indicate levels of height.
+
+Coins
+~~~~~
+
+To represent a piecepack coin simply take the relevant (potentially rotated) suit/rank symbol and combine with the "Combining Enclosing Circle" U+20DD.  Theoretically Unicode also supports adding a directional mark to the suit/rank symbol with one of the several `Combining Diacritical Marks <https://en.wikipedia.org/wiki/Combining_character>`_ (should be done before adding the enclosing circle) but I couldn't get such a glyph combination to look nice in any of the (monoscale) fonts I tried.
+
+Dice
+~~~~
+
+To represent a piecepack die simply take the relevant (potentially rotated) suit/rank symbol and combine with the "Combining Enclosing Square" U+20DE.  If you need to support 45/135/225/315 degree rotations there is also "Combining Enclosing Diamond" U+20DF (although depending on your aesthetics you may want to use that for your pawn).  Piecepack dice that follow the `Anatomy of a piecepack`_ standard don't have directional/suit marks but if you really want some one possibility found in Unicode's  `Combining Diacritical Marks`_ are the s, m, c, and a superscripts.
+
+Pawns
+~~~~~
+
+Depending on your aesthetics (and whether you need directional pawns and/or need to be able to distinguish pawns without aid of color) there are different options for pawns:
+
+1. Combine the relevant (potentially rotated) suit symbol with the "Combining Enclosing Diamond" U+20DF.  This supports rotation in 90 degree rotations and lets you use your suit symbol.
+2. Combine the relevant suit symbol with the "Combining Enclosing Upward Pointing Triangle" U+20E4.  Still lets you use your suit symbol but doesn't support any rotations (but standard piecepack pawns are not inherently directional anyways).
+3. Use the (chess) pawn symbol ♟ U+265F.  Hard to distinguish suits unless you can apply color (and the people reading your diagrams aren't color-blind).  With Unicode 12.0 can rotate the pawn symbol in all 45 degree rotations.
+4. Use the two chess pawn symbols and two chess bishop symbols for the four piecepack pawns.  Even if can't apply color should be visually distinct (although maybe hard to remember which goes with each suit) and with Unicode 12.0 can rotate in all 45 degree rotations.
+
+Tiles
+~~~~~
+
+Tiles are drawn using `box-drawing characters <https://en.wikipedia.org/wiki/Box-drawing_character>`_.  An individual tile is drawn with 5x5 (for a total of 25) characters but when other tiles are placed "adjacently" they will "share" border characters (so for example 2x2 tiles will be 9x9 characters).  When placing pieces in the "cells" of the tile place them on the even rows/columns of the tile.  When placing pieces on the "points" of the tile place them on the odd rows/columns of the tile.
+
+Functions to generate Unicode diagrams
+--------------------------------------
+
+The ppgames_ R packages has a prototype function ``cat_piece()`` which generates piecepack Unicode text diagrams given data frame input (the same data frame input supported by ``pmap_piece``).  The diagrams generated by it look okay (but not perfect) with my terminal set to use `GNU FreeMono <https://www.gnu.org/software/freefont/>`_ (with a couple other fonts implicitly providing glyph backup support):
+
+.. code:: r
+
+    library("ppgames")
+    cat_piece(df_fide_chess())
+
+.. image:: https://trevorldavis.com/share/piecepack/unicode_piecepack_alt_5.png
+    :alt: Unicode text diagram for Chess
+    :align: center
+
+.. code:: r
+
+    cat_piece(df_xiangqi())
+
+.. image:: https://trevorldavis.com/share/piecepack/unicode_xiangqi.png
+    :alt: Unicode text diagram for Xiangqi
+    :align: center
+
+.. code:: r
+
+    cat_piece(df_backgammon())
+
+.. image:: https://trevorldavis.com/share/piecepack/unicode_backgammon.png
+    :alt: Unicode text diagram for Backgammon
+    :align: center
+
+The ppgames_ R package also can generate piecepack Unicode text diagrams of moves in a game recorded in PPN_ files (it is a wrapper around ``cat_piece``):
+
+.. code:: r
+
+    ppn <- read_ppn(system.file("extdata/ex1.ppn", package="ppgames"))
+    game <- ppn[[1]]
+    cat_move(game)
+
+Game Bit Fonts
+--------------
+
+`Game Bit`_ Mono and Duo are a pair of bitmap fonts with with special piecepack support in its Private Use Area:
+
+* **Game Bit Duo** is a fixed-width `duospaced font <https://en.wikipedia.org/wiki/Duospaced_font>`__.
+  "Fullwidth" Characters intended for use in diagrams are square whereas some blocks such as *Basic Latin* are "halfwidth" to better support text rendering.  **Game Bit Mono** is the same as **Game Bit Duo** except **all** characters are square.
+* Has support for several public domain game systems both in Unicode proper and its Private Use Area.  In particular in its Private Use Area has the important piecepack rank/suit symbols including support for all rotated versions of the glyphs. These symbols look nice when combined with various combining/enclosing marks to create piecepack coins, dice, and pawns.
+* Supports all *Box Drawing* and *Block Elements* characters. These combine well with the game bits so it looks like those pieces are truly on top of the tiles (i.e. no lines going through the "edge" of piecepack coins, dice, pawns or awkward gaps between lines and piece "edges").  Includes additional box-drawing characters in its Private Use Area.
+
+.. image:: https://raw.githubusercontent.com/trevorld/game-bit-font/main/png/piecepack-four-seasons-chess_mono.png
+    :alt: Four seasons chess setup with a piecepack

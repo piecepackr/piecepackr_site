@@ -1,0 +1,154 @@
+Tak
+===
+
+:date: 2019-06-16
+:modified: 2020-03-30
+:tags: other-game-systems, piecepack-games
+:summary: Tak_ is a two-player abstract designed by James Ernest and Patrick Rothfuss that is best visualized in 3D.
+  We show an example of configuring_ piecepackr_ to draw standard Tak_ game pieces.
+  We also show how the game of Tak_ can also be played with a piecepack stackpack.
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("games-tak")
+.. ..
+
+.. include:: ../../links.rst
+.. _Tak: https://en.wikipedia.org/wiki/Tak_(game)
+
+.. contents::
+
+Tak_ is a two-player abstract designed by James Ernest and Patrick Rothfuss that is best visualized in 3D.
+
+Standard Tak pieces
+-------------------
+
+First we'll show an example of configuring_ piecepackr_ to draw standard Tak_ game pieces.
+
+Since one often plays Tak on differently sized boards one common Tak board design is to have boards made with colored cells arranged in rings from the center plus extra symbols in rings placed at the points so it is easy to see smaller sub-boards.  To start we'll write a function to draw the Tak board.
+
+.. {r board}
+library("grid")
+library("piecepackr")
+grobTakBoard <- function(...) {
+    g <- "darkgreen"
+    w <- "grey"
+    fill <- c(rep(g, 5),
+              rep(c(g, rep(w, 3), g),3),
+              rep(g, 5))
+    inner <- rectGrob(x = rep(1:5, 5), y = rep(5:1, each=5),
+                 width=1, height=1, default.units="in", 
+                 gp=gpar(col="gold", fill=fill, lwd=3))
+    outer <- rectGrob(gp=gpar(col="black", fill="grey", gp=gpar(lex=2)))
+    circles <- circleGrob(x=0.5+rep(1:4, 4), y=0.5+rep(4:1, each=4), r=0.1, 
+                         gp=gpar(col=NA, fill="gold"), default.units="in")
+    rects <- rectGrob(x=0.5+c(0:5, rep(c(0,5), 4), 0:5), 
+                      y=0.5+c(rep(5,6), rep(c(4:1), each=2), rep(0, 6)),
+                      width=0.2, height=0.2,
+                      gp=gpar(col=NA, fill="orange"), default.units="in")
+    grobTree(outer, inner, circles, rects)
+}
+.. ..
+
+Then we'll configure_ a Tak set and write some helper functions to draw Tak_ pieces with it.
+
+.. {r configure}
+cfg <- pp_cfg(list(suit_text=",,,", suit_color="white,tan4,", invert_colors=TRUE,
+            ps_text="", dm_text="",
+            width.board=6, height.board=6, depth.board=1/4,
+            grob_fn.board=grobTakBoard,
+            width.r1.bit=0.6, height.r1.bit=0.6, depth.r1.bit=1/4, shape.r1.bit="rect",
+            width.r2.bit=0.6, height.r2.bit=1/4, depth.r2.bit=0.6, shape.r2.bit="rect", 
+            width.pawn=0.5, height.pawn=0.5, depth.pawn=0.8, shape.pawn="circle",
+            edge_color="white,tan4", border_lex=2,
+            edge_color.board="tan", border_color.board="black"))
+g.p <- function(...) { 
+    grid.piece(..., op_scale=0.7, op_angle=45, cfg=cfg, default.units="in")
+}
+draw_tak_board <- function(x, y) { 
+    g.p("board_back", x=x+0.5, y=y+0.5) 
+}
+draw_flat_stone <- function(x, y, suit=1) { 
+    z <- 1/4*seq(along=suit)+1/8
+    g.p("bit_back", x=x+0.5, y=y+0.5, z=z, suit=suit, rank=1)
+}
+draw_standing_stone <- function(x, y, suit=1, n_beneath=0, angle=0) {
+    z <- (n_beneath+1)*1/4+0.3
+    g.p("bit_back", x=x+0.5, y=y+0.5, z=z, suit=suit, rank=2, angle=angle)
+}
+draw_capstone <- function(x, y, suit=1, n_beneath=0) {
+    z <- (n_beneath+1)*1/4+0.4
+    g.p("pawn_back", x=x+0.5, y=y+0.5, z=z, suit=suit)
+}
+.. ..
+
+Then we'll draw an example Tak game diagram:
+
+.. {r diagram, fig.width=7.5, fig.height=7.5, fig.cap="Tak game diagram with traditional pieces"}
+pushViewport(viewport(width=inch(6), height=inch(6)))
+draw_tak_board(3, 3)
+draw_flat_stone(1, 1, 1)
+draw_flat_stone(1, 2, 2)
+draw_flat_stone(2, 4, 1)
+draw_capstone(2, 4, 2, n_beneath=1)
+draw_flat_stone(2, 5, 2)
+draw_flat_stone(3, 4, 1:2)
+draw_flat_stone(3, 3, c(2,1,1,2))
+draw_flat_stone(3, 2, 1:2)
+draw_flat_stone(3, 1, 2)
+draw_standing_stone(4, 2, 2, angle=90)
+draw_flat_stone(5, 2, 1)
+draw_capstone(5, 3, 1)
+popViewport()
+.. ..
+
+Playing Tak with a piecepack stackpack
+--------------------------------------
+
+The game of Tak_ can also be played with a piecepack stackpack.  One can make the board with supertiles.  One player will use supercoins as flat stones, subpawns as standing stones, and superpawns as capstones while the other player will use subtiles as flat stones, subdice as standing stones, and superdice as capstones - assuming pawns with circular bases the pieces will be "circles" versus "squares".
+
+We'll draw the same game diagram as before but using a piecepack stackpack_:
+
+.. {r stackpack, fig.width=6, fig.height=6, fig.cap="Tak game diagram with stackpack pieces"}
+library("dplyr", warn.conflicts=FALSE)
+library("ppgames", warn.conflicts=FALSE)
+library("tibble")
+
+df_board <- df_rect_board_tiles(nrow=5, ncol=5)
+df_board$cfg <- "piecepack"
+df_fs1 <- tibble(piece_side="coin_back", cfg="piecepack",
+                 x=c(1,2,3,3,5), y=c(1,4,2,4,2), suit=c(4:1,3))
+df_fs2 <- tibble(piece_side="tile_face", cfg="subpack",
+                 x=c(1,2,3,3,3,3), y=c(2,5,4,3,2,1), suit=c(4:1,3,2), rank=1:6)
+df_fs3 <- tibble(piece_side="coin_back", cfg="piecepack",
+                 x=c(3,3), y=c(3,3), suit=1:2)
+df_fs4 <- tibble(piece_side="tile_face", cfg="subpack", x=3, y=3, suit=1, rank=3)
+df_ss <- tibble(piece_side="die_face", cfg="subpack", x=4,y=2, suit=1, rank=1)
+df_cs <- tibble(piece_side=c("die_face", "pawn_face"), cfg="piecepack",
+                x=c(2,5), y=c(4,3), suit=2:3)
+df <- bind_rows(df_board, df_fs1, df_fs2, df_fs3, df_fs4, df_ss, df_cs)
+
+systems <- game_systems("dejavu")
+piecepack <- as.list(systems$piecepack)
+piecepack$edge_color.coin <- piecepack$edge_color.tile <- "tan4"
+piecepack$shape.pawn <- "circle"
+piecepack$height.pawn <- 0.75
+piecepack$width.pawn <- 0.75
+piecepack$depth.pawn <- 1.0
+piecepack$dm_text.pawn <- ""
+piecepack$ps_r.pawn <- 0
+subpack <- as.list(to_subpack(piecepack))
+subpack$depth.pawn <- 0.5
+subpack$width.tile <- 0.7
+
+envir <- list(piecepack = pp_cfg(piecepack), subpack = pp_cfg(subpack))
+
+pmap_piece(df, default.units="in", trans=op_transform, op_scale=0.5, envir=envir)
+.. ..
+
+.. {r save, echo=FALSE}
+# svg2png("../images/knitr/games-tak-stackpack-1.svg",
+#         "../share/rules/tak_stackpack.png", 768, 768)
+resize_png("../images/knitr/games-tak-stackpack-1.png",
+           "../share/rules/tak_stackpack.png", 768, 768)
+.. ..

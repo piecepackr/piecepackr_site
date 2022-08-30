@@ -36,7 +36,7 @@ letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", cfg_names)
 A4_urls <- sprintf("{static}/share/pnp/%s_A4.pdf", cfg_names)
 base <- gsub("[0-9]*", "", cfg_names)
 cap <- function(s) { paste0(toupper(substring(s, 1, 1)), substring(s, 2)) }
-demo_links <- sprintf("`%s PnP <{filename}/Demos/%s_pnp.rst>`__", cap(base), base)
+demo_links <- sprintf("`%s PnP <{filename}/Articles/%s_pnp.rst>`__", cap(base), base)
 df <- data.frame(Title=titles, Letter=rst_link(letter_urls),
                  A4=rst_link(A4_urls), Demo=demo_links, 
                  stringsAsFactors=FALSE)

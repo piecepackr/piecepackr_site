@@ -35,31 +35,31 @@
 .. _Wavefront OBJ: https://en.wikipedia.org/wiki/Wavefront_.obj_file
 
 .. Demos
-.. _chess: {filename}/Demos/chess_pnp.rst
-.. _default: {filename}/Demos/default_pnp.rst
+.. _chess: {filename}/Articles/chess_pnp.rst
+.. _default: {filename}/Articles/default_pnp.rst
 .. _dual piecepacks:
-.. _dual: {filename}/Demos/dual_pnp.rst
-.. _orthodox: {filename}/Demos/orthodox_pnp.rst
-.. _Chinese zodiac demo: {filename}/Demos/zodiac_cn_pnp.rst
+.. _dual: {filename}/Articles/dual_pnp.rst
+.. _orthodox: {filename}/Articles/orthodox_pnp.rst
+.. _Chinese zodiac demo: {filename}/Articles/zodiac_cn_pnp.rst
 
 .. Docs
 .. _animations:
-.. _animation: {filename}/Docs/animations.rst
+.. _animation: {filename}/Articles/animations.rst
 .. _configure:
 .. _configuring:
 .. _configuration:
 .. _configurations:
 .. _configuration lists:
-.. _configuration list: {filename}/Docs/configuration.rst
+.. _configuration list: {filename}/Articles/configuration.rst
 .. _custom:
 .. _grob function:
 .. _custom grob functions: 
-.. _custom grob function: {filename}/Docs/custom_grob_fn.rst
+.. _custom grob function: {filename}/Articles/custom_grob_fn.rst
 .. _PPN:
-.. _Portable Piecepack Notation: {filename}/Docs/ppn.rst
-.. _oblique projection: {filename}/Docs/projections.rst
-.. _Unicode symbols: {filename}/Docs/unicode_symbols.rst
-.. _Unicode diagrams: {filename}/Docs/unicode_diagrams.rst
+.. _Portable Piecepack Notation: {filename}/Articles/ppn.rst
+.. _oblique projection: {filename}/Articles/projections.rst
+.. _Unicode symbols: {filename}/Articles/unicode_symbols.rst
+.. _Unicode diagrams: {filename}/Articles/unicode_diagrams.rst
 
 .. Licenses
 
@@ -70,16 +70,11 @@
 
 .. _Print & Play: {filename}/pages/pnp.rst
 
-.. Categories
-
-.. _documentation:
-.. _Docs: {category}Docs
-.. _Demos: {category}Demos
-.. _Tips: {category}Tips
-
 .. Tags
 
-.. _diagrams: {tag}ppgames
+.. {tag}piecepackr-features
+.. {tag}ppgames-features
+.. _diagrams: {tag}piecepack-games
 .. _other game systems: {tag}other-game-systems
 .. _Print & Play demos: {tag}print-and-play
 

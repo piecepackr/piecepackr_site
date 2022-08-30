@@ -20,7 +20,7 @@ Command-line installation instructions (for Ubuntu):
 
    # pelican blogging system (plus rake)
    sudo apt install python3-pip rake rsync
-   pip3 install pelican pelican_comment_system Pillow
+   pip3 install pelican pelican_comment_system Pillow typogrify
 
    # some nice fonts
    sudo apt install fonts-dejavu fonts-noto

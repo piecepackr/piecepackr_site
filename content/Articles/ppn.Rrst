@@ -1,0 +1,739 @@
+Portable Piecepack Notation
+===========================
+
+:date: 2019-08-01
+:modified: 2021-02-21
+:tags: ppgames-features
+:summary: Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppgames/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppgames/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppgames/dev/reference/cat_piece.html>`_, and `animations <https://trevorldavis.com/R/ppgames/dev/reference/animate_game.html>`__ for the games saved in this file format.
+
+**Version: 0.14.0**
+
+Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppgames/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppgames/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppgames/dev/reference/cat_piece.html>`_, and `animations <https://trevorldavis.com/R/ppgames/dev/reference/animate_game.html>`__ for the games saved in this file format.
+
+.. warning:: The "Portable Piecepack Notation" is in alpha development and the specification is not likely to remain stable.  I'd appreciate alpha testers to test things out but probably not a good idea to start storing large amount of games in the format just yet.
+
+.. _PBN: http://www.tistis.nl/pbn/
+.. _PDN: http://pdn.fmjd.org/
+.. _PGN: http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm
+.. _PSN: http://genedavis.com/articles/2014/05/09/psn/
+.. _YAML: https://yaml.org/
+.. _Unicode chess glyphs: https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
+.. _Unicode playing card glyphs: https://en.wikipedia.org/wiki/Playing_cards_in_Unicode
+.. _Unicode dominoes glyphs: https://en.wikipedia.org/wiki/Domino_Tiles
+.. include:: ../../links.rst
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("docs-ppn")
+library("piecepackr")
+library("ppgames", warn.conflicts=FALSE)
+two_player <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
+        depth.coin=0.25,
+        suit_cex="0.6,0.7,0.75,0.9,0.9",
+        suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+        suit_color="#D55E00,#000000,#F0E442,#0072B2,#009E73",
+        background_color="#000000,#D55E00,#0072B2,#F0E442,white",
+        border_color="grey", border_lex=4, edge_color="black",
+        mat_color.tile_back="white", mat_width.tile_back=0.05
+))
+.. ..
+
+.. contents::
+
+Examples
+--------
+
+Chess
+~~~~~
+
+An example game of `chess <https://ludism.org/ppwiki/Chess>`__:
+
+.. {r chess, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/international-chess.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: {static}/images/knitr/international-chess.gif
+    :alt: Animation of a chess game
+    :align: center
+
+Checkers
+~~~~~~~~
+
+An example game of `checkers <https://ludism.org/ppwiki/Checkers>`_:
+
+.. {r checkers_animation, echo=FALSE, results='hide'}
+ppn_file <- system.file("ppn/american-checkers.ppn", package = "ppgames")
+checkers <- read_ppn(ppn_file)[[1]]
+animate_game(checkers, file = "checkers.gif", annotate = TRUE, 
+            cfg = two_player, trans = op_transform, op_scale = 0.5,
+            n_transitions = 5, n_pauses = 2, fps = 9)
+invisible(file.rename('checkers.gif', '../images/knitr/checkers.gif'))
+.. ..
+
+.. {r checkers, echo=FALSE, results='asis'}
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+Desfases
+~~~~~~~~
+
+An example game of `Desfases <https://ludism.org/ppwiki/Desfases>`_:
+
+.. {r desfases, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/desfases.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: https://trevorldavis.com/share/piecepack/desfases.gif
+    :alt: Animation of a game of Desfases
+    :align: center
+
+Four Field Kono
+~~~~~~~~~~~~~~~
+
+An example game of `Four Field Kono <https://ludism.org/ppwiki/FourFieldKono>`_:
+
+.. {r kono_animation, echo=FALSE, results='hide'}
+ppn_file <- system.file("ppn/four-field-kono.ppn", package = "ppgames")
+game <- read_ppn(ppn_file)[[1]]
+animate_game(game, file = "four-field-kono.gif", annotate = TRUE,
+             cfg = two_player, trans = op_transform, op_scale = 0.5,
+             n_transitions = 5, n_pauses = 2, fps = 9)
+invisible(file.rename('four-field-kono.gif', '../images/knitr/four-field-kono.gif'))
+.. ..
+
+.. {r four-field-kono, echo=FALSE, results='asis'}
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+Fuji-san
+~~~~~~~~
+
+A game of `Fuji-san <https://ludism.org/ppwiki/Fuji-san>`_ with a specific starting coin setup:
+
+.. {r fuji-san, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/fujisan.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: {static}/images/knitr/fujisan.gif
+    :alt: Animation of a Fuji-san game
+    :align: center
+
+Ice Floe
+~~~~~~~~
+
+A game of `Ice Floe <https://ludism.org/ppwiki/IceFloe>`_:
+
+.. {r ice-floe, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/ice-floe.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+Japan
+~~~~~
+
+An example game of `Japan <https://ludism.org/ppwiki/Japan>`_:
+
+.. {r japan, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/japan.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: https://trevorldavis.com/share/piecepack/japan_grid.gif
+    :alt: Japan example
+    :align: center
+
+Martian Chess
+~~~~~~~~~~~~~
+
+An example game of `Martian Chess <https://www.looneylabs.com/content/martian-chess>`_:
+
+.. {r martian-chess, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/martian-chess.ppn", package = "piecenikr")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: https://raw.githubusercontent.com/piecepackr/piecenikr/master/man/figures/martian-chess.gif
+    :alt: Martian Chess example
+    :align: center
+
+Plans of Action
+~~~~~~~~~~~~~~~
+
+An example game of `Plans of Action <https://www.ludism.org/ppwiki/PlansOfAction>`_:
+
+.. {r plans-of-action, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/plans-of-action.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+Relativity
+~~~~~~~~~~
+
+An example game of `Relativity <{filename}/Articles/relativity_game.rst>`_:
+
+.. {r relativity, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/relativity.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+.. image:: {static}/images/knitr/relativity.gif
+    :alt: Four Field Kono example
+    :align: center
+
+Tablut
+~~~~~~
+
+An example game of `Tablut <{filename}/Articles/tablut_game.rst>`_:
+
+.. {r tablut, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/tablut.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+Tic-Tac-Toe
+~~~~~~~~~~~
+
+A simple game of Tic-Tac-Toe with no automatic setup:
+
+.. {r tic-tac-toe, echo=FALSE, results='asis'}
+ppn_file <- system.file("ppn/tic-tac-toe.ppn", package = "ppgames")
+cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
+.. ..
+
+PPN File Structure
+------------------
+
+PPN files are text files ending in ``.ppn`` containing one or more games in PPN notation.
+
+* Each game in the file should start with a line beginning with ``---``  
+  
+  + This line is recommended but optional for the first game in a PPN file. If the first game in each PPN file begins with a ``---`` then one can build larger PPN file archives by simply concatenating smaller PPN files together (i.e. with the \*nix ``cat`` command).
+
+* Each game starts with a Metadata_ section and ends with a Movetext_ section.
+* PPN files should be assumed to use an UTF-8 character encoding (this includes ASCII) with no maximum line length.
+
+Metadata
+~~~~~~~~
+
+* The Metadata section should be a single "Mapping" expressed in YAML_.
+
+  + It is recommended to use the subset of YAML_ understood by both the 1.1 and 1.2 YAML_ standards since not all popular parsers understand both (or just YAML_ 1.2).
+
+* It should begin with a line starting with ``---``
+ 
+  + This is the same ``---`` we said begins each game.
+  + The ``---`` is recommended but optional for the first game in a PPN file.
+
+* It should end with a line starting with ``...``
+
+  + This ``...`` is recommended but optional if the Metadata section does not have any empty lines and there is at least one empty line between the Metadata and Movetext_ sections.
+  + If there are no lines starting with ``...`` and no empty lines the Metadata section should be assumed to be empty.
+
+* All Metadata keys are optional.
+  
+  + If the Metadata section is empty PPN parsers should use the default Movetext parser described in a later section to interpret the Movetext_ (without doing any initial game piece setup).
+  + One can specify the Movetext parser to use (possibly a diferent one for each game) via the ``MovetextParser`` key with a string indicating the parser to use.  Movetext parsers are passed both the Metadata section and the Movetext section.
+
+
+Movetext
+~~~~~~~~
+
+* Regardless of the Movetext parser to be used the Movetext should not have any lines *starting* with ``---`` or ``...``
+* Should be (initially) parsed as UTF-8 text without restrictions on line length.
+* Additional restrictions based on which Movetext parser is used to parse it.  The default Movetext parser and its additional restrictions are described in the `Default Movetext Parser`_ section.
+
+Default Movetext Parser
+-----------------------
+
+* The default Movetext Parser will supports automatic Setup_ for various piecepack games via the Metadata_ mapping.
+
+* The default Movetext Parser supports the following Movetext elements: 
+  
+  1. Comments_
+  2. MoveNumbers_
+  3. Moves_
+
+* Each element needs to be separated from other elements by whitespace 
+
+  + Whitespace is defined as tabs, newlines, form feeds, and any character in the Unicode Z Category.
+  + All whitespace between elements (and in comments) will be converted to single spaces.
+
+* The default parser keeps track of the (x,y) coordinates of pieces and an ordering they can be placed on the board to reproduce the state of the board after that move.  For convenience we will sometimes refer to pieces placed on the board later (earlier) in this ordering as being placed "above" ("beneath") those placed earlier (later) in this ordering, please note however that in real life a high stack of pieces placed earlier may physically be "above" an adjacent single piece placed later.
+
+Setup
+~~~~~
+
+* Currently the Movetext Parser uses the ``SetUp`` field in the Metadata_ to provide game setup, if that field is missing it will use the ``GameType`` field to provide game setup.  This value should either be a string with the game's name or a mapping with the field ``Name`` with the game's name and optionally ``System`` of the game system to use (for games that can be played with multiple game systems); all other values of this mapping will be passed to the setup.
+
+  + Although in general tags will treated case sensitive in this case we first process the string by converting to lower case, removing apostrophes and hyphens, "squishing" the whitespace, and converting spaces to underscores e.g. "Nine Men's Morris" will be treated as equivalent to "nine_mens_morris".  Occasionally we will provide aliases e.g. "Baroque chess" will be treated as an alias for "Ultima".
+  + A ``SetUp`` of ``None`` will explicitly do a initial board setup with no pieces at all.
+
+  + ``GameType`` example of just string of game's name for setup::
+
+        GameType: Four Field Kono
+
+  + ``GameType`` example that allows passing more info to setup ::
+
+        GameType:
+          Name: Fujisan
+          Seed: 11
+
+* The default movetext parser accepts the optional argument ``ScalingFactor`` which changes how many "inches" a coordinate represents i.e. with ``ScalingFactor: 2`` then ``a1`` corresponds to an x-coordinate of 2 inches and a y-coordinate of 2 inches.
+
+Macros
+~~~~~~
+
+The default Movetext Parse performs macro substition in the Movetext_.  
+
+* Macros are strings surrounded by a ````` and ``'`` e.g. ```q'@b2 {The default "q" macro is for a black chess queen}``.  
+* Macros can be defined in three places (with any identically named macros earlier in this list replacing those later in the list):
+
+  1. In a "Macros" field in the Metadata_
+  2. By a specified game setup_ function
+  3. The parser includes some `builtin macros`_.
+
+* Macro names cannot include whitespace nor the semi-colon ``;``.
+* Macro substitution happens after "moves" and "comments" are identified (and split).
+
+Comments
+~~~~~~~~
+
+* Comments are any text between braces ``{`` and ``}``
+
+  + All whitespace will be parsed as single spaces, in particular comments can span multiple lines
+  + Braces are not allowed within comment braces
+  + Must have white space before the ``{`` and after the ``}`` (otherwise will be considered to be a brace expansion)
+
+MoveNumbers
+~~~~~~~~~~~
+
+* Ordinary MoveNumbers are one or more letters, numbers, periods, and/or underscores followed by at least one period
+
+  + Unlike in PGN_ MoveNumbers **must** end in (at least one) period.
+  + Ordinary MoveNumbers must have white space before and after.
+  + One must not have any line start with ``...`` (which could interfere in determining where the Metadata_ ends).
+
+* A single period ``.`` (surrounded by white space) is a special shortcut for writing the previous MoveNumber with an extra period added to the end of it e.g. ``2. a4-b4 . b4-c4`` is equivalent to ``2. a4-b4 2.. b4-c4``
+* The semi-colon ``;`` is a special shortcut for writing the minimal a single period MoveNumber (adding some spaces around it if necessary) e.g. ``2. a4-b4;b4-c4`` is equivalent to ``2. a4-b4 . b4-c4`` which is equivalent to ``2. a4-b4 2.. b4-c4``  [#semicolon]_.
+* Putting MoveNumbers in one's Movetext_ is optional but if they exist PPN parsers will often break down and label moves by MoveNumbers (to make animations of a game or visualize the game state at a particular point in the game).
+
+.. [#semicolon] The intention for this is quickly indicating little "submoves" within a larger proper "move" that we'd like to be able to separately visualize but that we don't want to semantically mark as a completely separate "move".
+
+Moves
+~~~~~
+
+* Moves are comprised of PieceSpec_, Location_, PieceId_, and MoveToken_.
+* One can use Unix-shell-style brace expansions as a shortcut for expressing multiple moves e.g.::
+
+    t@{b,d}{2..8..2} {Shortcut for t@b2 t@b4 t@b6 t@b8 t@d2 t@d4 t@d6 t@d8}
+    *{b..f}2 {Shortcut for *b2 *c2 *d2 *e2 *f2}
+
+  + Unlike Bash-style brace expansions must have a "preamble" or "postscript" otherwise will be interpreted as a comment (but the preamble or postscript can be another brace expansion)
+
+PieceSpec
+~~~~~~~~~
+
+* The default Movetext_ parser supports specifying pieces by their Piece_, Side_, Suit_, Rank_, Angle_, and (game system) |Configuration|.
+
+* Any attribute specifications beginning with a comma ``,`` must go after the other attribute specifications, otherwise it does not matter which order the piece attributes are specified.  However the following ordering may improve readability (omitting any unnecessary elements as necessary):
+
+  1. Piece_
+  2. Side_
+  3. Suit_
+  4. Rank_
+  5. Angle_
+  6. |Configuration|
+
+* When necessary the default Movetext_ will make Assumptions_ about unspecified elements.
+
+.. _Piece:
+
+Piece (type)
+++++++++++++
+
+* ``t`` for "tile"
+* ``c`` for "coin" if piecepack suit and "checkers2" "bit" if colored suit
+* ``d`` for "die"
+* ``p`` for "pawn"
+* ``m`` for "matchstick" if piecepack suit and "meeples" "bit" if colored suit
+* ``s`` for "saucer" if piecepack suit and "go" stone "bit" if colored suit
+* ``●`` or ``()`` for "bit"
+* ``▲`` or ``/\`` for "pyramid"
+* ``🂠`` or ``[]`` for "card"
+* ``■`` or ``[X]`` for "board" 
+
+  + Defaults to a "checkers2" board
+
+* ``⚀``, ``⚁``, ``⚂,`` ``⚃``, ``⚄``, ``⚅`` sets the |Configuration| to "dice", Piece_ to "die", and sets the appropriate Rank_ (from 1 to 6).
+* The `Unicode chess glyphs`_ sets the |Configuration| to "chess2", Piece_ to "bit", and sets the appropriate Rank_ (and possibly Suit_)
+* The `Unicode playing card glyphs`_ sets the |Configuration| to "playing_cards_tarot", Piece_ to "card", and sets the appropriate Rank_ and possibly Suit_.
+* The `Unicode dominoes glyphs`_ sets the |Configuration| to an appropriate "dominoes" configuration, Piece_ to "tile", and sets the appropriate Rank_ and Suit_.
+* ``○`` indicates a "go" "bit", ``▦`` or ``[#]`` indicates a "go" "board", and ``⛂`` and ``⛀`` indicates a "checkers2" "bit".
+
+.. _Side:
+
+Side Up
++++++++
+
+* ``f`` for "face"
+* ``b`` for "back" 
+* ``l`` for "left"
+* ``r`` for "right"
+* ``x`` for "top"
+
+.. _Suit:
+.. _PPNConfiguration:
+
+.. |Configuration| replace:: `Configuration <PPNConfiguration_>`_
+
+Suit and Configuration
+++++++++++++++++++++++
+
+* ``S``, ``M``, ``C``, ``A`` for "Suns", "Moons", "Crowns", and "Arms" Suit_ and "piecepack" |Configuration|
+
+  + If a ``μ`` or ``u`` is present will assume component comes from a (piecepack stackpack_) "subpack" |Configuration| aka "mini piecepack" instead of a normal sized piecepack
+  + If a ``⬢`` (U+2B22) is present will assume component comes from a "hexpack" |Configuration| (a hexagonal piecepack)
+
+*  ``♥``, ``♠``, ``♣``, ``♦`` for "Hearts", "Spades", "Clubs", and "Diamonds" Suit_ and "playing_cards_expansion" |Configuration|
+* ``♡``, ``♤``, ``♧``, ``♢`` for (inverted 4-colored) "Hearts", "Spades", "Clubs", and "Diamonds" Suit_ and "dual_piecepacks_expansion" |Configuration|  
+* ``R``, ``K``, ``G``, ``B``, ``Y``, ``W`` for "Red", "Black", "Green", "Blue", "Yellow", or "White" Suit_ 
+  
+  + If a "bit" indicated by ``●``, ``○``, or ``s`` or a "board" indicated by ``▦`` or ``[#]`` then "go"
+  + If a "bit" indicated by ``c``, ``⛂``, or ``⛀`` or a "board" indicated by ``■`` or ``[X]`` then "checkers2"
+  + If a dominoes "tile" Piece_ then an appropriate colored dominoes [#color_dominoes]_ 
+  + If a "pyramid" Piece_ then an "icehouse_pieces" |Configuration| (invented by Andy Looney aka Looney Labs' `"Looney pyramids" <https://www.looneylabs.com/looney-pyramids>`_)
+  + If a ``μ`` or ``u`` is present will assume component comes from a smaller sized set:
+   
+    - "checkers1" instead of a "checkers2" set
+    - "chess1" instead of a "chess2" set
+
+* ``,sN`` manually sets the internal "suit" to the positive integer ``N`` and ``,C'`` manually sets the internal "configuration" to the string ``C``.
+* ``⚀``, ``⚁``, ``⚂,`` ``⚃``, ``⚄``, ``⚅`` sets the |Configuration| to "dice", Piece_ to "die", and sets the appropriate Rank_ (from 1 to 6).
+* The `Unicode chess glyphs`_ sets the |Configuration| to "chess2", Piece_ to "bit", and sets the appropriate Rank_ (and possibly Suit_)
+* The `Unicode playing card glyphs`_ sets the |Configuration| to "playing_cards_tarot", Piece_ to "card", and sets the appropriate Rank_ and possibly Suit_.
+* The `Unicode dominoes glyphs`_ sets the |Configuration| to an appropriate "dominoes" configuration, Piece_ to "tile", and sets the appropriate Rank_ and Suit_.
+* ``○`` indicates a "go" "bit", ``▦`` or ``[#]`` indicates a "go" "board", and ``⛂`` and ``⛀`` indicates a "checkers2" "bit".
+
+Rank
+++++
+
+* ``0`` or ``n``, ``1`` or ``a``, ``2``, ``3``, ``4``, ``5``, ``6``, ``7``, ``8``, ``9``
+
+  + ``0`` and ``1`` are aliases for the "null" ``n`` and the "ace" ``a`` especially useful with brace expansions e.g. ``{5..0}@b5 {Place six coins face up at b5 with a null on top and 5 on bottom}``
+  + ``6``, ``7``, ``8``, ``9`` don't exist in a standard piecepack but could exist in piecepack expansions or in components from other game systems.
+
+* By default the rank in most game systems are indexed starting with zero, the following game systems are indexed starting with one:
+
+  + Icehouse pieces go from 1-pip to 3-pip pieces indicated by ``1``, ``2``, and ``3`` respectively.
+
+* ``,rN`` manually sets the internal "rank" to the integer ``N``.
+* ``⚀``, ``⚁``, ``⚂,`` ``⚃``, ``⚄``, ``⚅`` sets the |Configuration| to "dice", Piece_ to "die", and sets the appropriate Rank_ (from 1 to 6).
+* The `Unicode chess glyphs`_ sets the |Configuration| to "chess2", Piece_ to "bit", and sets the appropriate Rank_ (and possibly Suit_)
+* The `Unicode playing card glyphs`_ sets the |Configuration| to "playing_cards_tarot", Piece_ to "card", and sets the appropriate Rank_ and Suit_.
+* The `Unicode dominoes glyphs`_ sets the |Configuration| to an appropriate "dominoes" configuration, Piece_ to "tile", and sets the appropriate Rank_ and Suit_.
+
+Angle
++++++
+
+* ``^`` is 0 degree rotation aka oriented "up"
+* ``<`` is a 90 degree rotation aka oriented "left"
+* ``v`` is a 180 degree rotation aka oriented "down"
+* ``>`` is a 270 degree rotation aka oriented "right"
+* ``,aN`` manually sets an ``N`` (numeric double) degree rotation.
+
+Assumptions
++++++++++++
+
+* If missing Piece_:
+
+  + If Side_ is ``l``, ``r``, or ``x`` then assumed to be a "pyramid" 
+  + If **both** Suit_ and Rank_ are missing or **neither** Suit_ and Rank_ are missing assumed to be a "tile"
+  + Else assumed to be a "coin"
+
+* If missing Side_:
+ 
+  + Pyramids are assumed to be "top" up.
+  + Tiles and cards are assumed to be "back" up if missing suit and/or rank (else "face").
+  + Coins and saucers are assumed to be "face" up if missing suit (else "back").
+  + Bits are assumed to be "back" up unless a "chess2" or "chess1" piece
+  + Else assumed to be "face" up.
+
+* If missing Suit_:
+  
+  + Assumed to be "Suns" for "piecepack", "hexpack", and "subpack" pieces
+  + "Hearts" for "playing_cards_expansion" and "dual_piecepacks_expansion" pieces
+  + "White" for "dice" pieces
+  + "Red" for "icehouse_pieces" pieces
+
+* If missing Rank_ assumed to be "null" for piecepack pieces [#pawn]_ while "icehouse_pieces" and "dice" are assumed to be 1-pip.
+* If missing Angle_ should be assumed to be oriented straight "up" (i.e. 0 degrees)
+
+Examples
+++++++++
+
+* ``t`` tile back
+* ``Aa>`` ace of Arms tile (face) oriented "right"
+* ``μAa>`` "subpack" ace of Arms tile (face) oriented "right"
+* ``C`` Crowns coin back (oriented "up")
+* ``cC3b^`` (3 of) Crowns coin back (explicitly) oriented "up"
+* ``nv`` null coin face oriented "down"
+* ``<dM4`` 4 of Moons die oriented "left"
+* ``d`` (null of Suns) dice
+* ``pM`` Moons pawn
+* ``p♥`` Hearts pawn
+* ``p`` (Suns) pawn
+* ``K3▲`` 3-pipped black icehouse pyramid top
+
+.. [#color_dominoes] "dominoes_black", "dominoes_blue", "dominoes_green", "dominoes_red", "dominoes_white", and "dominoes_yellow"
+
+.. [#pawn] Internally even piecepack pawns and saucers are assigned a rank even though they normally don't have a rank.  Dice are assigned the rank of the face oriented upwards even though technically the dice themselves actually have six ranks.
+
+
+Location
+~~~~~~~~
+
+* The default Movetext parser supports locations by Cartesian coordinates, chess-algebraic-style coordinates, or by preceding a PieceId_ with an ``&``.
+
+Examples:
+
+* (2.5,3.5)
+* (3,2)
+* c2 
+
+Cartesian coordinates
++++++++++++++++++++++
+
+* Cartesian coordinates are a left parenthesis followed by a digits (including up to one period) followed by a comma followed by digits (including up to one period) ending in a right parenthesis.
+
+  + The digits will be considered to be a "floating-point" number.
+  + The number left of the comma will be the x-coordinate and the number right of the comma the y-coordinate.
+
+Chess-algebraic-style coordinates
++++++++++++++++++++++++++++++++++
+
+* Chess-algebraic-style coordinates begin with lowercase letters followed by digits. 
+* The lowercase letters are considered to be the x-coordinate encoded as a base-26 number using the Roman letters as numerals.
+
+  + For the purposes of this there is no "zero".  ``a`` is considered equal to 1, ``z`` is considered equal to 26, and ``aa`` is considered equal to 27.
+
+* The digits are considered to the y-coordinate encoded as a (base-10) integer.
+
+Relative coordinates
+++++++++++++++++++++
+
+* Relative coordinates has three forms:
+
+  1. ``Offset`` are coordinates relative to the pieces being moved
+  2. ``Offset|Location`` are coordinates relative to ``Location`` (which itself could be expressed in relative coordinates)
+  3. ``Offset$PieceId`` are coordinates relative to the ``Location`` of ``PieceId`` (it is a shortcut for ``Offset|&PieceId``)
+
+* ``Offset`` can be specified in two ways:
+
+  1. ``<X,Y>`` where ``X`` is the x-coordinate relative offset and ``Y`` is the y-coordinate relative offset 
+     e.g. ``?pS-<4,-2> {move the suns pawn four to the right and two down from its current position}`` or ``?pS-<-2,3>$?pA {move the suns pawn two to the left and three up relative to the arms pawn}``
+  2. ``N Direction`` is a ``N`` distance relative offset in the ``Direction`` direction
+     
+     + The directions are U, R, D, L or alternatively N, E, S, W and represent "Up", "Right", "Down" and "Left" orthogonal moves
+       i.e. ``?pS-3R {move the suns pawn three to the right}``
+     + The "intercardinal" directions (i.e. NE, SE, SW, NW as well as UR, DR, DL, UL) represent diagonal moves on a rectangular board
+       i.e. ``?pS-3NE {move the suns pawn three to the right and three up}``
+     + The "half-wind" directions (i.e. NNE, NEN, ESE, SSE, SSW, WSW, WNW, NNW as well as U,R,D,L equivalents) represent diagonal moves on a hexagonal board
+       i.e. ``?pS-3NNE {move the suns pawn three in a hexagonal diagonal direction up and right}``.  
+       
+       * Use NNE, SSE, SSW, NNW directions on hexagonal boards that allow horizontal moves and ENE, ESE, WSW, WNW directions on hexagonal boards that allow vertical moves.
+       * Note that real-life "half-wind" directions are multiples of 22.5 degrees while the "half-wind" directions in PPN_ are instead rounded to multiples of 30 degrees (to correspond to hex board movement angles).
+
+Get location from PieceId
++++++++++++++++++++++++++
+
+* A PieceId_ string preceded by a ``&`` indicates the x,y coordinates of that piece.
+
+  + The ``&`` is optional in front of a ``?`` e.g. ``3?A4-2R`` is a shortcut for ``3&?A4-2R``
+  + For the PieceId_ form ``N Location`` it returns the x,y coordinates of that Location_.
+  + Otherwise if PieceId_ identifies several pieces (e.g. "greedy" search) then it returns
+    the x,y, coordinates of the "last" piece (according to internal ordering of pieces).
+
+* An empty Location_ string is a shortcut for just ``&`` i.e. the location of the "last active" piece(s).
+
+PieceId
+~~~~~~~
+
+A PieceId_ is used to identify specific pieces on the board.  Currently PPN_ supports the following types of PieceId_:
+
+* A Location_ is used to identify the top piece at that Location_
+* ``N Location`` is used to identify the top ``N`` pieces at that Location_
+
+  + An example would be ``2b4-b3*2a2 {Move top two pieces at b4 to b3 and remove top two pieces at a2}``
+  + If there are less than ``N`` pieces at that exact Location_ it will identify the ``N`` nearest pieces to the Location_ (according to 2D Euclidean distance)
+
+* ``Location[Slice]`` is used to identify a "slice" of pieces at that Location_
+
+  + Pieces at a location are indexed starting with 1 with pieces "later" in the internal ordering (i.e. "above") having a lower index
+  + An example would be ``b4[1]_%b3[2] {Move the top piece at b4 directly under the secord piece at b3}`` 
+  + Another example would be ``b4[3:6]-b3 {Move the third, fourth, fifth, and sixth pieces (from the top) at b4 to b3}`` 
+  + Another example would be ``*(2,4)[1,3,5] {Remove the first, third, and fifth pieces (from the top) located at (2,4)}`` 
+
+* ``?PieceSpec`` is used to identify a single piece with a "non-greedy" search based on their PieceSpec_
+
+  + First, the PieceSpec_ is parsed and only the explicitly listed features are searched against.
+    If there is a unique match it is identified e.g. ``?dS`` identifies the "Suns" dice in a game with a single piecepack.
+  + Second, if no match the PieceSpec_ is parsed and all assumptions listed in PieceSpec_ are made including angle,
+    if there are any matches the one last in the internal play order is returned.
+  + Third, if no match the PieceSpec_ is parsed and all assumptions listed in PieceSpec_ are made *except* angle,
+    if there are any matches the one last in the internal play order is 
+    returned e.g. ``?S5`` identifies the "5 of Suns" tile in a game with a single piecepack.
+
+* ``/PieceSpec`` is used to identify piece(s) with a "greedy" search based on their PieceSpec_
+
+  + The PieceSpec_ is parsed and only the explicitly listed features are searched against e.g. ``/M`` identifies all the "Moons" pieces, ``/cf`` identifies all the coins face up, etc.
+
+* A PieceId_ preceded by a ``^`` identifies the piece from the game state at the beginning of the move 
+  
+  + An example would be ``a1-a2 a2-a3 {equivalent to a1-a3}`` versus ``a1-a2 ^a2-a3 {equivalent to a2-a3 a1-a2}``.
+
+* An empty PieceId_ corresponds to the last "active" piece(s).
+
+  + An example would be ``?Sp-a4;-a5;* {equivalent to ?Sp-a4 . ?Sp-a5 . *?Sp}``
+  + Note if this refers to multiple pieces then the Location_ of these pieces 
+    is then that of the "active" piece last in the internal ordering of pieces.
+    However if these pieces were originally specified by the ``N Location`` PieceId_ 
+    formulation then the Location_ originally corresponded to ``Location`` but now does not.
+
+MoveToken
+~~~~~~~~~
+
+The default movetext parser supports the following MoveTokens:
+
+Adding new pieces
++++++++++++++++++
+
+* ``@`` and ``\`` are used to "drop" new pieces onto the board.  
+  
+  + ``PieceSpec@Location`` means drop PieceSpec_ on top of Location_, it will be placed after all other pieces in the internal ordering.
+  + ``PieceSpec\Location`` means drop PieceSpec_ at Location_, it will be placed before all the other pieces in the internal ordering (i.e. the bottom).
+  + ``PieceSpec@Location%PieceId`` means drop PieceSpec_ on top of Location_, it will be placed after PieceId_ in the internal ordering.
+  + ``PieceSpec\Location%PieceId`` means drop PieceSpec_ at Location_, it will be placed before PieceId_ in the internal ordering.
+  + ``PieceSpec@%PieceId`` is a shortcut for ``PieceSpec@&PieceId%PieceId`` i.e. drop PieceSpec_ directly above PieceId_.
+  + ``PieceSpec\%PieceId`` is a shortcut for ``PieceSpec\&PieceId%PieceId`` i.e. drop PieceSpec_ directly under PieceId_.
+
+Removing pieces
++++++++++++++++
+
+* ``*`` is used to remove pieces from the board.  ``*PieceId`` means remove the piece(s) identified by PieceId_.
+
+  + Unlike most other MoveTokens it can be added at the end of other Moves e.g. ``b5-c5*b4*b3 {Move top piece at b5 to c5 and remove top pieces at b4 and b3}``.
+
+Moving pieces
++++++++++++++
+
+* ``-`` and ``_`` (or ``‿``)  used to move existing pieces elsewhere on the board.  
+  
+  + ``PieceId-Location`` means moving the piece(s) identified by PieceId_ to Location_, it will be placed after all the other pieces in the internal ordering.
+  + ``PieceId_Location`` means moving the piece(s) identified by PieceId_ to Location_, it will be placed before all the other pieces in the internal ordering.
+  + ``PieceId1-Location%PieceId2`` means moving the piece(s) identified by ``PieceId1`` to Location_, it will be placed after the piece identified by ``PieceId2`` in the internal ordering.
+  + ``PieceId1_Location%PieceId2`` means moving the piece(s) identified by ``PieceId1`` to Location_, it will be placed before the piece identified by ``PieceId2`` in the internal ordering.
+  + ``PieceId-%PieceId2`` is a shortcut for ``PieceId1-&PieceId2%PieceId2`` i.e. move ``PieceId1`` directly above ``PieceId2``.
+  + ``PieceId_%PieceId2`` is a shortcut for ``PieceId1_&PieceId2%PieceId2`` i.e. move ``PieceId1`` directly underneath ``PieceId2``.
+  + ``‿`` (U+203F) can be used instead of ``_``.  ``_`` is easier to type and found in more fonts but ``‿`` is harder to confuse with ``-`` (especially in handwritten notes).
+  + ``!PieceId`` is a shortcut for ``PieceId-<0,0>`` i.e. move the piece(s) identified by PieceId_ to the end of the internal ordering without changing its x,y coordinates.
+
+* ``#`` is used to represent a "piece swap".  Let ``Location1`` and ``Location2`` represent the Location_ of ``PieceId1`` and ``PieceId2`` respectively, then ``PieceId1:PieceId2`` is equivalent to ``^PieceId1-Location2 ^PieceId2-Location1``.
+
+* ``:`` is used to represent a "displacement capture".  ``PieceId1:PieceId2`` means find the Location_ of the piece(s) identified by ``PieceId2``, remove the ``PieceId2`` piece(s), and move the ``PieceId1`` piece(s) to that Location_.
+
+  + The ``PieceId1`` piece(s) that are moved will be placed after all the other pieces in the internal ordering.
+  + Let ``Location`` be the location of the piece(s) represented by ``PieceId2``, then ``PieceId1:PieceId2`` is equivalent to ``*PieceId2 PieceId1-Location``.
+
+* ``@>`` and ``$>`` are used to rotate pieces clockwise.  
+  
+  + ``PieceId@>Degrees`` rotates each of the piece(s) represented by PieceId_ clockwise ``Degrees`` degrees.
+  + ``PieceId@>Degrees|Location`` rotates each of the piece(s) represented by PieceId_ clockwise ``Degrees`` degrees around Location_.
+  + ``PieceId1@>Degrees$PieceId2`` is a shortcut for ``PieceId1@>Degrees|&PieceId2`` i.e. rotate each of the piece(s) represented by ``PieceId1`` clockwise ``Degrees`` degrees around the Location_ of ``PieceId2``.
+  + ``PieceId$>Degrees`` is a shortcut for ``PieceId@>Degrees$PieceId`` e.g. depending on the context ``3?Sa$>90`` could mean spin the Suns of arms tile 90 degrees including the two pieces on top of it.
+
+* ``+`` is used to "flip" pieces.  ``+PieceId`` means "flip" the piece(s) identified by PieceId_.
+
+  + A "pyramid_top" flips to "pyramid_face" while other pyramid sides flip to "pyramid_top".
+  + "die_face" flips to "die_face" but with a new rank plus three modulo six.
+  + All other pieces flip back and forth from "back" to "face", "top" to "base", and "left" to "right".
+  + Unlike most other MoveTokens it can be added at the end of other Moves.
+
+Updating/replacing pieces
++++++++++++++++++++++++++
+
+* ``=`` is used "replace" pieces on the board with new pieces.  ``PieceId=PieceSpec`` means replace the piece identified PieceId_ to PieceSpec_ (with all assumptions) e.g. ``b5=S> {replace top piece at b5 with Suns coin back oriented right}``.
+
+* ``~`` is used "update" pieces on the board with new characteristics.  ``PieceId~PieceSpec`` means update the piece identified PieceId_ according to only the explicitly listed elements in PieceSpec_ e.g. ``?dS~3`` means have the "Suns" die now show the 3 rank on top without updating orientation.
+
+Appendix
+--------
+
+.. _builtin macros:
+
+Default Macros
+~~~~~~~~~~~~~~
+
+The `default movetext parser`_ has the following built-in macros (these can be over-ridden by the Setup_ function or by the user in the Metadata_):
+
+.. {r macros, echo=FALSE, results='asis'}
+replacement <- as.character(ppgames:::macros)
+dfm <- tibble::tibble(macro = names(ppgames:::macros),
+                      replacement = replacement,
+                      hexadecimal = paste0("U+", as.hexmode(sapply(replacement, utf8ToInt))))
+rst_list_table(dfm, title = "Default parser's built-in macros")
+.. ..
+
+Extending the PPN R parser
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If one would like to help **develop** the prototype R parser here are some notes.
+
+Adding a new game (setup)
++++++++++++++++++++++++++
+
+To add a new game setup_ one writes an R function called ``df_game_name`` where ``game_name`` corresponds to the name of your game converted to "snake case" e.g. ``df_four_field_kono``.  It must return a ``tibble::tibble()`` of the pieces in order of placement onto the board with the following columns (name matters, order doesn't):
+
+* ``piece_side``
+* ``x``
+* ``y``
+* ``suit``
+* ``rank``
+* ``angle`` (only needed if any are non-zero)
+* ``cfg`` (only needed if there are non-piecepack components)
+
+The function can optionally take arguments to influence the setup, some existing arguments other game setup functions take are:
+
+``seed``
+  For games with random setups passing the same seed should return the same setup
+``tiles``, ``dice``, ``coins`` 
+  For games with random setups pass in a string that instructs exactly 
+  how one would like the tiles, dice, or coins arranged
+``has_matchsticks``, ``has_subpack``
+  Provide an alternative setup if the player has (piecepack) matchsticks or a (piecepack) subpack
+
+Before returning the ``tibble`` one may add additional "attributes" using the ``attr()`` function, currently a handful of functions set a ``scale_factor`` attribute which adjusts how many inches a coordinate unit is worth.
+
+If the game is a piecepack game it should ideally be contributed to the ppgames_ R package, if it is a Looney pyramids game it should ideally be contributed to the piecenikr_ R package, if it is a game that is played with traditional components (like checkers sets, chess sets, dominoes, etc.) it should ideally be contributed to the tradgames_ R package.  Variants of the "same game" can be contributed to multiple packages (e.g. American checkers can be played with both a checkers set as well as a piecepack so it shows up both in ppgames_ and tradgames_).
+
+There are several pre-existing game setup functions in the R packages ppgames_, piecenikr_, and tradgames_ that can be used for inspiration e.g. https://github.com/piecepackr/ppgames/blob/master/R/game_starts.R .
+
+Adding a new game notation parser
++++++++++++++++++++++++++++++++++
+
+If you'd like to use a different game notation other than that of the `default movetext parser`_ then it is possible to write and use alternative game notation parsers that can be used with PPN files.   One may then indicate the alternative parser to use via the ``MovetextParser`` field in the game's metadata_.  One should write an R function named ``parser_p_name`` where ``p_name`` is a descriptive name in "snake case".  The first argument of the function should be ``movetext`` which will receive a character vector of the PPN movetext_ and second argument should be ``metadata`` which will receive a list of the PPN metadata_.  Additionally if the ``MovetextParser`` element of the metadata_ was passed additional arguments those will be passed to the function as well.  For example the `default movetext parser`_ supports an optional ``scale_factor`` argument which lets a user adjust how many inches a coordinate unit is worth.  The parser function should return a list which (ideally) contains the following fields (at least) so one can visualize the results using existing functions like ``plot_move()`` or ``animate_game()``:
+
+movetext
+  A character vector of the movetext passed into the parser
+metadata
+  A named list of the metadata passed into the parser
+moves
+  A named list of the parsed "moves"
+comments
+  A named list of the parsed move "comments"
+dfs
+  A named list of tibble game states after each move.  The first "move" often represents the initial game setup.
+
+One potential hack for writing a parser would to convert your game's notation into that of the `default movetext parser`_ and have it then parse the game.

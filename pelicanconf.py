@@ -12,6 +12,7 @@ PATH = 'content'
 
 TIMEZONE = 'America/Los_Angeles'
 
+DEFAULT_DATE_FORMAT = '%Y-%m-%d'
 DEFAULT_LANG = u'en'
 
 THEME = 'notmyidea-tld'
@@ -19,6 +20,9 @@ THEME = 'notmyidea-tld'
 FOOTNOTE = 'Copyright \u00a9 2019&ndash;2022 Trevor L Davis.  Some Rights Reserved.<p>Except where otherwise noted content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>'
 
 STATIC_PATHS = ('images', 'share')
+
+TYPOGRIFY = True
+TYPOGRIFY_DASHES = 'oldschool'
 
 # Blogroll
 LINKS = (("piecepackr's source", 'https://github.com/piecepackr'),
@@ -29,9 +33,10 @@ LINKS = (("piecepackr's source", 'https://github.com/piecepackr'),
 # SOCIAL = (('You can add links in your config file', '#'),
 #           ('Another social link', '#'),)
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
+TAG_FEED_ATOM = 'feeds/{slug}.atom.xml'
 # CATEGORY_FEED_ATOM = 'feeds/{slug}.atom.xml'
 
-DEFAULT_PAGINATION = False
+DEFAULT_PAGINATION = False # Use a number to restrict number of elements in "page"
 
 # PLUGINS = ['pelican_comment_system']
 PELICAN_COMMENT_SYSTEM = True

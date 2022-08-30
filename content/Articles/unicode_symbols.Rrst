@@ -1,0 +1,856 @@
+Unicode Piecepack Symbols
+=========================
+
+:date: 2019-08-29
+:modified: 2019-11-13
+:summary: Tables of potentially useful Unicode symbols for making piecepack_ graphics.
+
+.. include:: ../../links.rst
+
+This article includes tables of potentially useful Unicode symbols for making piecepack_ graphics.  There is another article with more info on making piecepack `Unicode diagrams`_.
+
+.. contents::
+
+Suit Symbols
+------------
+
+Neutral/Wild Unsuit
+~~~~~~~~~~~~~~~~~~~
+
+.. note:: `Noto Sans Cham <https://www.google.com/get/noto/>`_ is one of the few fonts that support the "Cham Punctuation Spiral" (arguably the best spiral in Unicode).  
+
+.. list-table:: Spirals
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ꩜ 
+     - U+AA5C
+     - Cham Punctuation Spiral
+   * - 🍥 
+     - U+1F365
+     - Fish Cake with Swirl Design
+   * - @ 
+     - U+0040
+     - At Sign
+   * - ☯ 
+     - U+262F
+     - Yin Yang
+   * - 🌀 
+     - U+1F300
+     - Cyclone
+   * - ∂
+     - U+2202
+     - Partial Differential
+   * - ໑
+     - U+0ED1
+     - Lao Digit One
+
+.. list-table:: Joker Stars
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ★ 
+     - U+2605
+     - Black Star
+   * - ☆ 
+     - U+2606
+     - White Star
+   * - ✪
+     - U+272A
+     - Circled White Star
+   * - ✯
+     - U+272F
+     - Pinwheel Star
+   * - 
+     - U+0E00A
+     - Black Joker Symbol (Quivira PUA)
+   * - 
+     - U+0E00B
+     - White Joker Symbol (Quivira PUA)
+
+Piecepack suits
+~~~~~~~~~~~~~~~
+
+.. note:: The orthodox_ demo gives an example of an `Anatomy of a piecepack`_ standard piecepack.
+.. list-table:: Suns
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ☉
+     - U+2609
+     - sun
+   * - 🌞 
+     - U+1f31e
+     - sun with face
+   * - ☀ 
+     - U+2600
+     - black sun with rays
+   * - ☼ 
+     - U+263c
+     - white sun with rays
+   * - ⛅
+     - U+26c5
+     - sun behind cloud
+   * - ✺ 
+     - U+273a
+     - sixteen pointed asterisk
+   * - ❂ 
+     - U+2742
+     - circled open centre eight pointed star
+   * - ❊ 
+     - U+274a 
+     - eight teardrop-spoked propeller asterisk
+   * - ❋ 
+     - U+274b 
+     - heavy eight teardrop-spoked propeller asterisk
+   * - ✹ 
+     - U+2739
+     - twelve pointed black star
+   * - 🟒 
+     - U+1f7d2
+     -  light twelve pointed black star
+   * - 🟓 
+     - U+1f7d3
+     -  heavy twelve pointed black star
+   * - ⛯ 
+     - U+26ef
+     - map symbol for lighthouse
+   * - ⛭ 
+     - U+26ed
+     - gear with hub
+
+.. list-table:: Moons
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ☽ 
+     - U+263d 
+     - first quarter moon
+   * - ☾ 
+     - U+263e 
+     - last quarter moon
+   * - ⏾ 
+     - U+23fe 
+     - power sleep symbol
+   * - 🌑 
+     - U+1f311 
+     - new moon symbol
+   * - 🌒 
+     - U+1f312 
+     - waxing crescent moon symbol
+   * - 🌓 
+     - U+1f313 
+     - first quarter moon symbol
+   * - 🌔 
+     - U+1f314 
+     - waxing gibbous moon symbol
+   * - 🌕 
+     - U+1f315 
+     - full moon symbol
+   * - 🌖 
+     - U+1f316 
+     - waning gibbous moon symbol
+   * - 🌗 
+     - U+1f317 
+     - last quarter moon symbol
+   * - 🌘 
+     - U+1f318 
+     - waning crescent moon symbol
+   * - 🌙 
+     - U+1f319 
+     - crescent moon
+   * - 🌚 
+     - U+1f31a 
+     - new moon with face
+   * - 🌛 
+     - U+1f31b 
+     - first quarter moon with face
+   * - 🌜 
+     - U+1f31c 
+     - last quarter moon with face
+   * - 🌝 
+     - U+1f31d 
+     - full moon with face
+   * - ◐ 
+     - U+25d0
+     - circle with left half black
+   * - ◑
+     - U+25d1
+     - circle with right half black
+
+.. list-table:: Crowns
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - 👑 
+     - U+1f451 
+     - crown
+   * - ♛ 
+     - U+265b 
+     - black chess queen
+   * - ♚ 
+     - U+265a 
+     - black chess king
+   * - ♕ 
+     - U+2655 
+     - white chess queen
+   * - ♔ 
+     - U+2654 
+     - white chess queen     
+   * - ȸ
+     - U+0238
+     - small letter db digraph
+
+.. note:: According to the `Anatomy of a Piecepack`_ standard the "Fleur-de-lis" should be used for the Arms symbol but the popular `JCD piecepack`_ uses an "Anchor" [#anchor]_ and I've tinkered with using the "Dagger" [#dagger]_.
+
+.. list-table:: Arms
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ⚜ 
+     - U+269c
+     - fleur-de-lis
+   * - ⚓ 
+     - U+2693
+     - anchor
+   * - †
+     - U+2020
+     - Dagger
+   * - Ϯ
+     - U+03ee
+     - Coptic capital letter dei
+
+French suits
+~~~~~~~~~~~~
+
+.. note:: The `dual piecepacks`_ demo has examples of French-suited piecepacks.
+
+.. list-table:: French
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ♠ 
+     - U+2660 
+     - Black Spade Suit
+   * - ♤ 
+     - U+2664 
+     - White Spade Suit 
+   * - ♥ 
+     - U+2665 
+     - Black Heart Suit
+   * - ♡ 
+     - U+2661 
+     - White Heart Suit
+   * - ♦ 
+     - U+2666 
+     - Black Diamond Suit
+   * - ♢ 
+     - U+2662 
+     - White Diamond Suit
+   * - ♣ 
+     - U+2663 
+     - Black Club Suit
+   * - ♧ 
+     - U+2667 
+     - White Club Suit
+
+
+Swiss/German suits
+~~~~~~~~~~~~~~~~~~
+
+.. note:: These symbols aren't in Unicode proper but are in Quivira_'s `Private Use Area <https://en.wikipedia.org/wiki/Private_Use_Areas>`_.  The `dual piecepacks`_ demo has examples of Swiss-suited piecepacks.
+.. list-table:: Swiss/German suits in Quivira's Private Use Area
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - 
+     - U+0E000
+     - German Playing Card Symbol Acorns
+   * -  
+     - U+0E001
+     - German Playing Card Symbol Leaves
+   * - 
+     - U+0E002
+     - German Playing Card Symbol Hearts
+   * - 
+     - U+0E003
+     - German Playing Card Symbol Bells
+   * - 
+     - U+0E004
+     - Swiss Playing Card Symbol Shields
+   * - 
+     - U+0E005
+     - Swiss Playing Card Symbol Roses
+
+.. list-table:: Possible Swiss suits in Unicode proper
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ⛨ 
+     - U+26E8 
+     - Black Cross on Shield
+   * - 🛡 
+     - U+1F6E1 
+     - Shield
+   * - ⛊ 
+     - U+26CA 
+     - Turned Black Shogi Piece
+   * - ⛉ 
+     - U+26C9 
+     - Turned White Shogi Piece
+   * - 🌹 
+     - U+1F339 
+     - Rose
+   * - ⚘ 
+     - U+2698 
+     - Flower
+   * - ❀ 
+     - U+2740 
+     - White Florette
+   * - 🌰 
+     - U+1F330 
+     - Chestnut
+   * - 🔔 
+     - U+1F514 
+     - Bell
+   * - 🎐
+     - U+1F390 
+     - Wind Chime
+
+Latin suits
+~~~~~~~~~~~
+
+.. note:: These symbols aren't in Unicode proper but are in Quivira_'s `Private Use Area`_.  The `dual piecepacks`_ demo has an example of a Latin-suited piecepacks.
+.. list-table:: Latin suits in Quivira's Private Use Area
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - 
+     - U+0E006
+     - Spanish Playing Card Symbol Clubs
+   * - 
+     - U+0E007
+     - Spanish Playing Card Symbol Swords
+   * - 
+     - U+0E008
+     - Spanish Playing Card Symbol Cups
+   * - 
+     - U+0E009
+     - Spanish Playing Card Symbol Coins
+
+.. list-table:: Possible Latin suits in Unicode proper
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ⚚ 
+     - U+2624 
+     - Caduceus
+   * - ⚕️ 
+     - U+2695 
+     - Medical Symbol
+   * - 🗡️ 
+     - U+1F5E1 
+     - Dagger     
+   * - 𐃉 
+     - U+100C9 
+     - Linear B Ideogram B233 Sword
+   * - ⚔ 
+     - U+2694 
+     - Crossed Swords
+   * - 🏆 
+     - U+1F3C6 
+     - Trophy
+   * - 🥤 
+     - U+1F964 
+     - Cup With Straw
+   * - ☕
+     - U+2615 
+     - Hot Beverage
+   * - 𐇛 
+     - U+101DB 
+     - Phaistos Disc Sign Shield     
+   * - 💰 
+     - U+1F4B0 
+     - Money Bag
+
+Elements Suits
+~~~~~~~~~~~~~~
+
+.. note:: The `Chinese zodiac demo`_ uses some Element symbols as suits.
+.. list-table:: Elements symbols
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - 🜁 
+     - U+1F701 
+     - Alchemical Symbol for Air
+   * - ☁️ 
+     - U+2601 
+     - Cloud
+   * - 🌪️ 
+     - U+1F32A 
+     - Cloud with Tornado
+   * - 💨 
+     - U+1F4A8 
+     - Dashing Symbol
+   * - 🌀 
+     - U+1F300 
+     - Cyclone
+   * - 🌬️ 
+     - U+1F32C 
+     - Wind Blowing Face
+   * - 🌥️ 
+     - U+1F325 
+     - Sun Behind Large Cloud
+   * - 🌦️ 
+     - U+1F326 
+     - Sun Behind Rain Cloud
+   * - 🌨️ 
+     - U+1F328 
+     - Cloud with Snow
+   * - 🌩️ 
+     - U+1F329 
+     - Cloud with Lightning
+   * - 🜂 
+     - U+1F702 
+     - Alchemical Symbol for Fire
+   * - 🔥 
+     - U+1F525 
+     - Fire
+   * - 🜃 
+     - U+1F703 
+     - Alchemical Symbol for Earth
+   * - ⛰️ 
+     - U+26F0 
+     - Mountain
+   * - 🌋 
+     - U+1F30B 
+     - Volcano
+   * - 🌲 
+     - U+1F332 
+     - Evergreen Tree
+   * - 💎 
+     - U+1F48E 
+     - Gem Stone
+   * - 🜄 
+     - U+1F704 
+     - Alchemical Symbol for Water
+   * - 🌊 
+     - U+1F30A 
+     - Water Wave
+
+Seasons Suits
+~~~~~~~~~~~~~
+
+.. list-table:: Seasons symbols
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ⛄ 
+     - U+26C4 
+     - Snowman Without Snow
+   * - ❄️ 
+     - U+2744 
+     - Snowflake
+   * - 🌼 
+     - U+1F33C 
+     - Blossom
+   * - 🥒 
+     - U+1F952 
+     - Cucumber
+   * - 🍐 
+     - U+1F350 
+     - Pear
+   * - 🍏 
+     - U+1F34F 
+     - Green Apple
+   * - 🥑 
+     - U+1F951 
+     - Avocado
+   * - 🍈 
+     - U+1F348 
+     - Melon
+   * - 🌴 
+     - U+1F334 
+     - Palm Tree
+   * - 🍉 
+     - U+1F349 
+     - Watermelon
+   * - 🌾 
+     - U+1F33E 
+     - Sheaf of Rice
+   * - 🌽 
+     - U+1F33D 
+     - Ear of Corn
+   * - 🎃 
+     - U+1F383 
+     - Jack-O-Lantern
+   * - 🍂 
+     - U+1F342 
+     - Fallen Leaf
+   * - 🍁 
+     - U+1F341 
+     - Maple Leaf
+
+Piecepack Ranks
+---------------
+
+Null
+~~~~
+
+.. list-table:: Null Symbol
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * -
+     - U+0020 
+     - Space
+   * - N
+     - U+004E
+     - Latin Capital letter N
+   * - n
+     - U+006E
+     - Latin Small letter n
+   * - ∅ 
+     - U+2205
+     - Empty Set
+   * - 0
+     - U+0030
+     - Digit Zero
+
+Ace
+~~~
+
+.. list-table:: Ace Symbol
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - A
+     - U+0041
+     - Latin Capital letter A
+   * - a
+     - U+0061
+     - Latin Small Letter A
+   * - @ 
+     - U+0040
+     - At sign
+   * - 1
+     - U+0031
+     - Digit One
+
+.. * ⚀ (U2680) "Die Face-1"
+.. * ⚁ (U2681) "Die Face-2"
+.. * ⚂ (U2681) "Die Face-3"
+.. * ⚃ (U2682) "Die Face-4"
+.. * ⚄ (U2683) "Die Face-5"
+.. * ⚅ (U2685) "Die Face-6"
+.. * · (U00B7) "Middle Dot"
+.. * : 
+.. * ⁚ (U205A) "Two Dot Punctuation"
+.. * 🝆 (U1F746) "Alchemical Symbol for Oil"
+.. * ⸫ (U2E2B) "One Dot Over Two Dots Punctuation"
+.. * ⸬ (U2E2C) "Squared Four Dot Punctuation"
+.. * ⁙ (U2059) "Five Dot Punctuation"
+.. * ⸭ (U2E2D) "Five Dot Mark"
+.. 
+.. * 𝍠 (U1D360) "Counting Rod Unit Digit One"
+.. * 𝍡 (U1D361) "Counting Rod Unit Digit Two"
+.. * 𝍢 (U1D362) "Counting Rod Unit Digit Three"
+.. * 𝍤 (U1D363) "Counting Rod Unit Digit Four"
+.. * 𝍤 (U1D364) "Counting Rod Unit Digit Five"
+.. * 𝍩 (U1D369) "Counting Rod Tens Digit One"
+.. * 𝍪 (U1D36A) "Counting Rod Tens Digit Two"
+.. * 𝍫 (U1D36B) "Counting Rod Tens Digit Three"
+.. * 𝍬 (U1D36C) "Counting Rod Tens Digit Four"
+.. * 𝍭 (U1D36D) "Counting Rod Tens Digit Five"
+.. * I
+.. * II
+.. * III
+.. * IV
+.. * V
+.. 
+.. * 一
+.. * 二
+.. * 三
+.. * 四
+.. * 五
+
+Dozenal Extensions
+~~~~~~~~~~~~~~~~~~
+
+.. list-table:: Dozenal Symbols
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - X 
+     - U+2169 
+     - Roman Numeral Ten
+   * - ↊ 
+     - U+218B 
+     - Turned Digit 2
+   * - ↋ 
+     - U+218B 
+     - Turned Digit 3
+
+Chess
+~~~~~
+
+.. list-table:: Chess Symbols
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ♚ 
+     - U+265A
+     - Black Chess King
+   * - ♛ 
+     - U+265B
+     - Black Chess Queen
+   * - ♜ 
+     - U+265C
+     - Black Chess Rook
+   * - ♝ 
+     - U+265D
+     - Black Chess Bishop
+   * - ♞ 
+     - U+265E
+     - Black Chess Knight
+   * - ♟ 
+     - U+265F
+     - Black Chess Pawn
+   * - ♔ 
+     - U+2654
+     - White Chess King
+   * - ♕ 
+     - U+2655
+     - White Chess Queen
+   * - ♖ 
+     - U+2656
+     - White Chess Rook
+   * - ♗ 
+     - U+2657
+     - White Chess Bishop
+   * - ♘ 
+     - U+2658
+     - White Chess Knight
+   * - ♙ 
+     - U+2659
+     - White Chess Pawn
+
+Zodiac Symbols
+--------------
+
+.. list-table:: Western Zodiac
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - ♈︎ 
+     - U+2648 
+     - Aries
+   * - ♉︎ 
+     - U+2649 
+     - Taurus
+   * - ♊︎ 
+     - U+264A 
+     - Gemini
+   * - ♋︎ 
+     - U+264B 
+     - Cancer
+   * - ♌︎ 
+     - U+264C 
+     - Leo
+   * - ♍︎ 
+     - U+264D 
+     - Virgo
+   * - ♎︎ 
+     - U+264E 
+     - Libra
+   * - ♏︎ 
+     - U+264F 
+     - Scorpio
+   * - ♐︎ 
+     - U+2650 
+     - Sagittarius
+   * - ♑︎ 
+     - U+2651 
+     - Capricorn
+   * - ♒︎ 
+     - U+2652 
+     - Aquarius
+   * - ♓︎ 
+     - U+2653 
+     - Pisces
+
+.. note:: The `Chinese zodiac demo`_ uses Chinese zodiac symbols as rank symbols.
+.. list-table:: Chinese Zodiac
+   :header-rows: 1
+
+   * - Glyph
+     - Code
+     - Name
+   * - 🐀
+     - U+1F400
+     - Rat
+   * - 🐁 
+     - U+1F401
+     - Mouse
+   * - 🐭
+     - U+1F42D
+     - Mouse Face
+   * - 🐂
+     - U+1F402
+     - Ox
+   * - 🐃 
+     - U+1F403
+     - Water Buffalo
+   * - 🐄
+     - U+1F404
+     - Cow
+   * - 🐮
+     - U+1F42E
+     - Cow Face
+   * - 🐅 
+     - U+1F405
+     - Tiger 
+   * - 🐯 
+     - U+1F42F
+     - Tiger Face
+   * - 🐇 
+     - U+1F407
+     - Rabbit
+   * - 🐰
+     - U+1F430
+     - Rabbit Face
+   * - 🐉 
+     - U+1F409
+     - Dragon
+   * - 🐲
+     - U+1F432
+     - Dragon Face
+   * - 🐍 
+     - U+1F40D
+     - Snake
+   * - 🐎 
+     - U+1F40E
+     - Horse
+   * - 🐴
+     - U+1F434
+     - Horse Face
+   * - 🐏
+     - U+1F40F
+     - Ram
+   * - 🐐
+     - U+1F410
+     - Goat
+   * - 🐑
+     - U+1F411 
+     - Ewe
+   * - 🐒 
+     - U+1F412
+     - Monkey
+   * - 🐵 
+     - U+1F435
+     - Monkey Face
+   * - 🐓
+     - U+1F413
+     - Rooster
+   * - 🐔
+     - U+1F414
+     - Chicken
+   * - 🐕 
+     - U+1F415
+     - Dog
+   * - 🐶
+     - U+1F436
+     - Dog Face
+   * - 🐖 
+     - U+1F416
+     - Pig
+   * - 🐗
+     - U+1F417
+     - Boar
+   * - 🐷
+     - U+1F437
+     - Pig Face
+
+How to use with piecepackr
+---------------------------
+
+Assuming you have appropriate fonts on your system, in order to use a particular Unicode glyph with piecepackr_'s `configuration lists`_ you prepend the Unicode hexadecimal code with a ``\u`` if the Unicode hexadecimal code is 4 "digits" long and ``\U`` if the Unicode hexadecimal form is more than 4 "digits" long.  If your locales and encodings are set-up properly you can also just directly use the Unicode character directly.
+
+.. code:: r
+
+    library("piecepackr")
+    ranks_noto <- list(rank_text="n,a,2,3,4,5", rank_fontfamily="Noto Sans")
+    dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,grey")
+    piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
+                            suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
+                            suit_cex="0.6,0.7,0.75,0.9,0.9")
+    dual1 <- c(piecepack_suits, dark_colorscheme, ranks_noto)
+    dual1 <- pp_cfg(dual1)
+    grid.piece("preview_layout", cfg=dual1)
+
+.. figure:: {static}/images/knitr/demos-dual-preview1-1.png
+    :align: center
+    :alt: A preview of the piecepack-suited piecepack
+    :width: 60%
+
+    A preview of the piecepack-suited piecepack
+
+Some characters have both a text and emoji form.  You can force the text form or the emoji form by adding the appropriate "Variation Selector" after the code.
+
+.. list-table:: Variation Selectors
+   :header-rows: 1
+
+   * - Code
+     - Name
+   * - U+FE0E
+     - text variation selector
+   * -  U+FE0F
+     - emoji variation selector
+
+.. {r variant_selector}
+cat("\U1f31e\ufe0e\n")
+cat("\U1f31e\ufe0f\n")
+.. ..
+
+Footnotes
+---------
+
+.. [#anchor] For compatibility with the Anchor-and-Crowns suited Empire Deck.
+.. [#dagger] Unicode has a Turned version of the Dagger which is useful for making Unicode text diagrams.

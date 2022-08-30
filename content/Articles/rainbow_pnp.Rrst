@@ -1,0 +1,60 @@
+Rainbow Deck suited piecepack PnP
+=================================
+
+:date: 2019-06-23
+:modified: 2022-02-04
+:tags: print-and-play
+:summary: The `Rainbow Deck`_ by Chen Changcai is a cardgame system that can be used to play hundreds of games.  It has 12 suits divided by 6 suit symbols with each suit symbol having a dark and light color associated with it.  It is straightforward to make six-suited piecepacks_ to use as an accessory to the `Rainbow Deck`_.
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("demos-RD")
+.. ..
+
+.. include:: ../../links.rst
+
+.. _Rainbow Deck: https://boardgamegeek.com/boardgame/59655/rainbow-deck
+
+The `Rainbow Deck`_ by Chen Changcai is a cardgame system that can be used to play hundreds of games.  It has 12 suits divided by 6 suit symbols with each suit symbol having a dark and light color associated with it.  It is straightforward to make six-suited piecepacks_ to use as an accessory to the `Rainbow Deck`_.  The `Rainbow Deck`_ itself is licensed under a CC BY-SA-NC license but Chen Changcai was kind enough to give me permission to create Rainbow Deck suited piecepacks under a CC BY-SA 4.0 license requesting that I please provide a link back to his `Rainbow Deck`_ BoardGameGeek page.
+
+Since dark suits show up best on a light background and light suits show up best on a dark background we'll make two 6-suited piecepacks that do just that (note that this means that these two `Rainbow Deck`_ suited piecepacks will be `dual piecepacks`_).
+
+.. {r RD1, fig.cap='Rainbow Deck suited piecepack (Dark suits)'}
+library("piecepackr")
+rainbow1 <- list(suit_text = "♥,★,♣,♦,♛,♠,꩜",
+    rank_fontfamily = "Noto Sans",
+    suit_fontfamily = paste0(paste(rep("Noto Sans Symbols", 6), collapse=","), ",Noto Sans Cham"),
+    suit_cex = "1,1,1,1,0.85,1,0.9",
+    suit_color = "#ff0000,#ffc000,#008000,#0000ff,#800080,#000000,white",
+    border_color = "grey",
+    background_color.unsuited = "sienna")
+noto_credit <- c("\u25cf This piecepack uses characters from Google Noto Fonts. OFL 1.1.",
+                 "\thttps://www.google.com/get/noto/")
+RD_credit <- c("\u25cf The Rainbow Deck is by Chen Changcai",
+               "\thttps://boardgamegeek.com/boardgame/59655/rainbow-deck",
+               "\tUsed with permission of the author.")
+rainbow1$credit <- c(noto_credit, RD_credit)
+rainbow1$description <- c('This piecepack uses the suits from Chen Changcai\'s "Rainbow Deck"',
+                "\thttps://boardgamegeek.com/boardgame/59655/rainbow-deck")
+rainbow1$title <- "Rainbow Deck (dark suits)"
+if (packageVersion("piecepackr") >= "1.10.0-8") {
+    rainbow1$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
+    rainbow1$spdx_id <- "CC-BY-SA-4.0"
+}
+rainbow1 <- pp_cfg(rainbow1)
+grid.piece("preview_layout", cfg=rainbow1)
+.. ..
+
+.. {r RD2, fig.cap='Rainbow Deck suited piecepack (Light suits)'}
+rainbow2 <- as.list(rainbow1)
+rainbow2$suit_color <- "#ff80c0,#ffff80,#80ff00,#80ffff,#c080ff,#c0c0c0,white"
+rainbow2$background_color.suited <- "black"
+rainbow2$title <- "Rainbow Deck (light suits)"
+rainbow2 <- pp_cfg(rainbow2)
+grid.piece("preview_layout", cfg=rainbow2)
+.. ..
+
+.. {r save, echo=FALSE}
+save(rainbow1, rainbow2, file="../tmp/rainbow.RData")
+create_pnp("../tmp/rainbow.RData")
+.. ..
