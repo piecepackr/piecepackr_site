@@ -60,7 +60,7 @@ A single piecepack (24 coins) lacks enough pieces to play the full 8x8 version o
     
 
     library("dplyr", warn.conflicts=FALSE)
-    library("ppgames", warn.conflicts=FALSE)
+    library("ppgames")
     library("tibble")
     
     envir <- list(piecepack=reversi1, subpack=to_subpack(reversi1))

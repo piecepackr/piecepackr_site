@@ -8,8 +8,6 @@ Print-and-Play PDFs
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("pages-pnp")
-if (!dir.exists("../share/pnp"))
-    dir.create("../share/pnp")
 .. ..
 
 .. {r save_print_and_play, echo=FALSE}
@@ -28,9 +26,6 @@ save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 
 .. {r table, echo=FALSE, results='asis'}
 cfg_names <- sort(names(ee))
-rst_link <- function(url, text=basename(url)) {
-    sprintf("`%s <%s>`__", text, url)
-}
 titles <- sapply(cfg_names, function(x) {tt <- ee[[x]]$title; ifelse(is.null(tt), "", tt)})
 letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", cfg_names)
 A4_urls <- sprintf("{static}/share/pnp/%s_A4.pdf", cfg_names)

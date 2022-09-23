@@ -15,7 +15,7 @@ Tablut
     
 
     library("piecepackr")
-    library("ppgames", warn.conflicts=FALSE)
+    library("ppgames")
     cfg <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
          suit_cex="0.6,0.7,0.75,0.9,0.9",
         suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",

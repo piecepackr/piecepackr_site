@@ -101,42 +101,14 @@ Triactor_: A Day at the Piecepack Downs is a game by `Jonathan C. Dietrich`_, Ju
     
 
     library("grid")
-    library("magick")
-
-
-::
-
-    ## Linking to ImageMagick 6.9.10.23
-    ## Enabled features: fontconfig, freetype, fftw, lcms, pango, webp, x11
-    ## Disabled features: cairo, ghostscript, heic, raw, rsvg
-
-
-
-::
-
-    ## Using 64 threads
-
-
-.. sourcecode:: r
-    
-
-    library("ppgames", warn.conflicts=FALSE)
+    library("magick") |> suppressPackageStartupMessages()
+    library("ppgames")
     if (!file.exists("Triactor.pdf")) {
         download.file("http://www.piecepack.org/rules/Triactor.pdf")
     }
-    if(!require("pdftools", quietly=TRUE)) {
+    if(!require("pdftools") |> suppressPackageStartupMessages()) {
         install.packages("pdftools") # dependency for 'image_read_pdf'
     }
-
-
-::
-
-    ## Using poppler version 0.86.1
-
-
-.. sourcecode:: r
-    
-
     playmat <- rasterGrob(as.raster(image_read_pdf("Triactor.pdf", pages=8)))
     
     png("../share/rules/triactor.png", width=21, height=13, units="in", res=72)

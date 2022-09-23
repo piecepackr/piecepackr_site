@@ -128,7 +128,7 @@ Contained in ppgames
       - comment 
     * - `Alice Chess <https://en.wikipedia.org/wiki/Alice_chess>`_
       - df_alice_chess
-      - X
+      -  
       -
     * - `Alien City <https://www.ludism.org/ppwiki/AlienCity>`_
       - df_alien_city
@@ -177,7 +177,7 @@ Contained in ppgames
     * - `Cribbage (Board) <https://www.ludism.org/ppwiki/Cribbage>`_
       - df_cribbage, df_cribbage_board
       - X
-      - Just a (piecepack) cribbage board
+      - A (piecepack) cribbage board
     * - `Coin Collectors <https://www.ludism.org/ppwiki/CoinCollectors>`_
       - df_coin_collectors
       -
@@ -212,7 +212,7 @@ Contained in ppgames
       - 
     * - `Four Seasons Chess <https://www.chessvariants.com/historic.dir/4seiz.html>`_
       - df_four_seasons_chess
-      - X
+      -  
       -
     * - `Froggy Bottom <https://www.ludism.org/ppwiki/FroggyBottom>`_
       - df_froggy_bottom
@@ -352,7 +352,7 @@ Contained in ppgames
       - 
     * - `Ultima <https://en.wikipedia.org/wiki/Baroque_chess>`_
       - df_ultima, df_baroque_chess
-      - X
+      -  
       -
     * - `Wormholes <https://www.ludism.org/ppwiki/Wormholes>`_
       - df_wormholes

@@ -9,6 +9,7 @@ Checkers
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-checkers")
+library("tradgames", warn.conflicts = FALSE)
 .. ..
 
 .. include:: ../../links.rst

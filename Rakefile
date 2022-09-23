@@ -6,8 +6,7 @@ CLEAN << 'content/share/pnp'
 CLEAN << 'content/share/rules'
 
 rrst_files = Rake::FileList["content/**/*.Rrst"]
-rst_derivatives = rrst_files.ext(".rst").existing
-CLEAN << rst_derivatives
+CLEAN << rrst_files.ext(".rst").existing
 CLEAN << Rake::FileList["**/*.RData"].existing
 CLEAN << "about.rst"
 
@@ -22,13 +21,13 @@ rule ".rst" => ".Rrst" do |t|
     sh "Rscript -e 'knitr::knit(\"#{t.source}\", \"#{t.name}\", encoding=\"UTF-8\")'"
 end
 
-file 'content/pages/pnp.Rrst' => Rake::FileList["content/Articles/*_pnp.Rrst"]
-file 'content/Articles/game_starts.Rrst' => Rake::FileList["content/Articles/*_game.Rrst"] 
-file 'content/Articles/game_starts.Rrst' => "content/Articles/chess_pnp.Rrst" 
+file 'content/pages/pnp.Rrst' => Rake::FileList["content/Articles/*_pnp.Rrst"].ext(".rst")
+file 'content/pages/rules.Rrst' => "content/Articles/game_starts.rst" 
+file 'content/Articles/game_starts.Rrst' => Rake::FileList["content/Articles/*_game.Rrst"].ext(".rst")
+file 'content/Articles/game_starts.Rrst' => "content/Articles/chess_pnp.rst" 
 file 'content/Articles/configuration.Rrst' => "content/pages/pnp.rst"
 
-file 'about.Rrst' => Rake::FileList["content/Articles/*.Rrst"]
-file 'about.Rrst' => Rake::FileList["content/Articles/*.Rrst"]
+file 'about.Rrst' => Rake::FileList["content/Articles/*.Rrst"].ext(".rst")
 
 file 'content/pages/about.Rrst' => "about.rst"
 file 'content/pages/index.Rrst' => "about.rst"

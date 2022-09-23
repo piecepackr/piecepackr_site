@@ -17,7 +17,7 @@ set_opts_chunk("games-relativity")
 
 .. {r relativity, results='hide', message=FALSE}
 library("piecepackr")
-library("ppgames", warn.conflicts=FALSE)
+library("ppgames")
 cfg <- as.list(game_systems("dejavu")$piecepack)
 cfg$suit_color <- "black"
 cfg$background_color.r1 <- "#E69F00"

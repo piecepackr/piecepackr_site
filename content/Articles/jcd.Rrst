@@ -98,12 +98,12 @@ Triactor_: A Day at the Piecepack Downs is a game by `Jonathan C. Dietrich`_, Ju
 
 .. {r starting-diagram}
 library("grid")
-library("magick")
-library("ppgames", warn.conflicts=FALSE)
+library("magick") |> suppressPackageStartupMessages()
+library("ppgames")
 if (!file.exists("Triactor.pdf")) {
     download.file("http://www.piecepack.org/rules/Triactor.pdf")
 }
-if(!require("pdftools", quietly=TRUE)) {
+if(!require("pdftools") |> suppressPackageStartupMessages()) {
     install.packages("pdftools") # dependency for 'image_read_pdf'
 }
 playmat <- rasterGrob(as.raster(image_read_pdf("Triactor.pdf", pages=8)))

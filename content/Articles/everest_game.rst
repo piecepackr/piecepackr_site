@@ -16,7 +16,7 @@ Everest
     
 
     library("piecepackr")
-    library("ppgames", warn.conflicts=FALSE)
+    library("ppgames")
     
     icy_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,darkblue", border_color="black", border_lex=6,
                              edge_color.pawn="black", edge_color.tile="lightblue", depth.pawn=0.25)

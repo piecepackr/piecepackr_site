@@ -15,7 +15,7 @@ set_opts_chunk("games-cribbage")
 .. {r starting-diagram, fig.cap='Using a piecepack as a Cribbage Board', fig.width=9, fig.height=33, out.width="30%"}
 library("grid")
 library("piecepackr")
-library("ppgames", warn.conflicts=FALSE)
+library("ppgames")
 cfg <- pp_cfg(list(suit_color="darkred,black,darkgreen,darkblue,black", 
                    border_color="black", border_lex=4))
 pmap_piece(df_cribbage_board(), cfg=cfg, default.units="in")

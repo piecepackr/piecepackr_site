@@ -1,0 +1,55 @@
+Rulesets
+========
+
+:data: 2022-09-23
+:tags: ppgames-features
+
+.. {r setup, echo=FALSE}
+source("../../set_knitr_opts.R")
+set_opts_chunk("pages-rules")
+.. ..
+
+.. include:: ../../links.rst
+
+Below are some downloadable piecepack_ game rulesets contained within the ppgames_ R package generated into `letter <https://en.wikipedia.org/wiki/Letter_%28paper_size%29>`_ / `A4 <https://en.wikipedia.org/wiki/ISO_216#A_series>`_ paper sizes with the help of the |save_ruleset|_ functions.  The "pamphlet" variant is a trifold leaflet [#pamphlet]_.
+For over 200 more piecepack games go to the `Games page on the piecepack wiki <https://ludism.org/ppwiki/Games>`_.
+
+.. |save_ruleset| replace:: ``save_ruleset()`` and ``save_pamphlet()``
+.. _save_ruleset: https://trevorldavis.com/R/ppgames/dev/reference/save_ruleset.html
+
+.. {r table, echo=FALSE, results='asis'}
+library("ppgames")
+
+game_info <- yaml::yaml.load_file(system.file("extdata/game_info.yaml", package = "ppgames"))
+
+games <- names_rulesets()
+games <- grep("withlak", games, invert = TRUE, value = TRUE, ignore.case = TRUE) ####
+games <- grep("kono", games, invert = TRUE, value = TRUE, ignore.case = TRUE) ####
+games_normal <- games |> normalize_name()
+games_hyphen <- games |> normalize_name(sep = "-")
+games_titles <- sapply(games_hyphen, \(x) ppgames:::title(x, game_info))
+games_links <- sapply(games_hyphen, function(x) {
+    info <- ppgames:::get_game_info(x, game_info)
+    paste0("http://www.ludism.org/ppwiki/", info$ppwiki)
+})
+ruleset_letter <- sprintf("{static}/share/rules/%s.pdf", games_normal)
+ruleset_a4 <- sprintf("{static}/share/rules/%s_A4.pdf", games_normal)
+## ruleset html
+pamphlet_letter <- sprintf("{static}/share/rules/%s_pamphlet.pdf", games_normal)
+pamphlet_a4 <- sprintf("{static}/share/rules/%s_pamphlet_A4.pdf", games_normal)
+## pocketmod
+
+titles <- stringr::str_glue("{rst_link(games_links, games_titles)}")
+rulesets <- stringr::str_glue("{rst_link(ruleset_letter, 'letter')} / {rst_link(ruleset_a4, 'A4')}")
+pamphlets <- stringr::str_glue("{rst_link(pamphlet_letter, 'letter')} / {rst_link(pamphlet_a4, 'A4')}")
+
+df <- data.frame(Game=titles, Ruleset=rulesets, Pamphlet=pamphlets)
+rst_list_table(df, title="Downloadable Piecepack Ruleset PDFs", widths="60, 20, 20")
+.. ..
+
+.. [#pamphlet] Some advantages of the trifold pamphlet:
+
+    #. Once folded into a leaflet we get a more compact size to fit into game boxes.
+    #. Usually fits all the rules of the game onto one side of the paper.
+    #. Can be mailed if so desired (put the address and stamp in the blank panel).
+    #. Multiple games can be attractively displayed and/or distributed in a leaflet display.

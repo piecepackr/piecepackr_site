@@ -1,5 +1,9 @@
-if (dir.exists("../share") && !dir.exists("../share/rules"))
+if (!file.exists("../images/knitr"))
+    dir.create("../images/knitr")
+if (!dir.exists("../share/rules"))
     dir.create("../share/rules")
+if (!dir.exists("../share/pnp"))
+    dir.create("../share/pnp")
 
 set_opts_chunk <- function(prefix="prefix") {
     knitr::opts_chunk$set(dev="png", dev.args = list(type = "cairo"),
@@ -10,6 +14,8 @@ set_opts_chunk <- function(prefix="prefix") {
                           out.width="60%",
                           warning=FALSE)
 }
+
+library("ppgames", quietly = TRUE) # avoid conflicts messages with below `save_ruleset()`, etc.
 
 create_pnp <- function(Rdata_file) {
     if (!file.exists("../share/pnp")) dir.create("../share/pnp")
@@ -75,6 +81,10 @@ svg2png <- function(svg, png, w=768, h=768) {
 }
 resize_png <- function(png.in, png.out, w=768, h=768) {
     system2("convert", c(png.in, "-resize", paste0(w, "x", h), png.out)) # nolint
+}
+
+rst_link <- function(url, text=basename(url)) {
+    sprintf("`%s <%s>`__", text, url)
 }
 rst_list_table <- function(df, title=NULL, widths=NULL) {
     df <- as.data.frame(df)

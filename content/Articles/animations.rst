@@ -69,7 +69,7 @@ ppgames_ has a convenience function ``animate_game()`` that can be used to anima
 .. sourcecode:: r
     
 
-    library("ppgames", warn.conflicts=FALSE)
+    library("ppgames")
     dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,black",
                           invert_colors.suited=TRUE, border_color="black", border_lex=2)
     piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜

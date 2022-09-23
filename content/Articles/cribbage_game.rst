@@ -15,7 +15,7 @@ Cribbage
 
     library("grid")
     library("piecepackr")
-    library("ppgames", warn.conflicts=FALSE)
+    library("ppgames")
     cfg <- pp_cfg(list(suit_color="darkred,black,darkgreen,darkblue,black", 
                        border_color="black", border_lex=4))
     pmap_piece(df_cribbage_board(), cfg=cfg, default.units="in")

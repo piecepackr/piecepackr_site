@@ -299,7 +299,7 @@ Alice Chess
 .. sourcecode:: r
     
 
-    library("ppgames", warn.conflicts=FALSE)
+    library("ppgames")
     pmap_piece(df_alice_chess(), cfg=chess5, op_scale=0.5, 
                trans=op_transform, default.units="in")
 

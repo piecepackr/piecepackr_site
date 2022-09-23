@@ -126,7 +126,6 @@ We'll draw the same game diagram as before but using a piecepack stackpack_:
     
 
     library("dplyr", warn.conflicts=FALSE)
-    library("ppgames", warn.conflicts=FALSE)
     library("tibble")
     
     df_board <- df_rect_board_tiles(nrow=5, ncol=5)

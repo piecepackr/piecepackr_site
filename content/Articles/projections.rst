@@ -68,6 +68,7 @@ With a little more effort by the piecepackr_ programmer one can also make `obliq
 .. sourcecode:: r
     
 
+    library("piecepackr")
     options(piecepackr.default.units = "in", 
             piecepackr.cfg = game_systems("dejavu")$piecepack,
             piecepackr.op_angle = 45, piecepackr.op_scale = 0.5)
@@ -96,6 +97,7 @@ Depending on your preferences you may want to change up your pawns look and/or t
 .. sourcecode:: r
     
 
+    library("piecepackr")
     cfg <- pp_cfg(list(width.pawn=0.75, height.pawn=0.75, depth.pawn=1, 
                        dm_text.pawn="", shape.pawn="convex6", invert_colors.pawn=TRUE,
                        edge_color.coin="tan", edge_color.tile="tan",
@@ -129,6 +131,7 @@ To directly make oblique projection graphics with ``grid.piece()`` the programme
 .. sourcecode:: r
     
 
+    library("piecepackr")
     df <- tibble::tibble(piece_side="tile_back",  
                          x=c(2,2,2,4,6,6,4,2,5),  
                          y=c(4,4,4,4,4,2,2,2,3))  
@@ -166,6 +169,7 @@ Technically since each ``grid.piece()`` function can have its own ``op_scale`` a
 .. sourcecode:: r
     
 
+    library("piecepackr")
     draw_3tiles <- function(x, y, op_angle) {
         grid.piece("tile_back", x=x, y=y, z=(1:3)/4-1/8, op_angle=op_angle)
     }
@@ -202,6 +206,8 @@ rayrender
 .. sourcecode:: r
     
 
+    library("piecepackr")
+    library("ppgames")
     library("rayrender")
     df <- ppgames::df_four_field_kono()
     options(piecepackr.cfg = game_systems("dejavu3d")$piecepack,
@@ -236,6 +242,8 @@ rayvertex
 .. sourcecode:: r
     
 
+    library("piecepackr")
+    library("ppgames")
     library("rayvertex", warn.conflicts = FALSE) # masks rayrender::r_obj
     df <- ppgames::df_international_chess()
     options(piecepackr.cfg = game_systems("dejavu3d", round=TRUE, pawn="joystick")$piecepack,
@@ -270,7 +278,8 @@ rgl
 .. sourcecode:: r
     
 
-    library("ppgames", warn.conflicts = FALSE)
+    library("piecepackr")
+    library("ppgames")
     library("rgl", warn.conflicts = FALSE) # masks rayrender::text3d
     
     invisible(rgl::open3d())
