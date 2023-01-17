@@ -9,6 +9,7 @@ examples <- list(
     chaturaji = "content/images/knitr/demos-chess-chaturaji-1.png",
     checkers = "content/images/knitr/games-checkers-breakthrough-1.png",
     dominoes = "content/images/knitr/games-dominoes-diagram-1.png",
+    chinese = "content/images/knitr/games-dominoes-chinese-1.png",
     go = "content/images/knitr/games-go-grid-1.png",
     icehouse = "content/images/knitr/martian_chess_rgl.png",
     rayvertex = "content/images/knitr/rayvertex.png",
