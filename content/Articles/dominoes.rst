@@ -48,9 +48,12 @@ The ``dice`` configuration provides standard six-sided dice with the suit contro
 Chinese dominoes and dice
 -------------------------
 
-.. note:: Chinese dominoes were introduced in piecepackr_ v1.3 and were extended to double-18 dominoes in v1.9.
+.. note:: Chinese dominoes were introduced in piecepackr_ v1.13.
 
 The configurations ``dominoes_chinese`` and ``dominoes_chinese_black`` provide `Asian-style dice <https://en.wikipedia.org/wiki/Dice#Arrangement>`_ and `Chinese dominoes <https://en.wikipedia.org/wiki/Chinese_dominoes>`_.  ``dominoes_chinese`` has a white background with black and red pips while ``dominoes_chinese_black`` has a black background with white and red pips.
+
+|
+|
 
 
 .. sourcecode:: r
