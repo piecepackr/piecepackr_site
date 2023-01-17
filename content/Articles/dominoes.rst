@@ -29,9 +29,10 @@ The ``dice`` configuration provides standard six-sided dice with the suit contro
     library("grid")
     library("tibble")
     
-    envir <- game_systems("dejavu")
+    envir <- game_systems()
     df_dominoes <- tibble(piece_side = "tile_face", 
-                          x=rep(4:1, 3), y=rep(2*3:1, each=4), suit=1:12, rank=1:12+1,
+                          x=rep(4:1, 3), y=rep(2*3:1, each=4), 
+                          suit=1:12, rank=7:18+1,
                           cfg = paste0("dominoes_", 
                                        rep(c("black", "red", "green", "blue", "yellow", "white"), 2)))
     df_dice <- tibble(piece_side = "die_face", x=6, y=0.5+1:6, suit=1:6, rank=1:6, cfg="dice")
@@ -40,10 +41,10 @@ The ``dice`` configuration provides standard six-sided dice with the suit contro
 
 .. figure:: {static}/images/knitr/games-dominoes-diagram-1.png
     :align: center
-    :alt: Double-12 dominoes and standard 6-sided dice
+    :alt: Double-18 dominoes and standard 6-sided dice
     :width: 60%
 
-    Double-12 dominoes and standard 6-sided dice
+    Double-18 dominoes and standard 6-sided dice
 
 Chinese dominoes and dice
 -------------------------
@@ -74,10 +75,8 @@ The configurations ``dominoes_chinese`` and ``dominoes_chinese_black`` provide `
                   cfg = rep(c("dominoes_chinese", "dominoes_chinese_black", "dominoes_chinese"),
                             each = 2L),
                   x = 8.5, y = c(1, 2.25, 3.5, 4.75, 6.0, 7.25))
-    
     df <- rbind(df1, df2)
     
-    grid::grid.newpage()
     pmap_piece(df, envir = game_systems(), default.units = "in",
                trans = op_transform, op_scale = 0.5)
 
