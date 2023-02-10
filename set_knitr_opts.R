@@ -5,11 +5,22 @@ if (!dir.exists("../share/rules"))
 if (!dir.exists("../share/pnp"))
     dir.create("../share/pnp")
 
+xmp <- xmpdf::xmp(attribution_url = "https://trevorldavis.com/piecepackr",
+                  creator = "Trevor L. Davis",
+                  spdx_id = "CC-BY-SA-4.0")
+
+fig_process <- function(...) {
+    function(path, options) {
+        path <- xmp$fig_process(...)(path, options)
+        gsub("^content", "{static}", path)
+    }
+}
+
 set_opts_chunk <- function(prefix="prefix") {
     knitr::opts_chunk$set(dev="png", dev.args = list(type = "cairo"),
                           fig.width=6.05, fig.height=6.05,
                           fig.path=paste0("content/images/knitr/", prefix, "-"),
-                          fig.process=function(x) gsub("^content", "{static}", x),
+                          fig.process=fig_process(),
                           fig.align="center",
                           out.width="60%",
                           warning=FALSE)
@@ -79,8 +90,14 @@ svg2png <- function(svg, png, w=768, h=768) {
     # system2("inkscape", c("-z", "-e", png, "-w", w, "-h", h, svg)) # nolint
     rsvg::rsvg_png(svg, png, w, h)
 }
+# resize_png <- function(png.in, png.out, w=768, h=768) {
+#     system2("convert", c(png.in, "-resize", paste0(w, "x", h), png.out)) # nolint
+# }
 resize_png <- function(png.in, png.out, w=768, h=768) {
-    system2("convert", c(png.in, "-resize", paste0(w, "x", h), png.out)) # nolint
+    system2("imgp", c("--res", paste0(w, "x", h), png.in)) # nolint
+    png_IMGP.in <- paste0(substr(png.in, 1, nchar(png.in) -4L), "_IMGP.png")
+    file.rename(png_IMGP.in, png.out)
+    xmpdf::set_xmp(xmpdf::get_xmp(png.in)[[1]], png.out)
 }
 
 rst_link <- function(url, text=basename(url)) {

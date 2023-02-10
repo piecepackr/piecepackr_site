@@ -10,6 +10,7 @@ Intro to piecepackr's API
 source("../../set_knitr_opts.R")
 set_opts_chunk("docs-intro")
 knitr::opts_chunk$set(out.width=NULL)
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. ..
 
 .. include:: ../../links.rst

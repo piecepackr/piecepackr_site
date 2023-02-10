@@ -8,6 +8,7 @@ Go
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-go")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2020"))
 .. ..
 
 .. include:: ../../links.rst
@@ -72,9 +73,11 @@ pmap_piece(df, piece3d, cfg=cfg, trans=op_transform, lit=TRUE)
 .. ..
 
 .. {r move, echo=FALSE}
-Sys.sleep(2)
+Sys.sleep(4)
 snapshot3d("go_rgl.png", top = FALSE)
 close3d()
+xmpdf::set_xmp(update(xmp, date_created = "2020", description = "3D Multi-player Go diagram"),
+               "go_rgl.png")
 invisible(file.rename('go_rgl.png', '../images/knitr/go_rgl.png'))
 .. ..
 

@@ -7,6 +7,7 @@ Labeled piecepack
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-label")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2021"))
 .. ..
 
 .. include:: ../../links.rst

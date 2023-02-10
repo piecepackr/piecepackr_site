@@ -9,6 +9,7 @@ Dominoes and Standard 6-sided Dice
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-dominoes")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2023"))
 .. ..
 
 .. include:: ../../links.rst

@@ -9,6 +9,7 @@ Relativity
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-relativity")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2020"))
 .. ..
 
 .. include:: ../../links.rst
@@ -36,6 +37,8 @@ animate_game(game, file = "relativity.gif", annotate = FALSE,
 .. ..
 
 .. {r move, echo=FALSE}
+xmpdf::set_xmp(update(xmp, date_created = "2020", description = "Animation of a round of a game of Relativity"),
+               "relativity.gif")
 invisible(file.rename('relativity.gif', '../images/knitr/relativity.gif'))
 .. ..
 

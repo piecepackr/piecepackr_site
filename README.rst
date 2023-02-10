@@ -41,6 +41,7 @@ Command-line installation instructions (for Ubuntu):
    cabal install pandoc
 
    sudo apt install r-base librsvg2-dev texlive-xetex cargo
+   sudo apt install ghostscript imgp libimage-exiftool-perl
 
 R package installation instructions (start R with ``R``):
 
@@ -51,6 +52,7 @@ R package installation instructions (start R with ``R``):
    remotes::install_github("piecepackr/tradgames")
    remotes::install_github("piecepackr/ppgames")
    remotes::install_github("piecepackr/piecenikr")
+   remotes::install_github("trevorld/r-xmpdf")
    quit("no")
 
 

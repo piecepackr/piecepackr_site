@@ -8,6 +8,7 @@ Everest
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-everest")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. ..
 
 .. include:: ../../links.rst
@@ -29,9 +30,6 @@ pmap_piece(df_everest(), cfg=cfg, default.units="in", op_scale=1.0, trans=op_tra
 .. ..
 
 .. {r save, echo=FALSE}
-gk <- game_kit(list(cfg=cfg))
-# svg2png("../images/knitr/games-everest-starting-diagram-1.svg",
-#         "../share/rules/everest.png", 450, 350)
 resize_png("../images/knitr/games-everest-starting-diagram-1.png",
            "../share/rules/everest.png", 450, 350)
 .. ..

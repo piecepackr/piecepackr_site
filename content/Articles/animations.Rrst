@@ -54,6 +54,8 @@ saveGIF({draw_tictactoe_game(cfg)}, movie.name="tictactoe.gif",
     ani.height=480, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
 .. ..
 .. {r move2, echo=FALSE}
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Animation of a tic-tac-toe game"),
+               "tictactoe.gif")
 invisible(file.rename('tictactoe.gif', '../images/knitr/tictactoe.gif'))
 .. ..
 
@@ -90,8 +92,9 @@ animate_game(game, file="fujisan.gif", cfg=cfg,
 .. ..
 
 .. {r move3, echo=FALSE}
+xmpdf::set_xmp(update(xmp, date_created = "2020", description = "Animation of a Fuji-san game"),
+               "fujisan.gif")
 invisible(file.rename('fujisan.gif', '../images/knitr/fujisan.gif'))
-
 .. ..
 
 .. figure:: {static}/images/knitr/fujisan.gif

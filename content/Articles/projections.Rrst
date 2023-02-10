@@ -9,6 +9,7 @@
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("docs-3d-projections")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. ..
 
 piecepackr_ has some basic support for projecting 3D board games onto a 2D diagram.  It can make diagrams using an orthographic or oblique `parallel projection <https://en.wikipedia.org/wiki/Parallel_projection>`_ using R's grid_ graphics library.  It can also render images using the rayrender_, rayvertex_, and rgl_ 3D graphics packages.  These latter packages usually use a `perspective projection <https://en.wikipedia.org/wiki/Perspective_(graphical)>`_ but can be configured to produce `parallel projections <https://en.wikipedia.org/wiki/Parallel_projection>`_.
@@ -176,6 +177,8 @@ invisible(dev.off())
 
 .. ..
 .. {r move-rr, echo=FALSE}
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "3D render with the rayrender package"),
+               "rayrender.png")
 invisible(file.rename('rayrender.png', '../images/knitr/rayrender.png'))
 .. ..
 
@@ -211,6 +214,8 @@ rayvertex::rasterize_scene(scene, lookat = c(4.5, 4, 0), lookfrom=c(4.5, -16, 20
 invisible(dev.off())
 .. ..
 .. {r move-rv, echo=FALSE}
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "3D render with the rayvertex package"),
+               "rayvertex.png")
 invisible(file.rename('rayvertex.png', '../images/knitr/rayvertex.png'))
 .. ..
 
@@ -245,9 +250,11 @@ pmap_piece(df, piece3d, scale = 0.98, res = 150)
 .. ..
 .. {r move-rgl, echo=FALSE}
 if (Sys.which("wmctrl") != "") system("wmctrl -r RGL -e 0,-1,-1,600,600")
-Sys.sleep(2)
+Sys.sleep(4)
 snapshot3d("rgl_snapshot.png", top = FALSE, webshot = FALSE)
 close3d()
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "3D render with the rgl package"),
+               "rgl_snapshot.png")
 invisible(file.rename('rgl_snapshot.png', '../images/knitr/rgl_snapshot.png'))
 .. ..
 

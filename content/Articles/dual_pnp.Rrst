@@ -9,6 +9,7 @@ Dual piecepacks PnP
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("demos-dual")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. ..
 
 .. include:: ../../links.rst

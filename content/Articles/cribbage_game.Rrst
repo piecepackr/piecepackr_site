@@ -8,6 +8,7 @@ Cribbage
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-cribbage")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. ..
 
 `Cribbage <{static}/share/rules/cribbage.pdf>`_ is a popular two-person card game that usually requires a special cribbage board to keep score. Below is a diagram of using a piecepack to make an effective cribbage board. 

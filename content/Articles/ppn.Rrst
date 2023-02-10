@@ -25,6 +25,7 @@ Portable Piecepack Notation (PPN) is a human-readable plaintext file format for 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("docs-ppn")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 library("piecepackr")
 library("ppgames")
 two_player <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
@@ -100,6 +101,8 @@ game <- read_ppn(ppn_file)[[1]]
 animate_game(game, file = "four-field-kono.gif", annotate = TRUE,
              cfg = two_player, trans = op_transform, op_scale = 0.5,
              n_transitions = 5, n_pauses = 2, fps = 9)
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Animation of a Four Field Kono game"),
+               "four-field-kono.gif")
 invisible(file.rename('four-field-kono.gif', '../images/knitr/four-field-kono.gif'))
 .. ..
 

@@ -9,6 +9,7 @@ Reversi
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-reversi")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2020"))
 .. ..
 
 .. include:: ../../links.rst
@@ -89,5 +90,5 @@ create_pnp("../tmp/reversi.RData")
 # svg2png("../images/knitr/games-reversi-end-diagram-1.svg",
 #         "../share/rules/reversi.png", 768, 768)
 resize_png("../images/knitr/games-reversi-end-diagram-1.png",
-           "../share/rules/reversi.png", 768, 768)
+           "../share/rules/reversi.png", 600, 600)
 .. ..

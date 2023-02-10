@@ -1,3 +1,9 @@
+.. {r setup, echo=FALSE}
+xmp <- xmpdf::xmp(attribution_url = "https://trevorldavis.com/piecepackr",
+                  creator = "Trevor L. Davis",
+                  spdx_id = "CC-BY-SA-4.0")
+.. ..
+
 .. include:: links.rst
 
 This is the associated website for the piecepackr_, ppgames_, piecenikr_, and tradgames_ R_ packages.  piecepackr_ is an R package designed to make configurable board game graphics. It can be used with the ggplot2_, grid_, rayrender_, rayvertex_, and rgl_ graphic systems to make board game diagrams_, board game animations_, and custom `Print & Play`_ layouts.  By default it is configured to make `piecepack game`_ diagrams_, animations_, and `Print & Play`_ layouts but can be configured to make graphics for `other game systems`_.  ppgames_ is an R_ package with functions for generating piecepack_ game graphics, rulesets, and books as well as functions to parse and visualize games recorded using "`Portable Piecepack Notation`_" format plus a Fuji-san solver.  piecenikr_ contains functions for visualizing `Looney Pyramids`_ games while tradgames_ contains functions for visualizing games played with traditional game systems (such as checkers sets).
@@ -24,6 +30,9 @@ draw_examples <- function() {
 }
 saveGIF({draw_examples()}, movie.name="piecepackr_examples.gif",
         ani.height=600, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
+xmpdf::set_xmp(update(xmp, date_created = "2023",
+                      description = "Some example graphics generated with piecepackr"),
+               "piecepackr_examples.gif")
 invisible(file.rename('piecepackr_examples.gif', 'content/images/knitr/piecepackr_examples.gif'))
 .. ..
 
@@ -86,7 +95,7 @@ These are the `Print & Play demos`_ which demonstrate the code used to generate 
 #. `Dual piecepacks`_
 #. `"Orthodox" (Anatomy of a Piecepack Standard) piecepack <{filename}/Articles/orthodox_pnp.rst>`_
 #. `Daniel Ajoy's Dingbats suited piecepack <{filename}/Articles/dingbats_pnp.rst>`_
-#. `Rainbow Deck suited piecepack <{filename}/Articles/default_pnp.rst>`_
+#. `Rainbow Deck suited piecepack <{filename}/Articles/rainbow_pnp.rst>`_
 #. `Chinese Zodiac ranked piecepack <{filename}/Articles/zodiac_cn_pnp.rst>`_
 #. `Chess-ranked piecepacks <{filename}/Articles/chess_pnp.rst>`_
 #. `Reversi-friendly piecepack <{filename}/Articles/reversi_pnp.rst>`_

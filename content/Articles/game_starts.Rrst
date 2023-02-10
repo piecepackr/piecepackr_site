@@ -11,6 +11,7 @@ The package ppgames_ contains functions that generate the starting piece arrange
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("docs-game-starts")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. ..
 
 .. include:: ../../links.rst
@@ -433,6 +434,8 @@ small_tiles <- pp_cfg(small_tiles)
 png("../share/rules/alquerque.png", width=6, height=6, units="in", res=72)
 pmap_piece(df_alquerque(), cfg=two_player, default.units="in")
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Alquerque"),
+                "../share/rules/alquerque.png")
 save_ruleset("alquerque", gk_2p, "../share/rules/alquerque.pdf")
 save_ruleset("alquerque", gk_2p, "../share/rules/alquerque_A4.pdf", size="A4")
 save_pamphlet("alquerque", gk_2p, "../share/rules/alquerque_pamphlet.pdf")
@@ -441,6 +444,8 @@ save_pamphlet("alquerque", gk_2p, "../share/rules/alquerque_pamphlet_A4.pdf", si
 png("../share/rules/american_checkers.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_american_checkers(), cfg=two_player, default.units="in")
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game American Checkers"),
+               "../share/rules/american_checkers.png")
 save_ruleset("American Checkers", gk_2p, "../share/rules/american_checkers.pdf")
 save_ruleset("American Checkers", gk_2p, "../share/rules/american_checkers_A4.pdf", size="A4")
 save_pamphlet("American Checkers", gk_2p, "../share/rules/american_checkers_pamphlet.pdf")
@@ -449,89 +454,127 @@ save_pamphlet("American Checkers", gk_2p, "../share/rules/american_checkers_pamp
 png("../share/rules/awithlaknannai_mosona.png", width=25.5, height=5.2, units="in", res=36)
 pmap_piece(df_awithlaknannai_mosona(), cfg=two_player, default.units="in")
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Awithlaknannai Mosona"),
+               "../share/rules/awithlaknannai_mosona.png")
 
 png("../share/rules/brandubh.png", width=8, height=8, units="in", res=72)
 pmap_piece(df_brandubh(), cfg=traditional, default.units="in",
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Brandubh"),
+              "../share/rules/brandubh.png")
 
 png("../share/rules/breakthrough.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_breakthrough(), cfg=two_player, default.units="in")
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Breakthrough"),
+               "../share/rules/breakthrough.png")
 
 png("../share/rules/cell_management.png", width=11.5, height=12.5, units="in", res=36)
 pmap_piece(df_cell_management(seed=42), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=60, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Cell Management"),
+               "../share/rules/cell_management.png")
 
 png("../share/rules/chinese_checkers.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_chinese_checkers(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Chinese Checkers"),
+                "../share/rules/chinese_checkers.png")
 
 png("../share/rules/coin_collectors.png", width=12.5, height=11, units="in", res=36)
 pmap_piece(df_coin_collectors(seed=17), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Coin Collectors"),
+               "../share/rules/coin_collectors.png")
 
 png("../share/rules/desfases.png", width=18, height=18, units="in", res=36)
 pmap_piece(df_desfases(seed=42), cfg=small_tiles, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Desfases"),
+               "../share/rules/desfases.png")
 
 png("../share/rules/easy_slider.png", width=12, height=12, units="in", res=36)
 pmap_piece(df_easy_slider(seed=17), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Easy Slider"),
+                "../share/rules/easy_slider.png")
 
 png("../share/rules/evade.png", width=7, height=7, units="in", res=72)
 pmap_piece(df_evade(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Evade"),
+               "../share/rules/evade.png")
 
 png("../share/rules/four_field_kono.png", width=5, height=5, units="in", res=72)
 pmap_piece(df_four_field_kono(), cfg=two_player, default.units="in")
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Four Field Kono"),
+               "../share/rules/four_field_kono.png")
 
 png("../share/rules/fujisan.png", width=15, height=5, units="in", res=36)
 pmap_piece(df_fujisan(seed=42), cfg=traditional, default.units="in", 
            op_scale=1.0, op_angle=90, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Fuji-san"),
+               "../share/rules/fujisan.png")
 
 png("../share/rules/grasshopper.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_grasshopper(), cfg=two_player, default.units="in")
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Grasshopper"),
+               "../share/rules/grasshopper.png")
 
 png("../share/rules/iceberg.png", width=11, height=11, units="in", res=36)
 pmap_piece(df_iceberg(), envir=cfgs, default.units="in", 
            op_scale=1.0, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Iceberg"),
+               "../share/rules/iceberg.png")
 
 png("../share/rules/ice_floe.png", width=11, height=11, units="in", res=36)
 pmap_piece(df_ice_floe(), envir=cfgs, default.units="in", 
            op_scale=1.0, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Ice Floe"),
+               "../share/rules/ice_floe.png")
 
 png("../share/rules/jul_gono.png", width=5, height=5, units="in", res=72)
 pmap_piece(df_jul_gono(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Jul Gono"),
+               "../share/rules/jul_gono.png")
 
 png("../share/rules/landlocked.png", width=11, height=11, units="in", res=36)
 pmap_piece(df_landlocked(seed=91), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Landlocked"),
+               "../share/rules/landlocked.png")
 
 png("../share/rules/ley_lines.png", width=14, height=16, units="in", res=36)
 pmap_piece(df_ley_lines(), envir=cfgs, default.units="in", 
            op_scale=1.0, op_angle=90, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Ley Lines"),
+               "../share/rules/ley_lines.png")
 
 png("../share/rules/lines_of_action.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_lines_of_action(), cfg=two_player, default.units="in")
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Lines of Action"),
+               "../share/rules/lines_of_action.png")
 
 render_piece(df_ludo(), "../share/rules/ludo.png", ppi=36, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Ludo"),
+               "../share/rules/ludo.png")
 save_ruleset("Ludo", gk_4p, "../share/rules/ludo.pdf")
 save_ruleset("Ludo", gk_4p, "../share/rules/ludo_A4.pdf", size="A4")
 save_pamphlet("Ludo", gk_4p, "../share/rules/ludo_pamphlet.pdf")
@@ -541,10 +584,14 @@ png("../share/rules/mathrix.png", width=7, height=5, units="in", res=72)
 pmap_piece(df_mathrix(seed=19), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Mathrix"),
+               "../share/rules/mathrix.png")
 
 png("../share/rules/nine_mens_morris.png", width=15, height=15, units="in", res=36)
 pmap_piece(df_nine_mens_morris(), envir=cfgs, default.units="in")
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Nine Men's Morris"),
+               "../share/rules/nine_mens_morris.png")
 
 save_ruleset("nine mens morris", gk_2p, "../share/rules/nine_mens_morris.pdf")
 save_ruleset("nine mens morris", gk_2p, "../share/rules/nine_mens_morris_A4.pdf", size="A4")
@@ -560,6 +607,8 @@ png("../share/rules/pass_the_food.png", width=9.0, height=13.5, units="in", res=
 pmap_piece(df_pass_the_food(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2021", description = "Setup for the game Pass the Food"),
+               "../share/rules/pass_the_food.png")
 save_ruleset("Pass the Food", gk_4p, "../share/rules/pass_the_food.pdf")
 save_ruleset("Pass the Food", gk_4p, "../share/rules/pass_the_food_A4.pdf", size="A4")
 save_pamphlet("Pass the Food", gk_4p, "../share/rules/pass_the_food_pamphlet.pdf")
@@ -569,75 +618,105 @@ png("../share/rules/piece_gaps.png", width=13.5, height=9.5, units="in", res=36)
 pmap_piece(df_piece_gaps(seed=72), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Piece Gaps"),
+               "../share/rules/piece_gaps.png")
 
 png("../share/rules/piece_packing_pirates.png", width=17, height=16, units="in", res=36)
 pmap_piece(df_piece_packing_pirates(seed=42), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Piece Packing Pirates"),
+               "../share/rules/piece_packing_pirates.png")
 
 png("../share/rules/piecepack_klondike.png", width=14, height=7.5, units="in", res=36)
 pmap_piece(df_piecepack_klondike(seed=21), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Piecepack Klondike"),
+               "../share/rules/piecepack_klondike.png")
 
 png("../share/rules/plans_of_action.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_plans_of_action(seed=32), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Plans of Action"),
+               "../share/rules/plans_of_action.png")
 
 png("../share/rules/quatri.png", width=5, height=5, units="in", res=72)
 pmap_piece(df_quatri(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Quatri"),
+               "../share/rules/quatri.png")
 
 png("../share/rules/relativity.png", width=7, height=5, units="in", res=72)
 pmap_piece(df_relativity(seed=12), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Relativity"),
+        "../share/rules/relativity.png")
 
 png("../share/rules/san_andreas.png", width=11, height=17, units="in", res=36)
 pmap_piece(df_san_andreas(), envir=cfgs, default.units="in", 
            op_scale=1.0, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game San Andreas"),
+        "../share/rules/san_andreas.png")
 
 png("../share/rules/skyscrapers.png", width=11, height=11, units="in", res=36)
 pmap_piece(df_skyscrapers(seed=91), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Skyscrapers"),
+        "../share/rules/skyscrapers.png")
 
 png("../share/rules/slides_of_action.png", width=5, height=5, units="in", res=72)
 pmap_piece(df_slides_of_action(), envir=cfgs, default.units="in",
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Slides of Action"),
+        "../share/rules/slides_of_action.png")
 
 png("../share/rules/the_in_crowd.png", width=7.5, height=7.5, units="in", res=42)
 pmap_piece(df_the_in_crowd(), envir=cfgs, default.units="in", 
            op_scale=1.0, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = 'Setup for the game The "In" Crowd'),
+        "../share/rules/the_in_crowd.png")
 
 png("../share/rules/the_magic_bag.png", width=9, height=19, units="in", res=36)
 pmap_piece(df_the_magic_bag(seed=91), envir=cfgs, default.units="in", 
            op_scale=1.0, op_angle=45, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = 'Setup for the game The Magic Bag'),
+        "../share/rules/the_magic_bag.png")
 
 png("../share/rules/tower_of_babel.png", width=6, height=7.5, units="in", res=42)
 pmap_piece(df_tower_of_babel(seed=32), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = 'Setup for the game Tower of Babel'),
+        "../share/rules/tower_of_babel.png")
 
 png("../share/rules/tula.png", width=8.5, height=8.5, units="in", res=42)
 pmap_piece(df_tula(seed=42), envir=cfgs, default.units="in", 
            op_scale=1.0, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = 'Setup for the game Tula'),
+        "../share/rules/tula.png")
 
 png("../share/rules/turkish_draughts.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_turkish_draughts(), cfg=two_player, default.units="in")
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = 'Setup for the game Turkish Draughts'),
+        "../share/rules/turkish_draughts.png")
 
 png("../share/rules/wormholes.png", width=11, height=19, units="in", res=42)
 pmap_piece(df_wormholes(), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = 'Setup for the game Wormholes'),
+        "../share/rules/wormholes.png")
 .. ..
 
 .. {r game_animation, echo=FALSE, results='hide', message=FALSE}
@@ -702,5 +781,7 @@ draw_example_games <- function() {
 }
 saveGIF({draw_example_games()}, movie.name="piecepack_games.gif",
         ani.height=600, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = 'Some games supported in ppgames'),
+        "piecepack_games.gif")
 invisible(file.rename('piecepack_games.gif', '../images/knitr/piecepack_games.gif'))
 .. ..

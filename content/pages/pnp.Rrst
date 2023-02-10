@@ -8,6 +8,7 @@ Print-and-Play PDFs
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("pages-pnp")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2021"))
 .. ..
 
 .. {r save_print_and_play, echo=FALSE}
@@ -59,6 +60,8 @@ saveGIF({draw_demos(cfgs)}, movie.name="pnp-previews.gif",
 .. ..
 
 .. {r move, echo=FALSE}
+xmpdf::set_xmp(update(xmp, date_created = "2021", description = "Previews of the print-and-play piecepacks"),
+               "pnp-previews.gif")
 invisible(file.rename('pnp-previews.gif', '../images/knitr/pnp-previews.gif'))
 .. ..
 

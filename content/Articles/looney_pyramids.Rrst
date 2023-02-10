@@ -11,6 +11,7 @@ Looney Pyramids
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-looney-pyramids")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2020"))
 .. ..
 
 .. include:: ../../links.rst
@@ -83,9 +84,11 @@ view3d(phi=-30, zoom = 0.8)
 pmap_piece(df, piece3d, envir=envir, trans=op_transform)
 .. ..
 .. {r move, echo=FALSE}
-Sys.sleep(2)
+Sys.sleep(4)
 snapshot3d("martian_chess_rgl.png", top = FALSE)
 close3d()
+xmpdf::set_xmp(update(xmp, date_created = "2020", description = "Setup for Andy Looney's Martian Chess (3D rgl)"),
+               "martian_chess_rgl.png")
 invisible(file.rename('martian_chess_rgl.png', '../images/knitr/martian_chess_rgl.png'))
 .. ..
 

@@ -9,6 +9,7 @@ Tablut
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-tablut")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. ..
 
 `Tablut <{static}/share/rules/tablut.pdf>`_ is a historical (hnefa)tafl game played by the Sámi people until at least the 1700s whose rules were written down by the Swedish naturalist Linnaeus in 1732.  Below is a starting diagram for playing a game of Tablut with a piecepack.
@@ -44,6 +45,9 @@ ppgames::animate_game(game, file = "../images/knitr/tablut.gif",
     Animation of a Tablut game
 
 .. {r save, echo=FALSE}
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Animation of a Tablut game"),
+               "../images/knitr/tablut.gif")
+
 gk <- game_kit(list(cfg=cfg))
 save_ruleset("tablut", gk, "../share/rules/tablut.pdf")
 save_ruleset("tablut", gk, "../share/rules/tablut_A4.pdf", size="A4")

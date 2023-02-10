@@ -8,6 +8,7 @@ Triactor (JCD Piecepack)
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-triactor")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. ..
 
 .. include:: ../../links.rst
@@ -124,9 +125,11 @@ invisible(dev.off())
     Starting diagram for `Triactor`_.  Uses `JCD piecepack`_ images contained in `VASSAL's piecepack module`_ by `Jonathan C. Dietrich`_ and the `Triactor`_ playmat by Jonathan C. Dietrich, Julie Taylor, and Ken MacKeigan / `CC BY-NC-SA 2.0`_
 
 .. {r save_small, echo=FALSE}
-
-p <- as.raster(png::readPNG("../share/rules/triactor.png"))
-png("../share/rules/triactor_small.png", width=21, height=13, units="in", res=36)
-grid.raster(p)
-invisible(dev.off())
+xmpdf::set_xmp(update(xmp, 
+                      date_created = "2019", 
+                      description = "Starting diagram for Triactor.  Uses JCD piecepack images contained in VASSAL's piecepack module by Jonathan C. Dietrich and the Triactor playmant by Jonathan C. Dietrich, Julie Taylor, and Ken MacKeigan.", 
+                      spdx_id = "CC-BY-NC-SA-2.0"),
+               "../share/rules/triactor.png")
+resize_png("../share/rules/triactor.png",
+           "../share/rules/triactor_small.png", 21 * 36, 13 * 36)
 .. ..

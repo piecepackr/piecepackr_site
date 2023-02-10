@@ -9,6 +9,7 @@ Chess
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
 set_opts_chunk("demos-chess")
+knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. ..
 
 .. include:: ../../links.rst
@@ -446,4 +447,6 @@ game <- ppgames::read_ppn(system.file("ppn/xiangqi.ppn", package="ppgames"))[[1]
 ppgames::animate_game(game, file = "../images/knitr/xiangqi.gif",
                       cfg = chess5, trans = op_transform, op_scale = 0.5,
                       n_transitions = 6, n_pauses = 3, fps = 9)
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Animation of a Xiangqi (Chinese Chess) game"),
+               "../images/knitr/xiangqi.gif")
 .. ..
