@@ -2,7 +2,7 @@ Dingbats PnP
 ============
 
 :date: 2019-05-31
-:modified: 2023-02-16
+:modified: 2023-02-27
 :tags: print-and-play
 :summary: A demo of emulating of `Daniel Ajoy`_'s Dingbats suited `PiecePack Design Variation`_ using piecepackr_.
 
@@ -50,7 +50,11 @@ It is possible to emulate Ajoy's Dingbats piecepack_ in piecepackr_ but in order
         shape <- pp_shape(opt$shape, opt$shape_t, opt$shape_r, opt$back)
     
         # Background
-        background_grob <- shape$shape(gp=gpar(col=NA, fill=opt$background_color))
+        gp_bg <- gpar(col=NA, fill=opt$background_color)
+        if (packageVersion("piecepackr") > '1.13')
+            background_grob <- shape$shape(gp=gp_bg, mat_width = opt$mat_width)
+        else
+            background_grob <- shape$shape(gp=gp_bg)
     
         # Gridlines, Mat
         gl_grob <- shape$gridlines(gp = gpar(col = opt$gridline_color, lex = opt$gridline_lex))

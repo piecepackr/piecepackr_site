@@ -2,7 +2,7 @@ Orthodox PnP
 ============
 
 :date: 2019-05-26
-:modified: 2023-02-16
+:modified: 2023-02-27
 :tags: print-and-play
 :summary: For a number of reasons the default_ piecepack made by piecepackr_ does not comply with the `Anatomy of a Piecepack`_ standard.  But not to fear - one can easily configure_ a piecepack that looks like one of the original piecepacks.   
 
