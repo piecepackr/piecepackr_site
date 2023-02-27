@@ -2,7 +2,7 @@ News
 ====
 
 :date: 2020-06-24
-:modified: 2023-01-16
+:modified: 2023-02-27
 
 .. include:: ../../links.rst
 
@@ -11,10 +11,11 @@ This page is a reverse chronological list of major changes by quarter.
 2023-Q1
 -------
 
-Updated articles
-~~~~~~~~~~~~~~~~
+Updated articles and pages
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * `Dominoes and Standard 6-sided Dice`_
+* `Print-and-Play PDFs <{filename}/pages/pnp.rst>`_
 
 2022-Q4
 -------

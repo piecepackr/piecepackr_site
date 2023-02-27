@@ -376,16 +376,16 @@ cfgs <- new.env()
 load("demo_cfgs.RData", envir=cfgs)
 .. ..
 
-.. {r demo_cfg, fig.cap="Preview of 'dual5' configuration from 'demo_cfgs.RData'"}
+.. {r demo_cfg, fig.cap="Preview of 'dual5_cutlines' configuration from 'demo_cfgs.RData'"}
 names(cfgs)
-print(cfgs$dual5)
-grid.piece("preview_layout", cfg=cfgs$dual5)
+print(cfgs$dual5_cutlines)
+grid.piece("preview_layout", cfg=cfgs$dual5_cutlines)
 .. ..
 
 .. {r demo_cfgs2, fig.cap="Can use multiple configurations stored in an environment at the same time", fig.width=6.05, fig.height=4.05}
     pushViewport(viewport(width=inch(6), height=inch(4)))
     grid.piece("tile_face", rank=1:6, 
-               cfg=paste0("dual", 1:6), envir=cfgs,
+               cfg=paste0("dual", 1:6, "_cutlines"), envir=cfgs,
                x=inch(rep(c(1,3,5), 2)), y=inch(rep(c(1,3), each=3)))
     popViewport()
 .. ..

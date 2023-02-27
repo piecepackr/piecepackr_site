@@ -396,17 +396,32 @@ This website offers for download `demo_cfgs.RData`_ which contains every `Print 
 
 ::
 
-    ##  [1] "chess5"     "dual1"      "dual2"      "dual3"      "dual4"     
-    ##  [6] "rainbow1"   "dual5"      "rainbow2"   "reversi1"   "dual6"     
-    ## [11] "zodiac_cn1" "orthodox1"  "zodiac_cn2" "orthodox2"  "dingbats1" 
-    ## [16] "orthodox3"  "default"    "dingbats2"  "chess1"     "chess2"    
-    ## [21] "chess3"     "chess4"
+    ##  [1] "default1_cutlines"   "chess2_borders"      "dual4_cutlines"     
+    ##  [4] "zodiac_cn1_borders"  "dingbats1_borders"   "zodiac_cn2_cutlines"
+    ##  [7] "chess2_cutlines"     "dingbats2_cutlines"  "chess5_bleed"       
+    ## [10] "orthodox2_bleed"     "dual2_bleed"         "dingbats2_borders"  
+    ## [13] "dual6_cutlines"      "chess4_cutlines"     "orthodox2_borders"  
+    ## [16] "orthodox1_cutlines"  "default1_borders"    "dual1_cutlines"     
+    ## [19] "orthodox3_cutlines"  "dual5_bleed"         "dingbats1_bleed"    
+    ## [22] "chess1_bleed"        "default1_bleed"      "zodiac_cn2_bleed"   
+    ## [25] "rainbow1_bleed"      "chess1_cutlines"     "orthodox3_borders"  
+    ## [28] "dingbats1_cutlines"  "dual3_cutlines"      "rainbow1_cutlines"  
+    ## [31] "dual3_bleed"         "reversi1_bleed"      "chess4_bleed"       
+    ## [34] "chess5_cutlines"     "chess3_borders"      "chess4_borders"     
+    ## [37] "chess1_borders"      "dual5_cutlines"      "zodiac_cn2_borders" 
+    ## [40] "reversi1_cutlines"   "zodiac_cn1_cutlines" "dingbats2_bleed"    
+    ## [43] "dual6_bleed"         "chess2_bleed"        "dual1_bleed"        
+    ## [46] "orthodox1_bleed"     "orthodox3_bleed"     "zodiac_cn1_bleed"   
+    ## [49] "chess5_borders"      "chess3_cutlines"     "dual2_cutlines"     
+    ## [52] "orthodox2_cutlines"  "orthodox1_borders"   "rainbow2_cutlines"  
+    ## [55] "reversi1_borders"    "dual4_bleed"         "chess3_bleed"       
+    ## [58] "rainbow2_bleed"
 
 
 .. sourcecode:: r
     
 
-    print(cfgs$dual5)
+    print(cfgs$dual5_cutlines)
 
 
 ::
@@ -432,14 +447,14 @@ This website offers for download `demo_cfgs.RData`_ which contains every `Print 
 .. sourcecode:: r
     
 
-    grid.piece("preview_layout", cfg=cfgs$dual5)
+    grid.piece("preview_layout", cfg=cfgs$dual5_cutlines)
 
 .. figure:: {static}/images/knitr/docs-configuration-demo_cfg-1.png
     :align: center
-    :alt: Preview of 'dual5' configuration from 'demo_cfgs.RData'
+    :alt: Preview of 'dual5_cutlines' configuration from 'demo_cfgs.RData'
     :width: 60%
 
-    Preview of 'dual5' configuration from 'demo_cfgs.RData'
+    Preview of 'dual5_cutlines' configuration from 'demo_cfgs.RData'
 
 
 .. sourcecode:: r
@@ -447,7 +462,7 @@ This website offers for download `demo_cfgs.RData`_ which contains every `Print 
 
     pushViewport(viewport(width=inch(6), height=inch(4)))
     grid.piece("tile_face", rank=1:6, 
-               cfg=paste0("dual", 1:6), envir=cfgs,
+               cfg=paste0("dual", 1:6, "_cutlines"), envir=cfgs,
                x=inch(rep(c(1,3,5), 2)), y=inch(rep(c(1,3), each=3)))
     popViewport()
 

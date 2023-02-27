@@ -2,7 +2,7 @@ Chess
 =====
 
 :date: 2019-10-12
-:modified: 2022-01-04
+:modified: 2023-02-16
 :tags: print-and-play, piecepack-games
 :summary: Some demos of chess-ranked piecepacks as well as the starting diagrams of several chess variants playable with a piecepack.
 
@@ -17,6 +17,8 @@ This article includes some demos of chess-ranked piecepacks as well as the start
 
 Print-and-play chess-ranked piecepacks
 --------------------------------------
+
+.. _chess1:
 
 Chess-ranked piecepack
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -44,8 +46,12 @@ The simplest chess-ranked piecepack would be to simply swap in the six chess ran
         chess1$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
         chess1$spdx_id <- "CC-BY-SA-4.0"
     }
-    chess1 <- pp_cfg(chess1)
-    grid.piece("preview_layout", cfg=chess1)
+    borders <- list(border_lex=4, border_color="black")
+    bleed <- list(border_lex=0, border_color=NA_character_)
+    chess1_cutlines <- pp_cfg(chess1)
+    chess1_borders <- pp_cfg(c(borders, chess1))
+    chess1_bleed <- pp_cfg(c(bleed, chess1))
+    grid.piece("preview_layout", cfg=chess1_cutlines)
 
 .. figure:: {static}/images/knitr/demos-chess-preview1-1.png
     :align: center
@@ -53,6 +59,8 @@ The simplest chess-ranked piecepack would be to simply swap in the six chess ran
     :width: 60%
 
     Chess-ranked piecepack
+
+.. _chess2:
 
 French-suited chess-ranked piecepack
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -106,8 +114,12 @@ If you use a `custom grob function`_ one can easily add checkers to either the t
         chess2$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
         chess2$spdx_id <- "CC-BY-SA-4.0"
     }
-    chess2 <- pp_cfg(chess2)
-    grid.piece("preview_layout", cfg=chess2)
+    borders <- list(border_lex=4, border_color="black")
+    bleed <- list(border_lex=0, border_color=NA_character_)
+    chess2_cutlines <- pp_cfg(chess2)
+    chess2_borders <- pp_cfg(c(borders, chess2))
+    chess2_bleed <- pp_cfg(c(bleed, chess2))
+    grid.piece("preview_layout", cfg=chess2_cutlines)
 
 .. figure:: {static}/images/knitr/demos-chess-preview2-1.png
     :align: center
@@ -120,6 +132,8 @@ Mirrored-color-scheme chess piecepacks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Having two piecepacks with a mirror-color-scheme makes it really easy to play games like Bughouse chess or Reversi/Othello.  Here we'll design one piecepack with six "black" suits and another with six "red" suits.
+
+.. _chess3:
 
 Black-suited mirrored-color-scheme chess-ranked piecepack
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -148,8 +162,12 @@ Black-suited mirrored-color-scheme chess-ranked piecepack
         chess3$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
         chess3$spdx_id <- "CC-BY-SA-4.0"
     }
-    chess3 <- pp_cfg(chess3)
-    grid.piece("preview_layout", cfg=chess3)
+    borders <- list(border_lex=4, border_color="black")
+    bleed <- list(border_lex=0, border_color=NA_character_)
+    chess3_cutlines <- pp_cfg(chess3)
+    chess3_borders <- pp_cfg(c(borders, chess3))
+    chess3_bleed <- pp_cfg(c(bleed, chess3))
+    grid.piece("preview_layout", cfg=chess3_cutlines)
 
 .. figure:: {static}/images/knitr/demos-chess-preview3-1.png
     :align: center
@@ -158,6 +176,8 @@ Black-suited mirrored-color-scheme chess-ranked piecepack
 
     Black-suited mirrored-color-scheme chess-ranked piecepack
 
+.. _chess4:
+
 Red-suited mirrored-color-scheme chess-ranked piecepack
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -165,7 +185,7 @@ Red-suited mirrored-color-scheme chess-ranked piecepack
 .. sourcecode:: r
     
 
-    chess4 <- as.list(chess3)
+    chess4 <- chess3
     chess4$suit_text <- "♥,♦,🌞,♚,,,★"
     chess4$suit_fontfamily <- "Noto Sans Symbols,Noto Sans Symbols,Noto Emoji,Noto Sans Symbols,Quivira,Quivira,Noto Sans Symbols"
     chess4$suit_cex <- "1,1,0.8,1,1,1,1"
@@ -174,8 +194,10 @@ Red-suited mirrored-color-scheme chess-ranked piecepack
     chess4$dm_fontfamily.coin_back <- "Noto Sans Symbols,Noto Sans Symbols,Noto Emoji,Noto Sans Symbols,Quivira,Quivira,Noto Sans Symbols"
     chess4$dm_cex.coin_back <- "1,1,0.8,1,1,1,1"
     chess4$title <- "Red-suited mirrored-color-scheme chess-ranked piecepack"
-    chess4 <- pp_cfg(chess4)
-    grid.piece("preview_layout", cfg=chess4)
+    chess4_cutlines <- pp_cfg(chess4)
+    chess4_borders <- pp_cfg(c(borders, chess4))
+    chess4_bleed <- pp_cfg(c(bleed, chess4))
+    grid.piece("preview_layout", cfg=chess4_cutlines)
 
 .. figure:: {static}/images/knitr/demos-chess-preview4-1.png
     :align: center
@@ -183,6 +205,8 @@ Red-suited mirrored-color-scheme chess-ranked piecepack
     :width: 60%
 
     Red-suited mirrored-color-scheme chess-ranked piecepack
+
+.. _chess5:
 
 Both-piecepack-and-chess-ranked piecepack
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -204,10 +228,18 @@ With a `custom grob function`_ and the `right chess font <https://www.chessvaria
         shape <- pp_shape(opt$shape, opt$shape_t, opt$shape_r, opt$back)
     
         # Background
-        background_grob <- shape$shape(gp=gpar(col=NA, fill=opt$background_color))
+        gp_bg <- gpar(col=NA, lwd=0, fill=opt$background_color)
+        if (packageVersion("piecepackr") > '1.13')
+            background_grob <- shape$shape(gp=gp_bg, mat_width = opt$mat_width)
+        else
+            background_grob <- shape$shape(gp=gp_bg)
     
         # Gridlines, Mat
-        gl_grob <- shape$gridlines(gp = gpar(col = opt$gridline_color, lex = opt$gridline_lex))
+        gp_gl <- gpar(col = opt$gridline_color, lex = opt$gridline_lex)
+        if (packageVersion("piecepackr") > '1.13')
+            gl_grob <- shape$gridlines(gp = gp_gl, mat_width = opt$mat_width)
+        else
+            gl_grob <- shape$gridlines(gp = gp_gl)
         mat_grob <- shape$mat(opt$mat_width, gp = gpar(fill = opt$mat_color))
     
         # Primary symbol
@@ -247,8 +279,7 @@ With a `custom grob function`_ and the `right chess font <https://www.chessvaria
                             suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
                             suit_cex="0.6,0.7,0.75,0.90,0.9")
     colors <- list(ps_color.s2.tile_face="black", ps_color.s2.coin_back="black", ps_color.s2.die_face="black",
-                   invert_colors.pawn=TRUE, edge_color.coin="grey", edge_color.tile="grey",
-                   border_lex=2, border_color="black",
+                   invert_colors.pawn=TRUE, 
                    mat_width.tile_back=0.05, mat_color.tile_back="white",
                    invert_colors.matchstick=TRUE, invert_colors.pyramid=TRUE,
                    border_color.matchstick="grey", border_color.s2.pyramid="white")
@@ -275,8 +306,13 @@ With a `custom grob function`_ and the `right chess font <https://www.chessvaria
         chess5$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
         chess5$spdx_id <- "CC-BY-SA-4.0"
     }
-    chess5 <- pp_cfg(chess5)
-    grid.piece("preview_layout", cfg=chess5)
+    borders <- list(edge_color.coin="grey", edge_color.tile="grey",
+                    border_lex=4, border_color="black")
+    bleed <- list(border_lex=0, border_color=NA_character_)
+    chess5_cutlines <- pp_cfg(chess5)
+    chess5_borders <- pp_cfg(c(borders, chess5))
+    chess5_bleed <- pp_cfg(c(chess5, bleed))
+    grid.piece("preview_layout", cfg=chess5_cutlines)
 
 .. figure:: {static}/images/knitr/demos-chess-preview5-1.png
     :align: center
@@ -300,7 +336,7 @@ Alice Chess
     
 
     library("ppgames")
-    pmap_piece(df_alice_chess(), cfg=chess5, op_scale=0.5, 
+    pmap_piece(df_alice_chess(), cfg=chess5_borders, op_scale=0.5, 
                trans=op_transform, default.units="in")
 
 .. figure:: {static}/images/knitr/demos-chess-alice-chess-1.png
@@ -319,7 +355,7 @@ Chaturaji
 .. sourcecode:: r
     
 
-    pmap_piece(df_chaturaji(), cfg=chess5, op_scale=0.5, 
+    pmap_piece(df_chaturaji(), cfg=chess5_borders, op_scale=0.5, 
                trans=op_transform, default.units="in")
 
 .. figure:: {static}/images/knitr/demos-chess-chaturaji-1.png
@@ -338,7 +374,7 @@ Chaturaji
 .. sourcecode:: r
     
 
-    pmap_piece(df_international_chess(), cfg=chess5, op_scale=0.5, 
+    pmap_piece(df_international_chess(), cfg=chess5_borders, op_scale=0.5, 
                trans=op_transform, default.units="in")
 
 .. figure:: {static}/images/knitr/demos-chess-international-chess-1.png
@@ -357,7 +393,7 @@ Four seasons chess
 .. sourcecode:: r
     
 
-    pmap_piece(df_four_seasons_chess(), cfg=chess5, op_scale=0.5, 
+    pmap_piece(df_four_seasons_chess(), cfg=chess5_borders, op_scale=0.5, 
                trans=op_transform, default.units="in")
 
 .. figure:: {static}/images/knitr/demos-chess-four-seasons-chess-1.png
@@ -376,7 +412,7 @@ Ultima
 .. sourcecode:: r
     
 
-    pmap_piece(df_ultima(), cfg=chess5, op_scale=0.5, 
+    pmap_piece(df_ultima(), cfg=chess5_borders, op_scale=0.5, 
                trans=op_transform, default.units="in")
 
 .. figure:: {static}/images/knitr/demos-chess-ultima-1.png
@@ -395,7 +431,7 @@ Xiangqi (Chinese Chess)
 .. sourcecode:: r
     
 
-    pmap_piece(df_xiangqi(), cfg=chess5, op_scale=0.5, 
+    pmap_piece(df_xiangqi(), cfg=chess5_borders, op_scale=0.5, 
                trans=op_transform, default.units="in")
 
 .. figure:: {static}/images/knitr/demos-chess-xiangqi-1.png

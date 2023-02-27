@@ -2,7 +2,7 @@ Orthodox PnP
 ============
 
 :date: 2019-05-26
-:modified: 2022-02-04
+:modified: 2023-02-27
 :tags: print-and-play
 :summary: For a number of reasons the default_ piecepack made by piecepackr_ does not comply with the `Anatomy of a Piecepack`_ standard.  But not to fear - one can easily configure_ a piecepack that looks like one of the original piecepacks.   
 
@@ -60,16 +60,22 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
     orthodox1$copyright <- "Created in 2019 by Trevor L Davis.  No Rights Reserved."
     orthodox1$spdx_id <- "CC0-1.0"
 }
-orthodox1 <- pp_cfg(orthodox1)
-grid.piece("preview_layout", cfg=orthodox1)
+borders <- list(border_lex=4, border_color="black")
+bleed <- list(border_lex=0, border_color=NA_character_)
+orthodox1_cutlines <- pp_cfg(orthodox1)
+orthodox1_borders <- pp_cfg(c(borders, orthodox1))
+orthodox1_bleed <- pp_cfg(c(bleed, orthodox1))
+grid.piece("preview_layout", cfg=orthodox1_cutlines)
 .. ..
 
 .. {r preview2, fig.cap="An 'orthodox' piecepack with gold crowns"}
 orthodox2 <- as.list(orthodox1)
 orthodox2$suit_color="darkred,black,gold,darkblue,black"
 orthodox2$title <- "Orthodox piecepack (Gold Crowns)"
-orthodox2 <- pp_cfg(orthodox2)
-grid.piece("preview_layout", cfg=orthodox2)
+orthodox2_cutlines <- pp_cfg(orthodox2)
+orthodox2_borders <- pp_cfg(c(borders, orthodox2))
+orthodox2_bleed <- pp_cfg(c(bleed, orthodox2))
+grid.piece("preview_layout", cfg=orthodox2_cutlines)
 .. ..
 
 .. {r preview3, fig.cap="French-suited piecepack in an orthodox style"}
@@ -84,12 +90,17 @@ orthodox3$suit_cex.pawn = 0.5
 orthodox3$suit_text.saucer_face = NULL
 orthodox3$suit_cex.saucer_face <- 0.5
 orthodox3$title <- "French-suited piecepack (Orthodox)"
-orthodox3$description <- ""
-orthodox3 <- pp_cfg(orthodox3)
-grid.piece("preview_layout", cfg=orthodox3)
+orthodox3$description <- "A French-suited piecepack that otherwise complies with the 'Anatomy of a Piecepack' standard"
+orthodox3_cutlines <- pp_cfg(orthodox3)
+orthodox3_borders <- pp_cfg(c(borders, orthodox3))
+orthodox3_bleed <- pp_cfg(c(bleed, orthodox3))
+grid.piece("preview_layout", cfg=orthodox3_cutlines)
 .. ..
 
 .. {r save, echo=FALSE}
-save(orthodox1, orthodox2, orthodox3, file="../tmp/orthodox.RData")
+save(orthodox1_cutlines, orthodox2_cutlines, orthodox3_cutlines,
+     orthodox1_borders, orthodox2_borders, orthodox3_borders,
+     orthodox1_bleed, orthodox2_bleed, orthodox3_bleed,
+     file="../tmp/orthodox.RData")
 create_pnp("../tmp/orthodox.RData")
 .. ..

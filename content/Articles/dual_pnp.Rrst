@@ -2,7 +2,7 @@ Dual piecepacks PnP
 ===================
 
 :date: 2019-04-07
-:modified: 2022-02-04
+:modified: 2023-02-16
 :tags: print-and-play
 :summary: This is the demo of the six piecepacks_ that were included in the `"dual piecepacks" <http://www.ludism.org/ppwiki/DualPiecepacks>`_ proof-of-concept: one piecepack-suited piecepack, one `latin-suited <https://en.wikipedia.org/wiki/Suit_(cards)#Origin_and_development_of_the_Latin_suits>`_ piecepack (inverted color scheme), two french-suited piecepacks (one 'black' suits, one 'white' suits), and two `swiss-suited <https://en.wikipedia.org/wiki/Suit_(cards)#Invention_of_the_Germanic_suits>`_ piecepacks (one dark grayscale color scheme, one light grayscale color scheme).
 
@@ -36,6 +36,9 @@ This gives one the following nice properties:
 
 It is possible to construct three piecepacks where each pair of piecepack decks are "dual piecepacks" (e.g. piecepack-suited + inverted latin-suited + light french-suited). This could be called a "trial `HoardPack <http://www.ludism.org/ppwiki/HoardPack>`_" (apparently "trial" is the proper "three" analogue to "dual"). 
 
+.. _dual1:
+.. _dual2:
+
 Dual piecepacks #1 (Un-inverted Piecepack-suits and Inverted Latin-suits)
 -------------------------------------------------------------------------
 
@@ -56,8 +59,10 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
     dual1$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
     dual1$spdx_id <- "CC-BY-SA-4.0"
 }
-dual1 <- pp_cfg(dual1)
-grid.piece("preview_layout", cfg=dual1)
+bleed <- list(border_lex=0, border_color=NA_character_)
+dual1_cutlines <- pp_cfg(dual1)
+dual1_bleed <- pp_cfg(c(bleed, dual1))
+grid.piece("preview_layout", cfg=dual1_cutlines)
 .. ..
 
 .. {r preview2, fig.cap='A preview of the latin-suited piecepack'}
@@ -76,9 +81,13 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
     dual2$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
     dual2$spdx_id <- "CC-BY-SA-4.0"
 }
-dual2 <- pp_cfg(dual2)
-grid.piece("preview_layout", cfg=dual2)
+dual2_cutlines <- pp_cfg(dual2)
+dual2_bleed <- pp_cfg(c(bleed, dual2))
+grid.piece("preview_layout", cfg=dual2_cutlines)
 .. ..
+
+.. _dual3:
+.. _dual4:
 
 Dual piecepacks #2 ("Black" and "White" French-suits)
 -----------------------------------------------------
@@ -95,8 +104,9 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
     dual3$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
     dual3$spdx_id <- "CC-BY-SA-4.0"
 }
-dual3 <- pp_cfg(dual3)
-grid.piece("preview_layout", cfg=dual3)
+dual3_cutlines <- pp_cfg(dual3)
+dual3_bleed <- pp_cfg(c(bleed, dual3))
+grid.piece("preview_layout", cfg=dual3_cutlines)
 .. ..
 
 .. {r preview4, fig.cap="A preview of the 'white' french-suited piecepack"}
@@ -110,9 +120,13 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
     dual4$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
     dual4$spdx_id <- "CC-BY-SA-4.0"
 }
-dual4 <- pp_cfg(dual4)
-grid.piece("preview_layout", cfg=dual4)
+dual4_cutlines <- pp_cfg(dual4)
+dual4_bleed <- pp_cfg(c(bleed, dual4))
+grid.piece("preview_layout", cfg=dual4_cutlines)
 .. ..
+
+.. _dual5:
+.. _dual6:
 
 Dual piecepacks #3 ("Black" and "White" Swiss-suits)
 -----------------------------------------------------
@@ -133,8 +147,9 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
     dual5$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
     dual5$spdx_id <- "CC-BY-SA-4.0"
 }
-dual5 <- pp_cfg(dual5)
-grid.piece("preview_layout", cfg=dual5)
+dual5_cutlines <- pp_cfg(dual5)
+dual5_bleed <- pp_cfg(c(bleed, dual5))
+grid.piece("preview_layout", cfg=dual5_cutlines)
 .. ..
 
 .. {r preview6, fig.cap="A preview of the 'white' swiss-suited piecepack"}
@@ -148,11 +163,14 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
     dual6$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
     dual6$spdx_id <- "CC-BY-SA-4.0"
 }
-dual6 <- pp_cfg(dual6)
-grid.piece("preview_layout", cfg=dual6)
+dual6_cutlines <- pp_cfg(dual6)
+dual6_bleed <- pp_cfg(c(bleed, dual6))
+grid.piece("preview_layout", cfg=dual6_cutlines)
 .. ..
 
 .. {r save, echo=FALSE}
-save(dual1, dual2, dual3, dual4, dual5, dual6, file="../tmp/dual.RData")
+save(dual1_cutlines, dual2_cutlines, dual3_cutlines, dual4_cutlines, dual5_cutlines, dual6_cutlines,
+     dual1_bleed, dual2_bleed, dual3_bleed, dual4_bleed, dual5_bleed, dual6_bleed,
+     file="../tmp/dual.RData")
 create_pnp("../tmp/dual.RData")
 .. ..

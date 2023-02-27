@@ -37,7 +37,7 @@ The game start functions all return a data frame that can be used directly with 
     download.file("https://trevorldavis.com/piecepackr/share/demo_cfgs.RData")
     cfgs <- new.env()
     load("demo_cfgs.RData", envir=cfgs)
-    pmap_piece(df_fide_chess(), cfg=cfgs$chess5, op_scale=0.5, 
+    pmap_piece(df_fide_chess(), cfg=cfgs$chess5_borders, op_scale=0.5, 
                trans=op_transform, default.units="in")
 
 .. image:: {static}/share/rules/fide-chess.png

@@ -2,7 +2,7 @@ Default PnP
 ===========
 
 :date: 2019-04-06
-:modified: 2022-02-04
+:modified: 2023-02-16
 :tags: print-and-play
 :summary: A demo and description of piecepackr_'s default piecepack design.
 
@@ -14,6 +14,8 @@ set_opts_chunk("demos-default")
 knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. ..
 
+.. _default1:
+
 The default type of piecepack built by this software if the user does no configuration.  The default piecepack has the following properties.
 
 1. Uses symbols only found in R's default ``sans`` font so that it works on multiple OS platforms out of the box without the user needing to mess with their fonts (unfortunately this means we can't use the traditional piecepack suits).
@@ -24,18 +26,23 @@ The default type of piecepack built by this software if the user does no configu
 
 .. {r preview, fig.cap='A preview of the default piecepack made by piecepackr'}
 library("piecepackr")
-default <- pp_cfg(list())
-default$description <- 'This is the default piecepack produced by `pp_cfg()`.'
-default$title <- "{piecepackr}'s default piecepack"
-default$credit <- ""
+default1 <- list()
+default1$description <- 'This is the default piecepack produced by `pp_cfg()`.'
+default1$title <- "{piecepackr}'s default piecepack"
+default1$credit <- ""
 if (packageVersion("piecepackr") >= "1.10.0-8") {
-    default$copyright <- "Created in 2019 by Trevor L Davis.  No Rights Reserved."
-    default$spdx_id <- "CC0-1.0"
+    default1$copyright <- "Created in 2019 by Trevor L Davis.  No Rights Reserved."
+    default1$spdx_id <- "CC0-1.0"
 }
-grid.piece("preview_layout", cfg=default)
+borders <- list(border_lex=4, border_color="black")
+bleed <- list(border_lex=0, border_color=NA_character_)
+default1_cutlines <- pp_cfg(default1)
+default1_borders <- pp_cfg(c(borders, default1))
+default1_bleed <- pp_cfg(c(bleed, default1))
+grid.piece("preview_layout", cfg=default1_cutlines)
 .. ..
 
 .. {r save, echo=FALSE}
-save(default, file="../tmp/default.RData")
+save(default1_cutlines, default1_borders, default1_bleed, file="../tmp/default.RData")
 create_pnp("../tmp/default.RData")
 .. ..

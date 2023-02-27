@@ -34,9 +34,16 @@ create_pnp <- function(Rdata_file) {
     load(Rdata_file, envir=ee)
     nn <- sort(names(ee))
     for (name in nn) {
-        cfg <- ee[[name]]
-        piecepackr::save_print_and_play(cfg, sprintf("../share/pnp/%s_letter.pdf", name), "letter")
-        piecepackr::save_print_and_play(cfg, sprintf("../share/pnp/%s_A4.pdf", name), "A4")
+        if (grepl("_cutlines$", name)) {
+            cfg <- ee[[name]]
+            piecepackr::save_print_and_play(cfg, sprintf("../share/pnp/%s_letter.pdf", name), "letter")
+            piecepackr::save_print_and_play(cfg, sprintf("../share/pnp/%s_A4.pdf", name), "A4")
+        }
+        if (grepl("_bleed$", name)) {
+            cfg <- ee[[name]]
+            piecepackr::save_print_and_play(cfg, sprintf("../share/pnp/%s_letter.pdf", name), "letter", bleed = TRUE)
+            piecepackr::save_print_and_play(cfg, sprintf("../share/pnp/%s_A4.pdf", name), "A4", bleed = TRUE)
+        }
     }
     invisible(NULL)
 }

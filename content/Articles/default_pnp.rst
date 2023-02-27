@@ -2,13 +2,15 @@ Default PnP
 ===========
 
 :date: 2019-04-06
-:modified: 2022-02-04
+:modified: 2023-02-16
 :tags: print-and-play
 :summary: A demo and description of piecepackr_'s default piecepack design.
 
 .. include:: ../../links.rst
 
 
+
+.. _default1:
 
 The default type of piecepack built by this software if the user does no configuration.  The default piecepack has the following properties.
 
@@ -23,15 +25,20 @@ The default type of piecepack built by this software if the user does no configu
     
 
     library("piecepackr")
-    default <- pp_cfg(list())
-    default$description <- 'This is the default piecepack produced by `pp_cfg()`.'
-    default$title <- "{piecepackr}'s default piecepack"
-    default$credit <- ""
+    default1 <- list()
+    default1$description <- 'This is the default piecepack produced by `pp_cfg()`.'
+    default1$title <- "{piecepackr}'s default piecepack"
+    default1$credit <- ""
     if (packageVersion("piecepackr") >= "1.10.0-8") {
-        default$copyright <- "Created in 2019 by Trevor L Davis.  No Rights Reserved."
-        default$spdx_id <- "CC0-1.0"
+        default1$copyright <- "Created in 2019 by Trevor L Davis.  No Rights Reserved."
+        default1$spdx_id <- "CC0-1.0"
     }
-    grid.piece("preview_layout", cfg=default)
+    borders <- list(border_lex=4, border_color="black")
+    bleed <- list(border_lex=0, border_color=NA_character_)
+    default1_cutlines <- pp_cfg(default1)
+    default1_borders <- pp_cfg(c(borders, default1))
+    default1_bleed <- pp_cfg(c(bleed, default1))
+    grid.piece("preview_layout", cfg=default1_cutlines)
 
 .. figure:: {static}/images/knitr/demos-default-preview-1.png
     :align: center

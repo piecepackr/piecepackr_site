@@ -2,7 +2,7 @@ Dingbats PnP
 ============
 
 :date: 2019-05-31
-:modified: 2022-04-04
+:modified: 2023-02-16
 :tags: print-and-play
 :summary: A demo of emulating of `Daniel Ajoy`_'s Dingbats suited `PiecePack Design Variation`_ using piecepackr_.
 
@@ -39,6 +39,8 @@ For more info about the design please read `Daniel Ajoy`_'s description and desi
 It is possible to emulate Ajoy's Dingbats piecepack_ in piecepackr_ but in order to emulate his tile faces and null/ace rank symbols we'll need to write and use a custom `grob function`_ in order to add some extra circles/stars on the tile faces and add an extra circle to his null/ace rank symbols.
 
 |
+
+.. _dingbats1:
 
 .. {r preview, fig.cap="A preview of a 'Dingbats' piecepack"}
 library("grid")
@@ -125,9 +127,15 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
     dingbats1$copyright <- "\u00a9 2020 Trevor L Davis.  Some Rights Reserved."
     dingbats1$spdx_id <- "CC-BY-3.0"
 }
-dingbats1 <- pp_cfg(dingbats1)
-grid.piece("preview_layout", cfg=dingbats1)
+borders <- list(border_lex=4, border_color="black")
+bleed <- list(border_lex=0, border_color=NA_character_)
+dingbats1_cutlines <- pp_cfg(dingbats1)
+dingbats1_borders <- pp_cfg(c(borders, dingbats1))
+dingbats1_bleed <- pp_cfg(c(bleed, dingbats1))
+grid.piece("preview_layout", cfg=dingbats1_cutlines)
 .. ..
+
+.. _dingbats2:
 
 Ajoy's `PiecePack Design Variation`_ PnP file also included a deck using the French suits.  Modifying the above "Dingbats piecepack" `configuration list`_ in order to build this deck is straightforward.
 
@@ -149,11 +157,16 @@ dingbats2$ps_color.s1.tile_face="black"
 dingbats2$ps_color.s2.tile_face="black"
 dingbats2$ps_color.s3.tile_face="white"
 dingbats2$title <- "Dingbats piecepack (French suits)"
-dingbats2 <- pp_cfg(dingbats2)
-grid.piece("preview_layout", cfg=dingbats2)
+dingbats2_cutlines <- pp_cfg(dingbats2)
+dingbats2_borders <- pp_cfg(c(borders, dingbats2))
+dingbats2_bleed <- pp_cfg(c(bleed, dingbats2))
+grid.piece("preview_layout", cfg=dingbats2_cutlines)
 .. ..
 
 .. {r save, echo=FALSE}
-save(dingbats1, dingbats2, file="../tmp/dingbats.RData")
+save(dingbats1_cutlines, dingbats2_cutlines, 
+     dingbats1_borders, dingbats2_borders,
+     dingbats1_bleed, dingbats2_bleed,
+     file="../tmp/dingbats.RData")
 create_pnp("../tmp/dingbats.RData")
 .. ..

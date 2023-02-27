@@ -2,7 +2,7 @@ Dual piecepacks PnP
 ===================
 
 :date: 2019-04-07
-:modified: 2022-02-04
+:modified: 2023-02-16
 :tags: print-and-play
 :summary: This is the demo of the six piecepacks_ that were included in the `"dual piecepacks" <http://www.ludism.org/ppwiki/DualPiecepacks>`_ proof-of-concept: one piecepack-suited piecepack, one `latin-suited <https://en.wikipedia.org/wiki/Suit_(cards)#Origin_and_development_of_the_Latin_suits>`_ piecepack (inverted color scheme), two french-suited piecepacks (one 'black' suits, one 'white' suits), and two `swiss-suited <https://en.wikipedia.org/wiki/Suit_(cards)#Invention_of_the_Germanic_suits>`_ piecepacks (one dark grayscale color scheme, one light grayscale color scheme).
 
@@ -32,6 +32,9 @@ This gives one the following nice properties:
 
 It is possible to construct three piecepacks where each pair of piecepack decks are "dual piecepacks" (e.g. piecepack-suited + inverted latin-suited + light french-suited). This could be called a "trial `HoardPack <http://www.ludism.org/ppwiki/HoardPack>`_" (apparently "trial" is the proper "three" analogue to "dual"). 
 
+.. _dual1:
+.. _dual2:
+
 Dual piecepacks #1 (Un-inverted Piecepack-suits and Inverted Latin-suits)
 -------------------------------------------------------------------------
 
@@ -55,8 +58,10 @@ Dual piecepacks #1 (Un-inverted Piecepack-suits and Inverted Latin-suits)
         dual1$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
         dual1$spdx_id <- "CC-BY-SA-4.0"
     }
-    dual1 <- pp_cfg(dual1)
-    grid.piece("preview_layout", cfg=dual1)
+    bleed <- list(border_lex=0, border_color=NA_character_)
+    dual1_cutlines <- pp_cfg(dual1)
+    dual1_bleed <- pp_cfg(c(bleed, dual1))
+    grid.piece("preview_layout", cfg=dual1_cutlines)
 
 .. figure:: {static}/images/knitr/demos-dual-preview1-1.png
     :align: center
@@ -84,8 +89,9 @@ Dual piecepacks #1 (Un-inverted Piecepack-suits and Inverted Latin-suits)
         dual2$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
         dual2$spdx_id <- "CC-BY-SA-4.0"
     }
-    dual2 <- pp_cfg(dual2)
-    grid.piece("preview_layout", cfg=dual2)
+    dual2_cutlines <- pp_cfg(dual2)
+    dual2_bleed <- pp_cfg(c(bleed, dual2))
+    grid.piece("preview_layout", cfg=dual2_cutlines)
 
 .. figure:: {static}/images/knitr/demos-dual-preview2-1.png
     :align: center
@@ -93,6 +99,9 @@ Dual piecepacks #1 (Un-inverted Piecepack-suits and Inverted Latin-suits)
     :width: 60%
 
     A preview of the latin-suited piecepack
+
+.. _dual3:
+.. _dual4:
 
 Dual piecepacks #2 ("Black" and "White" French-suits)
 -----------------------------------------------------
@@ -112,8 +121,9 @@ Dual piecepacks #2 ("Black" and "White" French-suits)
         dual3$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
         dual3$spdx_id <- "CC-BY-SA-4.0"
     }
-    dual3 <- pp_cfg(dual3)
-    grid.piece("preview_layout", cfg=dual3)
+    dual3_cutlines <- pp_cfg(dual3)
+    dual3_bleed <- pp_cfg(c(bleed, dual3))
+    grid.piece("preview_layout", cfg=dual3_cutlines)
 
 .. figure:: {static}/images/knitr/demos-dual-preview3-1.png
     :align: center
@@ -136,8 +146,9 @@ Dual piecepacks #2 ("Black" and "White" French-suits)
         dual4$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
         dual4$spdx_id <- "CC-BY-SA-4.0"
     }
-    dual4 <- pp_cfg(dual4)
-    grid.piece("preview_layout", cfg=dual4)
+    dual4_cutlines <- pp_cfg(dual4)
+    dual4_bleed <- pp_cfg(c(bleed, dual4))
+    grid.piece("preview_layout", cfg=dual4_cutlines)
 
 .. figure:: {static}/images/knitr/demos-dual-preview4-1.png
     :align: center
@@ -145,6 +156,9 @@ Dual piecepacks #2 ("Black" and "White" French-suits)
     :width: 60%
 
     A preview of the 'white' french-suited piecepack
+
+.. _dual5:
+.. _dual6:
 
 Dual piecepacks #3 ("Black" and "White" Swiss-suits)
 -----------------------------------------------------
@@ -168,8 +182,9 @@ Dual piecepacks #3 ("Black" and "White" Swiss-suits)
         dual5$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
         dual5$spdx_id <- "CC-BY-SA-4.0"
     }
-    dual5 <- pp_cfg(dual5)
-    grid.piece("preview_layout", cfg=dual5)
+    dual5_cutlines <- pp_cfg(dual5)
+    dual5_bleed <- pp_cfg(c(bleed, dual5))
+    grid.piece("preview_layout", cfg=dual5_cutlines)
 
 .. figure:: {static}/images/knitr/demos-dual-preview5-1.png
     :align: center
@@ -192,8 +207,9 @@ Dual piecepacks #3 ("Black" and "White" Swiss-suits)
         dual6$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
         dual6$spdx_id <- "CC-BY-SA-4.0"
     }
-    dual6 <- pp_cfg(dual6)
-    grid.piece("preview_layout", cfg=dual6)
+    dual6_cutlines <- pp_cfg(dual6)
+    dual6_bleed <- pp_cfg(c(bleed, dual6))
+    grid.piece("preview_layout", cfg=dual6_cutlines)
 
 .. figure:: {static}/images/knitr/demos-dual-preview6-1.png
     :align: center

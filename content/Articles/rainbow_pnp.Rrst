@@ -2,7 +2,7 @@ Rainbow Deck suited piecepack PnP
 =================================
 
 :date: 2019-06-23
-:modified: 2022-02-04
+:modified: 2023-02-16
 :tags: print-and-play
 :summary: The `Rainbow Deck`_ by Chen Changcai is a cardgame system that can be used to play hundreds of games.  It has 12 suits divided by 6 suit symbols with each suit symbol having a dark and light color associated with it.  It is straightforward to make six-suited piecepacks_ to use as an accessory to the `Rainbow Deck`_.
 
@@ -15,6 +15,8 @@ knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. include:: ../../links.rst
 
 .. _Rainbow Deck: https://boardgamegeek.com/boardgame/59655/rainbow-deck
+
+.. _rainbow1:
 
 The `Rainbow Deck`_ by Chen Changcai is a cardgame system that can be used to play hundreds of games.  It has 12 suits divided by 6 suit symbols with each suit symbol having a dark and light color associated with it.  It is straightforward to make six-suited piecepacks_ to use as an accessory to the `Rainbow Deck`_.  The `Rainbow Deck`_ itself is licensed under a CC BY-SA-NC license but Chen Changcai was kind enough to give me permission to create Rainbow Deck suited piecepacks under a CC BY-SA 4.0 license requesting that I please provide a link back to his `Rainbow Deck`_ BoardGameGeek page.
 
@@ -42,20 +44,27 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
     rainbow1$copyright <- "\u00a9 2019 Trevor L Davis.  Some Rights Reserved."
     rainbow1$spdx_id <- "CC-BY-SA-4.0"
 }
-rainbow1 <- pp_cfg(rainbow1)
-grid.piece("preview_layout", cfg=rainbow1)
+bleed <- list(border_lex=0, border_color=NA_character_)
+rainbow1_cutlines <- pp_cfg(rainbow1)
+rainbow1_bleed <- pp_cfg(c(bleed, rainbow1))
+grid.piece("preview_layout", cfg=rainbow1_cutlines)
 .. ..
 
+.. _rainbow2:
+
 .. {r RD2, fig.cap='Rainbow Deck suited piecepack (Light suits)'}
-rainbow2 <- as.list(rainbow1)
+rainbow2 <- rainbow1
 rainbow2$suit_color <- "#ff80c0,#ffff80,#80ff00,#80ffff,#c080ff,#c0c0c0,white"
 rainbow2$background_color.suited <- "black"
 rainbow2$title <- "Rainbow Deck (light suits)"
-rainbow2 <- pp_cfg(rainbow2)
-grid.piece("preview_layout", cfg=rainbow2)
+rainbow2_cutlines <- pp_cfg(rainbow2)
+rainbow2_bleed <- pp_cfg(c(bleed, rainbow2))
+grid.piece("preview_layout", cfg=rainbow2_cutlines)
 .. ..
 
 .. {r save, echo=FALSE}
-save(rainbow1, rainbow2, file="../tmp/rainbow.RData")
+save(rainbow1_cutlines, rainbow2_cutlines,
+     rainbow1_bleed, rainbow2_bleed,
+     file="../tmp/rainbow.RData")
 create_pnp("../tmp/rainbow.RData")
 .. ..

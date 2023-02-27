@@ -2,8 +2,15 @@ Print-and-Play PDFs
 ===================
 
 :date: 2019-03-27
-:modified: 2021-03-17
+:modified: 2023-02-27
 :tags: print-and-play
+
+.. include:: ../../links.rst
+
+piecepackr_ can generate Print & Play layouts for the piecepack_ game system via the `save_print_and_play()` function.
+This page collects a number of such generated layouts along links to the relevant `Print & Play demos`_ that contain the source code for each of these piecepacks' configurations_.  
+
+The **Cutlines** layouts have pieces with thin borders designed to be cut out with scissors (or other tools).  These layouts are compact and contain more game pieces.  The pieces in the **Crop marks w/bleed** layouts lack borders and instead feature a bleed zone and crop marks.  These are designed to be cut out with more advanced crafting tools and techniques but make it easier for the crafter to control the final quality of the build.  
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
@@ -26,17 +33,36 @@ save(list=names(ee), file="../share/demo_cfgs.RData", envir=ee)
 .. ..
 
 .. {r table, echo=FALSE, results='asis'}
-cfg_names <- sort(names(ee))
+# cutlines
+cfg_names <- grep("_cutlines$", sort(names(ee)), value = TRUE)
 titles <- sapply(cfg_names, function(x) {tt <- ee[[x]]$title; ifelse(is.null(tt), "", tt)})
 letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", cfg_names)
 A4_urls <- sprintf("{static}/share/pnp/%s_A4.pdf", cfg_names)
-base <- gsub("[0-9]*", "", cfg_names)
+base <- gsub("[0-9]*_cutlines", "", cfg_names)
+cfg_base <- gsub("_cutlines", "", cfg_names)
 cap <- function(s) { paste0(toupper(substring(s, 1, 1)), substring(s, 2)) }
-demo_links <- sprintf("`%s PnP <{filename}/Articles/%s_pnp.rst>`__", cap(base), base)
-df <- data.frame(Title=titles, Letter=rst_link(letter_urls),
-                 A4=rst_link(A4_urls), Demo=demo_links, 
+demo_links <- sprintf("{filename}/Articles/%s_pnp.rst#%s", base, cfg_base)
+df <- data.frame(Title=rst_link(demo_links, titles), 
+                 Cutlines=paste(rst_link(letter_urls, "letter"), "/", rst_link(A4_urls, "A4")),
                  stringsAsFactors=FALSE)
-rst_list_table(df, title="Downloadable Print-and-Play PDFs", widths="45, 15, 15, 25")
+
+# bleed
+cfg_names <- grep("_bleed$", sort(names(ee)), value = TRUE)
+titles <- sapply(cfg_names, function(x) {tt <- ee[[x]]$title; ifelse(is.null(tt), "", tt)})
+letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", cfg_names)
+A4_urls <- sprintf("{static}/share/pnp/%s_A4.pdf", cfg_names)
+base <- gsub("[0-9]*_bleed", "", cfg_names)
+cfg_base <- gsub("_bleed", "", cfg_names)
+cap <- function(s) { paste0(toupper(substring(s, 1, 1)), substring(s, 2)) }
+demo_links <- sprintf("{filename}/Articles/%s_pnp.rst#%s", base, cfg_base)
+cmwb <- paste(rst_link(letter_urls, "letter"), "/", rst_link(A4_urls, "A4"))
+df_b <- data.frame(Title=rst_link(demo_links, titles),
+                   `Crop marks w/ bleed`=cmwb,
+                   stringsAsFactors=FALSE, check.names = FALSE)
+df <- dplyr::left_join(df, df_b, by = "Title")
+df[, 3] <- ifelse(is.na(df[, 3]), "", df[, 3])
+
+rst_list_table(df, title="Downloadable Print-and-Play PDFs", widths="60, 15, 25")
 .. ..
 
 .. {r animation, results='hide', message=FALSE, echo=FALSE}
@@ -46,7 +72,9 @@ library("piecepackr")
 cfgs <- new.env()
 load("../share/demo_cfgs.RData", envir=cfgs)
 draw_demos <- function(cfgs) {
-    for (nn in sort(names(cfgs))) {
+    cfg_names <- sort(names(cfgs))
+    cfg_names <- grep("_cutlines$", cfg_names, value = TRUE)
+    for (nn in cfg_names) {
         grid.newpage()
         text <- sprintf("grid.piece('preview_layout', cfg=%s)", nn)
         grid.text(text, y=0.94, gp=gpar(fontsize=16, fontface="bold"))

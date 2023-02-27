@@ -2,7 +2,7 @@ Orthodox PnP
 ============
 
 :date: 2019-05-26
-:modified: 2022-02-04
+:modified: 2023-02-16
 :tags: print-and-play
 :summary: For a number of reasons the default_ piecepack made by piecepackr_ does not comply with the `Anatomy of a Piecepack`_ standard.  But not to fear - one can easily configure_ a piecepack that looks like one of the original piecepacks.   
 
@@ -59,8 +59,12 @@ For a number of reasons the default_ piecepack made by piecepackr_ does not comp
         orthodox1$copyright <- "Created in 2019 by Trevor L Davis.  No Rights Reserved."
         orthodox1$spdx_id <- "CC0-1.0"
     }
-    orthodox1 <- pp_cfg(orthodox1)
-    grid.piece("preview_layout", cfg=orthodox1)
+    borders <- list(border_lex=4, border_color="black")
+    bleed <- list(border_lex=0, border_color=NA_character_)
+    orthodox1_cutlines <- pp_cfg(orthodox1)
+    orthodox1_borders <- pp_cfg(c(borders, orthodox1))
+    orthodox1_bleed <- pp_cfg(c(bleed, orthodox1))
+    grid.piece("preview_layout", cfg=orthodox1_cutlines)
 
 .. figure:: {static}/images/knitr/demos-orthodox-preview-1.png
     :align: center
@@ -76,8 +80,10 @@ For a number of reasons the default_ piecepack made by piecepackr_ does not comp
     orthodox2 <- as.list(orthodox1)
     orthodox2$suit_color="darkred,black,gold,darkblue,black"
     orthodox2$title <- "Orthodox piecepack (Gold Crowns)"
-    orthodox2 <- pp_cfg(orthodox2)
-    grid.piece("preview_layout", cfg=orthodox2)
+    orthodox2_cutlines <- pp_cfg(orthodox2)
+    orthodox2_borders <- pp_cfg(c(borders, orthodox2))
+    orthodox2_bleed <- pp_cfg(c(bleed, orthodox2))
+    grid.piece("preview_layout", cfg=orthodox2_cutlines)
 
 .. figure:: {static}/images/knitr/demos-orthodox-preview2-1.png
     :align: center
@@ -101,9 +107,11 @@ For a number of reasons the default_ piecepack made by piecepackr_ does not comp
     orthodox3$suit_text.saucer_face = NULL
     orthodox3$suit_cex.saucer_face <- 0.5
     orthodox3$title <- "French-suited piecepack (Orthodox)"
-    orthodox3$description <- ""
-    orthodox3 <- pp_cfg(orthodox3)
-    grid.piece("preview_layout", cfg=orthodox3)
+    orthodox3$description <- "A French-suited piecepack that otherwise complies with the 'Anatomy of a Piecepack' standard"
+    orthodox3_cutlines <- pp_cfg(orthodox3)
+    orthodox3_borders <- pp_cfg(c(borders, orthodox3))
+    orthodox3_bleed <- pp_cfg(c(bleed, orthodox3))
+    grid.piece("preview_layout", cfg=orthodox3_cutlines)
 
 .. figure:: {static}/images/knitr/demos-orthodox-preview3-1.png
     :align: center
