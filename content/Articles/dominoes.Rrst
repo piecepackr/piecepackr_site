@@ -1,10 +1,10 @@
-Dominoes and Standard 6-sided Dice
-==================================
+Dominoes
+========
 
 :date: 2020-02-16
-:modified: 2023-01-16
+:modified: 2023-03-06
 :tags: other-game-systems
-:summary: piecepackr_ comes with built-in configurations for double-18 dominoes and standard six-sided dice in six colors as well as Chinese dominoes and dice in two color schemes via the ``game_systems()`` function.
+:summary: piecepackr_ comes with built-in configurations for double-18 dominoes in six color schemes as well as Chinese dominoes in two color schemes via the ``game_systems()`` function.
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
@@ -16,14 +16,14 @@ knitr::opts_chunk$set(fig.process = fig_process(date_created = "2023"))
 
 .. contents::
 
-piecepackr_ comes with built-in configurations for double-18 dominoes and standard six-sided dice in six colors as well as Chinese dominoes and dice in two color schemes via the ``game_systems()`` function.
+piecepackr_ comes with built-in configurations for double-18 dominoes in six color schemes as well as Chinese dominoes in two color schemes via the ``game_systems()`` function.
 
 Western dominoes and dice
 -------------------------
 
 .. note:: Double-12 dominoes were introduced in piecepackr_ v1.3 and were extended to double-18 dominoes in v1.9.
 
-The ``dice`` configuration provides standard six-sided dice with the suit controlling the color and the rank controlling the number of pips.  There are seven dominoes configurations: ``dominoes``, ``dominoes_black``, ``dominoes_blue``, ``dominoes_green``, ``dominoes_red``, ``dominoes_white``, and ``dominoes_yellow`` with the "rank" controlling the number of pips on the "top" side and the "suit" controlling the number of pips on the "bottom" side. Here is an example diagram:
+There are seven dominoes configurations: ``dominoes``, ``dominoes_black``, ``dominoes_blue``, ``dominoes_green``, ``dominoes_red``, ``dominoes_white``, and ``dominoes_yellow`` with the "rank" controlling the number of pips on the "top" side and the "suit" controlling the number of pips on the "bottom" side.  Currently there is no difference in appearance between the ``dominoes`` and ``dominoes_white`` configurations returned by ``game_systems()`` [#]_.  The ``dice`` configuration provides standard six-sided dice with the suit controlling the color and the rank controlling the number of pips [#]_.  Here is an example diagram:
 
 .. {r diagram, fig.width=7, fig.height=8, fig.cap="Double-18 dominoes and standard 6-sided dice"}
 library("piecepackr")
@@ -41,12 +41,16 @@ df <- rbind(df_dominoes, df_dice)
 pmap_piece(df, default.units="in", envir=envir, op_scale=0.5, trans=op_transform)
 .. ..
 
+.. [#] Semantically the "dominoes" is meant to represent a more general notion of a dominoes set.  ``game_systems()`` implements it as a dominoes set with black pips on white tiles but users could theoretically replace it with alternative dominoes set implementations such as tiles with colored numbers.  Semantically the various colored dominoes sets are meant to be visually distinct with each other and to visually match the pieces from other game systems-in particular the piecepack_ game `Japan <https://www.ludism.org/ppwiki/Japan>`_ assumes two different double-6 dominoes sets that match two of the piecepack suits.
+
+.. [#] Technically, each of the dominoes configurations also has matching six-sided "die" pieces.  These are equivalent to the pipped six-sided dice in ``dice`` when using the configurations returned by ``game_systems()``.  However semantically they need not be equivalent e.g. if you had a modified "dominoes" configuration with colored numbers instead of pips and also updated its "die" pieces to also use colored numbers instead of pips then these dice may no longer match the dice from the "dice" configuration.
+
 Chinese dominoes and dice
 -------------------------
 
 .. note:: Chinese dominoes were introduced in piecepackr_ v1.13.
 
-The configurations ``dominoes_chinese`` and ``dominoes_chinese_black`` provide `Asian-style dice <https://en.wikipedia.org/wiki/Dice#Arrangement>`_ and `Chinese dominoes <https://en.wikipedia.org/wiki/Chinese_dominoes>`_.  ``dominoes_chinese`` has a white background with black and red pips while ``dominoes_chinese_black`` has a black background with white and red pips.
+The configurations ``dominoes_chinese`` and ``dominoes_chinese_black`` provide `Chinese dominoes <https://en.wikipedia.org/wiki/Chinese_dominoes>`_ and `Asian-style dice <https://en.wikipedia.org/wiki/Dice#Arrangement>`_.  ``dominoes_chinese`` has a white background with black and red pips while ``dominoes_chinese_black`` has a black background with white and red pips.
 
 |
 |

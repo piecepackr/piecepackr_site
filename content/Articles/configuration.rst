@@ -2,7 +2,7 @@ Configuration lists
 ===================
 
 :date: 2019-04-17
-:modified: 2022-02-04
+:modified: 2023-03-20
 :tags: piecepackr-features
 :summary: piecepackr_ allows one to alter the appearance of one's board game pieces through the use of configuration lists.
 
@@ -74,7 +74,7 @@ Table of configuration list styles
 
 .. list-table:: Configuration list styles
     :header-rows: 1
-    :widths: 20, 35, 35, 10
+    :widths: 20, 40, 30, 10
 
     * - name
       - description
@@ -262,7 +262,7 @@ Table of configuration list styles
       -
       -
     * - die_arrangement
-      - Either "counter_up", "counter_down", or "opposites_sum_to_5"
+      - Arrangement of dice (for use in `3D projections <{filename}/Articles/projections.rst>`_ and paper `Print & Play`_ arrangements).  Either ``"counter_up"``, ``"counter_down"``, ``"opposites_sum_to_5"``, or (a comma-separated string of) the integers ``1``, ``2``, ``3``, ``4``, ``5``, and ``6`` (in any order) with each integer optionally followed by ``^`` (default), ``<``, ``v``, or ``>``.
       -
       -
     * - width

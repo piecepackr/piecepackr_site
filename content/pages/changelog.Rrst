@@ -2,7 +2,7 @@ News
 ====
 
 :date: 2020-06-24
-:modified: 2023-02-27
+:modified: 2023-03-06
 
 .. include:: ../../links.rst
 
@@ -11,10 +11,15 @@ This page is a reverse chronological list of major changes by quarter.
 2023-Q1
 -------
 
+New articles
+~~~~~~~~~~~~
+
+* `Dice <{filename}/Articles/dice.rst>`_
+
 Updated articles and pages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* `Dominoes and Standard 6-sided Dice`_
+* `Dominoes`_
 * `Print-and-Play PDFs <{filename}/pages/pnp.rst>`_
 
 2022-Q4
@@ -173,7 +178,7 @@ New articles
 ~~~~~~~~~~~~
 
 * `Checkers <{filename}/Articles/checkers.rst>`_
-* `Dominoes and standard 6-sided dice <{filename}/Articles/dominoes.rst>`_
+* `Dominoes <{filename}/Articles/dominoes.rst>`_
 * `Generating alternative textures for James H. Vipond's piecepack components <{filename}/Articles/vipond_textures.rst>`_
 * `Looney Pyramids <{filename}/Articles/looney_pyramids.rst>`__
 * `Reversi-friendly piecepack <{filename}/Articles/reversi_pnp.rst>`_

@@ -18,6 +18,7 @@ examples <- list(
     chinese = "content/images/knitr/games-dominoes-chinese-1.png",
     go = "content/images/knitr/games-go-grid-1.png",
     icehouse = "content/images/knitr/martian_chess_rgl.png",
+    polyhedral = "content/images/knitr/games-dice-polyhedral-1.png",
     rayvertex = "content/images/knitr/rayvertex.png",
     tablut = "content/images/knitr/games-tablut-starting-diagram-1.png"
 )
@@ -119,7 +120,8 @@ Other Game Systems
 These are demonstrations of using piecepackr_ to make diagrams for `other game systems`_ besides the piecepack_.
 
 #. `Checkers <{filename}/Articles/checkers.rst>`_
-#. `Dominoes and standard 6-sided dice <{filename}/Articles/dominoes.rst>`_
+#. `Dice <{filename}/Articles/dice.rst>`_
+#. `Dominoes <{filename}/Articles/dominoes.rst>`_
 #. `Go <{filename}/Articles/go.rst>`_
 #. `Hexpack <{filename}/Articles/hexpack.rst>`_
 #. `Looney Pyramids <{filename}/Articles/looney_pyramids.rst>`__
