@@ -35,7 +35,9 @@ file 'content/pages/index.Rrst' => "about.rst"
 desc "Build website"
 task :default => rrst_files.ext(".rst")
 task :default do
+    directory "output"
     sh "pelican -o output -s pelicanconf.py content" + debug_str
+    cp Dir["aliases/*.html"], "output"
 end
 
 desc "Deploy website to trevor.l.davis.com/piecepackr"
