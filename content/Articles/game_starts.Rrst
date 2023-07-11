@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2022-07-25
+:modified: 2023-07-11
 :tags: ppgames-features, piecepack-games
 :summary: The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece()`` or ``ppgames::cat_piece()`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn()`` to initially setup the game pieces.
 
@@ -322,6 +322,10 @@ Contained in ppgames
       - df_slides_of_action
       -
       -
+    * - `Speedy Towers <https://www.ludism.org/ppwiki/SpeedyTowers>`_
+      - df_speedy_towers
+      - X
+      - Currently only supports two players
     * - `Tablut <https://www.ludism.org/ppwiki/Tablut>`_
       - df_tablut
       - X
@@ -677,6 +681,14 @@ invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Slides of Action"),
         "../share/rules/slides_of_action.png")
 
+ppgames::save_promo_image("speedy towers", gk_4p, "../share/rules/speedy_towers.png", ppi = 36)
+save_ruleset("speedy towers", gk_4p, "../share/rules/speedy_towers.pdf")
+save_ruleset("speedy towers", gk_4p, "../share/rules/speedy_towers_A4.pdf", size="A4")
+save_pamphlet("speedy towers", gk_4p, "../share/rules/speedy_towers_pamphlet.pdf")
+save_pamphlet("speedy towers", gk_4p, "../share/rules/speedy_towers_pamphlet_A4.pdf", size="A4")
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Example end for a game of Speedy Towers"),
+        "../share/rules/speedy_towers.png")
+
 png("../share/rules/the_in_crowd.png", width=7.5, height=7.5, units="in", res=42)
 pmap_piece(df_the_in_crowd(), envir=cfgs, default.units="in", 
            op_scale=1.0, trans=op_transform)
@@ -758,6 +770,7 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  `San Andreas` = "../share/rules/san_andreas.png",
                  Skyscrapers = "../share/rules/skyscrapers.png",
                  `Slides of Action` = "../share/rules/slides_of_action.png",
+                 `Speedy Towers` = "../share/rules/speedy_towers.png",
                  Tablut = "../images/knitr/games-tablut-starting-diagram-1.png",
                  Tula = "../share/rules/tula.png",
                  `Turkish Draughts` = "../share/rules/turkish_draughts.png",
