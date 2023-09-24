@@ -3,6 +3,7 @@
 *.swp
 output/
 about.rst
+content/Articles/*.rst
 content/Demos/*.rst
 content/Demos/*.zip
 content/Demos/*.pdf
