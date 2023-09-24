@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2023-07-11
+:modified: 2023-09-24
 :tags: ppgames-features, piecepack-games
 :summary: The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece()`` or ``ppgames::cat_piece()`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn()`` to initially setup the game pieces.
 
@@ -150,6 +150,14 @@ Contained in ppgames
       - df_backgammon
       - X
       -
+    * - `Black Pawn Trucking <https://www.ludism.org/ppwiki/BlackPawnTrucking>`_
+      - df_black_pawn_trucking
+      -
+      -
+    * - `Brain Burn <https://www.ludism.org/ppwiki/BrainBurn>`_
+      - df_brain_burn
+      -
+      -
     * - `Brandubh <http://tafl.cyningstan.com/page/171/brandub>`_
       - df_brandubh
       -
@@ -158,9 +166,25 @@ Contained in ppgames
       - df_breakthrough
       -
       -
+    * - `Burbuja <https://www.ludism.org/ppwiki/Burbuja>`_
+      - df_burbuja
+      -
+      -
+    * - `Cardinal's Guards <https://ludism.org/ppwiki/CardinalsGuards>`_
+      - df_cardinals_guards
+      -
+      -
+    * - `Change Change <https://ludism.org/ppwiki/ChangeChange>`_
+      - df_change_change
+      -
+      -
     * - `Cell Management <https://www.ludism.org/ppwiki/CellManagement>`_
       - df_cell_management
       -
+      -
+    * - `Chariots <https://ludism.org/ppwiki/Chariots>`_
+      - df_chariots
+      - X
       -
     * - `Chaturaji <https://www.ludism.org/ppwiki/Chaturaji>`_
       - df_chaturaji
@@ -175,15 +199,23 @@ Contained in ppgames
       - X
       -
     * - `Chinese Checkers <https://www.ludism.org/ppwiki/ChineseCheckers>`_
-      - df_chinese_checkers, df_mini_halma
+      - df_chinese_checkers, df_mini_halma, df_piecepack_halma
       -
       - A mini Halma variant
+    * - `Climbing Man <https://ludism.org/ppwiki/ClimbingMan>`_
+      - df_climbing_man
+      -
+      -
     * - `Cribbage (Board) <https://www.ludism.org/ppwiki/Cribbage>`_
       - df_cribbage, df_cribbage_board
       - X
       - A (piecepack) cribbage board
     * - `Coin Collectors <https://www.ludism.org/ppwiki/CoinCollectors>`_
       - df_coin_collectors
+      -
+      -
+    * - `Crocodile Hop <https://ludism.org/ppwiki/CrocodileHop>`_
+      - df_crocodile_hop
       -
       -
     * - `Crossings <https://en.wikipedia.org/wiki/Crossings_(game)>`_
@@ -226,6 +258,10 @@ Contained in ppgames
       - df_fujisan
       -
       -
+    * - `Galaxy Express <https://ludism.org/ppwiki/GalaxyExpress>`_
+      - df_galaxy_express
+      -
+      -
     * - `Grasshoper <http://www.cyningstan.com/game/71/grasshopper>`_
       - df_grasshopper
       -
@@ -242,6 +278,10 @@ Contained in ppgames
       - df_jul_gono
       -
       - 
+    * - `Lab Rats <https://ludism.org/ppwiki/LabRats>`_
+      - df_lab_rats
+      -
+      -
     * - `Landlocked <https://www.ludism.org/ppwiki/Landlocked>`_
       - df_landlocked
       -
@@ -262,10 +302,18 @@ Contained in ppgames
       - df_mathrix
       -
       -
+    * - `Minishogi <https://en.wikipedia.org/wiki/Minishogi>`_
+      - df_minishogi
+      -
+      -
     * - `Nine Men's Morris <https://en.wikipedia.org/wiki/Nine_men%27s_morris>`_
       - df_nine_mens_morris
       - X
-      - 
+      -
+    * - `One Man Thrag <https://www.ludism.org/ppwiki/OneManThrag>`_
+      - df_one_man_thrag
+      -
+      -
     * - `Pass the Food <https://www.ludism.org/ppwiki/PassTheFood>`_
       - df_pass_the_food
       - X
@@ -306,6 +354,10 @@ Contained in ppgames
       - df_salta
       -
       -
+    * - `Sarcophagus <https://ludism.org/ppwiki/Sarcophagus>`_
+      - df_sarcophagus
+      -
+      -
     * - `San Andreas <https://www.ludism.org/ppwiki/SanAndreas>`_
       - df_san_andreas
       -
@@ -313,6 +365,10 @@ Contained in ppgames
     * - `Shogi (Japanese Chess) <https://www.ludism.org/ppwiki/Shogi>`_
       - df_shogi
       - X
+      -
+    * - `Shopping Mall <https://ludism.org/ppwiki/ShoppingMall>`_
+      - df_shopping_mall
+      -
       -
     * - `Skyscrapers <https://www.ludism.org/ppwiki/Skyscrapers>`_
       - df_skyscrapers
@@ -326,6 +382,10 @@ Contained in ppgames
       - df_speedy_towers
       - X
       - Currently only supports two players
+    * - `Steppin' Stones <https://ludism.org/ppwiki/Steppin'_Stones>`_
+      - df_steppin_stones
+      -
+      -
     * - `Tablut <https://www.ludism.org/ppwiki/Tablut>`_
       - df_tablut
       - X
@@ -338,8 +398,16 @@ Contained in ppgames
       - df_the_magic_bag
       -
       -
+    * - `The Penguin Game <https://ludism.org/ppwiki/PenguinGame>`_
+      - df_the_penguin_game
+      -
+      -
     * - `Tower of Babel <https://www.ludism.org/ppwiki/TowerOfBabel>`_
       - df_tower_of_babel
+      -
+      -
+    * - `Tracers <https://ludism.org/ppwiki/Tracers>`_
+      - df_tracers
       -
       -
     * - `Triactor <https://www.ludism.org/ppwiki/Triactor>`_
@@ -349,7 +417,7 @@ Contained in ppgames
     * - `Tula <https://www.ludism.org/ppwiki/Tula>`_
       - df_tula
       -
-      -
+      - Also supports Tim Schutz's variants 1--4
     * - `Turkish Draughts <https://en.wikipedia.org/wiki/Turkish_draughts>`_
       - df_turkish_draughts
       -
@@ -407,6 +475,7 @@ Contained in tradgames
 library("piecepackr")
 library("ppgames")
 cfgs <- game_systems("dejavu")
+cfgs_joystick <- game_systems("dejavu", pawn = "joystick")
 
 dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,black",
                       invert_colors.suited=TRUE, border_color="black", border_lex=2)
@@ -461,6 +530,10 @@ invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Awithlaknannai Mosona"),
                "../share/rules/awithlaknannai_mosona.png")
 
+render_piece(df_black_pawn_trucking(seed=49), "../share/rules/black_pawn_trucking.png", ppi=36, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game Black Pawn Trucking"),
+               "../share/rules/black_pawn_trucking.png")
+
 png("../share/rules/brandubh.png", width=8, height=8, units="in", res=72)
 pmap_piece(df_brandubh(), cfg=traditional, default.units="in",
            op_scale=0.5, trans=op_transform)
@@ -474,12 +547,20 @@ invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Breakthrough"),
                "../share/rules/breakthrough.png")
 
+render_piece(df_cardinals_guards(seed=99), "../share/rules/cardinals_guards.png", ppi=72, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game Cardinal's Guards"),
+               "../share/rules/cardinals_guards.png")
+
 png("../share/rules/cell_management.png", width=11.5, height=12.5, units="in", res=36)
 pmap_piece(df_cell_management(seed=42), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=60, trans=op_transform)
 invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Cell Management"),
                "../share/rules/cell_management.png")
+
+render_piece(df_chariots(), "../share/rules/chariots.png", ppi=36, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game Chariots"),
+               "../share/rules/chariots.png")
 
 png("../share/rules/chinese_checkers.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_chinese_checkers(), envir=cfgs, default.units="in", 
@@ -488,12 +569,21 @@ invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Chinese Checkers"),
                 "../share/rules/chinese_checkers.png")
 
+render_piece(df_climbing_man(seed=19), "../share/rules/climbing_man.png", ppi=36, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game Climbing Man"),
+               "../share/rules/climbing_man.png")
+
 png("../share/rules/coin_collectors.png", width=12.5, height=11, units="in", res=36)
 pmap_piece(df_coin_collectors(seed=17), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
 invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Coin Collectors"),
                "../share/rules/coin_collectors.png")
+
+render_piece(df_crocodile_hop(seed=13), "../share/rules/crocodile_hop.png", ppi=36, envir=cfgs,
+             op_scale = 0.5, trans = op_transform)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game Crocodile Hop"),
+               "../share/rules/crocodile_hop.png")
 
 png("../share/rules/desfases.png", width=18, height=18, units="in", res=36)
 pmap_piece(df_desfases(seed=42), cfg=small_tiles, default.units="in", 
@@ -529,6 +619,10 @@ invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Fuji-san"),
                "../share/rules/fujisan.png")
 
+render_piece(df_galaxy_express(seed=22), "../share/rules/galaxy_express.png", ppi=36, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game Galaxy Express"),
+               "../share/rules/galaxy_express.png")
+
 png("../share/rules/grasshopper.png", width=9, height=9, units="in", res=72)
 pmap_piece(df_grasshopper(), cfg=two_player, default.units="in")
 invisible(dev.off())
@@ -555,6 +649,11 @@ pmap_piece(df_jul_gono(), envir=cfgs, default.units="in",
 invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Jul Gono"),
                "../share/rules/jul_gono.png")
+
+render_piece(df_lab_rats(seed=20), "../share/rules/lab_rats.png", ppi=36, envir=cfgs_joystick,
+             op_scale = 0.5, trans=op_transform, as_top = "pawn_face")
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game Lab Rats"),
+               "../share/rules/lab_rats.png")
 
 png("../share/rules/landlocked.png", width=11, height=11, units="in", res=36)
 pmap_piece(df_landlocked(seed=91), envir=cfgs, default.units="in", 
@@ -591,6 +690,10 @@ invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Mathrix"),
                "../share/rules/mathrix.png")
 
+render_piece(df_minishogi(), "../share/rules/minishogi.png", ppi=72, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game Minishogi"),
+               "../share/rules/minishogi.png")
+
 png("../share/rules/nine_mens_morris.png", width=15, height=15, units="in", res=36)
 pmap_piece(df_nine_mens_morris(), envir=cfgs, default.units="in")
 invisible(dev.off())
@@ -601,11 +704,14 @@ save_ruleset("nine mens morris", gk_2p, "../share/rules/nine_mens_morris.pdf")
 save_ruleset("nine mens morris", gk_2p, "../share/rules/nine_mens_morris_A4.pdf", size="A4")
 save_pamphlet("nine mens morris", gk_2p, "../share/rules/nine_mens_morris_pamphlet.pdf")
 save_pamphlet("nine mens morris", gk_2p, "../share/rules/nine_mens_morris_pamphlet_A4.pdf", size="A4")
-
 save_ruleset("twelve mens morris", gk_2p, "../share/rules/twelve_mens_morris.pdf")
 save_ruleset("twelve mens morris", gk_2p, "../share/rules/twelve_mens_morris_A4.pdf", size="A4")
 save_pamphlet("twelve mens morris", gk_2p, "../share/rules/twelve_mens_morris_pamphlet.pdf")
 save_pamphlet("twelve mens morris", gk_2p, "../share/rules/twelve_mens_morris_pamphlet_A4.pdf", size="A4")
+
+render_piece(df_one_man_thrag(seed=22), "../share/rules/one_man_thrag.png", ppi=36, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game One Man Thrag"),
+               "../share/rules/one_man_thrag.png")
 
 png("../share/rules/pass_the_food.png", width=9.0, height=13.5, units="in", res=42)
 pmap_piece(df_pass_the_food(), envir=cfgs, default.units="in", 
@@ -667,6 +773,14 @@ invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game San Andreas"),
         "../share/rules/san_andreas.png")
 
+render_piece(df_sarcophagus(seed=22), "../share/rules/sarcophagus.png", ppi=36, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game Sarcophagus"),
+               "../share/rules/sarcophagus.png")
+
+render_piece(df_shopping_mall(seed=22), "../share/rules/shopping_mall.png", ppi=36, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game Shopping Mall"),
+               "../share/rules/shopping_mall.png")
+
 png("../share/rules/skyscrapers.png", width=11, height=11, units="in", res=36)
 pmap_piece(df_skyscrapers(seed=91), envir=cfgs, default.units="in", 
            op_scale=0.5, op_angle=45, trans=op_transform)
@@ -703,6 +817,10 @@ invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = 'Setup for the game The Magic Bag'),
         "../share/rules/the_magic_bag.png")
 
+render_piece(df_the_penguin_game(seed=22), "../share/rules/the_penguin_game.png", ppi=72, envir=cfgs)
+xmpdf::set_xmp(update(xmp, date_created = "2023", description = "Setup for the game The Penguin Game"),
+               "../share/rules/the_penguin_game.png")
+
 png("../share/rules/tower_of_babel.png", width=6, height=7.5, units="in", res=42)
 pmap_piece(df_tower_of_babel(seed=32), envir=cfgs, default.units="in", 
            op_scale=0.5, trans=op_transform)
@@ -735,32 +853,43 @@ xmpdf::set_xmp(update(xmp, date_created = "2019", description = 'Setup for the g
 library("animation")
 library("grid")
 examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram-1.png",
+                 `Black Pawn Trucking` = "../share/rules/black_pawn_trucking.png",
                  Brandubh = "../share/rules/brandubh.png",
                  `Breakthrough / Crossings` = "../share/rules/breakthrough.png",
+                 `Cardinal\'s Guards` = "../share/rules/cardinals_guards.png",
                  `Cell Management` = "../share/rules/cell_management.png",
+                 Chariots = "../share/rules/chariots.png",
                  Chaturaji = "../images/knitr/demos-chess-chaturaji-1.png",
-                 `Chinese Checkers aka Mini Halma` = "../share/rules/chinese_checkers.png",
+                 `Chinese Checkers aka Piecepack Halma` = "../share/rules/chinese_checkers.png",
                  Checkers = "../share/rules/american_checkers.png",
                  Chess = "../images/knitr/demos-chess-international-chess-1.png",
+                 `Climbing Man` = "../share/rules/climbing_man.png",
                  Cribbage = "../images/knitr/games-cribbage-starting-diagram-1.png",
                  `Coin Collectors` = "../share/rules/coin_collectors.png",
+                 `Crocodile Hop` = "../share/rules/crocodile_hop.png",
                  Desfases = "../share/rules/desfases.png",
                  `Easy Slider` = "../share/rules/easy_slider.png",
                  Evade = "../share/rules/evade.png",
                  Everest = "../images/knitr/games-everest-starting-diagram-1.png",
                  `Four Field Kono` = "../share/rules/four_field_kono.png",
                  `Fuji-san` = "../share/rules/fujisan.png",
+                 `Galaxy Express` = "../share/rules/galaxy_express.png",
                  `Grasshopper` = "../share/rules/grasshopper.png",
                  Iceberg = "../share/rules/iceberg.png",
                  `Ice Floe` = "../share/rules/ice_floe.png",
+                 `The "In" Crowd` = "../share/rules/the_in_crowd.png",
                  `Jul-Gono` = "../share/rules/jul_gono.png",
+                 `Lab Rats` = "../share/rules/lab_rats.png",
                  Landlocked = "../share/rules/landlocked.png",
-                 `Ley Lines` = "../share/rules/ley_lines.png",
                  `Lines of Action` = "../share/rules/lines_of_action.png",
                  Ludo = "../share/rules/ludo.png",
+                 `The Magic Bag` = "../share/rules/the_magic_bag.png",
                  Mathrix = "../share/rules/mathrix.png",
+                 Minishogi = "../share/rules/minishogi.png",
                  `Nine/Twelve Men\'s Morris` = "../share/rules/nine_mens_morris.png",
+                 `One Man Thrag` = "../share/rules/one_man_thrag.png",
                  `Pass the Food` = "../share/rules/pass_the_food.png",
+                 `The Penguin Game` = "../share/rules/the_penguin_game.png",
                  `Piece Gaps` = "../share/rules/piece_gaps.png",
                  `Piece Packing Pirates` = "../share/rules/piece_packing_pirates.png",
                  `Piecepack Klondike` = "../share/rules/piecepack_klondike.png",
@@ -768,14 +897,14 @@ examples <- list(Backgammon = "../images/knitr/games-backgammon-starting-diagram
                  Quatri = "../share/rules/quatri.png",
                  Relativity = "../share/rules/relativity.png",
                  `San Andreas` = "../share/rules/san_andreas.png",
+                 Sarcophagus = "../share/rules/sarcophagus.png",
+                 `Shopping Mall` = "../share/rules/shopping_mall.png",
                  Skyscrapers = "../share/rules/skyscrapers.png",
                  `Slides of Action` = "../share/rules/slides_of_action.png",
                  `Speedy Towers` = "../share/rules/speedy_towers.png",
                  Tablut = "../images/knitr/games-tablut-starting-diagram-1.png",
                  Tula = "../share/rules/tula.png",
                  `Turkish Draughts` = "../share/rules/turkish_draughts.png",
-                 `The Magic Bag` = "../share/rules/the_magic_bag.png",
-                 `The "In" Crowd` = "../share/rules/the_in_crowd.png",
                  `Tower of Babel` = "../share/rules/tower_of_babel.png",
                  Xiangqi = "../images/knitr/demos-chess-xiangqi-1.png",
                  Wormholes = "../share/rules/wormholes.png")

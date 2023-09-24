@@ -2,7 +2,7 @@ Game starting arrangement functions
 ===================================
 
 :date: 2019-10-25
-:modified: 2023-07-11
+:modified: 2023-09-24
 :tags: ppgames-features, piecepack-games
 :summary: The package ppgames_ contains functions that generate the starting piece arrangements for several `piecepack games`_.  These functions return data frames that can be used directly with ``piecepackr::pmap_piece()`` or ``ppgames::cat_piece()`` to generate `piecepack game`_ diagrams_ or they can be used with ppgames_' `Portable Piecepack Notation`_ parser ``read_ppn()`` to initially setup the game pieces.
 
@@ -146,6 +146,14 @@ Contained in ppgames
       - df_backgammon
       - X
       -
+    * - `Black Pawn Trucking <https://www.ludism.org/ppwiki/BlackPawnTrucking>`_
+      - df_black_pawn_trucking
+      -
+      -
+    * - `Brain Burn <https://www.ludism.org/ppwiki/BrainBurn>`_
+      - df_brain_burn
+      -
+      -
     * - `Brandubh <http://tafl.cyningstan.com/page/171/brandub>`_
       - df_brandubh
       -
@@ -154,9 +162,25 @@ Contained in ppgames
       - df_breakthrough
       -
       -
+    * - `Burbuja <https://www.ludism.org/ppwiki/Burbuja>`_
+      - df_burbuja
+      -
+      -
+    * - `Cardinal's Guards <https://ludism.org/ppwiki/CardinalsGuards>`_
+      - df_cardinals_guards
+      -
+      -
+    * - `Change Change <https://ludism.org/ppwiki/ChangeChange>`_
+      - df_change_change
+      -
+      -
     * - `Cell Management <https://www.ludism.org/ppwiki/CellManagement>`_
       - df_cell_management
       -
+      -
+    * - `Chariots <https://ludism.org/ppwiki/Chariots>`_
+      - df_chariots
+      - X
       -
     * - `Chaturaji <https://www.ludism.org/ppwiki/Chaturaji>`_
       - df_chaturaji
@@ -171,15 +195,23 @@ Contained in ppgames
       - X
       -
     * - `Chinese Checkers <https://www.ludism.org/ppwiki/ChineseCheckers>`_
-      - df_chinese_checkers, df_mini_halma
+      - df_chinese_checkers, df_mini_halma, df_piecepack_halma
       -
       - A mini Halma variant
+    * - `Climbing Man <https://ludism.org/ppwiki/ClimbingMan>`_
+      - df_climbing_man
+      -
+      -
     * - `Cribbage (Board) <https://www.ludism.org/ppwiki/Cribbage>`_
       - df_cribbage, df_cribbage_board
       - X
       - A (piecepack) cribbage board
     * - `Coin Collectors <https://www.ludism.org/ppwiki/CoinCollectors>`_
       - df_coin_collectors
+      -
+      -
+    * - `Crocodile Hop <https://ludism.org/ppwiki/CrocodileHop>`_
+      - df_crocodile_hop
       -
       -
     * - `Crossings <https://en.wikipedia.org/wiki/Crossings_(game)>`_
@@ -222,6 +254,10 @@ Contained in ppgames
       - df_fujisan
       -
       -
+    * - `Galaxy Express <https://ludism.org/ppwiki/GalaxyExpress>`_
+      - df_galaxy_express
+      -
+      -
     * - `Grasshoper <http://www.cyningstan.com/game/71/grasshopper>`_
       - df_grasshopper
       -
@@ -238,6 +274,10 @@ Contained in ppgames
       - df_jul_gono
       -
       - 
+    * - `Lab Rats <https://ludism.org/ppwiki/LabRats>`_
+      - df_lab_rats
+      -
+      -
     * - `Landlocked <https://www.ludism.org/ppwiki/Landlocked>`_
       - df_landlocked
       -
@@ -258,10 +298,18 @@ Contained in ppgames
       - df_mathrix
       -
       -
+    * - `Minishogi <https://en.wikipedia.org/wiki/Minishogi>`_
+      - df_minishogi
+      -
+      -
     * - `Nine Men's Morris <https://en.wikipedia.org/wiki/Nine_men%27s_morris>`_
       - df_nine_mens_morris
       - X
-      - 
+      -
+    * - `One Man Thrag <https://www.ludism.org/ppwiki/OneManThrag>`_
+      - df_one_man_thrag
+      -
+      -
     * - `Pass the Food <https://www.ludism.org/ppwiki/PassTheFood>`_
       - df_pass_the_food
       - X
@@ -302,6 +350,10 @@ Contained in ppgames
       - df_salta
       -
       -
+    * - `Sarcophagus <https://ludism.org/ppwiki/Sarcophagus>`_
+      - df_sarcophagus
+      -
+      -
     * - `San Andreas <https://www.ludism.org/ppwiki/SanAndreas>`_
       - df_san_andreas
       -
@@ -309,6 +361,10 @@ Contained in ppgames
     * - `Shogi (Japanese Chess) <https://www.ludism.org/ppwiki/Shogi>`_
       - df_shogi
       - X
+      -
+    * - `Shopping Mall <https://ludism.org/ppwiki/ShoppingMall>`_
+      - df_shopping_mall
+      -
       -
     * - `Skyscrapers <https://www.ludism.org/ppwiki/Skyscrapers>`_
       - df_skyscrapers
@@ -322,6 +378,10 @@ Contained in ppgames
       - df_speedy_towers
       - X
       - Currently only supports two players
+    * - `Steppin' Stones <https://ludism.org/ppwiki/Steppin'_Stones>`_
+      - df_steppin_stones
+      -
+      -
     * - `Tablut <https://www.ludism.org/ppwiki/Tablut>`_
       - df_tablut
       - X
@@ -334,8 +394,16 @@ Contained in ppgames
       - df_the_magic_bag
       -
       -
+    * - `The Penguin Game <https://ludism.org/ppwiki/PenguinGame>`_
+      - df_the_penguin_game
+      -
+      -
     * - `Tower of Babel <https://www.ludism.org/ppwiki/TowerOfBabel>`_
       - df_tower_of_babel
+      -
+      -
+    * - `Tracers <https://ludism.org/ppwiki/Tracers>`_
+      - df_tracers
       -
       -
     * - `Triactor <https://www.ludism.org/ppwiki/Triactor>`_
@@ -345,7 +413,7 @@ Contained in ppgames
     * - `Tula <https://www.ludism.org/ppwiki/Tula>`_
       - df_tula
       -
-      -
+      - Also supports Tim Schutz's variants 1--4
     * - `Turkish Draughts <https://en.wikipedia.org/wiki/Turkish_draughts>`_
       - df_turkish_draughts
       -
