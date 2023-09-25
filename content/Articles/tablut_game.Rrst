@@ -45,6 +45,8 @@ ppgames::animate_game(game, file = "../images/knitr/tablut.gif",
     Animation of a Tablut game
 
 .. {r save, echo=FALSE}
+xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for playing Tablut with a piecepack"),
+               "../images/knitr/games-tablut-starting-diagram-1.png")
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Animation of a Tablut game"),
                "../images/knitr/tablut.gif")
 
