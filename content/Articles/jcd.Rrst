@@ -2,6 +2,7 @@ Triactor (JCD Piecepack)
 ========================
 
 :date: 2019-11-15
+:modified: 2025-01-14
 :tags: piecepack-games
 :summary: `Jonathan C. Dietrich`_ is a notable piecepack designer who has written several piecepack games, developed `VASSAL's piecepack module`_, and designed the `JCD piecepack`_.  In this demo we'll be making a starting diagram for the game `Triactor`_ that he co-authored using a piecepackr_ configuration_ that directly uses his `JCD piecepack`_ images contained in `VASSAL's piecepack module`_.
 
@@ -100,7 +101,7 @@ Triactor_: A Day at the Piecepack Downs is a game by `Jonathan C. Dietrich`_, Ju
 .. {r starting-diagram}
 library("grid")
 library("magick") |> suppressPackageStartupMessages()
-library("ppgames")
+library("ppdf")
 if (!file.exists("Triactor.pdf")) {
     download.file("http://www.piecepack.org/rules/Triactor.pdf")
 }
@@ -113,7 +114,7 @@ png("../share/rules/triactor.png", width=21, height=13, units="in", res=72)
 pushViewport(viewport(x=unit(10.8, "in"), y=unit(6.6, "in"), width=unit(8.5, "in"), height=unit(11.0, "in"), angle=90))
 grid.draw(playmat)
 popViewport()
-pmap_piece(df_triactor(), envir=jcd, default.units="in", op_scale=0.5, trans=op_transform)
+pmap_piece(piecepack_triactor(), envir=jcd, default.units="in", op_scale=0.5, trans=op_transform)
 invisible(dev.off())
 .. ..
 

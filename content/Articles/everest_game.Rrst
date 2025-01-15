@@ -2,6 +2,7 @@ Everest
 =======
 
 :date: 2019-10-07
+:modified: 2025-01-13
 :tags: piecepack-games
 :summary: `Everest <http://www.ludism.org/ppwiki/Everest>`__ is a piecepack game by Mark A. Biggar featuring programmed movement.  It is a "King of the Hill" game that features a visually striking board with the tiles physically arranged as a hill.  Here is the starting diagram for it using an "icy" piecepack tile color scheme to match its snowy Himalayan Yeti theme:
 
@@ -18,7 +19,7 @@ knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 .. {r starting-diagram, fig.cap='Starting diagram for a game of Everest', fig.width=9, fig.height=7}
 
 library("piecepackr")
-library("ppgames")
+library("ppdf")
 
 icy_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,darkblue", border_color="black", border_lex=6,
                          edge_color.pawn="black", edge_color.tile="lightblue", depth.pawn=0.25)
@@ -26,7 +27,7 @@ piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5
                     suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
                     suit_cex="0.6,0.7,0.75,0.9,0.9")
 cfg <- pp_cfg(c(piecepack_suits, icy_colorscheme))
-pmap_piece(df_everest(), cfg=cfg, default.units="in", op_scale=1.0, trans=op_transform)
+pmap_piece(piecepack_everest(), cfg=cfg, default.units="in", op_scale=1.0, trans=op_transform)
 .. ..
 
 .. {r save, echo=FALSE}

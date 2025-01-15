@@ -2,23 +2,45 @@ News
 ====
 
 :date: 2020-06-24
-:modified: 2023-09-24
+:modified: 2025-01-12
 
 .. include:: ../../links.rst
 
 This page is a reverse chronological list of major changes by quarter.
 
-2023-Q3
+2025-Q1
 -------
-
-* `piecepackr v1.13.6 <https://github.com/piecepackr/piecepackr/releases/tag/v1.13.6>`_
-* `piecepackr v1.13.8 <https://github.com/piecepackr/piecepackr/releases/tag/v1.13.8>`_
-* `ppgames v0.8.1 <https://github.com/piecepackr/ppgames/releases/tag/v0.8.1>`_
 
 Software releases
 ~~~~~~~~~~~~~~~~~
 
-* `piecepackr v1.13.3 <https://github.com/piecepackr/piecepackr/releases/tag/v1.13.3>`_
+* `piecepackr v1.14.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.14.1>`_
+
+2024-Q3
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.13.11 <https://github.com/piecepackr/piecepackr/releases/tag/v1.13.11>`_
+
+2023-Q4
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.13.10 <https://github.com/piecepackr/piecepackr/releases/tag/v1.13.10>`_
+
+2023-Q3
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.13.6 <https://github.com/piecepackr/piecepackr/releases/tag/v1.13.6>`_
+* `piecepackr v1.13.8 <https://github.com/piecepackr/piecepackr/releases/tag/v1.13.8>`_
+* `ppgames v0.8.1 <https://github.com/piecepackr/ppgames/releases/tag/v0.8.1>`_
 
 2023-Q2
 -------

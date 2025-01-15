@@ -22,11 +22,17 @@
 .. _rayrender: https://cran.r-project.org/package=rayrender
 .. _rayvertex: https://cran.r-project.org/package=rayvertex
 .. _rgl: https://cran.r-project.org/package=rgl
+.. _tibble: https://cran.r-project.org/package=tibble
 .. _tweenr: https://cran.r-project.org/package=tweenr
 
-.. _ppgames: https://github.com/piecepackr/ppgames
 .. _piecepackr: https://github.com/piecepackr/piecepackr
 .. _piecenikr: https://github.com/piecepackr/piecenikr
+.. _ppcli: https://github.com/piecepackr/ppcli
+.. _ppdf: https://github.com/piecepackr/ppdf
+.. _ppgamer: https://github.com/piecepackr/ppgamer
+.. _ppgames: https://github.com/piecepackr/ppgames
+.. _ppn: https://github.com/piecepackr/ppn
+.. _pprules: https://github.com/piecepackr/pprules
 .. _tradgames: https://github.com/piecepackr/tradgames
 
 .. _man pages: https://trevorldavis.com/R/piecepackr
@@ -55,7 +61,7 @@
 .. _grob function:
 .. _custom grob functions: 
 .. _custom grob function: {filename}/Articles/custom_grob_fn.rst
-.. _PPN:
+.. .. _PPN:
 .. _Portable Piecepack Notation: {filename}/Articles/ppn.rst
 .. _oblique projection: {filename}/Articles/projections.rst
 .. _Unicode symbols: {filename}/Articles/unicode_symbols.rst
@@ -68,11 +74,17 @@
 
 .. Pages
 
+.. _Rulesets: {filename}/pages/rules.rst
 .. _Print & Play: {filename}/pages/pnp.rst
 
 .. Tags
 
 .. {tag}piecepackr-features
+.. {tag}ppcli-features
+.. {tag}ppdf-features
+.. {tag}pprules-features
+.. {tag}ppgamer-features
+.. {tag}ppn-features
 .. {tag}ppgames-features
 .. _diagrams: {tag}piecepack-games
 .. _other game systems: {tag}other-game-systems

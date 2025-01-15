@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'Trevor L Davis'
+AUTHOR = u'Trevor L. Davis'
 SITENAME = u'piecepackr: Board game graphics'
 SITEURL = 'https://trevorldavis.com/piecepackr'
 
@@ -17,7 +17,7 @@ DEFAULT_LANG = u'en'
 
 THEME = 'notmyidea-tld'
 
-FOOTNOTE = 'Copyright \u00a9 2019&ndash;2023 Trevor L Davis.  Some Rights Reserved.<p>Except where otherwise noted content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>'
+FOOTNOTE = 'Copyright \u00a9 2019&ndash;2025 Trevor L. Davis.  Some Rights Reserved.<p>Except where otherwise noted content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>'
 
 STATIC_PATHS = ('images', 'share')
 

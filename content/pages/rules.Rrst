@@ -1,8 +1,8 @@
 Rulesets
 ========
 
-:data: 2022-09-23
-:tags: ppgames-features
+:date: 2022-09-23
+:modified: 2025-01-14
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
@@ -11,25 +11,26 @@ set_opts_chunk("pages-rules")
 
 .. include:: ../../links.rst
 
-Below are some downloadable piecepack_ game rulesets contained within the ppgames_ R package generated into `letter <https://en.wikipedia.org/wiki/Letter_%28paper_size%29>`_ / `A4 <https://en.wikipedia.org/wiki/ISO_216#A_series>`_ paper sizes with the help of the |save_ruleset|_ functions.  The "pamphlet" variant is a trifold leaflet [#pamphlet]_.
+Below are some downloadable piecepack_ game rulesets contained within the pprules_ R package generated into `letter <https://en.wikipedia.org/wiki/Letter_%28paper_size%29>`_ / `A4 <https://en.wikipedia.org/wiki/ISO_216#A_series>`_ paper sizes with the help of the |save_ruleset|_ functions.  The "pamphlet" variant is a trifold leaflet [#pamphlet]_.
 For over 200 more piecepack games go to the `Games page on the piecepack wiki <https://ludism.org/ppwiki/Games>`_.
 
 .. |save_ruleset| replace:: ``save_ruleset()`` and ``save_pamphlet()``
-.. _save_ruleset: https://trevorldavis.com/R/ppgames/dev/reference/save_ruleset.html
+.. _save_ruleset: https://trevorldavis.com/R/pprules/dev/reference/save_ruleset.html
 
 .. {r table, echo=FALSE, results='asis'}
-library("ppgames")
+library("ppdf")
+library("pprules")
 
-game_info <- yaml::yaml.load_file(system.file("extdata/game_info.yaml", package = "ppgames"))
+game_info <- yaml::yaml.load_file(system.file("extdata/game_info.yaml", package = "pprules"))
 
 games <- names_rulesets()
 games <- grep("withlak", games, invert = TRUE, value = TRUE, ignore.case = TRUE) ####
 games <- grep("kono", games, invert = TRUE, value = TRUE, ignore.case = TRUE) ####
 games_normal <- games |> normalize_name()
 games_hyphen <- games |> normalize_name(sep = "-")
-games_titles <- sapply(games_hyphen, \(x) ppgames:::title(x, game_info))
+games_titles <- sapply(games_hyphen, \(x) pprules:::title(x, game_info))
 games_links <- sapply(games_hyphen, function(x) {
-    info <- ppgames:::get_game_info(x, game_info)
+    info <- pprules:::get_game_info(x, game_info)
     paste0("http://www.ludism.org/ppwiki/", info$ppwiki)
 })
 ruleset_letter <- sprintf("{static}/share/rules/%s.pdf", games_normal)

@@ -6,7 +6,15 @@ xmp <- xmpdf::xmp(attribution_url = "https://trevorldavis.com/piecepackr",
 
 .. include:: links.rst
 
-This is the associated website for the piecepackr_, ppgames_, piecenikr_, and tradgames_ R_ packages.  piecepackr_ is an R package designed to make configurable board game graphics. It can be used with the ggplot2_, grid_, rayrender_, rayvertex_, and rgl_ graphic systems to make board game diagrams_, board game animations_, and custom `Print & Play`_ layouts.  By default it is configured to make `piecepack game`_ diagrams_, animations_, and `Print & Play`_ layouts but can be configured to make graphics for `other game systems`_.  ppgames_ is an R_ package with functions for generating piecepack_ game graphics, rulesets, and books as well as functions to parse and visualize games recorded using "`Portable Piecepack Notation`_" format plus a Fuji-san solver.  piecenikr_ contains functions for visualizing `Looney Pyramids`_ games while tradgames_ contains functions for visualizing games played with traditional game systems (such as checkers sets).
+This is the associated website for the piecepackr_, ppcli_, ppdf_, ppgamer_, ppn_, pprules_, and piecenikr_ R_ packages.
+
+* piecepackr_ is an R_ package designed to make configurable board game graphics. It can be used with the ggplot2_, grid_, rayrender_, rayvertex_, and rgl_ graphic systems to make board game diagrams_, board game animations_, and custom `Print & Play`_ layouts.  By default it is configured to make `piecepack game`_ diagrams_, animations_, and `Print & Play`_ layouts but can be configured to make graphics for `other game systems`_.
+* ppcli_ is an R_ package to generate plaintext board game graphics (e.g. for a command-line interface).
+* ppdf_ is an R_ package that contains *functions* that return tibble_ data frames with (possibly random) setup data for over a hundred board games playable with public domain game systems.
+* ppgamer_ is an R_ package with a Fuji-san solver.
+* ppn_ is an R_ package with functions to parse and visualize games recorded using the "`Portable Piecepack Notation`_" (PPN) format.
+* pprules_ is an R_ package with functions to generate piecepack_ rulesets_.
+* piecenikr_ contains functions for visualizing `Looney Pyramids`_ games.
 
 .. {r piecepackr_animation, echo=FALSE, results='hide', message=FALSE}
 library("animation")
@@ -56,30 +64,32 @@ Also consider looking at each of the R packages built-in documentation:
      - Type
    * - piecepackr_
      - `development <https://trevorldavis.com/R/piecepackr/dev>`__, `release <https://trevorldavis.com/R/piecepackr>`__
-   * - ppgames_
+   * - ppcli_
+     - `development <https://trevorldavis.com/R/ppcli/dev>`__, `preview <https://trevorldavis.com/R/ppcli>`__
+   * - ppdf_
+     - `development <https://trevorldavis.com/R/ppdf/dev>`__, `preview <https://trevorldavis.com/R/ppdf>`__
+   * - ppn_
+     - `development <https://trevorldavis.com/R/ppn/dev>`__, `preview <https://trevorldavis.com/R/ppn>`__
+   * - ppgamer_
      - `development <https://trevorldavis.com/R/ppgames/dev>`__, `preview <https://trevorldavis.com/R/ppgames>`__
+   * - pprules_
+     - `development <https://trevorldavis.com/R/pprules/dev>`__, `preview <https://trevorldavis.com/R/pprules>`__
    * - piecenikr_
      - `development <https://trevorldavis.com/R/piecenikr/dev>`__, `preview <https://trevorldavis.com/R/piecenikr>`__
-   * - tradgames_
-     - `development <https://trevorldavis.com/R/tradgames/dev>`__, `preview <https://trevorldavis.com/R/tradgames>`__
 
 Docs
 ----
 
-These are in depth articles on specific subjects of interest to piecepackr_ users including documentation of some of the key piecepackr_ and ppgames_ features:
+These are in depth articles on specific subjects of interest to piecepackr_ users including documentation of some of the key piecepackr_ and related R_ package features:
 
-{piecepackr} features
-~~~~~~~~~~~~~~~~~~~~~
+piecepackr and related R package features
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. `Intro to piecepackr's API <{filename}/Articles/intro.rst>`_
+#. `3D projections <{filename}/Articles/projections.rst>`_
+#. `Animations`_
 #. `Configuration lists`_
 #. `Custom grob functions`_
-#. `3D projections <{filename}/Articles/projections.rst>`_
-
-{ppgames} features
-~~~~~~~~~~~~~~~~~~
-
-#. `Animations`_
 #. `Game starting arrangement functions <{filename}/Articles/game_starts.rst>`_
 #. `Portable Piecepack Notation <{filename}/Articles/ppn.rst>`_
 #. `Unicode piecepack diagrams <{filename}/Articles/unicode_diagrams.rst>`_
@@ -104,7 +114,7 @@ These are the `Print & Play demos`_ which demonstrate the code used to generate 
 Visualizations for Specific Piecepack Games
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-These are demonstrations of using piecepackr_ and ppgames_ to make visualizations for specific `piecepack games <{tag}ppgames>`__:
+These are demonstrations of using piecepackr_ to make visualizations for specific `piecepack games <{tag}piecepack-games>`__:
 
 #. `Backgammon <{filename}/Articles/backgammon_game.rst>`_
 #. Several `chess <{filename}/Articles/chess_pnp.rst>`_ variants
@@ -143,4 +153,3 @@ Miscellaneous articles of potential interest of piecepackr_ users and piecepack 
 #. `Essential information sets of a piecepack <{filename}/Articles/essential.rst>`_
 #. `Licenses FAQ <{filename}/Articles/licenses.rst>`_
 #. `Unicode piecepack symbols <{filename}/Articles/unicode_symbols.rst>`_
-
