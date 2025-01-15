@@ -2,7 +2,7 @@ News
 ====
 
 :date: 2020-06-24
-:modified: 2025-01-12
+:modified: 2025-01-15
 
 .. include:: ../../links.rst
 
@@ -15,6 +15,12 @@ Software releases
 ~~~~~~~~~~~~~~~~~
 
 * `piecepackr v1.14.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.14.1>`_
+* `ppcli v0.1.1 <https://github.com/piecepackr/ppcli/releases/tag/v0.1.1>`_
+* `ppdf v0.1.1 <https://github.com/piecepackr/ppdf/releases/tag/v0.1.1>`_
+* `ppgamer v0.1.1 <https://github.com/piecepackr/ppgamer/releases/tag/v0.1.1>`_
+* `ppgames v0.8.2 <https://github.com/piecepackr/ppgames/releases/tag/v0.8.2>`_
+* `ppn v0.1.1 <https://github.com/piecepackr/ppn/releases/tag/v0.1.1>`_
+* `pprules v0.1.1 <https://github.com/piecepackr/pprules/releases/tag/v0.1.1>`_
 
 2024-Q3
 -------
