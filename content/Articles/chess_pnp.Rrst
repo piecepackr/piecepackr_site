@@ -2,7 +2,7 @@ Chess
 =====
 
 :date: 2019-10-12
-:modified: 2023-02-16
+:modified: 2025-01-13
 :tags: print-and-play, piecepack-games
 :summary: Some demos of chess-ranked piecepacks as well as the starting diagrams of several chess variants playable with a piecepack.
 
@@ -74,11 +74,11 @@ checkeredPieceGrob <- function(piece_side, suit, rank, cfg) {
     background_grob <- shape$shape(gp=gpar(col=NA, fill=opt$background_color))
     checkers_grob <- shape$checkers(gp=gpar(fill=opt$gridline_color))
 
-    gp_ps <- gpar(col=opt$ps_color, fontsize=opt$ps_fontsize, 
+    gp_ps <- gpar(col=opt$ps_color, fontsize=opt$ps_fontsize,
                   fontfamily=opt$ps_fontfamily, fontface=opt$ps_fontface)
     ps_grob <- textGrob(opt$ps_text, x=opt$ps_x, y=opt$ps_y, gp=gp_ps)
 
-    gp_dm <- gpar(col=opt$dm_color, fontsize=opt$dm_fontsize, 
+    gp_dm <- gpar(col=opt$dm_color, fontsize=opt$dm_fontsize,
                   fontfamily=opt$dm_fontfamily, fontface=opt$ps_fontface)
     dm_grob <- textGrob(opt$dm_text, x=opt$dm_x, y=opt$dm_y, gp=gp_dm)
 
@@ -210,32 +210,32 @@ chessRankGrob <- function(piece_side, suit, rank, cfg=pp_cfg()) {
     # Primary symbol
     chess_ranks <- c("P", "N", "B", "R", "Q", "K")
     hjusts <- c(0.52, 0.5, 0.48, 0.52, 0.48, 0.52)
-    if (piece_side %in% c("tile_face", "coin_face", "coin_back", "die_face")) { 
+    if (piece_side %in% c("tile_face", "coin_face", "coin_back", "die_face")) {
         gp_ps <- gpar(col="white",
-                      fontsize=opt$ps_fontsize, 
+                      fontsize=opt$ps_fontsize,
                       fontfamily=opt$ps_fontfamily, fontface=opt$ps_fontface)
         ps_grob <- textGrob(opt$ps_text, x=opt$ps_x, y=opt$ps_y, gp=gp_ps)
-        fontsize <- list(tile_face=100, coin_back=70, coin_face=70, die_face=45, 
+        fontsize <- list(tile_face=100, coin_back=70, coin_face=70, die_face=45,
                          matchstick_face=20, pyramid_left=30, pyramid_right=30)
         chess_rank <- ifelse(piece_side == "coin_back", "P", chess_ranks[rank])
-        gp_c <- gpar(col=opt$ps_color, fontsize=fontsize[[piece_side]], 
+        gp_c <- gpar(col=opt$ps_color, fontsize=fontsize[[piece_side]],
                       fontfamily="Chess Utrecht")
         c_grob <- textGrob(chess_rank, hjust=ifelse(chess_rank=="P", hjusts[1], hjusts[rank]), gp=gp_c)
         ps_grob <- grobTree(c_grob, ps_grob)
     } else {
-        gp_ps <- gpar(col=opt$ps_color, fontsize=opt$ps_fontsize, 
+        gp_ps <- gpar(col=opt$ps_color, fontsize=opt$ps_fontsize,
                       fontfamily=opt$ps_fontfamily, fontface=opt$ps_fontface)
         ps_grob <- textGrob(opt$ps_text, x=opt$ps_x, y=opt$ps_y, gp=gp_ps)
     }
 
     # Directional mark
-    gp_dm <- gpar(col=opt$dm_color, fontsize=opt$dm_fontsize, 
+    gp_dm <- gpar(col=opt$dm_color, fontsize=opt$dm_fontsize,
                   fontfamily=opt$dm_fontfamily, fontface=opt$ps_fontface)
     dm_grob <- textGrob(opt$dm_text, x=opt$dm_x, y=opt$dm_y, gp=gp_dm)
 
-    # Border 
+    # Border
     border_grob <- shape$shape(gp=gpar(col=opt$border_color, fill=NA, lex=opt$border_lex))
-    gl <- gList(background_grob, gl_grob, mat_grob, 
+    gl <- gList(background_grob, gl_grob, mat_grob,
                 ps_grob, dm_grob, border_grob)
 
     gTree(children=gl, name=piece_side)
@@ -244,16 +244,16 @@ piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5
                         suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
                         suit_cex="0.6,0.7,0.75,0.90,0.9")
 colors <- list(ps_color.s2.tile_face="black", ps_color.s2.coin_back="black", ps_color.s2.die_face="black",
-               invert_colors.pawn=TRUE, 
+               invert_colors.pawn=TRUE,
                mat_width.tile_back=0.05, mat_color.tile_back="white",
                invert_colors.matchstick=TRUE, invert_colors.pyramid=TRUE,
                border_color.matchstick="grey", border_color.s2.pyramid="white")
-orthodox_ranks <- list(rank_text=",\uaa5c,2,3,4,5", use_suit_as_ace=TRUE, 
-                       rank_fontfamily="Noto Sans", 
+orthodox_ranks <- list(rank_text=",\uaa5c,2,3,4,5", use_suit_as_ace=TRUE,
+                       rank_fontfamily="Noto Sans",
                        rank_fontfamily.r2="Noto Sans Cham", rank_cex.r2.matchstick=0.7)
-misc <- list(grob_fn=chessRankGrob, 
-             dm_text.coin="", dm_text.die="", 
-             ps_cex.tile_face=0.5, ps_cex.r2.tile_face=0.3, ps_cex.s4.r2.tile_face=0.5, 
+misc <- list(grob_fn=chessRankGrob,
+             dm_text.coin="", dm_text.die="",
+             ps_cex.tile_face=0.5, ps_cex.r2.tile_face=0.3, ps_cex.s4.r2.tile_face=0.5,
              ps_cex.coin=0.9, ps_cex.coin_back=0.3, ps_cex.r2.coin_face=0.7,
              ps_cex.die_face=0.7, ps_cex.r2.die_face=0.5, ps_cex.s4.r2.die_face=0.6,
              ps_t.coin=-90, ps_r.coin=0.2, ps_r.coin_back=0.05,
@@ -281,9 +281,9 @@ grid.piece("preview_layout", cfg=chess5_cutlines)
 .. ..
 
 .. {r create_pnp, echo=FALSE}
-save(chess1_cutlines, chess2_cutlines, chess3_cutlines, chess4_cutlines, chess5_cutlines, 
-     chess1_borders, chess2_borders, chess3_borders, chess4_borders, chess5_borders, 
-     chess1_bleed, chess2_bleed, chess3_bleed, chess4_bleed, chess5_bleed, 
+save(chess1_cutlines, chess2_cutlines, chess3_cutlines, chess4_cutlines, chess5_cutlines,
+     chess1_borders, chess2_borders, chess3_borders, chess4_borders, chess5_borders,
+     chess1_bleed, chess2_bleed, chess3_bleed, chess4_bleed, chess5_bleed,
      file="../tmp/chess.RData")
 create_pnp("../tmp/chess.RData")
 .. ..
@@ -297,8 +297,7 @@ Alice Chess
 `Alice Chess <{static}/share/rules/alice-chess.pdf>`_ is chess variant invented in 1953 by V.R. Parton played on two boards.
 
 .. {r alice-chess, fig.cap="Alice Chess starting diagram", fig.width=19, fig.height=9}
-library("ppgames")
-pmap_piece(df_alice_chess(), cfg=chess5_borders, op_scale=0.5, 
+pmap_piece(ppdf::piecepack_alice_chess(), cfg=chess5_borders, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
@@ -308,7 +307,7 @@ Chaturaji
 `Chaturaji <{static}/share/rules/chaturaji.pdf>`_ (aka Chaturanga for four players aka Choupat) is an old four-person chess variant.
 
 .. {r chaturaji, fig.cap="Chaturaji starting diagram", fig.width=9, fig.height=9}
-pmap_piece(df_chaturaji(), cfg=chess5_borders, op_scale=0.5, 
+pmap_piece(ppdf::piecepack_chaturaji(), cfg=chess5_borders, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
@@ -318,7 +317,7 @@ pmap_piece(df_chaturaji(), cfg=chess5_borders, op_scale=0.5,
 `(International) Chess <{static}/share/rules/international_chess.pdf>`_ is a classic board game playable with a single piecepack.
 
 .. {r international-chess, fig.cap="(FIDE) Chess starting diagram", fig.width=9, fig.height=9}
-pmap_piece(df_international_chess(), cfg=chess5_borders, op_scale=0.5, 
+pmap_piece(ppdf::piecepack_international_chess(), cfg=chess5_borders, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
@@ -328,7 +327,7 @@ Four seasons chess
 `Four seasons chess <{static}/share/rules/four-seasons-chess.pdf>`_ is an old 4 player chess variant recorded in the *Acedrex de Los Quatros Tiempos*.
 
 .. {r four-seasons-chess, fig.cap="Four seasons chess starting diagram", fig.width=9, fig.height=9}
-pmap_piece(df_four_seasons_chess(), cfg=chess5_borders, op_scale=0.5, 
+pmap_piece(ppdf::piecepack_four_seasons_chess(), cfg=chess5_borders, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
@@ -338,17 +337,17 @@ Ultima
 `Ultima <{static}/share/rules/ultima.pdf>`_ is chess variant invented by Robert Abbot and published in Recreational Mathematics Magazine in August 1962 under the name Baroque chess.
 
 .. {r ultima, fig.cap="Ultima starting diagram", fig.width=9, fig.height=9}
-pmap_piece(df_ultima(), cfg=chess5_borders, op_scale=0.5, 
+pmap_piece(ppdf::piecepack_ultima(), cfg=chess5_borders, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
 Xiangqi (Chinese Chess)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-`Xiangqi <{static}/share/rules/xiangqi.pdf>`_ (also called Chinese chess) is a popular board game in Chinese communities and is a member of the chess family of games. 
+`Xiangqi <{static}/share/rules/xiangqi.pdf>`_ (also called Chinese chess) is a popular board game in Chinese communities and is a member of the chess family of games.
 
 .. {r xiangqi, fig.cap="Xiangqi (Chinese Chess) starting diagram", fig.width=10, fig.height=12}
-pmap_piece(df_xiangqi(), cfg=chess5_borders, op_scale=0.5, 
+pmap_piece(ppdf::piecepack_xiangqi(), cfg=chess5_borders, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
@@ -374,7 +373,7 @@ Chaturaji
 ~~~~~~~~~
 
 .. {r chaturaji-stackpack, fig.cap = "Chaturaji diagram", fig.width=9, fig.height=9}
-pmap_piece(df_chaturaji(has_subpack = TRUE), envir = two_player_stackpack,
+pmap_piece(ppdf::stackpack_chaturaji(), envir = two_player_stackpack,
            op_scale = 0.5, trans=op_transform, default.units = "in")
 .. ..
 
@@ -382,7 +381,7 @@ pmap_piece(df_chaturaji(has_subpack = TRUE), envir = two_player_stackpack,
 ~~~~~~~~~~~~~~~~~~~~~
 
 .. {r international-chess-stackpack, fig.cap="Chess starting diagram", fig.width=9, fig.height=9}
-pmap_piece(df_international_chess(has_subpack = TRUE), envir = two_player_stackpack, op_scale=0.5, 
+pmap_piece(ppdf::stackpack_international_chess(), envir = two_player_stackpack, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
@@ -390,7 +389,7 @@ Shogi (Japanese Chess)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 .. {r shogi-stackpack, fig.cap="Shogi starting diagram", fig.width=10, fig.height=10}
-pmap_piece(df_shogi(has_subpack = TRUE), envir = two_player_stackpack, op_scale=0.5, 
+pmap_piece(ppdf::stackpack_shogi(), envir = two_player_stackpack, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
@@ -398,7 +397,7 @@ Xiangqi (Chinese Chess)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 .. {r xiangqi-stackpack, fig.cap="Xiangqi starting diagram", fig.width=10, fig.height=12}
-pmap_piece(df_xiangqi(has_subpack = TRUE), envir = two_player_stackpack, op_scale=0.5, 
+pmap_piece(ppdf::stackpack_xiangqi(), envir = two_player_stackpack, op_scale=0.5,
            trans=op_transform, default.units="in")
 .. ..
 
@@ -420,7 +419,7 @@ save_ruleset("international chess", gk, "../share/rules/international_chess_A4.p
 save_pamphlet("international chess", gk, "../share/rules/international_chess_pamphlet.pdf")
 save_pamphlet("international chess", gk, "../share/rules/international_chess_pamphlet_A4.pdf", size="A4")
 
-render_piece(df_shogi(), "../share/rules/shogi.png", ppi=36, 
+render_piece(ppdf::piecepack_shogi(), "../share/rules/shogi.png", ppi=36,
              envir=list(piecepack=chess5_borders))
 save_ruleset("shogi", gk, "../share/rules/shogi.pdf")
 save_ruleset("shogi", gk, "../share/rules/shogi_A4.pdf", size="A4")
@@ -431,28 +430,6 @@ save_ruleset("xiangqi", gk, "../share/rules/xiangqi.pdf")
 save_ruleset("xiangqi", gk, "../share/rules/xiangqi_A4.pdf", size="A4")
 save_pamphlet("xiangqi", gk, "../share/rules/xiangqi_pamphlet.pdf")
 save_pamphlet("xiangqi", gk, "../share/rules/xiangqi_pamphlet_A4.pdf", size="A4")
-# svg2png("../images/knitr/demos-chess-alice-chess-1.svg",
-#         "../share/rules/alice-chess.png", 950, 450)
-# svg2png("../images/knitr/demos-chess-chaturaji-1.svg",
-#         "../share/rules/chaturaji.png", 600, 600)
-# svg2png("../images/knitr/demos-chess-chaturaji-stackpack-1.svg",
-#         "../share/rules/chaturaji-stackpack.png", 600, 600)
-# svg2png("../images/knitr/demos-chess-international-chess-1.svg",
-#         "../share/rules/fide-chess.png", 600, 600) ####
-# svg2png("../images/knitr/demos-chess-international-chess-1.svg",
-#         "../share/rules/international-chess.png", 600, 600)
-# svg2png("../images/knitr/demos-chess-international-chess-stackpack-1.svg",
-#         "../share/rules/international-chess-stackpack.png", 600, 600) ####
-# svg2png("../images/knitr/demos-chess-four-seasons-chess-1.svg",
-#         "../share/rules/four-seasons-chess.png", 600, 600)
-# svg2png("../images/knitr/demos-chess-shogi-stackpack-1.svg",
-#         "../share/rules/shogi-stackpack.png", 500, 600)
-# svg2png("../images/knitr/demos-chess-ultima-1.svg",
-#         "../share/rules/ultima.png", 600, 600)
-# svg2png("../images/knitr/demos-chess-xiangqi-1.svg",
-#         "../share/rules/xiangqi.png", 500, 600)
-# svg2png("../images/knitr/demos-chess-xiangqi-stackpack-1.svg",
-#         "../share/rules/xiangqi-stackpack.png", 500, 600)
 resize_png("../images/knitr/demos-chess-alice-chess-1.png",
            "../share/rules/alice-chess.png", 950, 450)
 resize_png("../images/knitr/demos-chess-chaturaji-1.png",
@@ -478,12 +455,12 @@ resize_png("../images/knitr/demos-chess-xiangqi-stackpack-1.png",
 .. ..
 
 .. {r animation, echo=FALSE}
-game <- ppgames::read_ppn(system.file("ppn/international-chess.ppn", package="ppgames"))[[1]]
-ppgames::animate_game(game, file = "../images/knitr/international-chess.gif",
+game <- ppn::read_ppn(system.file("ppn/international-chess.ppn", package="ppn"))[[1]]
+ppn::animate_game(game, file = "../images/knitr/international-chess.gif",
                       cfg = chess5_borders, trans = op_transform, op_scale = 0.5,
                       n_transitions = 6, n_pauses = 3, fps = 9)
-game <- ppgames::read_ppn(system.file("ppn/xiangqi.ppn", package="ppgames"))[[1]]
-ppgames::animate_game(game, file = "../images/knitr/xiangqi.gif",
+game <- ppn::read_ppn(system.file("ppn/xiangqi.ppn", package="ppn"))[[1]]
+ppn::animate_game(game, file = "../images/knitr/xiangqi.gif",
                       cfg = chess5_borders, trans = op_transform, op_scale = 0.5,
                       n_transitions = 6, n_pauses = 3, fps = 9)
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Animation of a Xiangqi (Chinese Chess) game"),

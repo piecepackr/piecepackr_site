@@ -63,8 +63,6 @@ pmap_piece(df, cfg=hexpack, default.units="in",
 .. ..
 
 .. {r save, echo=FALSE}
-# svg2png("../images/knitr/games-hexpack-diagram-1.svg",
-#         "../share/rules/hexpack.png", 500, 450)
 resize_png("../images/knitr/games-hexpack-diagram-1.png",
            "../share/rules/hexpack.png", 500, 450)
 .. ..
@@ -81,8 +79,6 @@ pmap_piece(df, envir=game_systems("dejavu"), default.units="in",
 .. ..
 
 .. {r save2, echo=FALSE}
-# svg2png("../images/knitr/games-hexpack-diagram2-1.svg",
-#         "../share/rules/hexpack2.png", 500, 450)
 resize_png("../images/knitr/games-hexpack-diagram2-1.png",
            "../share/rules/hexpack2.png", 500, 450)
 .. ..

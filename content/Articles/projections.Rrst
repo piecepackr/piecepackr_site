@@ -2,7 +2,7 @@
 ==============
 
 :date: 2019-06-10
-:modified: 2022-05-17
+:modified: 2025-01-14
 :tags: piecepackr-features
 :summary: piecepackr_ has some basic support for projecting 3D board games onto a 2D diagram.  It can make diagrams using an orthographic or oblique `parallel projection <https://en.wikipedia.org/wiki/Parallel_projection>`_ using R's grid_ graphics library.  It can also render images using the rayrender_, rayvertex_, and rgl_ 3D graphics packages.  These latter packages usually use a `perspective projection <https://en.wikipedia.org/wiki/Perspective_(graphical)>`_ but can be configured to produce `parallel projections <https://en.wikipedia.org/wiki/Parallel_projection>`_.
 
@@ -163,9 +163,9 @@ rayrender
 
 .. {r rayrender, fig.keep='none'}
 library("piecepackr")
-library("ppgames")
+library("ppdf")
 library("rayrender")
-df <- ppgames::df_four_field_kono()
+df <- ppdf::piecepack_four_field_kono()
 options(piecepackr.cfg = game_systems("dejavu3d")$piecepack,
         piecepackr.trans = op_transform)
 l <- pmap_piece(df, piece, scale = 0.98, res = 150)
@@ -200,9 +200,9 @@ rayvertex
 
 .. {r rayvertex, fig.keep='none'}
 library("piecepackr")
-library("ppgames")
+library("ppdf")
 library("rayvertex", warn.conflicts = FALSE) # masks rayrender::r_obj
-df <- ppgames::df_international_chess()
+df <- ppdf::piecepack_international_chess()
 options(piecepackr.cfg = game_systems("dejavu3d", round=TRUE, pawn="joystick")$piecepack,
         piecepackr.trans = op_transform)
 l <- pmap_piece(df, piece_mesh, trans=op_transform, scale = 0.98, res = 150, as_top="pawn_face")
@@ -237,13 +237,13 @@ rgl
 
 .. {r rgl}
 library("piecepackr")
-library("ppgames")
+library("ppdf")
 library("rgl", warn.conflicts = FALSE) # masks rayrender::text3d
 
 invisible(rgl::open3d())
 rgl::view3d(phi=-30, zoom = 0.8)
 
-df <- ppgames::df_four_field_kono()
+df <- ppdf::piecepack_four_field_kono()
 options(piecepackr.cfg = game_systems("dejavu3d")$piecepack,
         piecepackr.trans = op_transform)
 pmap_piece(df, piece3d, scale = 0.98, res = 150)

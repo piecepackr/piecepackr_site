@@ -26,7 +26,7 @@ set_opts_chunk <- function(prefix="prefix") {
                           warning=FALSE)
 }
 
-library("ppgames", quietly = TRUE) # avoid conflicts messages with below `save_ruleset()`, etc.
+library("pprules", quietly = TRUE) # avoid conflicts messages with below `save_ruleset()`, etc.
 
 create_pnp <- function(Rdata_file) {
     if (!file.exists("../share/pnp")) dir.create("../share/pnp")
@@ -56,7 +56,7 @@ save_rulebook <- function(book, gk=game_kit(), output=NULL) {
     save(book, gk, output, file=trdata)
     code <- c("library('grid')",
               "library('piecepackr')",
-              "library('ppgames')",
+              "library('pprules')",
               sprintf("load('%s')", trdata),
               "save_rulebook(book, gk=gk, output=output)")
     writeLines(code, tr)
@@ -71,7 +71,7 @@ save_ruleset <- function(game, gk=game_kit(), output=NULL, size="letter") {
     save(game, gk, output, size, file=trdata)
     code <- c("library('grid')",
               "library('piecepackr')",
-              "library('ppgames')",
+              "library('pprules')",
               sprintf("load('%s')", trdata),
               "save_ruleset(game, gk, output, size=size, quietly=TRUE)")
     writeLines(code, tr)
@@ -86,17 +86,17 @@ save_pamphlet <- function(game, gk=game_kit(), output=NULL, size="letter") {
     save(game, gk, output, size, file=trdata)
     code <- c("library('grid')",
               "library('piecepackr')",
-              "library('ppgames')",
+              "library('pprules')",
               sprintf("load('%s')", trdata),
               "save_pamphlet(game, gk, output, size=size, quietly=TRUE)")
     writeLines(code, tr)
     system2("Rscript", tr)
 }
 
-svg2png <- function(svg, png, w=768, h=768) {
-    # system2("inkscape", c("-z", "-e", png, "-w", w, "-h", h, svg)) # nolint
-    rsvg::rsvg_png(svg, png, w, h)
-}
+# svg2png <- function(svg, png, w=768, h=768) {
+#     # system2("inkscape", c("-z", "-e", png, "-w", w, "-h", h, svg)) # nolint
+#     rsvg::rsvg_png(svg, png, w, h)
+# }
 # resize_png <- function(png.in, png.out, w=768, h=768) {
 #     system2("convert", c(png.in, "-resize", paste0(w, "x", h), png.out)) # nolint
 # }

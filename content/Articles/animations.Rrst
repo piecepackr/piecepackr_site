@@ -2,10 +2,9 @@ Animations
 ==========
 
 :date: 2019-04-09
-:modified: 2020-01-11
-:tags: ppgames-features
+:modified: 2025-01-14
 :summary: An example of making an animation directly using the {animation} and piecepackr_ packages and
-  an example using ppgames_'s ``animate_game()`` function that can be used to animate games recorded 
+  an example using ppn_'s ``animate_game()`` function that can be used to animate games recorded
   in `Portable Piecepack Notation`_.
 
 .. {r setup, echo=FALSE}
@@ -21,7 +20,7 @@ library("piecepackr")
 Directly using the {animations} package
 ---------------------------------------
 
-.. note:: Besides the `animation package`_ you may find gifski_ and tweenr_ helpful.  
+.. note:: Besides the `animation package`_ you may find gifski_ and tweenr_ helpful.
 
 Here is a simple example of using the ``saveGIF()`` function from the `animation package`_ and ``piecepackr::grid.piece`` directly to make a GIF animation of a tic-tac-toe game of "Suns" versus "Moons" played on the "lines" of a single tile back:
 
@@ -42,7 +41,7 @@ draw_tictactoe_game_step <- function(n, cfg=list()) {
     if (n > 5) grid.piece("coin_back", suit=1, cfg=cfg, x=inch(1),y=inch(1))
     if (n > 6) grid.piece("coin_back", suit=2, cfg=cfg, x=inch(3),y=inch(3), angle=180)
     if (n > 7) grid.piece("coin_back", suit=1, cfg=cfg, x=inch(2),y=inch(1))
-    if (n > 8) grid.segments(x0=inch(0.5), y0=inch(1), x1=inch(3.5), y1=inch(1), 
+    if (n > 8) grid.segments(x0=inch(0.5), y0=inch(1), x1=inch(3.5), y1=inch(1),
                              gp=gpar(col="blue", lwd=4))
     popViewport()
 }
@@ -50,7 +49,7 @@ draw_tictactoe_game <- function(cfg=list()) {
     for (ii in 0:9) { draw_tictactoe_game_step(ii, cfg) }
 }
 cfg <- game_systems("dejavu")$piecepack
-saveGIF({draw_tictactoe_game(cfg)}, movie.name="tictactoe.gif", 
+saveGIF({draw_tictactoe_game(cfg)}, movie.name="tictactoe.gif",
     ani.height=480, ani.width=480, ani.res=120, ani.dev="png", ani.type="png")
 .. ..
 .. {r move2, echo=FALSE}
@@ -65,20 +64,22 @@ invisible(file.rename('tictactoe.gif', '../images/knitr/tictactoe.gif'))
 
     Animation of a tic-tac-toe game
 
-Using {ppgames}'s 'animate_game' function
+Using {ppn}'s 'animate_game' function
 -----------------------------------------
 
-ppgames_ has a convenience function ``animate_game()`` that can be used to animate games recorded in `Portable Piecepack Notation`_:
+ppn_ has a convenience function ``animate_game()`` that can be used to animate games recorded in `Portable Piecepack Notation`_:
 
 .. {r fuji-san, results='hide', message=FALSE}
-library("ppgames")
+library("piecepackr")
+library("ppgamer")
+library("ppn")
 dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,black",
                       invert_colors.suited=TRUE, border_color="black", border_lex=2)
 piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
                     suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
                     suit_cex="0.6,0.7,0.75,0.9,0.9")
 traditional_ranks <- list(use_suit_as_ace=TRUE, rank_text=",a,2,3,4,5")
-cfg3d <- list(width.pawn=0.75, height.pawn=0.75, depth.pawn=0.375, 
+cfg3d <- list(width.pawn=0.75, height.pawn=0.75, depth.pawn=0.375,
                    dm_text.pawn="", shape.pawn="convex6", invert_colors.pawn=TRUE,
                    edge_color.coin="tan", edge_color.tile="tan")
 cfg <- pp_cfg(c(piecepack_suits, dark_colorscheme, traditional_ranks, cfg3d))

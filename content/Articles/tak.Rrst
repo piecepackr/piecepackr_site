@@ -2,7 +2,7 @@ Tak
 ===
 
 :date: 2019-06-16
-:modified: 2020-03-30
+:modified: 2025-01-14
 :tags: other-game-systems, piecepack-games
 :summary: Tak_ is a two-player abstract designed by James Ernest and Patrick Rothfuss that is best visualized in 3D.
   We show an example of configuring_ piecepackr_ to draw standard Tak_ game pieces.
@@ -112,9 +112,10 @@ We'll draw the same game diagram as before but using a piecepack stackpack_:
 
 .. {r stackpack, fig.width=6, fig.height=6, fig.cap="Tak game diagram with stackpack pieces"}
 library("dplyr", warn.conflicts=FALSE)
+library("ppdf")
 library("tibble")
 
-df_board <- df_rect_board_tiles(nrow=5, ncol=5)
+df_board <- piecepack_rect_board_tiles(nrow=5, ncol=5)
 df_board$cfg <- "piecepack"
 df_fs1 <- tibble(piece_side="coin_back", cfg="piecepack",
                  x=c(1,2,3,3,5), y=c(1,4,2,4,2), suit=c(4:1,3))

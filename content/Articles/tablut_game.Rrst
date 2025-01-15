@@ -2,7 +2,7 @@ Tablut
 ======
 
 :date: 2019-05-17
-:modified: 2021-01-25
+:modified: 2025-01-13
 :tags: piecepack-games
 :summary: `Tablut <{static}/share/rules/tablut.pdf>`_ is a historical (hnefa)tafl game played by the Sámi people until at least the 1700s whose rules were written down by the Swedish naturalist Linnaeus in 1732.  Below is a starting diagram for playing a game of Tablut with a piecepack.
 
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 
 .. {r starting-diagram, fig.cap='Starting diagram for a game of Tablut', fig.width=11, fig.height=11}
 library("piecepackr")
-library("ppgames")
+library("ppdf")
 cfg <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
      suit_cex="0.6,0.7,0.75,0.9,0.9",
     suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
@@ -25,15 +25,16 @@ cfg <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
     invert_colors.suited = TRUE, edge_color.coin="tan", edge_color.tile="tan",
     shape.pawn="convex6", depth.pawn=1.0, height.pawn=0.75, width.pawn=0.75, dm_text.pawn=""
 ))
-df <- df_tablut(die_width = 0.5)
+df <- piecepack_tablut(die_width = 0.5)
 pmap_piece(df, cfg=cfg, default.units="in", trans=op_transform, op_scale=0.7)
 .. ..
 
 And here is animation of a game of Tablut:
 
 .. {r animation, results='hide', message=FALSE}
-game <- read_ppn(system.file("ppn/tablut.ppn", package = "ppgames"))[[1]]
-ppgames::animate_game(game, file = "../images/knitr/tablut.gif",
+library("ppn")
+game <- read_ppn(system.file("ppn/tablut.ppn", package = "ppn"))[[1]]
+animate_game(game, file = "../images/knitr/tablut.gif",
                       cfg = cfg, trans = op_transform, op_scale = 0.7,
                       n_transitions = 6, n_pauses = 3, fps = 9)
 .. ..
@@ -55,8 +56,6 @@ save_ruleset("tablut", gk, "../share/rules/tablut.pdf")
 save_ruleset("tablut", gk, "../share/rules/tablut_A4.pdf", size="A4")
 save_pamphlet("tablut", gk, "../share/rules/tablut_pamphlet.pdf")
 save_pamphlet("tablut", gk, "../share/rules/tablut_pamphlet_A4.pdf", size="A4")
-# svg2png("../images/knitr/games-tablut-starting-diagram-1.svg",
-#         "../share/rules/tablut.png", 768, 768)
 resize_png("../images/knitr/games-tablut-starting-diagram-1.png",
            "../share/rules/tablut.png", 768, 768)
 .. ..

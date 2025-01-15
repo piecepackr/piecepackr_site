@@ -2,7 +2,7 @@ Reversi
 =======
 
 :date: 2020-01-05
-:modified: 2023-02-16
+:modified: 2025-01-14
 :tags: print-and-play, piecepack-games
 :summary: In the game of `Reversi <http://www.ludism.org/ppwiki/Reversi>`_ one player is represented by the suited side of piecepack components while the other player is represented by the unsuited side of piecepack components.  A reversi-friendly piecepack design makes it easier to distinguish between the suited and unsuited sides of piecepack components.  We also show how to play reversi with a piecepack stackpack.
 
@@ -60,12 +60,12 @@ A single piecepack (24 coins) lacks enough pieces to play the full 8x8 version o
 
 .. {r end-diagram, fig.cap='End diagram for a game of Reversi', fig.width=9, fig.height=9}
 library("dplyr", warn.conflicts=FALSE)
-library("ppgames")
+library("ppdf")
 library("tibble")
 
 envir <- list(piecepack=reversi1_borders, subpack=to_subpack(reversi1_borders))
 
-df_pt <- df_rect_board_tiles(nrow=8, ncol=8)
+df_pt <- piecepack_rect_board_tiles(nrow=8, ncol=8)
 df_pt$cfg <- "piecepack"
 df_btf <- tibble(piece_side="tile_face", cfg="subpack", 
                 x=c(1,4,5,7,8,3,8,2,4,7,8,6,8),
@@ -98,8 +98,6 @@ save(reversi1_cutlines,
      reversi1_bleed,
      file="../tmp/reversi.RData")
 create_pnp("../tmp/reversi.RData")
-# svg2png("../images/knitr/games-reversi-end-diagram-1.svg",
-#         "../share/rules/reversi.png", 768, 768)
 resize_png("../images/knitr/games-reversi-end-diagram-1.png",
            "../share/rules/reversi.png", 600, 600)
 .. ..

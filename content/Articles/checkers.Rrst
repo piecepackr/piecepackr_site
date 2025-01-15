@@ -2,7 +2,7 @@ Checkers
 ========
 
 :date: 2020-02-19
-:modified: 2020-02-20
+:modified: 2025-01-13
 :tags: other-game-systems
 :summary: Version 1.3 of piecepackr_ comes with built-in configurations for checker boards and checkers in a variety of colors and sizes via the ``game_systems()`` function.  Here is an example of the setup for Dan Troyka's game `Breakthrough <https://en.wikipedia.org/wiki/Breakthrough_(board_game)>`_ as well as Robert Abbott's game `Crossings <https://en.wikipedia.org/wiki/Crossings_(game)>`_.
 
@@ -10,7 +10,7 @@ Checkers
 source("../../set_knitr_opts.R")
 set_opts_chunk("games-checkers")
 knitr::opts_chunk$set(fig.process = fig_process(date_created = "2020"))
-library("tradgames", warn.conflicts = FALSE)
+library("ppdf")
 .. ..
 
 .. include:: ../../links.rst
@@ -33,15 +33,17 @@ pmap_piece(df, envir=envir, default.units="in", trans=op_transform, op_scale=0.5
 .. ..
 
 .. {r various-images, echo=FALSE}
-library("tradgames")
-# svg2png("../images/knitr/games-checkers-breakthrough-1.svg",
-#         "../share/rules/checkers_breakthrough.png", 600, 600)
+library("ppdf")
 resize_png("../images/knitr/games-checkers-breakthrough-1.png",
            "../share/rules/checkers_breakthrough.png", 600, 600)
+xmpdf::set_xmp(update(xmp, date_created = "2020",
+                      description = "Setup for a game of Dan Troyka's Breakthrough"),
+               "../share/rules/checkers_breakthrough.png")
 
 png("../share/rules/checkers_american_checkers.png", width=9, height=9, units="in", res=36)
-pmap_piece(df_american_checkers(), envir=envir, default.units="in", 
+pmap_piece(checkers_american_checkers(), envir=envir, default.units="in",
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
-xmpdf::set_xmp(update(xmp, date_created = "2020", description = "Setup for a game of American Checkers"),
+xmpdf::set_xmp(update(xmp, date_created = "2020",
+                      description = "Setup for a game of American Checkers"),
                "../share/rules/checkers_american_checkers.png")

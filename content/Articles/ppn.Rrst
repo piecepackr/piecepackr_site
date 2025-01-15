@@ -2,13 +2,12 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2021-02-21
-:tags: ppgames-features
-:summary: Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppgames/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppgames/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppgames/dev/reference/cat_piece.html>`_, and `animations <https://trevorldavis.com/R/ppgames/dev/reference/animate_game.html>`__ for the games saved in this file format.
+:modified: 2025-01-13
+:summary: Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppn/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppn/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppn/dev/reference/cat_move.html>`_, and `animations <https://trevorldavis.com/R/ppn/dev/reference/animate_game.html>`__ for the games saved in this file format.
 
 **Version: 0.14.0**
 
-Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppgames/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppgames/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppgames/dev/reference/cat_piece.html>`_, and `animations <https://trevorldavis.com/R/ppgames/dev/reference/animate_game.html>`__ for the games saved in this file format.
+Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppn/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppn/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppn/dev/reference/cat_move.html>`_, and `animations <https://trevorldavis.com/R/ppn/dev/reference/animate_game.html>`__ for the games saved in this file format.
 
 .. warning:: The "Portable Piecepack Notation" is in alpha development and the specification is not likely to remain stable.  I'd appreciate alpha testers to test things out but probably not a good idea to start storing large amount of games in the format just yet.
 
@@ -27,7 +26,7 @@ source("../../set_knitr_opts.R")
 set_opts_chunk("docs-ppn")
 knitr::opts_chunk$set(fig.process = fig_process(date_created = "2019"))
 library("piecepackr")
-library("ppgames")
+library("ppn")
 two_player <- pp_cfg(list(suit_text="🌞,🌜,👑,⚜,꩜",
         depth.coin=0.25,
         suit_cex="0.6,0.7,0.75,0.9,0.9",
@@ -50,7 +49,7 @@ Chess
 An example game of `chess <https://ludism.org/ppwiki/Chess>`__:
 
 .. {r chess, echo=FALSE, results='asis'}
-ppn_file <- system.file("ppn/international-chess.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/international-chess.ppn", package = "ppn")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
@@ -64,7 +63,7 @@ Checkers
 An example game of `checkers <https://ludism.org/ppwiki/Checkers>`_:
 
 .. {r checkers_animation, echo=FALSE, results='hide'}
-ppn_file <- system.file("ppn/american-checkers.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/american-checkers.ppn", package = "ppn")
 checkers <- read_ppn(ppn_file)[[1]]
 animate_game(checkers, file = "checkers.gif", annotate = TRUE, 
             cfg = two_player, trans = op_transform, op_scale = 0.5,
@@ -82,7 +81,7 @@ Desfases
 An example game of `Desfases <https://ludism.org/ppwiki/Desfases>`_:
 
 .. {r desfases, echo=FALSE, results='asis'}
-ppn_file <- system.file("ppn/desfases.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/desfases.ppn", package = "ppn")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
@@ -96,7 +95,7 @@ Four Field Kono
 An example game of `Four Field Kono <https://ludism.org/ppwiki/FourFieldKono>`_:
 
 .. {r kono_animation, echo=FALSE, results='hide'}
-ppn_file <- system.file("ppn/four-field-kono.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/four-field-kono.ppn", package = "ppn")
 game <- read_ppn(ppn_file)[[1]]
 animate_game(game, file = "four-field-kono.gif", annotate = TRUE,
              cfg = two_player, trans = op_transform, op_scale = 0.5,
@@ -116,7 +115,7 @@ Fuji-san
 A game of `Fuji-san <https://ludism.org/ppwiki/Fuji-san>`_ with a specific starting coin setup:
 
 .. {r fuji-san, echo=FALSE, results='asis'}
-ppn_file <- system.file("ppn/fujisan.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/fujisan.ppn", package = "ppn")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
@@ -130,7 +129,7 @@ Ice Floe
 A game of `Ice Floe <https://ludism.org/ppwiki/IceFloe>`_:
 
 .. {r ice-floe, echo=FALSE, results='asis'}
-ppn_file <- system.file("ppn/ice-floe.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/ice-floe.ppn", package = "ppn")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
@@ -140,7 +139,7 @@ Japan
 An example game of `Japan <https://ludism.org/ppwiki/Japan>`_:
 
 .. {r japan, echo=FALSE, results='asis'}
-ppn_file <- system.file("ppn/japan.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/japan.ppn", package = "ppn")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
@@ -168,7 +167,7 @@ Plans of Action
 An example game of `Plans of Action <https://www.ludism.org/ppwiki/PlansOfAction>`_:
 
 .. {r plans-of-action, echo=FALSE, results='asis'}
-ppn_file <- system.file("ppn/plans-of-action.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/plans-of-action.ppn", package = "ppn")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
@@ -178,12 +177,12 @@ Relativity
 An example game of `Relativity <{filename}/Articles/relativity_game.rst>`_:
 
 .. {r relativity, echo=FALSE, results='asis'}
-ppn_file <- system.file("ppn/relativity.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/relativity.ppn", package = "ppn")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
 .. image:: {static}/images/knitr/relativity.gif
-    :alt: Four Field Kono example
+    :alt: Relativity example
     :align: center
 
 Tablut
@@ -192,7 +191,7 @@ Tablut
 An example game of `Tablut <{filename}/Articles/tablut_game.rst>`_:
 
 .. {r tablut, echo=FALSE, results='asis'}
-ppn_file <- system.file("ppn/tablut.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/tablut.ppn", package = "ppn")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
@@ -202,7 +201,7 @@ Tic-Tac-Toe
 A simple game of Tic-Tac-Toe with no automatic setup:
 
 .. {r tic-tac-toe, echo=FALSE, results='asis'}
-ppn_file <- system.file("ppn/tic-tac-toe.ppn", package = "ppgames")
+ppn_file <- system.file("ppn/tic-tac-toe.ppn", package = "ppn")
 cat("::\n", paste("\t", readLines(ppn_file)), sep = "\n")
 .. ..
 
@@ -547,7 +546,7 @@ Relative coordinates
        i.e. ``?pS-3NNE {move the suns pawn three in a hexagonal diagonal direction up and right}``.  
        
        * Use NNE, SSE, SSW, NNW directions on hexagonal boards that allow horizontal moves and ENE, ESE, WSW, WNW directions on hexagonal boards that allow vertical moves.
-       * Note that real-life "half-wind" directions are multiples of 22.5 degrees while the "half-wind" directions in PPN_ are instead rounded to multiples of 30 degrees (to correspond to hex board movement angles).
+       * Note that real-life "half-wind" directions are multiples of 22.5 degrees while the "half-wind" directions in PPN are instead rounded to multiples of 30 degrees (to correspond to hex board movement angles).
 
 Get location from PieceId
 +++++++++++++++++++++++++
@@ -564,7 +563,7 @@ Get location from PieceId
 PieceId
 ~~~~~~~
 
-A PieceId_ is used to identify specific pieces on the board.  Currently PPN_ supports the following types of PieceId_:
+A PieceId_ is used to identify specific pieces on the board.  Currently PPN supports the following types of PieceId_:
 
 * A Location_ is used to identify the top piece at that Location_
 * ``N Location`` is used to identify the top ``N`` pieces at that Location_
@@ -682,8 +681,8 @@ Default Macros
 The `default movetext parser`_ has the following built-in macros (these can be over-ridden by the Setup_ function or by the user in the Metadata_):
 
 .. {r macros, echo=FALSE, results='asis'}
-replacement <- as.character(ppgames:::macros)
-dfm <- tibble::tibble(macro = names(ppgames:::macros),
+replacement <- as.character(ppn:::macros)
+dfm <- tibble::tibble(macro = names(ppn:::macros),
                       replacement = replacement,
                       hexadecimal = paste0("U+", as.hexmode(sapply(replacement, utf8ToInt))))
 rst_list_table(dfm, title = "Default parser's built-in macros")
@@ -719,9 +718,9 @@ The function can optionally take arguments to influence the setup, some existing
 
 Before returning the ``tibble`` one may add additional "attributes" using the ``attr()`` function, currently a handful of functions set a ``scale_factor`` attribute which adjusts how many inches a coordinate unit is worth.
 
-If the game is a piecepack game it should ideally be contributed to the ppgames_ R package, if it is a Looney pyramids game it should ideally be contributed to the piecenikr_ R package, if it is a game that is played with traditional components (like checkers sets, chess sets, dominoes, etc.) it should ideally be contributed to the tradgames_ R package.  Variants of the "same game" can be contributed to multiple packages (e.g. American checkers can be played with both a checkers set as well as a piecepack so it shows up both in ppgames_ and tradgames_).
+If the game is a piecepack game or a game that is played with traditional components (like checkers sets, chess sets, dominoes, etc.) it should ideally be contributed to the ppdf_ R package.  If it is a Looney pyramids game it should ideally be contributed to the piecenikr_ R package.
 
-There are several pre-existing game setup functions in the R packages ppgames_, piecenikr_, and tradgames_ that can be used for inspiration e.g. https://github.com/piecepackr/ppgames/blob/master/R/game_starts.R .
+There are several pre-existing game setup functions in the R packages ppdf_ and piecenikr_ that can be used for inspiration.
 
 Adding a new game notation parser
 +++++++++++++++++++++++++++++++++
