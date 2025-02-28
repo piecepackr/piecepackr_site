@@ -2,10 +2,10 @@ Portable Piecepack Notation
 ===========================
 
 :date: 2019-08-01
-:modified: 2025-01-13
+:modified: 2025-02-22
 :summary: Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppn/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppn/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppn/dev/reference/cat_move.html>`_, and `animations <https://trevorldavis.com/R/ppn/dev/reference/animate_game.html>`__ for the games saved in this file format.
 
-**Version: 0.14.0**
+**Version: 0.14.1**
 
 Portable Piecepack Notation (PPN) is a human-readable plaintext file format for storing board games.  The default Movetext parser is designed to be provide a fairly flexible notation system out of the box for playing a large variety of games but the structure is designed allow support for parsing alternative notation systems in the future as well.  Originally intended for notating piecepack games, it also provides some support for other game systems as well.  There is a `prototype parser <https://trevorldavis.com/R/ppn/dev/reference/read_ppn.html>`_ for this file format written in R that can be used to generate `2D/3D graphical images <https://trevorldavis.com/R/ppn/dev/reference/plot_move.html>`_, `plaintext Unicode diagrams <https://trevorldavis.com/R/ppn/dev/reference/cat_move.html>`_, and `animations <https://trevorldavis.com/R/ppn/dev/reference/animate_game.html>`__ for the games saved in this file format.
 
@@ -452,8 +452,9 @@ Assumptions
 * If missing Piece_:
 
   + If Side_ is ``l``, ``r``, or ``x`` then assumed to be a "pyramid" 
-  + If **both** Suit_ and Rank_ are missing or **neither** Suit_ and Rank_ are missing assumed to be a "tile"
-  + Else assumed to be a "coin"
+  + Otherwise if a colored suit then assumed to be a "bit"
+  + Otherwise if **both** Suit_ and Rank_ are missing or **neither** Suit_ and Rank_ are missing assumed to be a "tile"
+  + Finally assumed to be a "coin"
 
 * If missing Side_:
  
@@ -725,7 +726,7 @@ There are several pre-existing game setup functions in the R packages ppdf_ and 
 Adding a new game notation parser
 +++++++++++++++++++++++++++++++++
 
-If you'd like to use a different game notation other than that of the `default movetext parser`_ then it is possible to write and use alternative game notation parsers that can be used with PPN files.   One may then indicate the alternative parser to use via the ``MovetextParser`` field in the game's metadata_.  One should write an R function named ``parser_p_name`` where ``p_name`` is a descriptive name in "snake case".  The first argument of the function should be ``movetext`` which will receive a character vector of the PPN movetext_ and second argument should be ``metadata`` which will receive a list of the PPN metadata_.  Additionally if the ``MovetextParser`` element of the metadata_ was passed additional arguments those will be passed to the function as well.  For example the `default movetext parser`_ supports an optional ``scale_factor`` argument which lets a user adjust how many inches a coordinate unit is worth.  The parser function should return a list which (ideally) contains the following fields (at least) so one can visualize the results using existing functions like ``plot_move()`` or ``animate_game()``:
+If you'd like to use a different game notation other than that of the `default movetext parser`_ then it is possible to write and use alternative game notation parsers that can be used with PPN files.   One may then indicate the alternative parser to use via the ``MovetextParser`` field in the game's metadata_.  One should write an R function named ``pname_parser`` where ``pname`` is a descriptive name in "snake case".  The first argument of the function should be ``movetext`` which will receive a character vector of the PPN movetext_ and second argument should be ``metadata`` which will receive a list of the PPN metadata_.  Additionally if the ``MovetextParser`` element of the metadata_ was passed additional arguments those will be passed to the function as well.  For example the `default movetext parser`_ supports an optional ``scale_factor`` argument which lets a user adjust how many inches a coordinate unit is worth.  The parser function should return a list which (ideally) contains the following fields (at least) so one can visualize the results using existing functions like ``plot_move()`` or ``animate_game()``:
 
 movetext
   A character vector of the movetext passed into the parser
