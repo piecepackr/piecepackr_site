@@ -127,7 +127,7 @@ Checkers Games
 ++++++++++++++
 
 .. {r checkers, echo=FALSE, results='asis'}
-df <- ppdf::games_checkers()
+df <- ppdf::checkers_games()
 df$game <- rst_link(df$url, df$game)
 df$url <- NULL
 rst_list_table(df, "Setups for checkers/draughts sets", "50, 30, 20")
@@ -137,7 +137,7 @@ Chess Games
 ++++++++++++++
 
 .. {r chess, echo=FALSE, results='asis'}
-df <- ppdf::games_chess()
+df <- ppdf::chess_games()
 df$game <- rst_link(df$url, df$game)
 df$url <- NULL
 rst_list_table(df, "Setups for chess sets", "50, 30, 20")
@@ -147,7 +147,7 @@ Domino Games
 ++++++++++++++
 
 .. {r dominoes, echo=FALSE, results='asis'}
-df <- ppdf::games_dominoes()
+df <- ppdf::dominoes_games()
 df$game <- rst_link(df$url, df$game)
 df$url <- NULL
 rst_list_table(df, "Setups for sets of dominoes", "50, 30, 20")
@@ -157,7 +157,7 @@ Piecepack Games
 +++++++++++++++
 
 .. {r piecepack, echo=FALSE, results='asis'}
-df <- ppdf::games_piecepack()
+df <- ppdf::piecepack_games()
 df$game <- rst_link(df$url, df$game)
 df$url <- NULL
 rst_list_table(df, "Setups for piecepack_ sets", "50, 30, 20")
@@ -167,7 +167,7 @@ Stackpack Games
 +++++++++++++++
 
 .. {r stackpack, echo=FALSE, results='asis'}
-df <- ppdf::games_stackpack()
+df <- ppdf::stackpack_games()
 df$game <- rst_link(df$url, df$game)
 df$url <- NULL
 rst_list_table(df, "Setups for stackpack_ sets", "50, 30, 20")
@@ -441,7 +441,7 @@ xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the g
                "../share/rules/piece_packing_pirates.png")
 
 png("../share/rules/piecepack_klondike.png", width=14, height=7.5, units="in", res=36)
-pmap_piece(piecepack_piecepack_klondike(seed=21), envir=cfgs, default.units="in",
+pmap_piece(piecepack_klondike(seed=21), envir=cfgs, default.units="in",
            op_scale=0.5, trans=op_transform)
 invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2019", description = "Setup for the game Piecepack Klondike"),
