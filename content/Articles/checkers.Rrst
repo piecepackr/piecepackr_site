@@ -2,7 +2,7 @@ Checkers
 ========
 
 :date: 2020-02-19
-:modified: 2025-01-13
+:modified: 2025-03-25
 :tags: other-game-systems
 :summary: Version 1.3 of piecepackr_ comes with built-in configurations for checker boards and checkers in a variety of colors and sizes via the ``game_systems()`` function.  Here is an example of the setup for Dan Troyka's game `Breakthrough <https://en.wikipedia.org/wiki/Breakthrough_(board_game)>`_ as well as Robert Abbott's game `Crossings <https://en.wikipedia.org/wiki/Crossings_(game)>`_.
 
@@ -19,16 +19,17 @@ Version 1.3 of piecepackr_ comes with built-in configurations for checker boards
 
 .. {r breakthrough, fig.width=9, fig.height=9, fig.cap='Setup for Dan Troyka\'s *Breakthrough* as well as Robert Abbott\'s *Crossings*'}
 library("piecepackr")
-library("tibble")
-envir <- game_systems()
-df_board <- tibble(piece_side = "board_face", suit = 3, rank = 8,
-               x = 4.5, y = 4.5)
-df_w <- tibble(piece_side = "bit_face", suit = 6, rank = 1,
-               x = rep(1:8, 2), y = rep(1:2, each=8))
-df_b <- tibble(piece_side = "bit_face", suit = 1, rank = 1,
-               x = rep(1:8, 2), y = rep(7:8, each=8))
+library("ppdf")
+
+stopifnot(packageVersion("ppdf") >= "0.2.0-13",
+          packageVersion("piecepackr") >= "1.15.0-9")
+
+df_board <- checker_board()
+df_w <- checker_bits(suit = "white", x = rep(1:8, 2), y = rep(1:2, each=8))
+df_b <- checker_bits(suit = "red", x = rep(1:8, 2), y = rep(7:8, each=8))
 df <- rbind(df_board, df_w, df_b)
-df$cfg <- "checkers1"
+
+envir <- game_systems()
 pmap_piece(df, envir=envir, default.units="in", trans=op_transform, op_scale=0.5)
 .. ..
 
@@ -41,8 +42,9 @@ xmpdf::set_xmp(update(xmp, date_created = "2020",
                "../share/rules/checkers_breakthrough.png")
 
 png("../share/rules/checkers_american_checkers.png", width=9, height=9, units="in", res=36)
-pmap_piece(checkers_american_checkers(), envir=envir, default.units="in",
-           op_scale=0.5, trans=op_transform)
+df <- checker_american_checkers()
+df$suit <- ifelse(df$suit == 2L, 1L, df$suit) # convert black to red
+pmap_piece(df, envir=envir, default.units="in", op_scale=0.5, trans=op_transform)
 invisible(dev.off())
 xmpdf::set_xmp(update(xmp, date_created = "2020",
                       description = "Setup for a game of American Checkers"),
