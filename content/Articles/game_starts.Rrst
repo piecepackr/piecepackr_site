@@ -98,22 +98,6 @@ In particular for supported games playable with either a piecepack_ or another g
 Supported Game Start Functions
 ------------------------------
 
-Contained in piecenikr
-~~~~~~~~~~~~~~~~~~~~~~
-
-Please note some Looney Pyramids / piecepack hybrids like `Alien City <https://www.ludism.org/ppwiki/AlienCity>`__ are contained in the ppdf_ package.
-
-.. list-table:: Game Start Functions contained in piecenikr
-    :header-rows: 1
-    :widths: 30, 30, 40
-
-    * - game
-      - df_names
-      - comment
-    * - `Martian Chess <https://www.looneylabs.com/content/martian-chess>`_
-      - df_martian_chess
-      -
-
 Contained in ppdf
 ~~~~~~~~~~~~~~~~~
 
@@ -123,34 +107,70 @@ Contained in ppdf
 
     Some games supported in ppdf
 
+Alquerque Games
++++++++++++++++
+
+.. {r alquerque, echo=FALSE, results='asis'}
+df <- ppdf::alquerque_games()
+df$game <- rst_link(df$url, df$game)
+df$url <- NULL
+df$comment <- ifelse(is.na(df$comment), "", df$comment)
+rst_list_table(df, "Setups for alquerque sets", "50, 30, 20")
+.. ..
+
 Checkers Games
 ++++++++++++++
 
 .. {r checkers, echo=FALSE, results='asis'}
-df <- ppdf::checkers_games()
+df <- ppdf::checker_games()
 df$game <- rst_link(df$url, df$game)
 df$url <- NULL
+df$comment <- ifelse(is.na(df$comment), "", df$comment)
 rst_list_table(df, "Setups for checkers/draughts sets", "50, 30, 20")
 .. ..
 
 Chess Games
-++++++++++++++
++++++++++++
 
 .. {r chess, echo=FALSE, results='asis'}
 df <- ppdf::chess_games()
 df$game <- rst_link(df$url, df$game)
 df$url <- NULL
+df$comment <- ifelse(is.na(df$comment), "", df$comment)
 rst_list_table(df, "Setups for chess sets", "50, 30, 20")
 .. ..
 
 Domino Games
-++++++++++++++
+++++++++++++
 
 .. {r dominoes, echo=FALSE, results='asis'}
-df <- ppdf::dominoes_games()
+df <- ppdf::domino_games()
 df$game <- rst_link(df$url, df$game)
 df$url <- NULL
+df$comment <- ifelse(is.na(df$comment), "", df$comment)
 rst_list_table(df, "Setups for sets of dominoes", "50, 30, 20")
+.. ..
+
+Go Games
+++++++++
+
+.. {r go, echo=FALSE, results='asis'}
+df <- ppdf::go_games()
+df$game <- rst_link(df$url, df$game)
+df$url <- NULL
+df$comment <- ifelse(is.na(df$comment), "", df$comment)
+rst_list_table(df, "Setups for go sets", "50, 30, 20")
+.. ..
+
+Morris Games
+++++++++++++
+
+.. {r morris, echo=FALSE, results='asis'}
+df <- ppdf::morris_games()
+df$game <- rst_link(df$url, df$game)
+df$url <- NULL
+df$comment <- ifelse(is.na(df$comment), "", df$comment)
+rst_list_table(df, "Setups for morris sets", "50, 30, 20")
 .. ..
 
 Piecepack Games
@@ -160,7 +180,19 @@ Piecepack Games
 df <- ppdf::piecepack_games()
 df$game <- rst_link(df$url, df$game)
 df$url <- NULL
+df$comment <- ifelse(is.na(df$comment), "", df$comment)
 rst_list_table(df, "Setups for piecepack_ sets", "50, 30, 20")
+.. ..
+
+Reversi Games
++++++++++++++
+
+.. {r reversi, echo=FALSE, results='asis'}
+df <- ppdf::reversi_games()
+df$game <- rst_link(df$url, df$game)
+df$url <- NULL
+df$comment <- ifelse(is.na(df$comment), "", df$comment)
+rst_list_table(df, "Setups for reversi sets", "50, 30, 20")
 .. ..
 
 Stackpack Games
@@ -170,7 +202,22 @@ Stackpack Games
 df <- ppdf::stackpack_games()
 df$game <- rst_link(df$url, df$game)
 df$url <- NULL
+df$comment <- ifelse(is.na(df$comment), "", df$comment)
 rst_list_table(df, "Setups for stackpack_ sets", "50, 30, 20")
+.. ..
+
+Contained in piecenikr
+~~~~~~~~~~~~~~~~~~~~~~
+
+Please note some Looney Pyramids / piecepack hybrids like `Alien City <https://www.ludism.org/ppwiki/AlienCity>`__ are contained in the ppdf_ package.
+
+
+.. {r icehouse, echo=FALSE, results='asis'}
+df <- piecenikr::icehouse_games()
+df$game <- rst_link(df$url, df$game)
+df$url <- NULL
+df$comment <- ifelse(is.na(df$comment), "", df$comment)
+rst_list_table(df, "Setups for the Looney Pyramid game system", "50, 30, 20")
 .. ..
 
 .. {r various-images, echo=FALSE}
