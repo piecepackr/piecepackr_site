@@ -47,12 +47,12 @@ R package installation instructions (start R with ``R``):
 
 .. code:: r
 
-   install.packages(c("remotes", "ragg", "rsvg"))
+   install.packages(c("remotes", "ragg", "rgl", "rsvg"))
    remotes::install_github("piecepackr/piecepackr")
-   remotes::install_github("piecepackr/tradgames")
-   remotes::install_github("piecepackr/ppgames")
+   piecepackr::install_ppverse()
    remotes::install_github("piecepackr/piecenikr")
    remotes::install_github("trevorld/r-xmpdf")
+   remotes::install_github("trevorld/sbgjackets")
    quit("no")
 
 

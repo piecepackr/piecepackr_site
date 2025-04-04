@@ -33,6 +33,8 @@
 .. _ppgames: https://github.com/piecepackr/ppgames
 .. _ppn: https://github.com/piecepackr/ppn
 .. _pprules: https://github.com/piecepackr/pprules
+.. _pnpmisc: https://github.com/trevorld/pnpmisc
+.. _sbgjackets: https://github.com/trevorld/sbgjackets
 .. _tradgames: https://github.com/piecepackr/tradgames
 
 .. _man pages: https://trevorldavis.com/R/piecepackr

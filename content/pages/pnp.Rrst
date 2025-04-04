@@ -2,12 +2,17 @@ Print-and-Play PDFs
 ===================
 
 :date: 2019-03-27
-:modified: 2025-01-14
+:modified: 2025-04-03
 :tags: print-and-play
 
 .. include:: ../../links.rst
 
-piecepackr_ can generate Print & Play layouts for the piecepack_ game system via the `save_print_and_play()` function.
+.. contents::
+
+Print-and-Play Piecepacks
+-------------------------
+
+piecepackr_ can generate Print & Play layouts for the piecepack_ game system via the ``save_print_and_play()`` function.
 This page collects a number of such generated layouts along links to the relevant `Print & Play demos`_ that contain the source code for each of these piecepacks' configurations_.  
 
 The **Cutlines** layouts have pieces with thin borders designed to be cut out with scissors (or other tools).  These layouts are compact and contain more game pieces.  The pieces in the **Crop marks w/bleed** layouts lack borders and instead feature a bleed zone and crop marks.  These are designed to be cut out with more advanced crafting tools and techniques but make it easier for the crafter to control the final quality of the build.  
@@ -98,3 +103,28 @@ invisible(file.rename('pnp-previews.gif', '../images/knitr/pnp-previews.gif'))
     :align: center
 
     Previews of the print-and-play piecepacks
+
+Print-and-Play 4x6 Photo Storage Box Jackets
+--------------------------------------------
+
+pnpmisc_ can generate Print & Play layouts for 4x6 photo storage box jackets via the ``pdf_create_jacket()`` function.
+sbgjackets_ contains the code for some pre-made jackets.
+
+.. {r save_jackets, echo=FALSE, results='asis'}
+library("sbgjackets", quietly = TRUE)
+games <- c("dominoes", "nestorgames", "storage")
+titles <- c("(Double-6, Double-9, and Double-12) Domino Jackets",
+            "Shibumi Jacket",
+            "Misc. Game Bit Jackets")
+letter_urls <- sprintf("{static}/share/pnp/sbgj_%s_letter.pdf", games)
+A4_urls <- sprintf("{static}/share/pnp/sbgj_%s_a4.pdf", games)
+for (paper in c("letter", "a4")) {
+    sbgj_dominoes_all(sprintf("../share/pnp/sbgj_dominoes_%s.pdf", paper), paper = paper)
+    # sbgj_looney_pyramids_all(sprintf("../share/pnp/sbgj_looney_pyramids_%s.pdf", paper), paper = paper)
+    sbgj_nestorgames_all(sprintf("../share/pnp/sbgj_nestorgames_%s.pdf", paper), paper = paper)
+    sbgj_storage_all(sprintf("../share/pnp/sbgj_storage_%s.pdf", paper), paper = paper)
+}
+df <- data.frame(Title = titles,
+                 File = paste(rst_link(letter_urls, "letter"), "/", rst_link(A4_urls, "A4")))
+rst_list_table(df, title="Downloadable Print-and-Play PDFs", widths="70, 30")
+.. ..
