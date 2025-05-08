@@ -8,6 +8,24 @@ News
 
 This page is a reverse chronological list of major changes by quarter.
 
+2025-Q2
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.15.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.14.1>`_
+* `piecenikr v1.15.1 <https://github.com/piecepackr/piecenikr/releases/tag/v0.2.1>`_
+* `ppcli v0.2.1 <https://github.com/piecepackr/ppcli/releases/tag/v0.1.1>`_
+* `ppdf v0.2.1 <https://github.com/piecepackr/ppdf/releases/tag/v0.1.1>`_
+* `ppn v0.2.1 <https://github.com/piecepackr/ppn/releases/tag/v0.1.1>`_
+
+Updated articles and pages
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* `Game starting arrangement functions <{filename}/Articles/game_starts.rst>`_
+* `Print-and-Play PDFs <{filename}/pages/pnp.rst>`_
+
 2025-Q1
 -------
 
@@ -21,6 +39,12 @@ Software releases
 * `ppgames v0.8.2 <https://github.com/piecepackr/ppgames/releases/tag/v0.8.2>`_
 * `ppn v0.1.1 <https://github.com/piecepackr/ppn/releases/tag/v0.1.1>`_
 * `pprules v0.1.1 <https://github.com/piecepackr/pprules/releases/tag/v0.1.1>`_
+
+Updated articles and pages
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* `Checkers <{filename}/Articles/checkers.rst>`_
+* `Go <{filename}/Articles/go.rst>`_
 
 2024-Q3
 -------
