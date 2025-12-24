@@ -128,3 +128,43 @@ df <- data.frame(Title = titles,
                  File = paste(rst_link(letter_urls, "letter"), "/", rst_link(A4_urls, "A4")))
 rst_list_table(df, title="Downloadable Print-and-Play PDFs", widths="70, 30")
 .. ..
+
+Print-and-Play Playing Card Box Jackets
+--------------------------------------------
+
+pnpmisc_ can generate Print & Play layouts for playing card box jackets via the ``pdf_create_poker_jacket()`` function.
+sbgjackets_ contains the code for some pre-made jackets.
+
+.. {r save_poker_jackets, echo=FALSE, results='asis'}
+library("sbgjackets", quietly = TRUE)
+games <- c("the_fox_in_the_forest")
+titles <- c("The Fox in the Forest")
+letter_urls <- sprintf("{static}/share/pnp/pcbj_%s_letter.pdf", games)
+A4_urls <- sprintf("{static}/share/pnp/pcbj_%s_a4.pdf", games)
+for (paper in c("letter", "a4")) {
+	pcbj_fox_in_the_forest(sprintf("../share/pnp/pcbj_the_fox_in_the_forest_%s.pdf", paper), paper = paper, instructions = TRUE)
+}
+df <- data.frame(Title = titles,
+                 File = paste(rst_link(letter_urls, "letter"), "/", rst_link(A4_urls, "A4")))
+rst_list_table(df, title="Downloadable Print-and-Play PDFs", widths="70, 30")
+.. ..
+
+.. {r save_dotaro, echo=FALSE, results='asis', message=FALSE}
+library("dotaro.deck", quietly = TRUE)
+options(dotaro.deck.red = "black",
+        dotaro.deck.black = "black",
+        dotaro.deck.light = "white",
+        dotaro.dock.dark = "black")
+title <- "Dotaro Deck (Black and White French Suits)"
+dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_bw_letter.pdf", size = "letter", title = title)
+dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_bw_a4.pdf", size = "a4", title = title)
+
+vermillion <- palette.colors(names = TRUE)[["vermillion"]]
+options(dotaro.deck.red = vermillion,
+        dotaro.deck.black = "black",
+        dotaro.deck.light = "white",
+        dotaro.dock.dark = "black")
+title <- "Dotaro Deck (Black and Red French Suits)"
+dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_color_letter.pdf", size = "letter", title = title)
+dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_color_a4.pdf", size = "a4", title = title)
+.. ..
