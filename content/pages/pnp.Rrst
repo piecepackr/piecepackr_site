@@ -2,7 +2,7 @@ Print-and-Play PDFs
 ===================
 
 :date: 2019-03-27
-:modified: 2025-04-03
+:modified: 2026-01-07
 :tags: print-and-play
 
 .. include:: ../../links.rst
@@ -13,9 +13,9 @@ Print-and-Play Piecepacks
 -------------------------
 
 piecepackr_ can generate Print & Play layouts for the piecepack_ game system via the ``save_print_and_play()`` function.
-This page collects a number of such generated layouts along links to the relevant `Print & Play demos`_ that contain the source code for each of these piecepacks' configurations_.  
+This page collects a number of such generated layouts along links to the relevant `Print & Play demos`_ that contain the source code for each of these piecepacks' configurations_.
 
-The **Cutlines** layouts have pieces with thin borders designed to be cut out with scissors (or other tools).  These layouts are compact and contain more game pieces.  The pieces in the **Crop marks w/bleed** layouts lack borders and instead feature a bleed zone and crop marks.  These are designed to be cut out with more advanced crafting tools and techniques but make it easier for the crafter to control the final quality of the build.  
+The **Cutlines** layouts have pieces with thin borders designed to be cut out with scissors (or other tools).  These layouts are compact and contain more game pieces.  The pieces in the **Crop marks w/bleed** layouts lack borders and instead feature a bleed zone and crop marks.  These are designed to be cut out with more advanced crafting tools and techniques but make it easier for the crafter to control the final quality of the build.
 
 .. {r setup, echo=FALSE}
 source("../../set_knitr_opts.R")
@@ -28,8 +28,8 @@ library("piecepackr")
 library("grid")
 RData_files <- list.files("../tmp", pattern="RData", full.names=TRUE)
 ee <- new.env()
-for (ff in RData_files) { 
-    load(ff, envir=ee) 
+for (ff in RData_files) {
+    load(ff, envir=ee)
 }
 for (name in sort(names(ee))) {
     ee[[name]]$cache$reset()
@@ -47,7 +47,7 @@ base <- gsub("[0-9]*_cutlines", "", cfg_names)
 cfg_base <- gsub("_cutlines", "", cfg_names)
 cap <- function(s) { paste0(toupper(substring(s, 1, 1)), substring(s, 2)) }
 demo_links <- sprintf("{filename}/Articles/%s_pnp.rst#%s", base, cfg_base)
-df <- data.frame(Title=rst_link(demo_links, titles), 
+df <- data.frame(Title=rst_link(demo_links, titles),
                  Cutlines=paste(rst_link(letter_urls, "letter"), "/", rst_link(A4_urls, "A4")),
                  stringsAsFactors=FALSE)
 
@@ -112,20 +112,30 @@ sbgjackets_ contains the code for some pre-made jackets.
 
 .. {r save_jackets, echo=FALSE, results='asis'}
 library("sbgjackets", quietly = TRUE)
-games <- c("dominoes", "nestorgames", "storage")
-titles <- c("(Double-6, Double-9, and Double-12) Domino Jackets",
-            "Shibumi Jacket",
-            "Misc. Game Bit Jackets")
-letter_urls <- sprintf("{static}/share/pnp/sbgj_%s_letter.pdf", games)
-A4_urls <- sprintf("{static}/share/pnp/sbgj_%s_a4.pdf", games)
+df <- sbgjackets:::df_sbgj() |>
+	dplyr::filter(shareable) |>
+	dplyr::mutate(fn_name = substr(`function`, 2L, nchar(`function`) - 3L))
+titles <- ifelse(is.na(df$url),
+				 df$game,
+				 rst_link(df$url, df$game))
+letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", df$fn_name)
+letter_files <- sprintf("../share/pnp/%s_letter.pdf", df$fn_name)
+a4_urls <- sprintf("{static}/share/pnp/%s_a4.pdf", df$fn_name)
+a4_files <- sprintf("../share/pnp/%s_a4.pdf", df$fn_name)
+urls <- paste(rst_link(letter_urls, "letter"), "/", rst_link(a4_urls, "A4"))
 for (paper in c("letter", "a4")) {
-    sbgj_dominoes_all(sprintf("../share/pnp/sbgj_dominoes_%s.pdf", paper), paper = paper)
-    # sbgj_looney_pyramids_all(sprintf("../share/pnp/sbgj_looney_pyramids_%s.pdf", paper), paper = paper)
-    sbgj_nestorgames_all(sprintf("../share/pnp/sbgj_nestorgames_%s.pdf", paper), paper = paper)
-    sbgj_storage_all(sprintf("../share/pnp/sbgj_storage_%s.pdf", paper), paper = paper)
+	for (i in seq_len(nrow(df))) {
+		fn <- getFromNamespace(df$fn_name[i], "sbgjackets")
+		fn(letter_files[i], paper = "letter", instructions = TRUE)
+		fn(a4_files[i], paper = "a4", instructions = TRUE)
+	}
 }
-df <- data.frame(Title = titles,
-                 File = paste(rst_link(letter_urls, "letter"), "/", rst_link(A4_urls, "A4")))
+df <- data.frame(
+	`Game (System / Components)` = titles,
+	File = urls,
+	check.names = FALSE
+)
+
 rst_list_table(df, title="Downloadable Print-and-Play PDFs", widths="70, 30")
 .. ..
 
@@ -136,16 +146,30 @@ pnpmisc_ can generate Print & Play layouts for playing card box jackets via the 
 sbgjackets_ contains the code for some pre-made jackets.
 
 .. {r save_poker_jackets, echo=FALSE, results='asis'}
-library("sbgjackets", quietly = TRUE)
-games <- c("the_fox_in_the_forest")
-titles <- c("The Fox in the Forest")
-letter_urls <- sprintf("{static}/share/pnp/pcbj_%s_letter.pdf", games)
-A4_urls <- sprintf("{static}/share/pnp/pcbj_%s_a4.pdf", games)
+df <- sbgjackets:::df_pcbj() |>
+	dplyr::filter(shareable) |>
+	dplyr::mutate(fn_name = substr(`function`, 2L, nchar(`function`) - 3L))
+titles <- ifelse(is.na(df$url),
+				 df$game,
+				 rst_link(df$url, df$game))
+letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", df$fn_name)
+letter_files <- sprintf("../share/pnp/%s_letter.pdf", df$fn_name)
+a4_urls <- sprintf("{static}/share/pnp/%s_a4.pdf", df$fn_name)
+a4_files <- sprintf("../share/pnp/%s_a4.pdf", df$fn_name)
+urls <- paste(rst_link(letter_urls, "letter"), "/", rst_link(a4_urls, "A4"))
 for (paper in c("letter", "a4")) {
-	pcbj_fox_in_the_forest(sprintf("../share/pnp/pcbj_the_fox_in_the_forest_%s.pdf", paper), paper = paper, instructions = TRUE)
+	for (i in seq_len(nrow(df))) {
+		fn <- getFromNamespace(df$fn_name[i], "sbgjackets")
+		fn(letter_files[i], paper = "letter", instructions = TRUE)
+		fn(a4_files[i], paper = "a4", instructions = TRUE)
+	}
 }
-df <- data.frame(Title = titles,
-                 File = paste(rst_link(letter_urls, "letter"), "/", rst_link(A4_urls, "A4")))
+df <- data.frame(
+	`Game (System / Components)` = titles,
+	File = urls,
+	check.names = FALSE
+)
+
 rst_list_table(df, title="Downloadable Print-and-Play PDFs", widths="70, 30")
 .. ..
 
