@@ -125,9 +125,8 @@ a4_files <- sprintf("../share/pnp/%s_a4.pdf", df$fn_name)
 urls <- paste(rst_link(letter_urls, "letter"), "/", rst_link(a4_urls, "A4"))
 for (paper in c("letter", "a4")) {
 	for (i in seq_len(nrow(df))) {
-		fn <- getFromNamespace(df$fn_name[i], "sbgjackets")
-		fn(letter_files[i], paper = "letter", instructions = TRUE)
-		fn(a4_files[i], paper = "a4", instructions = TRUE)
+		getFromNamespace(df$fn_name[i], "sbgjackets")(letter_files[i], paper = "letter", instructions = TRUE)
+		getFromNamespace(df$fn_name[i], "sbgjackets")(a4_files[i], paper = "a4", instructions = TRUE)
 	}
 }
 df <- data.frame(
@@ -159,9 +158,8 @@ a4_files <- sprintf("../share/pnp/%s_a4.pdf", df$fn_name)
 urls <- paste(rst_link(letter_urls, "letter"), "/", rst_link(a4_urls, "A4"))
 for (paper in c("letter", "a4")) {
 	for (i in seq_len(nrow(df))) {
-		fn <- getFromNamespace(df$fn_name[i], "sbgjackets")
-		fn(letter_files[i], paper = "letter", instructions = TRUE)
-		fn(a4_files[i], paper = "a4", instructions = TRUE)
+		getFromNamespace(df$fn_name[i], "sbgjackets")(letter_files[i], paper = "letter", instructions = TRUE)
+		getFromNamespace(df$fn_name[i], "sbgjackets")(a4_files[i], paper = "a4", instructions = TRUE)
 	}
 }
 df <- data.frame(
