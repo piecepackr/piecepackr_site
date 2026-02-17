@@ -112,21 +112,21 @@ sbgjackets_ contains the code for some pre-made jackets.
 
 .. {r save_jackets, echo=FALSE, results='asis'}
 library("sbgjackets", quietly = TRUE)
-df <- sbgjackets:::df_sbgj() |>
+df_jackets <- sbgjackets:::df_sbgj() |>
 	dplyr::filter(shareable) |>
 	dplyr::mutate(fn_name = substr(`function`, 2L, nchar(`function`) - 3L))
-titles <- ifelse(is.na(df$url),
-				 df$game,
-				 rst_link(df$url, df$game))
-letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", df$fn_name)
-letter_files <- sprintf("../share/pnp/%s_letter.pdf", df$fn_name)
-a4_urls <- sprintf("{static}/share/pnp/%s_a4.pdf", df$fn_name)
-a4_files <- sprintf("../share/pnp/%s_a4.pdf", df$fn_name)
+titles <- ifelse(is.na(df_jackets$url),
+				 df_jackets$game,
+				 rst_link(df_jackets$url, df_jackets$game))
+letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", df_jackets$fn_name)
+letter_files <- sprintf("../share/pnp/%s_letter.pdf", df_jackets$fn_name)
+a4_urls <- sprintf("{static}/share/pnp/%s_a4.pdf", df_jackets$fn_name)
+a4_files <- sprintf("../share/pnp/%s_a4.pdf", df_jackets$fn_name)
 urls <- paste(rst_link(letter_urls, "letter"), "/", rst_link(a4_urls, "A4"))
 for (paper in c("letter", "a4")) {
-	for (i in seq_len(nrow(df))) {
-		getFromNamespace(df$fn_name[i], "sbgjackets")(letter_files[i], paper = "letter", instructions = TRUE)
-		getFromNamespace(df$fn_name[i], "sbgjackets")(a4_files[i], paper = "a4", instructions = TRUE)
+	for (i in seq_len(nrow(df_jackets))) {
+		getFromNamespace(df_jackets$fn_name[i], "sbgjackets")(letter_files[i], paper = "letter", instructions = TRUE)
+		getFromNamespace(df_jackets$fn_name[i], "sbgjackets")(a4_files[i], paper = "a4", instructions = TRUE)
 	}
 }
 df <- data.frame(
@@ -145,21 +145,21 @@ pnpmisc_ can generate Print & Play layouts for playing card box jackets via the 
 sbgjackets_ contains the code for some pre-made jackets.
 
 .. {r save_poker_jackets, echo=FALSE, results='asis'}
-df <- sbgjackets:::df_pcbj() |>
+df_jackets <- sbgjackets:::df_pcbj() |>
 	dplyr::filter(shareable) |>
 	dplyr::mutate(fn_name = substr(`function`, 2L, nchar(`function`) - 3L))
-titles <- ifelse(is.na(df$url),
-				 df$game,
-				 rst_link(df$url, df$game))
-letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", df$fn_name)
-letter_files <- sprintf("../share/pnp/%s_letter.pdf", df$fn_name)
-a4_urls <- sprintf("{static}/share/pnp/%s_a4.pdf", df$fn_name)
-a4_files <- sprintf("../share/pnp/%s_a4.pdf", df$fn_name)
+titles <- ifelse(is.na(df_jackets$url),
+				 df_jackets$game,
+				 rst_link(df_jackets$url, df_jackets$game))
+letter_urls <- sprintf("{static}/share/pnp/%s_letter.pdf", df_jackets$fn_name)
+letter_files <- sprintf("../share/pnp/%s_letter.pdf", df_jackets$fn_name)
+a4_urls <- sprintf("{static}/share/pnp/%s_a4.pdf", df_jackets$fn_name)
+a4_files <- sprintf("../share/pnp/%s_a4.pdf", df_jackets$fn_name)
 urls <- paste(rst_link(letter_urls, "letter"), "/", rst_link(a4_urls, "A4"))
 for (paper in c("letter", "a4")) {
-	for (i in seq_len(nrow(df))) {
-		getFromNamespace(df$fn_name[i], "sbgjackets")(letter_files[i], paper = "letter", instructions = TRUE)
-		getFromNamespace(df$fn_name[i], "sbgjackets")(a4_files[i], paper = "a4", instructions = TRUE)
+	for (i in seq_len(nrow(df_jackets))) {
+		getFromNamespace(df_jackets$fn_name[i], "sbgjackets")(letter_files[i], paper = "letter", instructions = TRUE)
+		getFromNamespace(df_jackets$fn_name[i], "sbgjackets")(a4_files[i], paper = "a4", instructions = TRUE)
 	}
 }
 df <- data.frame(
