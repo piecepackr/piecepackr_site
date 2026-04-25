@@ -2,11 +2,40 @@ News
 ====
 
 :date: 2020-06-24
-:modified: 2025-01-15
+:modified: 2026-04-25
 
 .. include:: ../../links.rst
 
 This page is a reverse chronological list of major changes by quarter.
+
+2026-Q2
+-------
+
+Updated articles and pages
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* `Portable Piecepack Notation <{filename}/Articles/ppn.rst>`_
+
+2026-Q1
+-------
+
+Updated articles and pages
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* `Print-and-Play PDFs <{filename}/pages/pnp.rst>`_
+
+2025-Q4
+-------
+
+Software releases
+~~~~~~~~~~~~~~~~~
+
+* `piecepackr v1.15.3 <https://github.com/piecepackr/piecepackr/releases/tag/v1.15.3>`_
+
+Updated articles and pages
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* `Print-and-Play PDFs <{filename}/pages/pnp.rst>`_
 
 2025-Q2
 -------
@@ -14,7 +43,7 @@ This page is a reverse chronological list of major changes by quarter.
 Software releases
 ~~~~~~~~~~~~~~~~~
 
-* `piecepackr v1.15.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.14.1>`_
+* `piecepackr v1.15.1 <https://github.com/piecepackr/piecepackr/releases/tag/v1.15.1>`_
 * `piecenikr v1.15.1 <https://github.com/piecepackr/piecenikr/releases/tag/v0.2.1>`_
 * `ppcli v0.2.1 <https://github.com/piecepackr/ppcli/releases/tag/v0.1.1>`_
 * `ppdf v0.2.1 <https://github.com/piecepackr/ppdf/releases/tag/v0.1.1>`_
