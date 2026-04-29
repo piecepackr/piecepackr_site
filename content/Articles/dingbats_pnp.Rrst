@@ -45,6 +45,7 @@ It is possible to emulate Ajoy's Dingbats piecepack_ in piecepackr_ but in order
 .. {r preview, fig.cap="A preview of a 'Dingbats' piecepack"}
 library("grid")
 library("piecepackr")
+stopifnot(packageVersion("ppdf") >= "0.3.0-14")
 ajoyDingbatsGrob <- function(piece_side, suit, rank, cfg=pp_cfg()) {
     cfg <- as_pp_cfg(cfg)
     opt <- cfg$get_piece_opt(piece_side, suit, rank)
@@ -136,7 +137,7 @@ bleed <- list(border_lex=0, border_color=NA_character_)
 dingbats1_cutlines <- pp_cfg(dingbats1)
 dingbats1_borders <- pp_cfg(c(borders, dingbats1))
 dingbats1_bleed <- pp_cfg(c(bleed, dingbats1))
-grid.piece("preview_layout", cfg=dingbats1_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=dingbats1_cutlines, default.units="in")
 .. ..
 
 .. _dingbats2:
@@ -164,7 +165,7 @@ dingbats2$title <- "Dingbats piecepack (French suits)"
 dingbats2_cutlines <- pp_cfg(dingbats2)
 dingbats2_borders <- pp_cfg(c(borders, dingbats2))
 dingbats2_bleed <- pp_cfg(c(bleed, dingbats2))
-grid.piece("preview_layout", cfg=dingbats2_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=dingbats2_cutlines, default.units="in")
 .. ..
 
 .. {r save, echo=FALSE}

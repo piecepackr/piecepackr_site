@@ -23,6 +23,7 @@ The orthodox_ piecepack ranks are a tad abstract and my toddler son is Chinese-A
 
 .. {r CZ1, fig.cap='Chinese Zodiac ranked piecepack (Trines 1 and 2)'}
 library("piecepackr")
+stopifnot(packageVersion("ppdf") >= "0.3.0-14")
 zodiac_cn1 <- list(rank_text = "🐀,🐉,🐒,🐂,🐍,🐓",
       suit_text = "🌲,🔥,⛰️,🏆,🌊,",
       rank_fontfamily = "Noto Emoji",
@@ -43,7 +44,7 @@ bleed <- list(border_lex=0, border_color=NA_character_)
 zodiac_cn1_cutlines <- pp_cfg(zodiac_cn1)
 zodiac_cn1_borders <- pp_cfg(c(borders, zodiac_cn1))
 zodiac_cn1_bleed <- pp_cfg(c(bleed, zodiac_cn1))
-grid.piece("preview_layout", cfg=zodiac_cn1_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=zodiac_cn1_cutlines, default.units="in")
 .. ..
 
 .. _zodiac_cn2:
@@ -55,7 +56,7 @@ zodiac_cn2$title <- "Chinese Zodiac (Trines 3+4)"
 zodiac_cn2_cutlines <- pp_cfg(zodiac_cn2)
 zodiac_cn2_borders <- pp_cfg(c(borders, zodiac_cn2))
 zodiac_cn2_bleed <- pp_cfg(c(bleed, zodiac_cn2))
-grid.piece("preview_layout", cfg=zodiac_cn2_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=zodiac_cn2_cutlines, default.units="in")
 .. ..
 
 .. {r save, echo=FALSE}

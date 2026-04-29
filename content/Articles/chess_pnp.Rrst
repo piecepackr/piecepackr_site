@@ -31,6 +31,7 @@ The simplest chess-ranked piecepack would be to simply swap in the six chess ran
 
 .. {r preview1, fig.cap="Chess-ranked piecepack"}
 library("piecepackr")
+stopifnot(packageVersion("ppdf") >= "0.3.0-14")
 noto_credit <- c("\u25cf This piecepack uses characters from Google Noto Fonts. OFL 1.1.",
                  "\thttps://www.google.com/get/noto/")
 
@@ -52,7 +53,7 @@ bleed <- list(border_lex=0, border_color=NA_character_)
 chess1_cutlines <- pp_cfg(chess1)
 chess1_borders <- pp_cfg(c(borders, chess1))
 chess1_bleed <- pp_cfg(c(bleed, chess1))
-grid.piece("preview_layout", cfg=chess1_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=chess1_cutlines, default.units="in")
 .. ..
 
 .. _chess2:
@@ -111,7 +112,7 @@ bleed <- list(border_lex=0, border_color=NA_character_)
 chess2_cutlines <- pp_cfg(chess2)
 chess2_borders <- pp_cfg(c(borders, chess2))
 chess2_bleed <- pp_cfg(c(bleed, chess2))
-grid.piece("preview_layout", cfg=chess2_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=chess2_cutlines, default.units="in")
 .. ..
 
 Mirrored-color-scheme chess piecepacks
@@ -150,7 +151,7 @@ bleed <- list(border_lex=0, border_color=NA_character_)
 chess3_cutlines <- pp_cfg(chess3)
 chess3_borders <- pp_cfg(c(borders, chess3))
 chess3_bleed <- pp_cfg(c(bleed, chess3))
-grid.piece("preview_layout", cfg=chess3_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=chess3_cutlines, default.units="in")
 .. ..
 
 .. _chess4:
@@ -171,7 +172,7 @@ chess4$title <- "Red-suited mirrored-color-scheme chess-ranked piecepack"
 chess4_cutlines <- pp_cfg(chess4)
 chess4_borders <- pp_cfg(c(borders, chess4))
 chess4_bleed <- pp_cfg(c(bleed, chess4))
-grid.piece("preview_layout", cfg=chess4_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=chess4_cutlines, default.units="in")
 .. ..
 
 .. _chess5:
@@ -277,7 +278,7 @@ bleed <- list(border_lex=0, border_color=NA_character_)
 chess5_cutlines <- pp_cfg(chess5)
 chess5_borders <- pp_cfg(c(borders, chess5))
 chess5_bleed <- pp_cfg(c(chess5, bleed))
-grid.piece("preview_layout", cfg=chess5_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=chess5_cutlines, default.units="in")
 .. ..
 
 .. {r create_pnp, echo=FALSE}

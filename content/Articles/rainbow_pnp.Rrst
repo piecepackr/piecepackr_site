@@ -24,6 +24,7 @@ Since dark suits show up best on a light background and light suits show up best
 
 .. {r RD1, fig.cap='Rainbow Deck suited piecepack (Dark suits)'}
 library("piecepackr")
+stopifnot(packageVersion("ppdf") >= "0.3.0-14")
 rainbow1 <- list(suit_text = "♥,★,♣,♦,♛,♠,꩜",
     rank_fontfamily = "Noto Sans",
     suit_fontfamily = paste0(paste(rep("Noto Sans Symbols", 6), collapse=","), ",Noto Sans Cham"),
@@ -47,7 +48,7 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
 bleed <- list(border_lex=0, border_color=NA_character_)
 rainbow1_cutlines <- pp_cfg(rainbow1)
 rainbow1_bleed <- pp_cfg(c(bleed, rainbow1))
-grid.piece("preview_layout", cfg=rainbow1_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=rainbow1_cutlines, default.units="in")
 .. ..
 
 .. _rainbow2:
@@ -59,7 +60,7 @@ rainbow2$background_color.suited <- "black"
 rainbow2$title <- "Rainbow Deck (light suits)"
 rainbow2_cutlines <- pp_cfg(rainbow2)
 rainbow2_bleed <- pp_cfg(c(bleed, rainbow2))
-grid.piece("preview_layout", cfg=rainbow2_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=rainbow2_cutlines, default.units="in")
 .. ..
 
 .. {r save, echo=FALSE}

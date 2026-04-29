@@ -44,6 +44,7 @@ Dual piecepacks #1 (Un-inverted Piecepack-suits and Inverted Latin-suits)
 
 .. {r preview1, fig.cap='A preview of the piecepack-suited piecepack'}
 library("piecepackr")
+stopifnot(packageVersion("ppdf") >= "0.3.0-14")
 ranks_noto <- list(rank_text="n,a,2,3,4,5", rank_fontfamily="Noto Sans")
 dark_colorscheme <- list(suit_color="darkred,black,darkgreen,darkblue,grey")
 piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
@@ -62,7 +63,7 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
 bleed <- list(border_lex=0, border_color=NA_character_)
 dual1_cutlines <- pp_cfg(dual1)
 dual1_bleed <- pp_cfg(c(bleed, dual1))
-grid.piece("preview_layout", cfg=dual1_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=dual1_cutlines, default.units="in")
 .. ..
 
 .. {r preview2, fig.cap='A preview of the latin-suited piecepack'}
@@ -83,7 +84,7 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
 }
 dual2_cutlines <- pp_cfg(dual2)
 dual2_bleed <- pp_cfg(c(bleed, dual2))
-grid.piece("preview_layout", cfg=dual2_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=dual2_cutlines, default.units="in")
 .. ..
 
 .. _dual3:
@@ -106,7 +107,7 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
 }
 dual3_cutlines <- pp_cfg(dual3)
 dual3_bleed <- pp_cfg(c(bleed, dual3))
-grid.piece("preview_layout", cfg=dual3_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=dual3_cutlines, default.units="in")
 .. ..
 
 .. {r preview4, fig.cap="A preview of the 'white' french-suited piecepack"}
@@ -122,7 +123,7 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
 }
 dual4_cutlines <- pp_cfg(dual4)
 dual4_bleed <- pp_cfg(c(bleed, dual4))
-grid.piece("preview_layout", cfg=dual4_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=dual4_cutlines, default.units="in")
 .. ..
 
 .. _dual5:
@@ -149,7 +150,7 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
 }
 dual5_cutlines <- pp_cfg(dual5)
 dual5_bleed <- pp_cfg(c(bleed, dual5))
-grid.piece("preview_layout", cfg=dual5_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=dual5_cutlines, default.units="in")
 .. ..
 
 .. {r preview6, fig.cap="A preview of the 'white' swiss-suited piecepack"}
@@ -165,7 +166,7 @@ if (packageVersion("piecepackr") >= "1.10.0-8") {
 }
 dual6_cutlines <- pp_cfg(dual6)
 dual6_bleed <- pp_cfg(c(bleed, dual6))
-grid.piece("preview_layout", cfg=dual6_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=dual6_cutlines, default.units="in")
 .. ..
 
 .. {r save, echo=FALSE}

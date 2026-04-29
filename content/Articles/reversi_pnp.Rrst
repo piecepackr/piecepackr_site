@@ -25,6 +25,7 @@ In the game of `Reversi <http://www.ludism.org/ppwiki/Reversi>`_ one player is r
 
 .. {r preview, fig.cap="A preview of a reversi-friendly piecepack"}
 library("piecepackr")
+stopifnot(packageVersion("ppdf") >= "0.3.0-14")
 reversi1 <- as.list(game_systems("dejavu")$piecepack)
 reversi1$background_color.suited <- "grey20"
 reversi1$suit_color <- "#D55E00,white,gold,#56b4e9"
@@ -48,7 +49,7 @@ reversi1_cutlines <- pp_cfg(reversi1)
 reversi1$background_color.suited <- "black"
 bleed <- list(border_lex=0, border_color=NA_character_)
 reversi1_bleed <- pp_cfg(c(bleed, reversi1))
-grid.piece("preview_layout", cfg=reversi1_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=reversi1_cutlines, default.units="in")
 .. ..
 
 Playing reversi with a piecepack stackpack

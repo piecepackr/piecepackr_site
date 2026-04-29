@@ -18,6 +18,7 @@ For a number of reasons the default_ piecepack made by piecepackr_ does not comp
 
 .. {r preview, fig.cap="A preview of an 'orthodox' piecepack made by piecepackr"}
 library("piecepackr")
+stopifnot(packageVersion("ppdf") >= "0.3.0-14")
 piecepack_suits <- list(suit_text="\U0001f31e,\U0001f31c,\U0001f451,\u269c,\uaa5c", # 🌞,🌜,👑,⚜,꩜
                         suit_fontfamily="Noto Emoji,Noto Sans Symbols2,Noto Emoji,Noto Sans Symbols,Noto Sans Cham",
                         suit_cex="0.6,0.7,0.75,0.9,0.9")
@@ -65,7 +66,7 @@ bleed <- list(border_lex=0, border_color=NA_character_)
 orthodox1_cutlines <- pp_cfg(orthodox1)
 orthodox1_borders <- pp_cfg(c(borders, orthodox1))
 orthodox1_bleed <- pp_cfg(c(bleed, orthodox1))
-grid.piece("preview_layout", cfg=orthodox1_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=orthodox1_cutlines, default.units="in")
 .. ..
 
 .. {r preview2, fig.cap="An 'orthodox' piecepack with gold crowns"}
@@ -75,7 +76,7 @@ orthodox2$title <- "Orthodox piecepack (Gold Crowns)"
 orthodox2_cutlines <- pp_cfg(orthodox2)
 orthodox2_borders <- pp_cfg(c(borders, orthodox2))
 orthodox2_bleed <- pp_cfg(c(bleed, orthodox2))
-grid.piece("preview_layout", cfg=orthodox2_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=orthodox2_cutlines, default.units="in")
 .. ..
 
 .. {r preview3, fig.cap="French-suited piecepack in an orthodox style"}
@@ -94,7 +95,7 @@ orthodox3$description <- "A French-suited piecepack that otherwise complies with
 orthodox3_cutlines <- pp_cfg(orthodox3)
 orthodox3_borders <- pp_cfg(c(borders, orthodox3))
 orthodox3_bleed <- pp_cfg(c(bleed, orthodox3))
-grid.piece("preview_layout", cfg=orthodox3_cutlines)
+ppdf::piecepack_preview() |> pmap_piece(cfg=orthodox3_cutlines, default.units="in")
 .. ..
 
 .. {r save, echo=FALSE}

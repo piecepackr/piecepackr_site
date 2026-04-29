@@ -61,10 +61,11 @@ grid.piece("pawn_face", s=3, cfg=cfg)
 grid.piece("die_face", s=2, r=1, cfg=cfg)
 .. ..
 
-The ``preview_layout`` grob allows one to see a preview of a given configuration list:
+``ppdf::piecepack_preview() |> pmap_piece()`` allows one to see a preview of a given configuration list:
 
-.. {r draw_preview, fig.cap="'preview_layout' allows one to see a preview of a configuration", out.width='60%'}
-grid.piece("preview_layout", cfg=cfg)
+.. {r draw_preview, fig.cap="'piecepack_preview()' allows one to see a preview of a configuration", out.width='60%'}
+stopifnot(packageVersion("ppdf") >= "0.3.0-14")
+ppdf::piecepack_preview() |> pmap_piece(cfg=cfg, default.units="in")
 .. ..
 
 Once you have a configuration you like one can use ``save_print_and_play`` to make a `Print & Play`_ pdf of your piecepack and ``save_piece_images`` to make individual images of every piecepack component (in case you would prefer to make your own layout or rule diagram in software like Inkscape):
