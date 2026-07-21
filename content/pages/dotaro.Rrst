@@ -1,0 +1,34 @@
+Dotaro Deck Print-and-Play PDFs
+================================
+
+:date: 2025-12-23
+:modified: 2026-07-21
+:status: hidden
+
+.. {r save_dotaro, echo=FALSE, results='asis', message=FALSE}
+library("dotaro.deck", quietly = TRUE)
+options(dotaro.deck.hearts_diamonds_color = "black",
+        dotaro.deck.spades_clubs_color = "black",
+        dotaro.deck.light = "white")
+title <- "Dotaro Deck (Black and White French Suits)"
+dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_bw_letter.pdf", size = "letter", title = title)
+dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_bw_a4.pdf", size = "a4", title = title)
+
+vermillion <- palette.colors(names = TRUE)[["vermillion"]]
+options(dotaro.deck.hearts_diamonds_color = vermillion,
+        dotaro.deck.spades_clubs_color = "black",
+        dotaro.deck.light = "white")
+title <- "Dotaro Deck (Black and Red French Suits)"
+dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_color_letter.pdf", size = "letter", title = title)
+dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_color_a4.pdf", size = "a4", title = title)
+
+bluishgreen <- palette.colors(names = TRUE)[["bluishgreen"]]
+gold <- palette.colors(names = TRUE)[["yellow"]]
+options(dotaro.deck.hearts_diamonds_color = vermillion,
+        dotaro.deck.spades_clubs_color = bluishgreen,
+        dotaro.deck.light = gold,
+        dotaro.deck.suits = "hybrid")
+title <- "Dotaro Deck (Hybrid Suits)"
+dotaro.deck::save_print_and_play("../share/pnp/dotaro_hybrid_letter.pdf", size = "letter", title = title)
+dotaro.deck::save_print_and_play("../share/pnp/dotaro_hybrid_a4.pdf", size = "a4", title = title)
+.. ..
