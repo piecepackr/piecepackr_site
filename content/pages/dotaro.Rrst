@@ -7,28 +7,49 @@ Dotaro Deck Print-and-Play PDFs
 
 .. {r save_dotaro, echo=FALSE, results='asis', message=FALSE}
 library("dotaro.deck", quietly = TRUE)
-options(dotaro.deck.hearts_diamonds_color = "black",
-        dotaro.deck.spades_clubs_color = "black",
-        dotaro.deck.light = "white")
+library("sbgjackets", quietly = TRUE)
+options(dotaro.deck::dotaro_deck_options("french_bw"))
 title <- "Dotaro Deck (Black and White French Suits)"
 dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_bw_letter.pdf", size = "letter", title = title)
 dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_bw_a4.pdf", size = "a4", title = title)
+sbgjackets::pcbj_dotaro_deck("../share/pnp/dotaro_box_jacket_french_bw_letter.pdf", paper = "letter", instructions = TRUE)
+sbgjackets::pcbj_dotaro_deck("../share/pnp/dotaro_box_jacket_french_bw_a4.pdf", paper = "a4", instructions = TRUE)
 
-vermillion <- palette.colors(names = TRUE)[["vermillion"]]
-options(dotaro.deck.hearts_diamonds_color = vermillion,
-        dotaro.deck.spades_clubs_color = "black",
-        dotaro.deck.light = "white")
-title <- "Dotaro Deck (Black and Red French Suits)"
+options(dotaro.deck::dotaro_deck_options("french_color"))
+title <- "Dotaro Deck (French Suits)"
 dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_color_letter.pdf", size = "letter", title = title)
 dotaro.deck::save_print_and_play("../share/pnp/dotaro_french_color_a4.pdf", size = "a4", title = title)
+sbgjackets::pcbj_dotaro_deck("../share/pnp/dotaro_box_jacket_french_color_letter.pdf", paper = "letter", instructions = TRUE)
+sbgjackets::pcbj_dotaro_deck("../share/pnp/dotaro_box_jacket_french_color_a4.pdf", paper = "a4", instructions = TRUE)
 
-bluishgreen <- palette.colors(names = TRUE)[["bluishgreen"]]
-gold <- palette.colors(names = TRUE)[["yellow"]]
-options(dotaro.deck.hearts_diamonds_color = vermillion,
-        dotaro.deck.spades_clubs_color = bluishgreen,
-        dotaro.deck.light = gold,
-        dotaro.deck.suits = "hybrid")
+# Experimental "hybrid" suits
+options(dotaro.deck::dotaro_deck_options("hybrid"))
 title <- "Dotaro Deck (Hybrid Suits)"
 dotaro.deck::save_print_and_play("../share/pnp/dotaro_hybrid_letter.pdf", size = "letter", title = title)
 dotaro.deck::save_print_and_play("../share/pnp/dotaro_hybrid_a4.pdf", size = "a4", title = title)
+sbgjackets::pcbj_dotaro_deck("../share/pnp/dotaro_box_jacket_hybrid_letter.pdf", paper = "letter", instructions = TRUE)
+sbgjackets::pcbj_dotaro_deck("../share/pnp/dotaro_box_jacket_hybrid_a4.pdf", paper = "a4", instructions = TRUE)
+
+# `save_manual()` and `save_octavo_booklet()` pick their own suit style/color
+# scheme per `variant` value, so these don't need any `options(dotaro.deck.*)`
+# set beforehand.  `save_octavo_booklet()` isn't exported by {dotaro.deck},
+# hence the `:::`.
+for (variant in c("french_bw", "french_color", "hybrid")) {
+	dotaro.deck::save_manual(
+		sprintf("../share/pnp/dotaro_manual_%s_letter.pdf", variant),
+		variant = variant, size = "letter"
+	)
+	dotaro.deck::save_manual(
+		sprintf("../share/pnp/dotaro_manual_%s_a4.pdf", variant),
+		variant = variant, size = "a4"
+	)
+	dotaro.deck:::save_octavo_booklet(
+		sprintf("../share/pnp/dotaro_octavo_booklet_%s_letter.pdf", variant),
+		variant = variant, size = "letter"
+	)
+	dotaro.deck:::save_octavo_booklet(
+		sprintf("../share/pnp/dotaro_octavo_booklet_%s_a4.pdf", variant),
+		variant = variant, size = "a4"
+	)
+}
 .. ..
